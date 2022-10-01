@@ -1,4 +1,4 @@
-package jpool;
+package game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
