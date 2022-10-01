@@ -1,0 +1,17 @@
+{
+    // Usare IntelliSense per informazioni sui possibili attributi.
+    // Al passaggio del mouse vengono visualizzate le descrizioni degli attributi esistenti.
+    // Per altre informazioni, visitare: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "game.App",
+            // Name and VM arguments
+            "projectName": "JPool_b490f64b",
+            "vmArgs": "--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml",
+        }
+    ]
+}
