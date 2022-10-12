@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Double?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="60.0" layoutX="100.0" layoutY="124.0" stroke="#b5abab" strokeType="INSIDE" width="60.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="60.0" layoutX="940.0" layoutY="124.0" stroke="#b5abab" strokeType="INSIDE" width="60.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="60.0" layoutX="100.0" layoutY="564.0" stroke="#b5abab" strokeType="INSIDE" width="60.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="60.0" layoutX="940.0" layoutY="564.0" stroke="#b5abab" strokeType="INSIDE" width="60.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#355748" height="440.0" layoutX="130.0" layoutY="154.0" onMouseDragReleased="#released" onMouseDragged="#Moveline" onMouseReleased="#released" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
+            <effect>
+                <DropShadow />
+            </effect>
+            <cursor>
+                <Cursor fx:constant="DEFAULT" />
+            </cursor>
+        </Rectangle>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="160.0" layoutY="124.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
+        <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="160.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+            <effect>
+                <Blend />
+            </effect>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="160.0" layoutY="594.0" rotate="180.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
+        <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="160.0" layoutY="594.0" pickOnBounds="true" preserveRatio="true">
+            <effect>
+                <Blend />
+            </effect>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="795.0" layoutY="359.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
+        <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="795.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <effect>
+                <Blend />
+            </effect>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="-75.0" layoutY="359.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
+        <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="-75.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <effect>
+                <Blend />
+            </effect>
+        </ImageView>
+        <Circle layoutX="130.0" layoutY="154.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+            <fill>
+                <RadialGradient centerX="0.14204545454545459" centerY="0.1067961165048543" radius="1.0">
+                    <stops>
+                        <Stop color="#ab0d0d" />
+                        <Stop color="BLACK" offset="1.0" />
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <DropShadow />
+            </effect>
+        </Circle>
+        <Circle layoutX="550.0" layoutY="151.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+            <fill>
+                <RadialGradient centerX="0.4715909090909091" radius="1.0">
+                    <stops>
+                        <Stop color="#ab0d0d" />
+                        <Stop color="BLACK" offset="1.0" />
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <DropShadow />
+            </effect>
+        </Circle>
+        <Circle layoutX="130.0" layoutY="595.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+         <fill>
+            <RadialGradient centerX="0.09659090909090913" centerY="0.8252427184466019" radius="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.6705882549285889" green="0.05098039284348488" blue="0.05098039284348488" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+        </Circle>
+        <Circle layoutX="970.0" layoutY="154.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <fill>
+                <RadialGradient centerX="0.8863636363636364" centerY="0.1067961165048543" radius="1.0">
+                    <stops>
+                        <Stop>
+                     <color>
+                        <Color red="0.6705882549285889" green="0.05098039284348488" blue="0.05098039284348488" />
+                     </color></Stop>
+                        <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color></Stop>
+                    </stops>
+                </RadialGradient>
+            </fill>
+        </Circle>
+        <Circle layoutX="970.0" layoutY="595.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <fill>
+                <RadialGradient centerX="0.875" centerY="0.8592233009708737" radius="1.0">
+                    <stops>
+                        <Stop color="#ab0d0d" />
+                        <Stop color="BLACK" offset="1.0" />
+                    </stops>
+                </RadialGradient>
+            </fill>
+        </Circle>
+        <Circle layoutX="550.0" layoutY="600.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <fill>
+                <RadialGradient centerX="0.48863636363636365" centerY="1.0" radius="1.0">
+                    <stops>
+                        <Stop color="#ab0d0d" />
+                        <Stop color="BLACK" offset="1.0" />
+                    </stops>
+                </RadialGradient>
+            </fill>
+        </Circle>
+        <Polygon fill="#36594a" layoutX="160.0" layoutY="580.0" stroke="BLACK" strokeType="INSIDE">
+            <points>
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="360" />
+                <Double fx:value="0" />
+                <Double fx:value="370" />
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="15" />
+            </points>
+            <effect>
+                <DropShadow />
+            </effect>
+        </Polygon>
+        <Polygon fill="#355748" layoutX="570.0" layoutY="580.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <points>
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="360" />
+                <Double fx:value="0" />
+                <Double fx:value="370" />
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="15" />
+            </points>
+        </Polygon>
+        <Polygon fill="#36594a" layoutX="570.0" layoutY="154.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <points>
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="360" />
+                <Double fx:value="0" />
+                <Double fx:value="370" />
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="15" />
+            </points>
+        </Polygon>
+        <Polygon fill="#36594a" layoutX="160.0" layoutY="154.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <points>
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="360" />
+                <Double fx:value="0" />
+                <Double fx:value="370" />
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="15" />
+            </points>
+        </Polygon>
+        <Polygon fill="#355748" layoutX="-55.0" layoutY="367.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <points>
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="375" />
+                <Double fx:value="0" />
+                <Double fx:value="385" />
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="15" />
+            </points>
+        </Polygon>
+        <Polygon fill="#36594a" layoutX="770.0" layoutY="367.0" rotate="270.0" stroke="BLACK" strokeType="INSIDE">
+            <effect>
+                <DropShadow />
+            </effect>
+            <points>
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="375" />
+                <Double fx:value="0" />
+                <Double fx:value="385" />
+                <Double fx:value="15" />
+                <Double fx:value="0" />
+                <Double fx:value="15" />
+            </points>
+        </Polygon>
+    </children>
+</Pane>
