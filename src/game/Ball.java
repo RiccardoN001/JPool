@@ -37,13 +37,13 @@ public class Ball {
     
     public Node DrawBall() {
 
-        sphere.setLayoutX(position.getX()); // offset from initial x to final x
-        sphere.setLayoutY(position.getY()); // offset from initial y to final y
-        sphere.setRotationAxis(Rotate.Y_AXIS); // fissa l'asse di rotazione (lato corto = y)
+        sphere.setLayoutX(position.getX());
+        sphere.setLayoutY(position.getY());
+        sphere.setRotationAxis(Rotate.Y_AXIS);
         sphere.setRotate(270); // angolo necessario a mostrare numero?
         Image img = new Image(getClass().getResourceAsStream(image));
 
-        // parvenza tridimensionale
+        // 3D
         PhongMaterial material = new PhongMaterial();
         material.setSpecularColor(WHITE);
         material.setDiffuseMap(img);
@@ -56,7 +56,6 @@ public class Ball {
         sphere.setEffect(dropShadow);
 
         return sphere;
-
     }
 
     public void spin() {
@@ -71,122 +70,133 @@ public class Ball {
         return position.sub(b.position).getSize() <= (diameter/2 + b.diameter/2);
     }
 
-    public void transferEnergy(Ball b) {
+    public void ballCollision(Ball b) {
 
-        Vector nvb = position.sub(b.position); // distanza tra i centri delle sfere
-        nvb.normalize(); // normalizziamo il vettore (modulo 1, ma direzione e verso da A a B)
-        nvb.multiply(velocity.scalar(nvb)); // prodotto scalare tra il vettore velocità di A e la normale verso B, poi moltiplico il risultato (intensità velocità A) per la normale (direzione e verso)
+        // ball A calls the method, ball B is given as an input
 
-        Vector angleVectorb = velocity.sub(nvb);
+        Vector normalToB = position.sub(b.position);
+        normalToB.normalize();
+        normalToB.multiply(velocity.scalar(normalToB));
 
-        Vector nva = b.position.sub(position);
-        nva.normalize();
-        nva.multiply(b.velocity.scalar(nva));
+        Vector bCollisionVector = velocity.sub(normalToB);
 
-        Vector angleVectora = b.velocity.sub(nva);
+        Vector normalToA = b.position.sub(position);
+        normalToA.normalize();
+        normalToA.multiply(b.velocity.scalar(normalToA));
 
-        velocity = nva.add(angleVectorb);
-        b.velocity = nvb.add(angleVectora);
+        Vector aCollisionVector = b.velocity.sub(normalToA);
+
+
+        velocity = normalToA.add(bCollisionVector);
+        b.velocity = normalToB.add(aCollisionVector);
         
     }
 
-    public void wallCollision() {
+    public void bankCollision() {
 
         double x = position.getX();
         double y = position.getY();
         double r = diameter/2;
 
-        // CASE A
-        if (x - r <= 147 && (y >= 196 && y <= 557)) {
-            velocity.setX (Math.abs (velocity.getX ()));
+        // LEFT BANK (A)
+        // REGION A1
+        if (x - r <= 147 && (y >= 178 && y <= 196)) {
+            velocity.setY(-velocity.getSize());
+            velocity.setX(0);
         }
+        // REGION A2
+        else if (x - r <= 147 && (y >= 196 && y <= 557)) {
+            velocity.setX(Math.abs(velocity.getX()));
+        }
+        // REGION A3
         else if (x - r <= 147 && (y >= 557 && y <= 570)) {
-            //velocity.setY (Math.abs (velocity.getY ()));
-            velocity.setY (velocity.getSize ());
-            velocity.setX (0);
-        }
-        else if (x - r <= 147 && (y >= 178 && y <= 196)) {
-            //velocity.setY (-Math.abs (velocity.getY ()));
-            velocity.setY (-velocity.getSize ());
-            velocity.setX (0);
+            velocity.setY(velocity.getSize());
+            velocity.setX(0);
         }
 
-        // CASE B
+        // RIGHT BANK (B)
+        // REGION B1
+        if (x + r >= 952 && (y >= 180 && y <= 192)) {
+            velocity.setY(-velocity.getSize());
+            velocity.setX(0);
+
+        }
+        // REGION B2
         if (x + r >= 952 && (y >= 193 && y <= 551)) {
-            velocity.setX (-Math.abs (velocity.getX ()));
+            velocity.setX(-Math.abs(velocity.getX()));
         }
-        else if (x + r >= 952 && (y >= 180 && y <= 192)) {
-            //velocity.setY (-Math.abs (velocity.getY ()));
-            velocity.setY (-velocity.getSize ());
-            velocity.setX (0);
-
-        }
+        
+        // REGION B3
         else if (x + r >= 952 && (y >= 551 && y <= 570)) {
-            //velocity.setY (Math.abs (velocity.getY ()));
-            velocity.setY (velocity.getSize ());
-            velocity.setX (0);
+            velocity.setY(velocity.getSize());
+            velocity.setX(0);
         }
 
-        // CASE C
-        if (y + r >= 578 && (x >= 174 && x <= 515)) {
-            velocity.setY (-Math.abs (velocity.getY ()));
+        // LEFT UP BANK (C)
+        // REGION C1
+        if (y + r >= 578 && (x >= 153 && x <= 174)) {
+            velocity.setX(-velocity.getSize());
+            velocity.setY(0);
         }
-        else if (y + r >= 578 && (x >= 153 && x <= 174)) {
-            //velocity.setX (-Math.abs (velocity.getX ()));
-            velocity.setX (-velocity.getSize ());
-            velocity.setY (0);
+        // REGION C2
+        else if (y + r >= 578 && (x >= 174 && x <= 515)) {
+            velocity.setY(-Math.abs(velocity.getY()));
         }
+        // REGION C3
         else if (y + r >= 578 && (x >= 515 && x <= 526)) {
-            velocity.setX (Math.abs (velocity.getX ()));
+            velocity.setX(Math.abs(velocity.getX()));
         }
 
-        // CASE D
-        if (y - r <= 172 && (x >= 170 && x <= 515)) {
-            velocity.setY (Math.abs (velocity.getY ()));
+        // RIGHT UP BANK (D)
+        // REGION D1
+        if (y + r >= 574 && (x >= 568 && x <= 584)) {
+            velocity.setX(-Math.abs(velocity.getX()));
         }
-        else if (y - r <= 172 && (x >= 153 && x <= 170)) {
-            //velocity.setX (-Math.abs (velocity.getX ()));
-            velocity.setX (-velocity.getSize ());
-            velocity.setY (0);
-
+        // REGION D2
+        else if (y + r >= 574 && (x >= 584 && x <= 928)) {
+            velocity.setY(-Math.abs(velocity.getY()));
         }
-        else if (y - r <= 172 && (x >= 515 && x <= 529)) {
-            velocity.setX (Math.abs (velocity.getX ()));
-
-        }
-
-        // CASE E
-        if (y - r <= 172 && (x >= 580 && x <= 924)) {
-            velocity.setY (Math.abs (velocity.getY ()));
-        }
-        else if (y - r <= 172 && (x >= 568 && x <= 580)) {
-            velocity.setX (-Math.abs (velocity.getX ()));
-
-        }
-        else if (y - r <= 172 && (x >= 924 && x <= 945)) {
-            //velocity.setX (Math.abs (velocity.getX ()));
-            velocity.setX (velocity.getSize ());
-            velocity.setY (0);
-
-        }
-        // CASE F
-        if (y + r >= 574 && (x >= 584 && x <= 928)) {
-            velocity.setY (-Math.abs (velocity.getY ()));
-        }
-        else if (y + r >= 574 && (x >= 568 && x <= 584)) {
-            velocity.setX (-Math.abs (velocity.getX ()));
-        }
+        // REGION D3
         else if (y + r >= 574 && (x >= 928 && x <= 944)) {
-            //velocity.setX (Math.abs (velocity.getX ()));
-            velocity.setX (velocity.getSize ());
-            velocity.setY (0);
+            velocity.setX(velocity.getSize());
+            velocity.setY(0);
+        }
+
+        // DOWN BANK (E)
+        // REGION E1
+        if (y - r <= 172 && (x >= 153 && x <= 170)) {
+            velocity.setX(-velocity.getSize());
+            velocity.setY(0);
+        }
+        // REGION E2
+        else if (y - r <= 172 && (x >= 170 && x <= 515)) {
+            velocity.setY(Math.abs(velocity.getY()));
+        }
+        // REGION E3
+        else if (y - r <= 172 && (x >= 515 && x <= 529)) {
+            velocity.setX(Math.abs(velocity.getX()));
+        }
+
+        // DOWN BANK (F)
+        // REGION F1
+        if (y - r <= 172 && (x >= 568 && x <= 580)) {
+            velocity.setX(-Math.abs(velocity.getX()));
+        }
+        // REGION F2
+        else if (y - r <= 172 && (x >= 580 && x <= 924)) {
+            velocity.setY(Math.abs(velocity.getY()));
+        }
+        // REGION F3
+        else if (y - r <= 172 && (x >= 924 && x <= 945)) {
+            velocity.setX(velocity.getSize());
+            velocity.setY(0);
         }
 
     }
 
-    public void applyTableFriction() {
-        velocity.setX (velocity.getX () * acceleration);
-        velocity.setY (velocity.getY () * acceleration);
+    public void tableFriction() {
+        velocity.setX (velocity.getX() * acceleration);
+        velocity.setY (velocity.getY() * acceleration);
     }
 
     // GET/SET METHODS
