@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.Controller">
+<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.Controller">
     <children>
         <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="100.0" layoutY="124.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="930.0" layoutY="124.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
@@ -60,7 +60,7 @@
                 <Blend />
             </effect>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#355748" height="440.0" layoutX="130.0" layoutY="154.0" onMouseDragReleased="#released" onMouseDragged="#Moveline" onMouseReleased="#released" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#355748" height="440.0" layoutX="130.0" layoutY="154.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
             <effect>
                 <DropShadow />
             </effect>
