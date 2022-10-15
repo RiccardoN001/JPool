@@ -21,6 +21,8 @@ public class Controller implements Initializable {
     //MENUSCENE COMPONENTS
     @FXML
     private Button playButton;
+    @FXML
+    private Button rulesButton;
 
     // GAMESCENE COMPONENTS
     @FXML
@@ -32,10 +34,14 @@ public class Controller implements Initializable {
     @FXML
     private Line guidelineToPocket;
     @FXML
-    private Button menuButton;
+    private Button menuButtonFromGame;
+
+    // RULESSCENE COMPONENTS
+    @FXML
+    private Button menuButtonFromRules;
 
     @FXML
-    public void handleButtonAction(ActionEvent event) throws Exception {
+    public void handlePlayButton(ActionEvent event) throws Exception {
         
         Stage stage;
         Parent root;
@@ -44,7 +50,28 @@ public class Controller implements Initializable {
             stage = (Stage) playButton.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("GameScene.fxml"));
         } else {
-            stage = (Stage)  menuButton.getScene().getWindow();
+            stage = (Stage)  menuButtonFromGame.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
+        }
+
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
+    public void handleRulesButton(ActionEvent event) throws Exception {
+        
+        Stage stage;
+        Parent root;
+
+        if(event.getSource()==rulesButton) {
+            stage = (Stage)  rulesButton.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("RulesScene.fxml"));
+        } else {
+            stage = (Stage)  menuButtonFromRules.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
         }
 
@@ -57,7 +84,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
         
     }
 
