@@ -242,4 +242,8 @@ public class Ball {
         this.dropped = dropped;
     }
 
+    public double getDiameter() {
+        return diameter;
+    }
+
 }
