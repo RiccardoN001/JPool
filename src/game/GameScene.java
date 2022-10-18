@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 
 public class GameScene {
 
-    private Group group;
+    private Stage stage;
     private Scene scene;
     private Parent root;
+    private Group group;
+    private Controller controller;
     
     static Ball ball[];
 
@@ -24,10 +26,14 @@ public class GameScene {
     private ImageView[] BlackScoreBall = new ImageView[2];
 
     // CONSTRUCTOR METHOD
-    public GameScene(Group group, Scene scene, Parent root) {
-        this.group = group;
+    public GameScene(Stage stage, Scene scene, Parent root, Group group, Controller controller) {
+
+        this.stage = stage;
         this.scene = scene;
         this.root = root;
+        this.group = group;
+        this.controller = controller;
+
         group.getChildren().add(root);
 
         // GAMEBALLS INITIALIZATION (SPLIT)
