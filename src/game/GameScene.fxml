@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.Controller">
+<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameSceneController">
     <children>
         <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="100.0" layoutY="124.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="930.0" layoutY="124.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />

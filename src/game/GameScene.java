@@ -12,7 +12,7 @@ public class GameScene {
     private Scene scene;
     private Parent root;
     private Group group;
-    private Controller controller;
+    private GameSceneController controller;
     
     static Ball ball[];
 
@@ -26,10 +26,9 @@ public class GameScene {
     private ImageView[] BlackScoreBall = new ImageView[2];
 
     // CONSTRUCTOR METHOD
-    public GameScene(Stage stage, Scene scene, Parent root, Group group, Controller controller) {
+    public GameScene(Stage stage, Scene scene, Parent root, Group group, GameSceneController controller) {
 
         this.stage = stage;
-        this.scene = scene;
         this.root = root;
         this.group = group;
         this.controller = controller;
@@ -60,12 +59,13 @@ public class GameScene {
         ball[9] = new Ball (865, 400, "src/game/Resources/Ball9Ext.png", 2, 9);
         ball[7] = new Ball (865, 425, "src/game/Resources/Ball7Ext.png", 1, 7);
         // ADD BALLS
-        for(int i = 0; i < 16; i++) {
+      /*   for(int i = 0; i < 16; i++) {
             group.getChildren().add(ball[i].DrawBall());
-        }
+        }*/
+        this.scene = scene;
 
         // SCOREBALLS INITIALIZATION
-        for(int i = 0; i < 7; i++) {
+       /*  for(int i = 0; i < 7; i++) {
             SolidScoreBall[i] = new ImageView("src/game/Resources/Ball" + String.valueOf(i + 1)  + ".png");
             StripedScoreBall[i] = new ImageView("src/game/Resources/Ball" + String.valueOf(i + 9)  + ".png");
             SolidScoreBall[i].setVisible(false);
@@ -77,7 +77,7 @@ public class GameScene {
             BlackScoreBall[i] = new ImageView("src/game/Resources/Ball8.png");
             BlackScoreBall[i].setVisible(false);
             group.getChildren().add(BlackScoreBall[i]);
-        }
+        }*/
         
     }
 
