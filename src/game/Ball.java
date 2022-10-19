@@ -11,7 +11,7 @@ import static javafx.scene.paint.Color.WHITE;
 
 public class Ball {
 
-    // BRIEF CLASS DESCRIPTION
+    // BRIEF CLASS DESCRIPTION (FINISHED)
     // Represents the physical model of a (3D) billiard ball
 
     private double acceleration, diameter;

@@ -2,7 +2,7 @@ package game;
 
 public class Player {
     
-    // BRIEF CLASS DESCRIPTION
+    // BRIEF CLASS DESCRIPTION (FINISHED)
     // Represents a player
 
     private String nickname;

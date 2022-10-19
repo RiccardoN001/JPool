@@ -2,7 +2,7 @@ package game;
 
 public class Vector {
 
-    // BRIEF CLASS DESCRIPTION
+    // BRIEF CLASS DESCRIPTION (FINISHED)
     // Represents 2D vectors starting from the origin of the xy plane
     
     private double x, y; // vector x,y components
