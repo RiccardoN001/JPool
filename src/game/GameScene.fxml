@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameSceneController">
+<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameSceneController">
     <children>
         <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="100.0" layoutY="124.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="930.0" layoutY="124.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
@@ -309,7 +309,7 @@
             </stroke>
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="345.0" layoutY="375.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Slider fx:id="powerSlider" layoutX="48.0" layoutY="280.0" orientation="VERTICAL" />
+      <Slider fx:id="powerSlider" layoutX="48.0" layoutY="184.0" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" />
       <ImageView fx:id="cue" fitHeight="100.0" fitWidth="390.0" layoutX="-45.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Resources/StandardCue.png" />
@@ -319,7 +319,7 @@
       <Circle fx:id="cueBallPreview" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="guidelineFromBall" />
       <Line fx:id="guidelineFromCue" />
-      <Button fx:id="menuButtonFromGame" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="50.0" prefWidth="100.0" text="MENU">
+      <Button fx:id="menuButtonFromGame" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="50.0" prefWidth="100.0" text="MENU">
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>

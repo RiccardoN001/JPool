@@ -1,15 +1,14 @@
 package game;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,8 +17,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.util.Duration; // non java.time.Duration !!!
 
-public class GameSceneController implements Initializable {
+public class GameSceneController {
 
     // GAMESCENE COMPONENTS
     // STATIC
@@ -44,13 +44,20 @@ public class GameSceneController implements Initializable {
     private ImageView[] SolidScoreBall = new ImageView[7];
     private ImageView[] StripedScoreBall = new ImageView[7];
     private ImageView[] BlackScoreBall = new ImageView[2];
+    // ANIMATIONS
+    private Timeline timeline;
 
     // GAMESCENE VARIABLES (RULES IMPLEMENTATION)
     private Player player1, player2;
     private boolean turn;
+    private int turnNum;
     private boolean gamePause;
     private boolean gameOver;
     private double xp, yp;
+    private Labeled player1label;
+    private Labeled player2Label;
+    private Labeled label;
+
 
     // SCENE MANAGEMENT METHODS
     @FXML
@@ -65,9 +72,9 @@ public class GameSceneController implements Initializable {
         stage.show();
     }
 
-    // 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    // GAME MANAGEMENT METHODS
+    @FXML
+    public void initialize() { // controller 1(fxml) 2(initialize -> can access fxml injections)
         
         // GAMEBALLS INITIALIZATION (SPLIT)
         // CUE BALL
@@ -182,6 +189,12 @@ public class GameSceneController implements Initializable {
                     guidelineFromBall.setEndX(x + finalVelocity.getX());
                     guidelineFromBall.setEndY(y + finalVelocity.getX());
 
+                    guidelineFromCue.setStartX(xcb);
+                    guidelineFromCue.setStartY(ycb);
+
+                    guidelineFromCue.setEndX(y);
+                    guidelineFromCue.setEndY(y);
+
                 }
             }
 
@@ -229,6 +242,65 @@ public class GameSceneController implements Initializable {
             yp = y;
         }
     }
+
+    public void showVelocity() {
+
+    }
+
+    
+
+
+    private void labelDekhaw() {
+        player1label.setText (player1.getNickname());
+        player2Label.setText (player2.getNickname());
+        if (player1.isMyTurn())
+            label.setText (player1.getNickname() + " Is Breaking");
+        else {
+            label.setText (player2.getNickname() + " Is Breaking");
+        } 
+    }
+
+    public void moveCueBall() {
+
+    }
+
+    public void turnLabel() {
+        
+    }
+
+
+
+
+
+
+    // ANIMATION MANAGEMENT METHODS
+    public void startGame() {
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        KeyFrame keyFrame = new KeyFrame (
+                Duration.seconds(0.015),
+                event -> {
+
+                });
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+    }
+
+    public void stopGame() {
+        timeline.stop ();
+        gamePause = true;
+    }
+
+    public void startFromPause() {
+        gamePause = false;
+        timeline.play ();
+    }
+
+    public void startNewGame() {
+        stopGame ();
+        gamePause = false;
+        timeline.play ();
+    }
+
 
     // GET/SET METHODS
     public boolean isTurn() {
