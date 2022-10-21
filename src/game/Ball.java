@@ -17,16 +17,16 @@ public class Ball {
     private double acceleration, diameter;
     private Vector position, velocity, initialPosition;
     private Sphere sphere = new Sphere(12.5);
-    private String image;
+    private String imagePath;
     private int ballType;
     private int ballNumber;
     private boolean dropped;
 
     // CONSTRUCTOR METHOD
-    public Ball(double positionX, double positionY, String image, int ballType, int ballNumber) {
+    public Ball(double positionX, double positionY, String imagePath, int ballType, int ballNumber) {
         position = new Vector(positionX, positionY);
         velocity = new Vector(0, 0);
-        this.image = image;
+        this.imagePath = imagePath;
         this.ballType = ballType;
         this.ballNumber = ballNumber;
         dropped = false;
@@ -41,11 +41,11 @@ public class Ball {
         sphere.setLayoutY(position.getY());
         sphere.setRotationAxis(Rotate.Y_AXIS);
         sphere.setRotate(270); // angolo necessario a mostrare numero?
-        Image img = new Image(getClass().getResourceAsStream(image));
 
         // 3D
         PhongMaterial material = new PhongMaterial();
         material.setSpecularColor(WHITE);
+        Image img = new Image("file:" + this.imagePath);
         material.setDiffuseMap(img);
         material.setSpecularPower(30);
         sphere.setMaterial(material);
