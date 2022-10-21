@@ -1,5 +1,9 @@
-package game;
+package game.controller;
 
+import game.Main;
+import game.model.Ball;
+import game.model.Player;
+import game.model.Vector;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -50,10 +54,8 @@ public class GameSceneController {
     // GAMESCENE VARIABLES (RULES IMPLEMENTATION)
     private Player player1, player2;
     private boolean turn;
-    private int turnNum;
     private boolean gamePause;
     private boolean gameOver;
-    private double xp, yp;
     private Labeled player1label;
     private Labeled player2Label;
     private Labeled label;
@@ -66,7 +68,7 @@ public class GameSceneController {
         Scene scene;
         Parent root;
         stage = (Stage) menuButtonFromGame.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -238,8 +240,8 @@ public class GameSceneController {
         if (isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
             double x = event.getSceneX (); //Returns horizontal position of the event relative to the origin of the Scene that contains the MouseEvent's source.
             double y = event.getSceneY (); //Returns Vertical position of the event relative to the origin of the Scene that contains the MouseEvent's source.
-            xp = x; //update variabile d'ambiente
-            yp = y;
+            double xp = x; //update variabile d'ambiente
+            double yp = y;
         }
     }
 
@@ -248,25 +250,6 @@ public class GameSceneController {
     }
 
     
-
-
-    private void labelDekhaw() {
-        player1label.setText (player1.getNickname());
-        player2Label.setText (player2.getNickname());
-        if (player1.isMyTurn())
-            label.setText (player1.getNickname() + " Is Breaking");
-        else {
-            label.setText (player2.getNickname() + " Is Breaking");
-        } 
-    }
-
-    public void moveCueBall() {
-
-    }
-
-    public void turnLabel() {
-        
-    }
 
 
 

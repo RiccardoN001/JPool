@@ -1,4 +1,4 @@
-package game;
+package game.model;
 
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;

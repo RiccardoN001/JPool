@@ -1,5 +1,6 @@
-package game;
+package game.controller;
 
+import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,7 @@ public class RulesSceneController{
         Scene scene;
         Parent root;
         stage = (Stage) menuButtonFromRules.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

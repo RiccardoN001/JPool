@@ -1,5 +1,6 @@
-package game;
+package game.controller;
 
+import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,7 @@ public class MenuSceneController {
         Scene scene;
         Parent root;
         stage = (Stage) playButton.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("GameScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/GameScene.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -33,8 +34,8 @@ public class MenuSceneController {
         Stage stage;
         Scene scene;
         Parent root;
-        stage = (Stage)  rulesButton.getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("RulesScene.fxml"));
+        stage = (Stage) rulesButton.getScene().getWindow();
+        root = FXMLLoader.load(Main.class.getResource("view/RulesScene.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
