@@ -50,6 +50,7 @@ public class GameSceneController implements Initializable {
     private boolean turn;
     private boolean gamePause;
     private boolean gameOver;
+    private double xp, yp;
 
     // SCENE MANAGEMENT METHODS
     @FXML
@@ -113,7 +114,7 @@ public class GameSceneController implements Initializable {
     }
 
     public void guidedTrajectory(MouseEvent event) {
-        if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
+        if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {//la guidedTrajectory serve sicuramente ad entrambi i giocatori, quindi servono che calcoli
             guidelineToBall.setVisible(true);
             guidelineToBall.setStroke(Color.WHITE);
             cueBallPreview.setVisible(true);
@@ -185,6 +186,9 @@ public class GameSceneController implements Initializable {
             }
 
             // da rivedere
+            cue.setVisible(true);
+            cue.setLayoutX (xcb - (346 + 36));
+            cue.setLayoutY (ycb - 14); //Questi 3 perché non li avevi messi?Li hai già dichiarati sopra?
             double ang = Math.toDegrees(Math.atan((ym-ycb)/(xm-xcb)));
             if(xm <= xcb) {
                 ang = 180 - ang;
@@ -214,6 +218,15 @@ public class GameSceneController implements Initializable {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void released(MouseEvent event) { 
+        if (isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
+            double x = event.getSceneX (); //Returns horizontal position of the event relative to the origin of the Scene that contains the MouseEvent's source.
+            double y = event.getSceneY (); //Returns Vertical position of the event relative to the origin of the Scene that contains the MouseEvent's source.
+            xp = x; //update variabile d'ambiente
+            yp = y;
         }
     }
 
