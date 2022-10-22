@@ -16,6 +16,7 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -49,9 +50,8 @@ public class GameSceneController {
     private Button menuButtonFromGame;
     // DYNAMIC
     private Ball ball[] = new Ball[16];
-    private ImageView[] SolidScoreBall = new ImageView[7];
-    private ImageView[] StripedScoreBall = new ImageView[7];
-    private ImageView[] BlackScoreBall = new ImageView[2];
+    private ImageView[] solidScoreBall = new ImageView[7];
+    private ImageView[] stripedScoreBall = new ImageView[7];
     // ANIMATIONS
     private Timeline timeline;
 
@@ -111,18 +111,19 @@ public class GameSceneController {
         }
 
         // SCOREBALLS INITIALIZATION
-        /*
         for(int i = 0; i < 7; i++) {
-            SolidScoreBall[i] = new ImageView(new Image("file:src/game/Resources/Ball" + String.valueOf(i + 1) + ".png"));
-            StripedScoreBall[i] = new ImageView(new Image("file:src/game/Resources/Ball" + String.valueOf(i + 9) + ".png"));
-            pane.getChildren().addAll(SolidScoreBall[i], StripedScoreBall[i]);
+            solidScoreBall[i] = new ImageView(new Image("file:src/game/Resources/Ball" + String.valueOf(i + 1) + ".png"));
+            solidScoreBall[i].setFitHeight(30);
+            solidScoreBall[i].setFitWidth(30);
+            solidScoreBall[i].setLayoutX(254 + 40*i);
+            solidScoreBall[i].setLayoutY(157);
+            stripedScoreBall[i] = new ImageView(new Image("file:src/game/Resources/Ball" + String.valueOf(i + 9) + ".png"));
+            stripedScoreBall[i].setFitHeight(30);
+            stripedScoreBall[i].setFitWidth(30);
+            stripedScoreBall[i].setLayoutX(879 + 40*i);
+            stripedScoreBall[i].setLayoutY(157);
+            pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
         }
-        for(int i = 0; i < 2; i++) {
-            BlackScoreBall[i] = new ImageView(new Image("file:src/game/Resources/Ball8.png"));
-            BlackScoreBall[i].setVisible(false);
-            pane.getChildren().add(BlackScoreBall[i]);
-        }
-        */
 
     }
 
