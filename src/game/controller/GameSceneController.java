@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +31,8 @@ public class GameSceneController {
     // STATIC
     @FXML
     private Pane pane;
+    @FXML
+    private MenuButton menuBar;
     @FXML
     private ImageView cue;
     @FXML
@@ -67,7 +71,7 @@ public class GameSceneController {
         Stage stage;
         Scene scene;
         Parent root;
-        stage = (Stage) menuButtonFromGame.getScene().getWindow();
+        stage = (Stage) menuBar.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
