@@ -12,18 +12,18 @@ import javafx.stage.Stage;
 public class MenuSceneController {
 
     @FXML
-    private Button playButton;
+    private Button playSettingsButton;
 
     @FXML
     private Button rulesButton;
 
     @FXML
-    void handlePlayButton(ActionEvent event) throws Exception {
+    void handlePlaySettingsButton(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
         Parent root;
-        stage = (Stage) playButton.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/GameScene.fxml"));
+        stage = (Stage) playSettingsButton.getScene().getWindow();
+        root = FXMLLoader.load(Main.class.getResource("view/SettingsScene.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
