@@ -2,6 +2,7 @@ package game.controller;
 
 import game.Main;
 import game.model.Ball;
+import game.model.Constants;
 import game.model.Player;
 import game.model.Vector;
 import javafx.animation.KeyFrame;
@@ -13,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -83,28 +83,28 @@ public class GameSceneController {
     public void initialize() { // controller 1(fxml) 2(initialize -> can access fxml injections)
         
         // GAMEBALLS INITIALIZATION (SPLIT)
-        // CUE BALL
-        ball[0] = new Ball (500, 465, "src/game/Resources/CueBallExt.png", 0, 0);
+        // HEAD SPOT
+        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/Resources/CueBallExt.png", 0, 0);
         // TRIANGLE ROW 1
-        ball[1] = new Ball (923, 465, "src/game/Resources/Ball1Ext.png", 1, 1);
+        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, "src/game/Resources/Ball1Ext.png", 1, 1);
         // TRIANGLE ROW 2
-        ball[11] = new Ball (947, 453, "src/game/Resources/Ball11Ext.png", 2, 11);
-        ball[6] = new Ball (947, 478, "src/game/Resources/Ball6Ext.png", 1, 6);
-        // TRIANGLE ROW 3
-        ball[14] = new Ball (971, 440, "src/game/Resources/Ball14Ext.png", 2, 14);
-        ball[8] = new Ball (971, 465, "src/game/Resources/Ball8Ext.png", 3, 8);
-        ball[10] = new Ball (971, 490, "src/game/Resources/Ball10Ext.png", 2, 10);
+        ball[11] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/Resources/Ball11Ext.png", 2, 11);
+        ball[6] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/Resources/Ball6Ext.png", 1, 6);
+        // TRIANGLE ROW 3 Constants.TRIANGLE_COL1_Y
+        ball[14] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/Resources/Ball14Ext.png", 2, 14);
+        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/Resources/Ball8Ext.png", 3, 8);
+        ball[10] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/Resources/Ball10Ext.png", 2, 10);
         // TRIANGLE ROW 4
-        ball[13] = new Ball (995, 428, "src/game/Resources/Ball13Ext.png", 2, 13);
-        ball[15] = new Ball (995, 453, "src/game/Resources/Ball15Ext.png", 2, 15);
-        ball[2] = new Ball (995, 478, "src/game/Resources/Ball2Ext.png", 1, 2);
-        ball[5] = new Ball (995, 503, "src/game/Resources/Ball5Ext.png", 1, 5); 
+        ball[13] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, "src/game/Resources/Ball13Ext.png", 2, 13);
+        ball[15] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, "src/game/Resources/Ball15Ext.png", 2, 15);
+        ball[2] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, "src/game/Resources/Ball2Ext.png", 1, 2);
+        ball[5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, "src/game/Resources/Ball5Ext.png", 1, 5); 
         // TRIANGLE ROW 5
-        ball[4] = new Ball (1019, 415, "src/game/Resources/Ball4Ext.png", 1, 4);
-        ball[12] = new Ball (1019, 440, "src/game/Resources/Ball12Ext.png", 2, 12);
-        ball[3] = new Ball (1019, 465, "src/game/Resources/Ball3Ext.png", 1, 3);
-        ball[9] = new Ball (1019, 490, "src/game/Resources/Ball9Ext.png", 2, 9);
-        ball[7] = new Ball (1019, 515, "src/game/Resources/Ball7Ext.png", 1, 7);
+        ball[4] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, "src/game/Resources/Ball4Ext.png", 1, 4);
+        ball[12] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, "src/game/Resources/Ball12Ext.png", 2, 12);
+        ball[3] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL5_Y, "src/game/Resources/Ball3Ext.png", 1, 3);
+        ball[9] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, "src/game/Resources/Ball9Ext.png", 2, 9);
+        ball[7] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, "src/game/Resources/Ball7Ext.png", 1, 7);
         // ADD BALLS
         for(int i = 0; i < 16; i++) {
             pane.getChildren().add(ball[i].DrawBall());
