@@ -66,7 +66,7 @@
                 <Blend />
             </effect>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#355748" height="440.0" layoutX="284.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#40769a" height="440.0" layoutX="280.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
             <effect>
                 <DropShadow />
             </effect>
@@ -208,7 +208,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Polygon fill="#355748cc" layoutX="314.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#40769acc" layoutX="314.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -223,7 +223,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#355748cc" layoutX="724.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#40769acc" layoutX="724.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -238,7 +238,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#355748" layoutX="314.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#40769a" layoutX="314.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
             <points>
                 <Double fx:value="15" />
                 <Double fx:value="0" />
@@ -254,7 +254,7 @@
                 <DropShadow />
             </effect>
         </Polygon>
-        <Polygon fill="#355748" layoutX="724.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#40769a" layoutX="724.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -269,7 +269,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#355748" layoutX="99.0" layoutY="457.0" rotate="90.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#40769a" layoutX="99.0" layoutY="457.0" rotate="90.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -284,7 +284,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#355748" layoutX="924.0" layoutY="457.0" rotate="270.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#40769a" layoutX="924.0" layoutY="457.0" rotate="270.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
