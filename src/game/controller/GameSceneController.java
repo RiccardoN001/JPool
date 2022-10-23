@@ -132,6 +132,7 @@ public class GameSceneController {
             pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
         }
     }
+
     public void guidedTrajectory(MouseEvent event) {
         if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {//la guidedTrajectory serve sicuramente ad entrambi i giocatori, quindi servono che calcoli
             guidelineToBall.setVisible(true);
@@ -257,6 +258,21 @@ public class GameSceneController {
 
     public void showVelocity() {
 
+    }
+
+    public void mereDaw() {
+        double cueBallVelocity = 0;
+        if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
+            // sound effects
+            cueBallVelocity = powerSlider.getValue();
+            if(cueBallVelocity != 0) {
+                guidelineFromBall.setVisible(false);
+                cueBallPreview.setVisible(false);
+                powerSlider.setValue(0);
+                
+            }
+
+        }
     }
 
     

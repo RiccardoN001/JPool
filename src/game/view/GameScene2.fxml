@@ -25,33 +25,33 @@
 <Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
     <children>
         <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="254.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4d101000" height="30.0" layoutX="314.0" layoutY="214.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
       <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true">
          <image>
-            <Image url="@../Resources/RedWood.jpg" />
+            <Image url="@../resources/RedWood.png" />
          </image>
          <effect>
             <Blend />
          </effect>
       </ImageView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="314.0" layoutY="684.0" rotate="180.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
         <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true">
             <image>
-                <Image url="@../Resources/RedWood.jpg" />
+                <Image url="@../resources/RedWood.png" />
             </image>
             <effect>
                 <Blend />
             </effect>
         </ImageView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="79.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
-                <Image url="@../Resources/RedWood.jpg" />
+                <Image url="@../resources/RedWood.png" />
             </image>
             <effect>
                 <Blend />
@@ -60,7 +60,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="949.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="949.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
-                <Image url="@../Resources/RedWood.jpg" />
+                <Image url="@../resources/RedWood.png" />
             </image>
             <effect>
                 <Blend />
