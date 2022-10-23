@@ -131,9 +131,7 @@ public class GameSceneController {
             stripedScoreBall[i].setLayoutY(157);
             pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
         }
-
     }
-
     public void guidedTrajectory(MouseEvent event) {
         if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {//la guidedTrajectory serve sicuramente ad entrambi i giocatori, quindi servono che calcoli
             guidelineToBall.setVisible(true);

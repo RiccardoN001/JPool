@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SettingsSceneController {
@@ -21,6 +23,17 @@ public class SettingsSceneController {
 
     @FXML
     private Button playButton;
+
+    @FXML //Stavo provando questo ma lo devo riguardare meglio domani
+    public VBox createPage(int index){
+        ImageView imageView = new ImageView();
+
+
+
+        VBox pageBox = new VBox();
+        pageBox.getChildren().add(imageView);
+        return pageBox;
+    }  
 
     @FXML
     void handleGameSceneChoice(ActionEvent event) throws Exception {

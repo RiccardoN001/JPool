@@ -28,10 +28,10 @@
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="254.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="314.0" layoutY="214.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4d101000" height="30.0" layoutX="314.0" layoutY="214.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
       <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true">
          <image>
-            <Image url="@../Resources/DarkOakWood.png" />
+            <Image url="@../Resources/RedWood.jpg" />
          </image>
          <effect>
             <Blend />
@@ -41,7 +41,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="314.0" layoutY="684.0" rotate="180.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
         <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true">
             <image>
-                <Image url="@../Resources/DarkOakWood.png" />
+                <Image url="@../Resources/RedWood.jpg" />
             </image>
             <effect>
                 <Blend />
@@ -51,7 +51,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="79.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
-                <Image url="@../Resources/DarkOakWood.png" />
+                <Image url="@../Resources/RedWood.jpg" />
             </image>
             <effect>
                 <Blend />
@@ -60,7 +60,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="949.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="949.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
-                <Image url="@../Resources/DarkOakWood.png" />
+                <Image url="@../Resources/RedWood.jpg" />
             </image>
             <effect>
                 <Blend />
