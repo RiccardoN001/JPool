@@ -3,11 +3,9 @@ package game.model;
 public class Constants {
     
     // GAMEBALLS INITIALIZATION (SPLIT)
-
     // HEAD SPOT
     public static final double HEAD_SPOT_X = 500;
     public static final double HEAD_SPOT_Y = 465;
-
     // TRIANGLE
     // 5 possible layouts on the x-axis
     public static final double TRIANGLE_ROW1_X = 923;
@@ -25,13 +23,44 @@ public class Constants {
     public static final double TRIANGLE_COL7_Y = 490;
     public static final double TRIANGLE_COL8_Y = 503;
     public static final double TRIANGLE_COL9_Y = 515;
-
     // FOOT SPOT
     public static final double FOOT_SPOT_X = TRIANGLE_ROW1_X;
     public static final double FOOT_SPOT_Y = TRIANGLE_COL5_Y;
 
-    // bankcollision method !!
-    
-
+    // BANKCOLLISION
+    public static final double A_MARGIN = 281;
+    public static final double B_MARGIN = 1106;
+    public static final double CD_MARGIN = 664;
+    public static final double EF_MARGIN = 262;
+    // LEFT BANK (A)
+    public static final double A_UP_CORNER_START = 268;
+    public static final double A_UP_CORNER_END = 286;
+    public static final double A_DOWN_CORNER_START = 647;
+    public static final double A_DOWN_CORNER_END = 660;
+    // RIGHT BANK (B)
+    public static final double B_UP_CORNER_START = 270;
+    public static final double B_UP_CORNER_END = 282;
+    public static final double B_DOWN_CORNER_START = 641;
+    public static final double B_DOWN_CORNER_END = 660;
+    // LEFT UP BANK (C)
+    public static final double C_LEFT_CORNER_START = 307;
+    public static final double C_LEFT_CORNER_END = 328;
+    public static final double C_RIGHT_CORNER_START = 669;
+    public static final double C_RIGHT_CORNER_END = 680;
+    // RIGHT UP BANK (D)
+    public static final double D_LEFT_CORNER_START = 722;
+    public static final double D_LEFT_CORNER_END = 738;
+    public static final double D_RIGHT_CORNER_START = 1082;
+    public static final double D_RIGHT_CORNER_END = 1098;
+    // LEFT DOWN BANK (E)
+    public static final double E_LEFT_CORNER_START = 307;
+    public static final double E_LEFT_CORNER_END = 324;
+    public static final double E_RIGHT_CORNER_START = 669;
+    public static final double E_RIGHT_CORNER_END = 683;
+    // RIGHT DOWN BANK (F)
+    public static final double F_LEFT_CORNER_START = 722;
+    public static final double F_LEFT_CORNER_END = 734;
+    public static final double F_RIGHT_CORNER_START = 1078;
+    public static final double F_RIGHT_CORNER_END = 1099;
 
 }
