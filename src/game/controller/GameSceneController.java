@@ -191,7 +191,7 @@ public class GameSceneController {
                     normalToA.multiply(ball[i].getVelocity().scalar(normalToA));
 
                     Vector bCollisionVector = ball[i].getVelocity().sub(normalToB);
-                    Vector finalVelocity = bCollisionVector.add(normalToA);
+                    Vector ballFinalVelocity = bCollisionVector.add(normalToA);
 
                     double x = ball[i].getSphere().getLayoutX();
                     double y = ball[i].getSphere().getLayoutY();
@@ -199,14 +199,14 @@ public class GameSceneController {
                     guidelineFromBall.setStartX(x);
                     guidelineFromBall.setStartY(y);
 
-                    guidelineFromBall.setEndX(x + finalVelocity.getX());
-                    guidelineFromBall.setEndY(y + finalVelocity.getX());
+                    guidelineFromBall.setEndX(x + ballFinalVelocity.getX());
+                    guidelineFromBall.setEndY(y + ballFinalVelocity.getX());
 
-                    guidelineFromCue.setStartX(xcb);
-                    guidelineFromCue.setStartY(ycb);
+                    guidelineFromCue.setStartX(xm);
+                    guidelineFromCue.setStartY(ym);
 
-                    guidelineFromCue.setEndX(y);
-                    guidelineFromCue.setEndY(y);
+                    guidelineFromCue.setEndX(xm);
+                    guidelineFromCue.setEndY(ym);
 
                 }
             }

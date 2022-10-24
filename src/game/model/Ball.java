@@ -85,7 +85,7 @@ public class Ball {
         normalToA.multiply(b.velocity.scalar(normalToA));
 
         Vector aCollisionVector = b.velocity.sub(normalToA);
-
+        
 
         velocity = normalToA.add(bCollisionVector);
         b.velocity = normalToB.add(aCollisionVector);
