@@ -72,9 +72,9 @@ public class SettingsSceneController{
         stage = (Stage) backButton.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
+        scene.getStylesheets().addAll(Main.class.getResource("view/MenuScene.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-        scene.getStylesheets().add("file:src/game/view/SettingsScene.css");
     }
     
     @FXML

@@ -134,16 +134,6 @@ public class GameSceneController {
             pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i],blackball);
         }
 
-        /*if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 0) {
-            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue1.png"));
-        } else if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 1) {
-            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue2.png"));
-        } else if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 2) {
-            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue3.png"));
-        } else {
-            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue4.png"));
-        }*/
-
         //CUE LOADING
         cue = new ImageView(new Image("file:src/game/resources/Cues/Cue"+String.valueOf(SettingsSceneController.getSettingsSceneController().cueMenuIndex()+1 +".png")));
         cue.setFitWidth(400);
@@ -237,7 +227,7 @@ public class GameSceneController {
             // da rivedere
             cue.setVisible(true);
             cue.setLayoutX (xcb - (346 + 36));
-            cue.setLayoutY (ycb - 14); //Questi 3 perché non li avevi messi?Li hai già dichiarati sopra?
+            cue.setLayoutY (ycb - 14);
             double ang = Math.toDegrees(Math.atan((ym-ycb)/(xm-xcb)));
             if(xm <= xcb) {
                 ang = 180 - ang;
@@ -298,7 +288,7 @@ public class GameSceneController {
         }
     }
 
-    
+
 
 
 
