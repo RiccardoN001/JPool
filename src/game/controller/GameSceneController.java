@@ -1,5 +1,6 @@
 package game.controller;
 
+import game.controller.SettingsSceneController;
 import game.Main;
 import game.model.Ball;
 import game.model.Constants;
@@ -36,8 +37,6 @@ public class GameSceneController {
     @FXML
     private MenuButton menuBar;
     @FXML
-    private ImageView cue;
-    @FXML
     private Circle cueBallPreview;
     @FXML
     private Line guidelineToBall;
@@ -57,6 +56,8 @@ public class GameSceneController {
     private Label scoreboardLabel;
     @FXML
     private ProgressBar timer;
+
+    private ImageView cue;
     
     // DYNAMIC
     private Ball ball[] = new Ball[16];
@@ -122,8 +123,8 @@ public class GameSceneController {
             solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/Ball" + String.valueOf(i + 1) + ".png"));
             solidScoreBall[i].setFitHeight(30);
             solidScoreBall[i].setFitWidth(30);
-            solidScoreBall[i].setLayoutX(254 + 40*i);
-            solidScoreBall[i].setLayoutY(157);
+            solidScoreBall[i].setLayoutX(254 + 40*i);//254
+            solidScoreBall[i].setLayoutY(157);//157
             stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/Ball" + String.valueOf(i + 9) + ".png"));
             stripedScoreBall[i].setFitHeight(30);
             stripedScoreBall[i].setFitWidth(30);
@@ -131,6 +132,7 @@ public class GameSceneController {
             stripedScoreBall[i].setLayoutY(157);
             pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
         }
+        //cue = new ImageView(new Image("file:src/game/resouces/Cue"+GameSceneController.getCueIndex()));
     }
 
     public void guidedTrajectory(MouseEvent event) {

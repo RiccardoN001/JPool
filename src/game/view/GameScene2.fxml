@@ -25,10 +25,8 @@
 <Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
     <children>
         <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="254.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4d101000" height="30.0" layoutX="314.0" layoutY="214.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
       <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true">
@@ -48,7 +46,9 @@
                 <Blend />
             </effect>
         </ImageView>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="79.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
                 <Image url="@../resources/RedWood.png" />
@@ -66,7 +66,7 @@
                 <Blend />
             </effect>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#40769a" height="440.0" layoutX="284.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#437893" height="440.0" layoutX="284.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
             <effect>
                 <DropShadow />
             </effect>
@@ -208,7 +208,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Polygon fill="#40769acc" layoutX="314.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#437893cc" layoutX="314.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -223,7 +223,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#40769acc" layoutX="724.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#437893cc" layoutX="724.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -238,7 +238,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#40769a" layoutX="314.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#437893" layoutX="314.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
             <points>
                 <Double fx:value="15" />
                 <Double fx:value="0" />
@@ -254,7 +254,7 @@
                 <DropShadow />
             </effect>
         </Polygon>
-        <Polygon fill="#40769a" layoutX="724.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#437893" layoutX="724.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -269,7 +269,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#40769a" layoutX="99.0" layoutY="457.0" rotate="90.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#437893" layoutX="99.0" layoutY="457.0" rotate="90.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -284,7 +284,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#40769a" layoutX="924.0" layoutY="457.0" rotate="270.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#437893" layoutX="924.0" layoutY="457.0" rotate="270.0" stroke="#a48e8e" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -314,11 +314,6 @@
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" />
-      <ImageView fx:id="cue" fitHeight="100.0" fitWidth="390.0" layoutX="76.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Resources/StandardCue.png" />
-         </image>
-      </ImageView>
       <Line fx:id="guidelineToBall" />
       <Circle fx:id="cueBallPreview" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="guidelineFromBall" />

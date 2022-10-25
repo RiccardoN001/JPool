@@ -314,11 +314,6 @@
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" />
-      <ImageView fx:id="cue" fitHeight="100.0" fitWidth="390.0" layoutX="76.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Resources/StandardCue.png" />
-         </image>
-      </ImageView>
       <Line fx:id="guidelineToBall" />
       <Circle fx:id="cueBallPreview" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="guidelineFromBall" />
