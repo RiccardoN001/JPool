@@ -88,27 +88,27 @@ public class GameSceneController {
         
         // GAMEBALLS INITIALIZATION (SPLIT)
         // HEAD SPOT
-        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/resources/CueBallExt.png", 0, 0);
+        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/resources/Balls/CueBallExt.png", 0, 0);
         // TRIANGLE ROW 1
-        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, "src/game/resources/Ball1Ext.png", 1, 1);
+        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, "src/game/resources/Balls/Ball1Ext.png", 1, 1);
         // TRIANGLE ROW 2
-        ball[11] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Ball11Ext.png", 2, 11);
-        ball[6] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Ball6Ext.png", 1, 6);
+        ball[11] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball11Ext.png", 2, 11);
+        ball[6] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball6Ext.png", 1, 6);
         // TRIANGLE ROW 3 Constants.TRIANGLE_COL1_Y
-        ball[14] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Ball14Ext.png", 2, 14);
-        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Ball8Ext.png", 3, 8);
-        ball[10] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Ball10Ext.png", 2, 10);
+        ball[14] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball14Ext.png", 2, 14);
+        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball8Ext.png", 3, 8);
+        ball[10] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball10Ext.png", 2, 10);
         // TRIANGLE ROW 4
-        ball[13] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, "src/game/resources/Ball13Ext.png", 2, 13);
-        ball[15] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Ball15Ext.png", 2, 15);
-        ball[2] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Ball2Ext.png", 1, 2);
-        ball[5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, "src/game/resources/Ball5Ext.png", 1, 5); 
+        ball[13] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, "src/game/resources/Balls/Ball13Ext.png", 2, 13);
+        ball[15] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball15Ext.png", 2, 15);
+        ball[2] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball2Ext.png", 1, 2);
+        ball[5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, "src/game/resources/Balls/Ball5Ext.png", 1, 5); 
         // TRIANGLE ROW 5
-        ball[4] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, "src/game/resources/Ball4Ext.png", 1, 4);
-        ball[12] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Ball12Ext.png", 2, 12);
-        ball[3] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Ball3Ext.png", 1, 3);
-        ball[9] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Ball9Ext.png", 2, 9);
-        ball[7] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, "src/game/resources/Ball7Ext.png", 1, 7);
+        ball[4] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, "src/game/resources/Balls/Ball4Ext.png", 1, 4);
+        ball[12] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball12Ext.png", 2, 12);
+        ball[3] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball3Ext.png", 1, 3);
+        ball[9] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball9Ext.png", 2, 9);
+        ball[7] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, "src/game/resources/Balls/Ball7Ext.png", 1, 7);
         // ADD BALLS
         for(int i = 0; i < 16; i++) {
             pane.getChildren().add(ball[i].DrawBall());
@@ -116,12 +116,12 @@ public class GameSceneController {
 
         // SCOREBALLS INITIALIZATION
         for(int i = 0; i < 7; i++) {
-            solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/Balls/Ball" + String.valueOf(i + 1) + ".png"));
+            solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
             solidScoreBall[i].setFitHeight(30);
             solidScoreBall[i].setFitWidth(30);
             solidScoreBall[i].setLayoutX(254 + 40*i);//254
             solidScoreBall[i].setLayoutY(157);//157
-            stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/Balls/Ball" + String.valueOf(i + 9) + ".png"));
+            stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 9) + ".png"));
             stripedScoreBall[i].setFitHeight(30);
             stripedScoreBall[i].setFitWidth(30);
             stripedScoreBall[i].setLayoutX(879 + 40*i);

@@ -25,6 +25,7 @@ public class MenuSceneController {
         stage = (Stage) playSettingsButton.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/SettingsScene.fxml"));
         scene = new Scene(root);
+        scene.getStylesheets().addAll(Main.class.getResource("view/SettingsScene.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
