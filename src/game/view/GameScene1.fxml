@@ -31,7 +31,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="314.0" layoutY="214.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
       <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true">
          <image>
-            <Image url="@../resources/BrownWood.png" />
+            <Image url="@../resources/Tables/BrownWood.png" />
          </image>
          <effect>
             <Blend />
@@ -41,7 +41,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="314.0" layoutY="684.0" rotate="180.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
         <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true">
             <image>
-                <Image url="@../resources/BrownWood.png" />
+                <Image url="@../resources/Tables/BrownWood.png" />
             </image>
             <effect>
                 <Blend />
@@ -51,7 +51,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="79.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
-                <Image url="@../resources/BrownWood.png" />
+                <Image url="@../resources/Tables/BrownWood.png" />
             </image>
             <effect>
                 <Blend />
@@ -60,7 +60,7 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="949.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="949.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
-                <Image url="@../resources/BrownWood.png" />
+                <Image url="@../resources/Tables/BrownWood.png" />
             </image>
             <effect>
                 <Blend />
@@ -658,5 +658,10 @@
             </RadialGradient>
          </fill>
       </Circle>
+      <ImageView fitHeight="380.0" fitWidth="157.0" layoutX="1154.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Tables/rack.png" />
+         </image>
+      </ImageView>
     </children>
 </Pane>

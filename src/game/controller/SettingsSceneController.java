@@ -1,27 +1,17 @@
 package game.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -36,14 +26,21 @@ public class SettingsSceneController{
     @FXML
     private Button playButton;
 
-    
+    // for communication with other controllers !!
+    private static SettingsSceneController instance;
+    public SettingsSceneController() {
+        instance = this;
+    }
+    public static SettingsSceneController getSettingsSceneController() {
+        return instance;
+    }
    
     @FXML
     public void initialize(){
         tableMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/Table" + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image("file:src/game/resources/Tables/Table" + (pageIndex+1) + ".png"));
                 imageView.setFitWidth(800);
                 imageView.setFitHeight(400);
                 imageView.setPreserveRatio(true);
@@ -55,7 +52,7 @@ public class SettingsSceneController{
         cueMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/Cue" + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image("file:src/game/resources/Cues/Cue" + (pageIndex+1) + ".png"));
                 imageView.setFitWidth(800);
                 imageView.setFitHeight(150);
                 imageView.setPreserveRatio(true);
@@ -64,9 +61,6 @@ public class SettingsSceneController{
                 return pane;
             }
         });
-    }
-    public static int getCueIndex(){
-        return cueMenu.getCurrentPageIndex();
     }
     
     @FXML
@@ -92,4 +86,9 @@ public class SettingsSceneController{
         stage.setScene(scene);
         stage.show();
     }
+
+    public int cueMenuIndex () {
+        return this.cueMenu.getCurrentPageIndex();
+    }
+
 }

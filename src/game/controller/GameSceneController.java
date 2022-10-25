@@ -1,6 +1,5 @@
 package game.controller;
 
-import game.controller.SettingsSceneController;
 import game.Main;
 import game.model.Ball;
 import game.model.Constants;
@@ -56,10 +55,8 @@ public class GameSceneController {
     private Label scoreboardLabel;
     @FXML
     private ProgressBar timer;
-
-    private ImageView cue;
-    
     // DYNAMIC
+    private ImageView cue;
     private Ball ball[] = new Ball[16];
     private ImageView[] solidScoreBall = new ImageView[7];
     private ImageView[] stripedScoreBall = new ImageView[7];
@@ -71,7 +68,6 @@ public class GameSceneController {
     private boolean turn;
     private boolean gamePause;
     private boolean gameOver;
-
 
     // SCENE MANAGEMENT METHODS
     @FXML
@@ -88,7 +84,7 @@ public class GameSceneController {
 
     // GAME MANAGEMENT METHODS
     @FXML
-    public void initialize() { // controller 1(fxml) 2(initialize -> can access fxml injections)
+    public void initialize() throws Exception {
         
         // GAMEBALLS INITIALIZATION (SPLIT)
         // HEAD SPOT
@@ -120,19 +116,37 @@ public class GameSceneController {
 
         // SCOREBALLS INITIALIZATION
         for(int i = 0; i < 7; i++) {
-            solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/Ball" + String.valueOf(i + 1) + ".png"));
+            solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/Balls/Ball" + String.valueOf(i + 1) + ".png"));
             solidScoreBall[i].setFitHeight(30);
             solidScoreBall[i].setFitWidth(30);
             solidScoreBall[i].setLayoutX(254 + 40*i);//254
             solidScoreBall[i].setLayoutY(157);//157
-            stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/Ball" + String.valueOf(i + 9) + ".png"));
+            stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/Balls/Ball" + String.valueOf(i + 9) + ".png"));
             stripedScoreBall[i].setFitHeight(30);
             stripedScoreBall[i].setFitWidth(30);
             stripedScoreBall[i].setLayoutX(879 + 40*i);
             stripedScoreBall[i].setLayoutY(157);
             pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
         }
-        //cue = new ImageView(new Image("file:src/game/resouces/Cue"+GameSceneController.getCueIndex()));
+
+        if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 0) {
+            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue1.png"));
+        } else if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 1) {
+            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue2.png"));
+        } else if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 2) {
+            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue3.png"));
+        } else {
+            cue = new ImageView(new Image("file:src/game/resources/Cues/Cue4.png"));
+        }
+
+        cue.setFitWidth(400);
+        cue.setFitHeight(100);
+        cue.setLayoutX(90);
+        cue.setLayoutY(452);
+        cue.setPreserveRatio(true);
+        pane.getChildren().add(cue);
+        
+
     }
 
     public void guidedTrajectory(MouseEvent event) {
