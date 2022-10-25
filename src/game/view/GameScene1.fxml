@@ -335,7 +335,28 @@
       <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="20.0" prefWidth="400.0" progress="0.0" />
       <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="Label" />
       <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="Label" />
-      <Circle layoutX="702.0" layoutY="172.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle layoutX="702.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8187919463087248">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill></Circle>
       <Circle layoutX="269.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">

@@ -25,6 +25,8 @@ public class SettingsSceneController{
     private Pagination modeMenu;
     @FXML
     private Button playButton;
+    @FXML
+    private Button backButton;
 
     // for communication with other controllers !!
     private static SettingsSceneController instance;
@@ -61,6 +63,17 @@ public class SettingsSceneController{
                 return pane;
             }
         });
+    }
+    @FXML
+    void handleMenuFromSettings(ActionEvent event) throws Exception{
+        Stage stage;
+        Scene scene;
+        Parent root;
+        stage = (Stage) backButton.getScene().getWindow();
+        root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     @FXML

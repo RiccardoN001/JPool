@@ -126,10 +126,15 @@ public class GameSceneController {
             stripedScoreBall[i].setFitWidth(30);
             stripedScoreBall[i].setLayoutX(879 + 40*i);
             stripedScoreBall[i].setLayoutY(157);
-            pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
+            ImageView blackball = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
+            blackball.setFitHeight(60);
+            blackball.setFitWidth(60);
+            blackball.setLayoutX(672);
+            blackball.setLayoutY(142);
+            pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i],blackball);
         }
 
-        if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 0) {
+        /*if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 0) {
             cue = new ImageView(new Image("file:src/game/resources/Cues/Cue1.png"));
         } else if(SettingsSceneController.getSettingsSceneController().cueMenuIndex() == 1) {
             cue = new ImageView(new Image("file:src/game/resources/Cues/Cue2.png"));
@@ -137,12 +142,14 @@ public class GameSceneController {
             cue = new ImageView(new Image("file:src/game/resources/Cues/Cue3.png"));
         } else {
             cue = new ImageView(new Image("file:src/game/resources/Cues/Cue4.png"));
-        }
+        }*/
 
+        //CUE LOADING
+        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue"+String.valueOf(SettingsSceneController.getSettingsSceneController().cueMenuIndex()+1 +".png")));
         cue.setFitWidth(400);
         cue.setFitHeight(100);
-        cue.setLayoutX(90);
-        cue.setLayoutY(452);
+        cue.setLayoutX(105);
+        cue.setLayoutY(447);
         cue.setPreserveRatio(true);
         pane.getChildren().add(cue);
         
