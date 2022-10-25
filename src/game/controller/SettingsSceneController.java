@@ -74,6 +74,7 @@ public class SettingsSceneController{
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add("file:src/game/view/SettingsScene.css");
     }
     
     @FXML

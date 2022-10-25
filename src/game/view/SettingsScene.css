@@ -1,0 +1,13 @@
+.tableMenu{
+	-fx-base:black;
+}
+.tableMenu .toggle-button , .mypage .button{
+	-fx-background-radius:15px;
+	-fx-padding: 0px;
+}
+.tableMenu .button{
+	-fx-padding: 5 15 5 16px;
+}
+.tableMenu .label {
+	-fx-text-fill:white;
+}
