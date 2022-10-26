@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,6 +56,8 @@ public class GameSceneController {
     private Label scoreboardLabel;
     @FXML
     private ProgressBar timer;
+    @FXML
+    private Label sliderVelocityLabel;
     // DYNAMIC
     private ImageView cue;
     private Ball ball[] = new Ball[16];
@@ -66,8 +69,18 @@ public class GameSceneController {
     // GAMESCENE VARIABLES (RULES IMPLEMENTATION)
     private Player player1, player2;
     private boolean turn;
+    private int turnNum;
     private boolean gamePause;
     private boolean gameOver;
+    private double angle;
+    private double xp,yp;
+    // control flags
+    private boolean turnChange;
+    private boolean foulWhat3;
+    private boolean foulWrongBallType;
+    private boolean foulNoBallHit;
+
+    private boolean foul;
 
     // SCENE MANAGEMENT METHODS
     @FXML
@@ -270,10 +283,30 @@ public class GameSceneController {
     }
 
     public void showVelocity() {
+        if (isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
+            sliderVelocityLabel.setText(String.valueOf(Math.floor(powerSlider.getValue() / 30 * 100)));
+            cue.setLayoutX(0);
+            cue.setLayoutY(0);
+            /*angle = Math.toDegrees (Math.atan ((yp - ball[0].getPosition().getY()) / (xp - ball[0].getPosition().getX())));
+            if (ball[0].getPosition().getX() >= xp) {
+                angle = 180 - angle;
+                angle = -angle;
+            }*/
+            angle = Math.toDegrees(Math.atan2(yp - ball[0].getPosition().getY(), xp - ball[0].getPosition().getX()));
 
+            double mid_x = cue.getLayoutX() + cue.getFitWidth() / 2;
+            double mid_y = cue.getLayoutY() + cue.getFitHeight() / 2;
+            double dist = ball[0].getPosition().getX() - mid_x;
+
+            double new_x = mid_x + (dist-dist*Math.cos(Math.toRadians(angle)));
+            double new_y = mid_y + dist*Math.sin(Math.toRadians(angle));
+
+            cue.setLayoutX(new_x - cue.getFitWidth() / 2);
+            cue.setLayoutY(new_y - cue.getFitHeight() / 2);
+        }
     }
 
-    public void mereDaw() {
+    public void mereDaw()  {
         double cueBallVelocity = 0;
         if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
             // sound effects
@@ -282,15 +315,77 @@ public class GameSceneController {
                 guidelineFromBall.setVisible(false);
                 cueBallPreview.setVisible(false);
                 powerSlider.setValue(0);
+                sliderVelocityLabel.setText("0");
                 
+                double angle = Math.toDegrees(Math.atan2(yp - ball[0].getPosition().getY(), xp - ball[0].getPosition().getX()));
+                setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
+
+                xp = -1;
+                yp = -1;
+
+                cue.setVisible(false);
+
             }
 
+        } else {
+            powerSlider.setValue(0);
+            sliderVelocityLabel.setText("0");
         }
     }
 
+    public void reinitialize() {
+        // if necessary
+    }
+
+    private void update() {
+
+        if(turnNum == 1) {
+            labelDekhaw();
+        }
+
+        int flag = 0;
 
 
 
+
+    }
+
+    private void labelDekhaw() {
+        player1NicknameLabel.setText(player1.getNickname());
+        player2NicknameLabel.setText(player2.getNickname());
+        if(player1.isMyTurn()) {
+            scoreboardLabel.setText(player1.getNickname() + "IS BREAKING");
+        } else {
+            scoreboardLabel.setText(player2.getNickname() + "IS BREAKING");
+        }
+    }
+
+    private void moveCueBall() {
+
+        ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
+            // split
+            if(isTurn() && turnNum == 1 && player1.isMyTurn()) {
+            cue.setVisible(false);
+            guidelineToBall.setVisible(false);
+            cueBallPreview.setVisible(false);
+            guidelineFromBall.setVisible(false);
+            guidelineFromCue.setVisible(false);
+            ball[0].getSphere().setCursor(Cursor.CLOSED_HAND); // imposta la "manina" che afferra la palla
+            if(true) { // controllo che la palla venga posizionata nel rettangolo head spot
+                
+            }
+            // after foul
+            } else if (isTurn() && isFoul() && player1.isMyTurn()) {
+
+            }
+
+
+            
+
+
+        });
+
+    }
 
 
 
@@ -335,6 +430,14 @@ public class GameSceneController {
 
     public boolean isGamePause() {
         return gamePause;
+    }
+
+    public void setCueVelocity(double x, double y) {
+        ball[0].setVelocity(x, y);
+    }
+
+    public boolean isFoul() {
+        return foul;
     }
 
 

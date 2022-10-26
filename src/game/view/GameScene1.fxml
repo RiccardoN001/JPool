@@ -313,6 +313,7 @@
             </stroke>
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111725" height="400.0" layoutX="142.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
       <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" />
       <Line fx:id="guidelineToBall" />
       <Circle fx:id="cueBallPreview" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
@@ -684,5 +685,6 @@
             <Image url="@../resources/Tables/rack.png" />
          </image>
       </ImageView>
+      <Label fx:id="sliderVelocityLabel" layoutX="124.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="velocity" />
     </children>
 </Pane>
