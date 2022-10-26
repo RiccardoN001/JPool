@@ -63,6 +63,25 @@ public class Constants {
     public static final double F_RIGHT_CORNER_START = 1078;
     public static final double F_RIGHT_CORNER_END = 1099;
 
+    //TOP-LEFT POCKET
+    public static final double TOP_LEFT_POCKET_X = 284;
+    public static final double TOP_LEFT_POCKET_Y = 244;
+    //BOTTOM-LEFT POCKET
+    public static final double BOTTOM_LEFT_POCKET_X = 284;
+    public static final double BOTTOM_LEFT_POCKET_Y = 735;
+    //TOP-MIDDLE POCKET
+    public static final double TOP_MIDDLE_POCKET_X = 729;
+    public static final double TOP_MIDDLE_POCKET_Y = 241;
+    //BOTTOM-MIDDLE POCKET
+    public static final double BOTTOM_MIDDLE_POCKET_X = 729;
+    public static final double BOTTOM_MIDDLE_POCKET_Y = 740;
+    //TOP-RIGHT POCKET
+    public static final double TOP_RIGHT_POCKET_X = 1174;
+    public static final double TOP_RIGHT_POCKET_Y = 244;
+    //BOTTOM-RIGHT POCKET
+    public static final double BOTTOM_RIGHT_POCKET_X = 1174;
+    public static final double BOTTOM_RIGHT_POCKET_Y = 735;
+
     // split rectangle
     public static final double LEFT_BANK = 310;
     public static final double RIGHT_BANK = 1030;

@@ -76,6 +76,7 @@ public class GameSceneController {
     private boolean gameOver = false;
     private double angle;
     private double xp,yp;
+    private double stack_y = 630;
     // control flags
     private boolean turnChange;
     private boolean foulWhat3;
@@ -269,9 +270,9 @@ public class GameSceneController {
     private boolean collides(Circle circle, Ball ball) {
         double x = circle.getCenterX() - ball.getPosition().getX();
         double y = circle.getCenterY() - ball.getPosition().getY();
-        double centersDistance = Math.sqrt(x * x + y * y);
+        double centersdistance = Math.sqrt(x * x + y * y);
 
-        if (centersDistance - ball.getDiameter() <= 0 && centersDistance - ball.getDiameter() >= -3) {
+        if (centersdistance - ball.getDiameter() <= 0 && centersdistance - ball.getDiameter() >= -3) {
             return true;
         } else {
             return false;
@@ -489,22 +490,58 @@ public class GameSceneController {
         double x = ball[ballNum].getPosition().getX();
         double y = ball[ballNum].getPosition().getY();
 
-        double threshold = 626; // diametro buche ??
+        double check = 25; //forse per 
 
-        // 6 buche -> layouts in Constants
-        // dropit
+        if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check) {
+            dropit (ballNum);
+        }
+        else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check) {
+            dropit (ballNum);
+        }
+        else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check) {
+            dropit (ballNum);
+        }
+        else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check) {
+            dropit (ballNum);
+        }
+        else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check) {
+            dropit (ballNum);
+        }
+        else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check) {
+            dropit (ballNum);
+        }
+        if ((y <= 230 || y >= 750) && !ball[ballNum].isDropped ()) { //Per essere sicuri che qualsiasi palla fuori dal campo risulti imbucata
+            dropit (ballNum);
+        }
+        if ((x <= 270 || x >= 1190) && !ball[ballNum].isDropped ()) {
+            dropit (ballNum);
+        }
 
     }
 
-    private double squareDistance(double x1, double y1, double x2, double y2) {
-        return ((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
+    private double distance(double x1, double y1, double x2, double y2) {
+        return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
     }
 
     private void dropit(int ballNum) {
         thisTurnPottedBalls.add(Integer.valueOf(ballNum));
         ball[ballNum].setDropped(true);
         ball[ballNum].setVelocity(0, 0);
-        ball[ballNum].setPosition(new Vector(0, 0)); // nello stack
+        ball[ballNum].setPosition(new Vector(1196, stack_y)); // nello stack
+        if(ballNum<=7 && ballNum!= 0){ //ScoreBoard update
+            solidScoreBall[ballNum].setVisible(false);
+        }
+        else if(ballNum>=9 && ballNum!= 0){
+            stripedScoreBall[ballNum].setVisible(false);
+        }
+
+        stack_y -= 25; //Se entra la bianca
+        if (ballNum == 0) {
+            stack_y += 25;
+            ball[0].getSphere ().setVisible (false);
+            ball[0].setPosition (new Vector (0, 0));
+            ball[0].setDropped (false);
+        }
     }
 
     private void checkCases() {
@@ -513,6 +550,18 @@ public class GameSceneController {
 
     private void checkPotted() {
 
+    }
+    private void changeTurn() {
+        if (player1.isMyTurn ()) {
+            player1.setMyTurn (false);
+            player2.setMyTurn (true);
+        }
+        else {
+            player2.setMyTurn (false);
+            player1.setMyTurn (true);
+        }
+        //if (!TurnOffSounds)
+            //SoundEffects.TURNCHANGE.play (); Suono per il cambio di turno
     }
 
 
