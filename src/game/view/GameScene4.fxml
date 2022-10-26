@@ -66,7 +66,7 @@
                 <Blend />
             </effect>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b1919" height="440.0" layoutX="284.0" layoutY="244.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b1919" height="440.0" layoutX="284.0" layoutY="244.0" onMouseDragReleased="#released" onMouseDragged="#guidedTrajectory" onMouseReleased="#released" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
             <effect>
                 <DropShadow />
             </effect>

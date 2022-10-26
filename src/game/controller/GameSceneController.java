@@ -70,10 +70,10 @@ public class GameSceneController {
 
     // GAMESCENE VARIABLES (RULES IMPLEMENTATION)
     private Player player1, player2;
-    private boolean turn;
+    private boolean turn = true;
     private int turnNum;
-    private boolean gamePause;
-    private boolean gameOver;
+    private boolean gamePause = false;
+    private boolean gameOver = false;
     private double angle;
     private double xp,yp;
     // control flags
@@ -158,11 +158,14 @@ public class GameSceneController {
         cue.setPreserveRatio(true);
         pane.getChildren().add(cue);
         
-        startGame(); 
+        //startGame(); 
     }
 
+    
+    // on mouse dragged fxml
+    @FXML
     public void guidedTrajectory(MouseEvent event) {
-        if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {//la guidedTrajectory serve sicuramente ad entrambi i giocatori, quindi servono che calcoli
+        if(isTurn() && !isGameOver() && !isGamePause() /*&& player1.isMyTurn()*/) {//la guidedTrajectory serve sicuramente ad entrambi i giocatori, quindi servono che calcoli
             guidelineToBall.setVisible(true);
             guidelineToBall.setStroke(Color.WHITE);
             cueBallPreview.setVisible(true);
@@ -275,6 +278,8 @@ public class GameSceneController {
         }
     }
 
+    // on mouse released fxml
+    @FXML
     public void released(MouseEvent event) { 
         if (isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
             double x = event.getSceneX (); //Returns horizontal position of the event relative to the origin of the Scene that contains the MouseEvent's source.
