@@ -10,7 +10,6 @@ public class Player {
     private boolean allBallsPlotted;
     private boolean win;
     private int ballType;
-    private int balance;
 
     // CONSTRUCTOR METHODS
     public Player() {
@@ -19,7 +18,6 @@ public class Player {
         allBallsPlotted = false;
         win = false;
         ballType = 0;
-        balance = 0;
     }
 
     public Player(String nickname) {
@@ -28,7 +26,6 @@ public class Player {
         allBallsPlotted = false;
         win = false;
         ballType = 0;
-        balance = 0;
     }
 
     // GET/SET METHODS
@@ -71,14 +68,6 @@ public class Player {
 
     public void setBallType(int ballType) {
         this.ballType = ballType;
-    }
-
-    public int getBalance() {
-        return balance;
-    }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
     }
 
 }

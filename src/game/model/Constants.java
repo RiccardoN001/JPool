@@ -63,4 +63,10 @@ public class Constants {
     public static final double F_RIGHT_CORNER_START = 1078;
     public static final double F_RIGHT_CORNER_END = 1099;
 
+    // split rectangle
+    public static final double LEFT_BANK = 310;
+    public static final double RIGHT_BANK = 1030;
+    public static final double UP_BANK = 260;
+    public static final double DOWN_BANK = 660;
+
 }

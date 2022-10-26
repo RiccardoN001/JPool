@@ -1,5 +1,7 @@
 package game.controller;
 
+import java.util.ArrayList;
+
 import game.Main;
 import game.model.Ball;
 import game.model.Constants;
@@ -79,7 +81,7 @@ public class GameSceneController {
     private boolean foulWhat3;
     private boolean foulWrongBallType;
     private boolean foulNoBallHit;
-
+    private ArrayList<Integer> thisTurnPottedBalls;
     private boolean foul;
 
     // SCENE MANAGEMENT METHODS
@@ -156,7 +158,7 @@ public class GameSceneController {
         cue.setPreserveRatio(true);
         pane.getChildren().add(cue);
         
-
+        startGame(); 
     }
 
     public void guidedTrajectory(MouseEvent event) {
@@ -344,7 +346,31 @@ public class GameSceneController {
         }
 
         int flag = 0;
+        moveCueBall();
 
+        for(int i = 0; i < 16; i++) {
+            if(!ball[i].getVelocity().isNull()) { // per ogni palla non ferma
+                flag = 1;
+                turnChange = true;
+            }
+
+            updateBalls(i);
+            checkPocket(i);
+        }
+
+        if(flag == 1) {
+            turn = false;
+        } else if(flag == 0 && !turnChange) {
+            turn = true;
+            // turn label
+        } else if(flag == 0 && turnChange) {
+            foul = false;
+            // check cases method
+            // check potted balls method
+            if(isFoul() && !gameOver) {
+                stopGame();
+            }
+        }
 
 
 
@@ -365,18 +391,26 @@ public class GameSceneController {
         ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
             // split
             if(isTurn() && turnNum == 1 && player1.isMyTurn()) {
-            cue.setVisible(false);
-            guidelineToBall.setVisible(false);
-            cueBallPreview.setVisible(false);
-            guidelineFromBall.setVisible(false);
-            guidelineFromCue.setVisible(false);
-            ball[0].getSphere().setCursor(Cursor.CLOSED_HAND); // imposta la "manina" che afferra la palla
-            if(true) { // controllo che la palla venga posizionata nel rettangolo head spot
-                
-            }
+                cue.setVisible(false);
+                guidelineToBall.setVisible(false);
+                cueBallPreview.setVisible(false);
+                guidelineFromBall.setVisible(false);
+                guidelineFromCue.setVisible(false);
+                ball[0].getSphere().setCursor(Cursor.CLOSED_HAND); // imposta la "manina" che afferra la palla
+                if(event.getSceneX() >= Constants.LEFT_BANK &&event.getSceneX() <= Constants.HEAD_SPOT_X && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // controllo che la palla venga posizionata nel rettangolo head spot
+                    ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
+                }
             // after foul
             } else if (isTurn() && isFoul() && player1.isMyTurn()) {
-
+                cue.setVisible(false);
+                guidelineToBall.setVisible(false);
+                cueBallPreview.setVisible(false);
+                guidelineFromBall.setVisible(false);
+                guidelineFromCue.setVisible(false);
+                ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
+                if(event.getSceneX() >= Constants.LEFT_BANK &&event.getSceneX() <= Constants.RIGHT_BANK && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // palla nel campo
+                    ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
+                }
             }
 
 
@@ -387,7 +421,94 @@ public class GameSceneController {
 
     }
 
+    // virgola mobile
+    //double mille = 1000.0;
+    //double milleSci = 1.0e3;
 
+    private void updateBalls(int ballNum) {
+        if(ball[ballNum].getVelocity().getSize() <= 8e-2) { // 0.08 da verificare come valore
+            ball[ballNum].setVelocity(0, 0);  
+        } else { // se ancora si ha velocità significativa
+            ball[ballNum].getPosition ().setX (ball[ballNum].getPosition ().getX () + ball[ballNum].getVelocity ().getX ());
+            ball[ballNum].getPosition ().setY (ball[ballNum].getPosition ().getY () + ball[ballNum].getVelocity ().getY ());
+            for(Ball b: ball) { // scorrimento lista (vedi segnalibro chrome)
+                if(ballNum != b.getBallNumber() && ball[ballNum].collides(b)) {
+
+                    if(ballNum == 0 && !foulWrongBallType && player1.getBallType() == 0) {
+                        foulWrongBallType = true;
+                        if(b.getBallType() == 3) {
+                            foulWhat3 = true; // first foul type
+                        }
+                    } else if (ballNum == 0 && !foulWrongBallType && player1.getBallType() != 0) {
+                        foulWrongBallType = true;
+                        if(player1.isMyTurn()) { // se è il turno di P1
+                            if(player1.getBallType() != b.getBallType()) {
+                                if(b.getBallNumber() == 8 && player1.isAllBallsPlotted()) {
+                                    foulWhat3 = false;
+                                } else {
+                                    foulWhat3 = true;
+                                }
+                            }
+                        } else { // se è di P2
+                            if(player2.getBallType() != b.getBallType()) {
+                                if(b.getBallNumber() == 8 && player2.isAllBallsPlotted()) {
+                                    foulWhat3 = false;
+                                } else {
+                                    foulWhat3 = true;
+                                }
+                            }
+                        }
+                    } else if(ballNum == 0) {
+                        foulNoBallHit = false;
+                    }
+
+                    ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() - ball[ballNum].getVelocity().getX());
+                    ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() - ball[ballNum].getVelocity().getY());
+                    ball[ballNum].ballCollision(b);
+                    break;
+
+                }
+            }
+
+            ball[ballNum].bankCollision();
+            ball[ballNum].tableFriction();
+            ball[ballNum].spin();
+        }
+        ball[ballNum].getSphere().setLayoutX(ball[ballNum].getPosition().getX());
+        ball[ballNum].getSphere().setLayoutY(ball[ballNum].getPosition().getY());
+    }
+
+
+    private void checkPocket(int ballNum) {
+
+        double x = ball[ballNum].getPosition().getX();
+        double y = ball[ballNum].getPosition().getY();
+
+        double threshold = 626; // diametro buche ??
+
+        // 6 buche -> layouts in Constants
+        // dropit
+
+    }
+
+    private double squareDistance(double x1, double y1, double x2, double y2) {
+        return ((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
+    }
+
+    private void dropit(int ballNum) {
+        thisTurnPottedBalls.add(Integer.valueOf(ballNum));
+        ball[ballNum].setDropped(true);
+        ball[ballNum].setVelocity(0, 0);
+        ball[ballNum].setPosition(new Vector(0, 0)); // nello stack
+    }
+
+    private void checkCases() {
+
+    }
+
+    private void checkPotted() {
+
+    }
 
 
     // ANIMATION MANAGEMENT METHODS
@@ -396,7 +517,7 @@ public class GameSceneController {
         KeyFrame keyFrame = new KeyFrame (
                 Duration.seconds(0.015),
                 event -> {
-
+                    update();
                 });
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
