@@ -27,6 +27,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -106,10 +107,10 @@ public class GameSceneController {
         // HEAD SPOT
         ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/resources/Balls/CueBallExt.png", 0, 0);
         // TRIANGLE ROW 1
-        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, "src/game/resources/Balls/Ball1Ext.png", 1, 1);
+        ball[1] = new Ball(Constants.FOOT_SPOT_X-150, Constants.FOOT_SPOT_Y-100, "src/game/resources/Balls/Ball1Ext.png", 1, 1);
         // TRIANGLE ROW 2
-        ball[11] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball11Ext.png", 2, 11);
-        ball[6] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball6Ext.png", 1, 6);
+        ball[11] = new Ball(Constants.TRIANGLE_ROW2_X-200, Constants.TRIANGLE_COL4_Y+100, "src/game/resources/Balls/Ball11Ext.png", 2, 11);
+        ball[6] = new Ball(Constants.TRIANGLE_ROW2_X-600, Constants.TRIANGLE_COL6_Y+100, "src/game/resources/Balls/Ball6Ext.png", 1, 6);
         // TRIANGLE ROW 3 Constants.TRIANGLE_COL1_Y
         ball[14] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball14Ext.png", 2, 14);
         ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball8Ext.png", 3, 8);
@@ -170,7 +171,10 @@ public class GameSceneController {
             guidelineToBall.setVisible(true);
             guidelineToBall.setStroke(Color.WHITE);
             cueBallPreview.setVisible(true);
+            cueBallPreview.setFill(Color.TRANSPARENT);
             cueBallPreview.setStroke(Color.WHITE);
+
+            guidelineFromBall.setVisible(true);
 
             double xcb = ball[0].getPosition().getX();
             double ycb = ball[0].getPosition().getY();
@@ -185,26 +189,18 @@ public class GameSceneController {
 
             cueBallPreview.setCenterX(xm);
             cueBallPreview.setCenterY(ym);
-            cueBallPreview.setRadius(12.5);
-
-            boolean hitBallFound = false;
-            for(int i = 0; i < 16; i++) {
-                if(collides(cueBallPreview, ball[i])) {
-                    hitBallFound = true;
-                    break; 
-                }
-            }
-
-            if(hitBallFound) {
-                guidelineToBall.setVisible(true);
-            } else {
-                guidelineToBall.setVisible(false);
-            }
+            cueBallPreview.setRadius(10);
+            guidelineFromBall.setVisible(false);
+            guidelineFromCue.setVisible(false);
+            guidelineFromBall.setStroke(Color.WHITE);
+            guidelineFromCue.setStroke(Color.WHITE);
 
             for(int i = 0; i < 16; i++) {
                 if(collides(cueBallPreview, ball[i])) {
-                    double cueBallVelocity = 50;
-                    double angle = Math.atan((ym-ycb)/(xm-xcb));
+                    double cueBallVelocity = 40;
+                    Vector cueVelocity = new Vector(cueBallVelocity, cueBallVelocity);
+                    // double angle = Math.atan((ym-ycb)/(xm-xcb));
+                    double angle = Math.atan2(ym-ycb, xm-xcb);
                     if(xm < xcb) {
                         cueBallVelocity = -cueBallVelocity;
                     }
@@ -222,8 +218,11 @@ public class GameSceneController {
                     normalToA.normalize();
                     normalToA.multiply(ball[i].getVelocity().scalar(normalToA));
 
-                    Vector bCollisionVector = ball[i].getVelocity().sub(normalToB);
-                    Vector ballFinalVelocity = bCollisionVector.add(normalToA);
+                    Vector bCollisionVector = ball[i].getVelocity().sub(normalToA);
+                    Vector ballFinalVelocity = bCollisionVector.add(normalToB);
+
+                    Vector aCollisionVector = cueVelocity.sub(normalToB);
+                    Vector cueFinalVelocity = aCollisionVector.add(normalToA);
 
                     double x = ball[i].getSphere().getLayoutX();
                     double y = ball[i].getSphere().getLayoutY();
@@ -232,21 +231,25 @@ public class GameSceneController {
                     guidelineFromBall.setStartY(y);
 
                     guidelineFromBall.setEndX(x + ballFinalVelocity.getX());
-                    guidelineFromBall.setEndY(y + ballFinalVelocity.getX());
+                    guidelineFromBall.setEndY(y + ballFinalVelocity.getY());
+
 
                     guidelineFromCue.setStartX(xm);
                     guidelineFromCue.setStartY(ym);
 
-                    guidelineFromCue.setEndX(xm);
-                    guidelineFromCue.setEndY(ym);
+                    guidelineFromCue.setEndX(xm+cueFinalVelocity.getX());
+                    guidelineFromCue.setEndY(ym+cueFinalVelocity.getY());
+
+                    guidelineFromBall.setVisible(true);
+                    guidelineFromCue.setVisible(true);
 
                 }
             }
 
             // da rivedere
             cue.setVisible(true);
-            cue.setLayoutX (xcb - (346 + 36));
-            cue.setLayoutY (ycb - 14);
+            cue.setLayoutX (Constants.HEAD_SPOT_X - 385);
+            cue.setLayoutY (Constants.HEAD_SPOT_Y - 20);
             double ang = Math.toDegrees(Math.atan((ym-ycb)/(xm-xcb)));
             if(xm <= xcb) {
                 ang = 180 - ang;
@@ -272,7 +275,7 @@ public class GameSceneController {
         double y = circle.getCenterY() - ball.getPosition().getY();
         double centersdistance = Math.sqrt(x * x + y * y);
 
-        if (centersdistance - ball.getDiameter() <= 0 && centersdistance - ball.getDiameter() >= -3) {
+        if (centersdistance - ball.getDiameter() <= 3) {
             return true;
         } else {
             return false;
