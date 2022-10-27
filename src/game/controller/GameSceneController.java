@@ -27,7 +27,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -160,7 +159,7 @@ public class GameSceneController {
         cue.setPreserveRatio(true);
         pane.getChildren().add(cue);
         
-        //startGame(); 
+        // startGame(); 
     }
 
     
@@ -285,7 +284,7 @@ public class GameSceneController {
     // on mouse released fxml
     @FXML
     public void released(MouseEvent event) { 
-        if (isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
+        if (isTurn() && !isGameOver() && !isGamePause()) {
             double x = event.getSceneX (); //Returns horizontal position of the event relative to the origin of the Scene that contains the MouseEvent's source.
             double y = event.getSceneY (); //Returns Vertical position of the event relative to the origin of the Scene that contains the MouseEvent's source.
             double xp = x; //update variabile d'ambiente
