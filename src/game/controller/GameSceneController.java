@@ -39,7 +39,7 @@ public class GameSceneController {
     @FXML
     private MenuButton menuBar;
     @FXML
-    private Circle cueBallPreview;
+    private Circle ghostBall;
     @FXML
     private Line guidelineToBall;
     @FXML
@@ -85,7 +85,7 @@ public class GameSceneController {
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean foul;
 
-    private boolean hardMode; // easy or hard
+    private boolean hardMode; // easy or hard // not necessary !!
 
     // SCENE MANAGEMENT METHODS
     @FXML
@@ -112,7 +112,7 @@ public class GameSceneController {
         // TRIANGLE ROW 2
         ball[11] = new Ball(Constants.TRIANGLE_ROW2_X-200, Constants.TRIANGLE_COL4_Y+100, "src/game/resources/Balls/Ball11Ext.png", 2, 11);
         ball[6] = new Ball(Constants.TRIANGLE_ROW2_X-600, Constants.TRIANGLE_COL6_Y+100, "src/game/resources/Balls/Ball6Ext.png", 1, 6);
-        // TRIANGLE ROW 3 Constants.TRIANGLE_COL1_Y
+        // TRIANGLE ROW 3
         ball[14] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball14Ext.png", 2, 14);
         ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball8Ext.png", 3, 8);
         ball[10] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball10Ext.png", 2, 10);
@@ -171,9 +171,9 @@ public class GameSceneController {
         if(isTurn() && !isGameOver() && !isGamePause() /*&& player1.isMyTurn()*/) {//la guidedTrajectory serve sicuramente ad entrambi i giocatori, quindi servono che calcoli
             guidelineToBall.setVisible(true);
             guidelineToBall.setStroke(Color.WHITE);
-            cueBallPreview.setVisible(true);
-            cueBallPreview.setFill(Color.TRANSPARENT);
-            cueBallPreview.setStroke(Color.WHITE);
+            ghostBall.setVisible(true);
+            ghostBall.setFill(Color.TRANSPARENT);
+            ghostBall.setStroke(Color.WHITE);
 
             guidelineFromBall.setVisible(true);
 
@@ -188,16 +188,16 @@ public class GameSceneController {
             guidelineToBall.setEndX(xm);
             guidelineToBall.setEndY(ym);
 
-            cueBallPreview.setCenterX(xm);
-            cueBallPreview.setCenterY(ym);
-            cueBallPreview.setRadius(10);
+            ghostBall.setCenterX(xm);
+            ghostBall.setCenterY(ym);
+            ghostBall.setRadius(10);
             guidelineFromBall.setVisible(false);
             guidelineFromCue.setVisible(false);
             guidelineFromBall.setStroke(Color.WHITE);
             guidelineFromCue.setStroke(Color.WHITE);
 
             for(int i = 0; i < 16; i++) {
-                if(collides(cueBallPreview, ball[i])) {
+                if(collides(ghostBall, ball[i])) {
 
                     guidelineFromBall.setVisible(true);
                     //guidelineFromCue.setVisible(true);
@@ -211,7 +211,7 @@ public class GameSceneController {
                    }
 
                     
-                    Vector position = new Vector(cueBallPreview.getCenterX(), cueBallPreview.getCenterY());
+                    Vector position = new Vector(ghostBall.getCenterX(), ghostBall.getCenterY());
                     Vector velocity = new Vector(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
 
                     // a and b roles !!!
@@ -324,7 +324,7 @@ public class GameSceneController {
             cueBallVelocity = powerSlider.getValue();
             if(cueBallVelocity != 0) {
                 guidelineFromBall.setVisible(false);
-                cueBallPreview.setVisible(false);
+                ghostBall.setVisible(false);
                 powerSlider.setValue(0);
                 sliderVelocityLabel.setText("0");
                 
@@ -402,7 +402,7 @@ public class GameSceneController {
             if(isTurn() && turnNum == 1 && player1.isMyTurn()) {
                 cue.setVisible(false);
                 guidelineToBall.setVisible(false);
-                cueBallPreview.setVisible(false);
+                ghostBall.setVisible(false);
                 guidelineFromBall.setVisible(false);
                 guidelineFromCue.setVisible(false);
                 ball[0].getSphere().setCursor(Cursor.CLOSED_HAND); // imposta la "manina" che afferra la palla
@@ -413,7 +413,7 @@ public class GameSceneController {
             } else if (isTurn() && isFoul() && player1.isMyTurn()) {
                 cue.setVisible(false);
                 guidelineToBall.setVisible(false);
-                cueBallPreview.setVisible(false);
+                ghostBall.setVisible(false);
                 guidelineFromBall.setVisible(false);
                 guidelineFromCue.setVisible(false);
                 ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);

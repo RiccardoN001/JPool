@@ -3,19 +3,18 @@ package game.model;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
-
-import static javafx.scene.paint.Color.WHITE;
 
 public class Ball {
 
     // BRIEF CLASS DESCRIPTION (FINISHED)
     // Represents the physical model of a (3D) billiard ball
 
+    private Vector initialPosition, position, velocity;
     private double acceleration, diameter;
-    private Vector position, velocity, initialPosition;
     private Sphere sphere = new Sphere(12.5);
     private String imagePath;
     private int ballType;
@@ -44,7 +43,7 @@ public class Ball {
 
         // 3D
         PhongMaterial material = new PhongMaterial();
-        material.setSpecularColor(WHITE);
+        material.setSpecularColor(Color.WHITE);
         Image img = new Image("file:" + this.imagePath);
         material.setDiffuseMap(img);
         material.setSpecularPower(30);

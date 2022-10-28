@@ -1,0 +1,5 @@
+.pagination {
+    -fx-arrows-visible: false;
+    -fx-tooltip-visible: false;
+    -fx-page-information-visible: false;
+}

@@ -316,7 +316,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111725" height="400.0" layoutX="142.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
       <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" />
       <Line fx:id="guidelineToBall" />
-      <Circle fx:id="cueBallPreview" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="guidelineFromBall" />
       <Line fx:id="guidelineFromCue" />
       <MenuButton fx:id="menuBar" layoutX="22.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuButton" text="MenuBar">
