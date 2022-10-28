@@ -85,6 +85,8 @@ public class GameSceneController {
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean foul;
 
+    private boolean hardMode; // easy or hard
+
     // SCENE MANAGEMENT METHODS
     @FXML
     public void handleMenuButton(ActionEvent event) throws Exception {
@@ -196,13 +198,18 @@ public class GameSceneController {
 
             for(int i = 0; i < 16; i++) {
                 if(collides(cueBallPreview, ball[i])) {
+
+                    guidelineFromBall.setVisible(true);
+                    //guidelineFromCue.setVisible(true);
+                    
                     double cueBallVelocity = 40;
                     Vector cueVelocity = new Vector(cueBallVelocity, cueBallVelocity);
                     // double angle = Math.atan((ym-ycb)/(xm-xcb));
                     double angle = Math.atan2(ym-ycb, xm-xcb);
                     if(xm < xcb) {
                         cueBallVelocity = -cueBallVelocity;
-                    }
+                   }
+
                     
                     Vector position = new Vector(cueBallPreview.getCenterX(), cueBallPreview.getCenterY());
                     Vector velocity = new Vector(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
@@ -228,19 +235,13 @@ public class GameSceneController {
 
                     guidelineFromBall.setStartX(x);
                     guidelineFromBall.setStartY(y);
-
                     guidelineFromBall.setEndX(x + ballFinalVelocity.getX());
                     guidelineFromBall.setEndY(y + ballFinalVelocity.getY());
 
-
-                    guidelineFromCue.setStartX(xm);
+                    /*guidelineFromCue.setStartX(xm);
                     guidelineFromCue.setStartY(ym);
-
                     guidelineFromCue.setEndX(xm+cueFinalVelocity.getX());
-                    guidelineFromCue.setEndY(ym+cueFinalVelocity.getY());
-
-                    guidelineFromBall.setVisible(true);
-                    guidelineFromCue.setVisible(true);
+                    guidelineFromCue.setEndY(ym+cueFinalVelocity.getY());*/
 
                 }
             }
