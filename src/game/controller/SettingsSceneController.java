@@ -28,7 +28,7 @@ public class SettingsSceneController{
     @FXML
     private Button backButton;
 
-    // for communication with other controllers !!
+    // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsSceneController instance;
     public SettingsSceneController() {
         instance = this;
@@ -103,6 +103,10 @@ public class SettingsSceneController{
 
     public int cueMenuIndex () {
         return this.cueMenu.getCurrentPageIndex();
+    }
+
+    public int modeMenuIndex() {
+        return this.modeMenu.getCurrentPageIndex();
     }
 
 }

@@ -71,4 +71,25 @@ public class Vector {
         this.y = y;
     }
 
+
+
+    public static void sphereCollisionVelocities(Vector c1, Vector v1, Vector c2, Vector v2) {
+
+        Vector pDiff1 = c1.sub(c2);
+        Vector vDiff1 = v1.sub(v2);
+        pDiff1.normalize();
+        pDiff1.multiply(vDiff1.scalar(pDiff1));
+
+        v1 = v1.sub(pDiff1);
+
+        Vector pDiff2 = c2.sub(c1);
+        Vector vDiff2 = v2.sub(v1);
+        pDiff2.normalize();
+        pDiff2.multiply(vDiff2.scalar(pDiff2));
+
+        v2 = v2.sub(pDiff2);
+
+    }
+
+
 }
