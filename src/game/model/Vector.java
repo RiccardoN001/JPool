@@ -73,7 +73,7 @@ public class Vector {
 
 
 
-    public static void sphereCollisionVelocities(Vector c1, Vector v1, Vector c2, Vector v2) {
+   /*  public static void sphereCollisionVelocities(Vector c1, Vector v1, Vector c2, Vector v2) {
 
         Vector pDiff1 = c1.sub(c2);
         Vector vDiff1 = v1.sub(v2);
@@ -89,7 +89,7 @@ public class Vector {
 
         v2 = v2.sub(pDiff2);
 
-    }
+    }*/
 
 
 }

@@ -252,7 +252,7 @@ public class GameSceneController {
 
     @FXML
     public void released(MouseEvent event) { 
-        if (isTurn() && !isGameOver() && !isGamePause()) {
+        if (true) {
             double x = event.getSceneX ();
             double y = event.getSceneY ();
             xmr = x;
@@ -282,14 +282,12 @@ public class GameSceneController {
 
     public void cueShot()  {
         double cueBallVelocity = 0;
-        if(isTurn() && !isGameOver() && !isGamePause() && player1.isMyTurn()) {
+        if(true) {
             // sound effects
             cueBallVelocity = powerSlider.getValue();
             if(cueBallVelocity != 0) {
                 guidelineFromBall.setVisible(false);
                 ghostBall.setVisible(false);
-                powerSlider.setValue(0);
-                sliderVelocityLabel.setText("0");
                 
                 double angle = Math.toDegrees(Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX()));
                 setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
@@ -301,10 +299,7 @@ public class GameSceneController {
 
             }
 
-        } else {
-            powerSlider.setValue(0);
-            sliderVelocityLabel.setText("0");
-        }
+        } 
     }
 
     private void update() {
@@ -859,7 +854,7 @@ public class GameSceneController {
         KeyFrame keyFrame = new KeyFrame (
                 Duration.seconds(0.015),
                 event -> {
-                    moveCueBall();
+                    update();
                 });
         timeline.getKeyFrames().add(keyFrame);
         timeline.setCycleCount(Timeline.INDEFINITE);
