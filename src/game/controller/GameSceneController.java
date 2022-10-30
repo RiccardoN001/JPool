@@ -116,6 +116,8 @@ public class GameSceneController {
     public void initialize() throws Exception {
         
         // SPLIT
+        turnNum = 1;
+
         // HEAD SPOT
         ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/resources/Balls/CueBallExt.png", 0, 0);
         // TRIANGLE ROW 1
@@ -142,7 +144,7 @@ public class GameSceneController {
             pane.getChildren().add(ball[i].DrawBall());
         }
 
-        //CUE LOADING
+        // CUE LOADING
         cue = new ImageView(new Image("file:src/game/resources/Cues/Cue"+String.valueOf(SettingsSceneController.getSettingsSceneController().cueMenuIndex()+1 +".png")));
         cue.setFitWidth(400);
         cue.setFitHeight(100);
@@ -151,19 +153,28 @@ public class GameSceneController {
         cue.setPreserveRatio(true);
         pane.getChildren().add(cue);
 
-        //NICKNAMES
-        if(SettingsSceneController.getSettingsSceneController().player1Nick()!=null){
-            player1 = new Player(SettingsSceneController.getSettingsSceneController().player1Nick());
-        }
-        else{player1 = new Player("Giocatore 1");
-        }
-         
-        if(SettingsSceneController.getSettingsSceneController().player2Nick()!=null){
-            player2 = new Player(SettingsSceneController.getSettingsSceneController().player2Nick());
-        }else{player2 = new Player("Giocatore 2");
+        // PLAYERS
+        player1 = new Player(SettingsSceneController.getSettingsSceneController().getP1Nickname());
+        player2 = new Player(SettingsSceneController.getSettingsSceneController().getP2Nickname());
+
+        // CONTROL VARIABLES
+        player1.setMyTurn(turn); // random ?
+        turn = true;
+        foul = false;
+        gamePause = false;
+        gameOver = false;
+        turnChange = false;
+        foulEight = false;
+        foulWrongBallType = false;
+        foulNoBallHit = true;
+
+        // POTTED BALLS
+        thisTurnPottedBalls = new ArrayList<>();
+        for (int i = 0; i < 16; i++) {
+            potted[i] = false;
         }
         
-        startGame(); 
+        startGame();
     }
 
     @FXML
@@ -401,26 +412,25 @@ public class GameSceneController {
     private void moveCueBall() {
 
         ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-            // split
-            if(isTurn() && turnNum == 1 && player1.isMyTurn()) {
-                cue.setVisible(false);
-                guidelineToBall.setVisible(false);
-                ghostBall.setVisible(false);
-                guidelineFromBall.setVisible(false);
-                guidelineFromCue.setVisible(false);
-                ball[0].getSphere().setCursor(Cursor.CLOSED_HAND); // imposta la "manina" che afferra la palla
-                if(event.getSceneX() >= Constants.LEFT_BANK &&event.getSceneX() <= Constants.HEAD_SPOT_X && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // controllo che la palla venga posizionata nel rettangolo head spot
-                    ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
-                }
-            // after foul
-            } else if (isTurn() && isFoul() && player1.isMyTurn()) {
+
+            if(turn && turnNum == 1) {
                 cue.setVisible(false);
                 guidelineToBall.setVisible(false);
                 ghostBall.setVisible(false);
                 guidelineFromBall.setVisible(false);
                 guidelineFromCue.setVisible(false);
                 ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                if(event.getSceneX() >= Constants.LEFT_BANK &&event.getSceneX() <= Constants.RIGHT_BANK && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // palla nel campo
+                if(event.getSceneX() >= Constants.LEFT_BANK && event.getSceneX() <= Constants.HEAD_SPOT_X && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // controllo che la palla venga posizionata nel rettangolo head spot
+                    ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
+                }
+            } else if (turn && foul) {
+                cue.setVisible(false);
+                guidelineToBall.setVisible(false);
+                ghostBall.setVisible(false);
+                guidelineFromBall.setVisible(false);
+                guidelineFromCue.setVisible(false);
+                ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
+                if(event.getSceneX() >= Constants.LEFT_BANK && event.getSceneX() <= Constants.RIGHT_BANK && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // palla nel campo
                     ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
             }

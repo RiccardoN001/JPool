@@ -12,14 +12,6 @@ public class Player {
     private int ballType;
 
     // CONSTRUCTOR METHODS
-    public Player() {
-        nickname = "";
-        myTurn = false;
-        allBallsPlotted = false;
-        win = false;
-        ballType = 0;
-    }
-
     public Player(String nickname) {
         this.nickname = nickname;
         myTurn = false;

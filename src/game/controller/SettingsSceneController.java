@@ -24,14 +24,16 @@ public class SettingsSceneController{
     private Pagination cueMenu;
     @FXML
     private Pagination modeMenu;
+
+    @FXML
+    private TextField player1Nickname;
+    @FXML
+    private TextField player2Nickname;
+    
     @FXML
     private Button playButton;
     @FXML
     private Button backButton;
-    @FXML
-    private TextField player1Nick;
-    @FXML
-    private TextField player2Nick;
 
     // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsSceneController instance;
@@ -81,6 +83,7 @@ public class SettingsSceneController{
             }
         });
     }
+
     @FXML
     void handleMenuFromSettings(ActionEvent event) throws Exception{
         Stage stage;
@@ -126,11 +129,13 @@ public class SettingsSceneController{
     public int modeMenuIndex() {
         return this.modeMenu.getCurrentPageIndex();
     }
-    public String player1Nick(){
-        return this.player1Nick.getText();
+
+    public String getP1Nickname() {
+        return this.player1Nickname.getText();
     }
-    public String player2Nick(){
-        return this.player2Nick.getText();
+
+    public String getP2Nickname() {
+        return this.player2Nickname.getText();
     }
 
 }
