@@ -59,8 +59,8 @@ public class GameSceneController {
     @FXML
     private Label sliderVelocityLabel;
 
-    private double angle;
-    private double xmr,ymr;
+    private double xmr = -1;
+    private double ymr = -1;
 
     private Ball ball[] = new Ball[16];
     private ImageView[] solidScoreBall = new ImageView[7];
@@ -213,8 +213,8 @@ public class GameSceneController {
                         Vector normalToA = ball[i].getPosition().sub(position);
                         normalToA.normalize();
                         normalToA.multiply(ball[i].getVelocity().scalar(normalToA));
-                        Vector bCollisionVector = ball[i].getVelocity().sub(normalToA);
-                        Vector ballFinalVelocity = bCollisionVector.add(normalToB);
+                        Vector aCollisionVector = ball[i].getVelocity().sub(normalToA);
+                        Vector ballFinalVelocity = aCollisionVector.add(normalToB);
 
                         // ORTHOGONAL VECTOR
                         Vector cueFinalVelocity = new Vector(0, 0);
@@ -259,8 +259,8 @@ public class GameSceneController {
             double mid_y = cue.getLayoutY() + cue.getFitHeight() / 2;
             double dist = xcb - mid_x;
 
-            double now_x = mid_x + (dist - dist * Math.cos (Math.toRadians (angle)));
-            double now_y = mid_y + Math.sin(Math.toRadians(-angle)) * dist;
+            double now_x = mid_x + (dist - dist*Math.cos(Math.toRadians(angle)));
+            double now_y = mid_y + dist*Math.sin(Math.toRadians(-angle));
             
             double pos_x = now_x - cue.getFitWidth() / 2;
             double pos_y = now_y - cue.getFitHeight() / 2 + 2;
@@ -281,33 +281,41 @@ public class GameSceneController {
     }
 
     public void cueLoading() {
-        if(isTurn() && !isGamePause() && !isGameOver()) {
+        if(turn && !gamePause && !gameOver) {
+
             sliderVelocityLabel.setText(String.valueOf(Math.floor(powerSlider.getValue() / 30 * 100)));
+            
             cue.setLayoutX(0);
             cue.setLayoutY(0);
             
-            angle = Math.toDegrees(Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX()));
+            double angle = Math.toDegrees(Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX()));
 
             double mid_x = cue.getLayoutX() + cue.getFitWidth() / 2;
             double mid_y = cue.getLayoutY() + cue.getFitHeight() / 2;
             double dist = ball[0].getPosition().getX() - mid_x;
 
-            double new_x = mid_x + (dist-dist*Math.cos(Math.toRadians(angle)));
-            double new_y = mid_y + dist*Math.sin(Math.toRadians(angle));
+            double now_x = mid_x + (dist - dist*Math.cos(Math.toRadians(angle)));
+            double now_y = mid_y + dist*Math.sin(Math.toRadians(-angle));
+            
+            double pos_x = now_x - cue.getFitWidth() / 2;
+            double pos_y = now_y - cue.getFitHeight() / 2 + 2;
 
-            cue.setLayoutX(new_x - cue.getFitWidth() / 2);
-            cue.setLayoutY(new_y - cue.getFitHeight() / 2);
+            cue.setLayoutX(pos_x);
+            cue.setLayoutY(pos_y);
         }
     }
 
     public void cueShot()  {
         double cueBallVelocity = 0;
-        if(true) {
-            // sound effects
+        if(turn && !gamePause && !gameOver) {
+
             cueBallVelocity = powerSlider.getValue();
             if(cueBallVelocity != 0) {
-                guidelineFromBall.setVisible(false);
+                
+                guidelineToBall.setVisible(false);
                 ghostBall.setVisible(false);
+                guidelineFromBall.setVisible(false);
+                guidelineFromCue.setVisible(false);
                 
                 double angle = Math.toDegrees(Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX()));
                 setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
@@ -316,10 +324,13 @@ public class GameSceneController {
                 ymr = -1;
 
                 cue.setVisible(false);
-
             }
 
         } 
+    }
+
+    public void setCueVelocity(double x, double y) {
+        ball[0].setVelocity(x, y);
     }
 
     private void update() {
@@ -910,10 +921,6 @@ public class GameSceneController {
 
     public boolean isGamePause() {
         return gamePause;
-    }
-
-    public void setCueVelocity(double x, double y) {
-        ball[0].setVelocity(x, y);
     }
 
     public boolean isFoul() {
