@@ -22,6 +22,7 @@ public class RulesSceneController{
         stage = (Stage) menuButtonFromRules.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
+        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

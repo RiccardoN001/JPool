@@ -72,7 +72,7 @@ public class SettingsSceneController{
         stage = (Stage) backButton.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/MenuScene.css").toExternalForm());
+        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -95,8 +95,9 @@ public class SettingsSceneController{
             stage = (Stage) playButton.getScene().getWindow();
             root = FXMLLoader.load(Main.class.getResource("view/GameScene4.fxml"));
         }
-
+        
         Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
