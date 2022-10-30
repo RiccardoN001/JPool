@@ -97,7 +97,6 @@ public class GameSceneController {
 
     // -------------------------------------------------- SCENE METHODS --------------------------------------------------
 
-    // SCENE MANAGEMENT METHODS
     @FXML
     public void handleMenuButton(ActionEvent event) throws Exception {
         Stage stage;
@@ -189,27 +188,37 @@ public class GameSceneController {
                         guidelineFromBall.setVisible(true);
                         guidelineFromCue.setVisible(true);
                         
-                        double cueBallVelocity = 50;
-                        Vector cueVelocity = new Vector(cueBallVelocity, cueBallVelocity);
-                        double angle = Math.atan2(ym-ycb, xm-xcb);
+                        double angle = Math.atan2(ym - ycb, xm - xcb);
                         
                         Vector position = new Vector(ghostBall.getCenterX(), ghostBall.getCenterY());
+                        double cueBallVelocity = 50;
                         Vector velocity = new Vector(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
-    
+
                         Vector normalToB = position.sub(ball[i].getPosition());
                         normalToB.normalize();
                         normalToB.multiply(velocity.scalar(normalToB));
-    
                         Vector normalToA = ball[i].getPosition().sub(position);
                         normalToA.normalize();
                         normalToA.multiply(ball[i].getVelocity().scalar(normalToA));
-    
                         Vector bCollisionVector = ball[i].getVelocity().sub(normalToA);
                         Vector ballFinalVelocity = bCollisionVector.add(normalToB);
-    
-                        Vector aCollisionVector = cueVelocity.sub(normalToB);
-                        Vector cueFinalVelocity = aCollisionVector.add(normalToA);
-    
+
+                        // ORTHOGONAL VECTOR
+                        Vector cueFinalVelocity = new Vector(0, 0);
+                        if(xm > ball[i].getPosition().getX()) {
+                            if(ym > ball[i].getPosition().getY()) {
+                                cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
+                            } else {
+                                cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
+                            }
+                        } else {
+                            if(ym > ball[i].getPosition().getY()) {
+                                cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
+                            } else {
+                                cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
+                            }
+                        }
+
                         double x = ball[i].getSphere().getLayoutX();
                         double y = ball[i].getSphere().getLayoutY();
     
@@ -220,31 +229,31 @@ public class GameSceneController {
     
                         guidelineFromCue.setStartX(xm);
                         guidelineFromCue.setStartY(ym);
-                        guidelineFromCue.setEndX(xm + cueVelocity.getX());
-                        guidelineFromCue.setEndY(ym + cueVelocity.getY());
+                        guidelineFromCue.setEndX(xm + cueFinalVelocity.getX());
+                        guidelineFromCue.setEndY(ym + cueFinalVelocity.getY());
     
                     }
                 }
             }
 
             cue.setVisible(true);
-            cue.setLayoutX (Constants.HEAD_SPOT_X - 385);
-            cue.setLayoutY (Constants.HEAD_SPOT_Y - 20);
-            double ang = Math.toDegrees(Math.atan((ym-ycb)/(xm-xcb)));
-            if(xm <= xcb) {
-                ang = 180 - ang;
-                ang = - ang;
-            }
-            cue.setRotate(ang);
-            double mid_x = cue.getLayoutX () + cue.getFitWidth () / 2;
-            double mid_y = cue.getLayoutY () + cue.getFitHeight () / 2;
-            double dist = (xcb - mid_x);
-            double now_y = Math.sin (Math.toRadians (-ang)) * dist + mid_y;
-            double now_x = mid_x + (dist - dist * Math.cos (Math.toRadians (ang)));
+            cue.setLayoutX(Constants.HEAD_SPOT_X - 385);
+            cue.setLayoutY(Constants.HEAD_SPOT_Y - 20);
+            double angle = Math.toDegrees(Math.atan2(ym - ycb, xm - xcb));
+            cue.setRotate(angle);
+
+            double mid_x = cue.getLayoutX() + cue.getFitWidth() / 2;
+            double mid_y = cue.getLayoutY() + cue.getFitHeight() / 2;
+            double dist = xcb - mid_x;
+
+            double now_x = mid_x + (dist - dist * Math.cos (Math.toRadians (angle)));
+            double now_y = mid_y + Math.sin(Math.toRadians(-angle)) * dist;
+            
             double pos_x = now_x - cue.getFitWidth () / 2;
             double pos_y = now_y - cue.getFitHeight () / 2 + 4;
-            cue.setLayoutX (pos_x);
-            cue.setLayoutY (pos_y);
+
+            cue.setLayoutX(pos_x);
+            cue.setLayoutY(pos_y);
 
         }
 
