@@ -75,8 +75,8 @@ public class GameSceneController {
     @FXML
     private ProgressBar timer;
 
-    private Player player1 = new Player();
-    private Player player2 = new Player();
+    private Player player1;
+    private Player player2;
     private boolean turn;
     private int turnNum;
     private boolean foul;
@@ -150,6 +150,18 @@ public class GameSceneController {
         cue.setLayoutY(447);
         cue.setPreserveRatio(true);
         pane.getChildren().add(cue);
+
+        //NICKNAMES
+        if(SettingsSceneController.getSettingsSceneController().player1Nick()!=null){
+            player1 = new Player(SettingsSceneController.getSettingsSceneController().player1Nick());
+        }
+        else{player1 = new Player("Giocatore 1");
+        }
+         
+        if(SettingsSceneController.getSettingsSceneController().player2Nick()!=null){
+            player2 = new Player(SettingsSceneController.getSettingsSceneController().player2Nick());
+        }else{player2 = new Player("Giocatore 2");
+        }
         
         startGame(); 
     }
@@ -341,6 +353,7 @@ public class GameSceneController {
 
             if(isFoul() && !gameOver) {
                 stopGame();
+                showFoul();
                 startFromPause();
             }
 

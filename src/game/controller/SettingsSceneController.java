@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +28,10 @@ public class SettingsSceneController{
     private Button playButton;
     @FXML
     private Button backButton;
+    @FXML
+    private TextField player1Nick;
+    @FXML
+    private TextField player2Nick;
 
     // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsSceneController instance;
@@ -57,6 +62,18 @@ public class SettingsSceneController{
                 ImageView imageView = new ImageView(new Image("file:src/game/resources/Cues/Cue" + (pageIndex+1) + ".png"));
                 imageView.setFitWidth(800);
                 imageView.setFitHeight(150);
+                imageView.setPreserveRatio(true);
+                AnchorPane pane = new AnchorPane();
+                pane.getChildren().add(imageView);
+                return pane;
+            }
+        });
+        modeMenu.setPageFactory(new Callback<Integer,Node>() {
+            @Override
+            public Node call(Integer pageIndex){
+                ImageView imageView = new ImageView(new Image("file:src/game/resources/Modes/Mode"  + (pageIndex+1) + ".png"));
+                imageView.setFitWidth(290);
+                imageView.setFitHeight(240);
                 imageView.setPreserveRatio(true);
                 AnchorPane pane = new AnchorPane();
                 pane.getChildren().add(imageView);
@@ -108,6 +125,12 @@ public class SettingsSceneController{
 
     public int modeMenuIndex() {
         return this.modeMenu.getCurrentPageIndex();
+    }
+    public String player1Nick(){
+        return this.player1Nick.getText();
+    }
+    public String player2Nick(){
+        return this.player2Nick.getText();
     }
 
 }
