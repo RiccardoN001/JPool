@@ -155,7 +155,7 @@ public class GameSceneController {
 
     @FXML
     public void guidedTrajectory(MouseEvent event) {
-        if(true) {
+        if(turn && !gamePause && !gameOver) {
 
             guidelineToBall.setStroke(Color.WHITE);
             ghostBall.setStroke(Color.WHITE);
@@ -249,8 +249,8 @@ public class GameSceneController {
             double now_x = mid_x + (dist - dist * Math.cos (Math.toRadians (angle)));
             double now_y = mid_y + Math.sin(Math.toRadians(-angle)) * dist;
             
-            double pos_x = now_x - cue.getFitWidth () / 2;
-            double pos_y = now_y - cue.getFitHeight () / 2 + 4;
+            double pos_x = now_x - cue.getFitWidth() / 2;
+            double pos_y = now_y - cue.getFitHeight() / 2 + 2;
 
             cue.setLayoutX(pos_x);
             cue.setLayoutY(pos_y);
@@ -260,12 +260,10 @@ public class GameSceneController {
     }
 
     @FXML
-    public void released(MouseEvent event) { 
-        if (true) {
-            double x = event.getSceneX ();
-            double y = event.getSceneY ();
-            xmr = x;
-            ymr = y;
+    public void fixTrajectory(MouseEvent event) {
+        if(turn && !gamePause && !gameOver) {
+            xmr = event.getSceneX();;
+            ymr = event.getSceneY();
         }
     }
 
@@ -921,5 +919,6 @@ public class GameSceneController {
             return false;
         }
     }
+
 
 }
