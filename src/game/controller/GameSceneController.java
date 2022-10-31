@@ -93,8 +93,6 @@ public class GameSceneController {
 
     private Timeline timeline = new Timeline();
 
-    private int stack_y = 600;
-
     // -------------------------------------------------- SCENE METHODS --------------------------------------------------
 
     @FXML
@@ -108,6 +106,35 @@ public class GameSceneController {
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+    }
+
+    // -------------------------------------------------- ANIMATION METHODS --------------------------------------------------
+
+    public void startGame() {
+        KeyFrame keyFrame = new KeyFrame (
+                Duration.seconds(0.015),
+                event -> {
+                    update();
+                });
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    public void stopGame() {
+        timeline.stop();
+        gamePause = true;
+    }
+
+    public void startFromPause() {
+        gamePause = false;
+        timeline.play();
+    }
+
+    public void startNewGame() {
+        stopGame();
+        gamePause = false;
+        timeline.play();
     }
 
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
@@ -328,7 +355,7 @@ public class GameSceneController {
                 guidelineFromBall.setVisible(false);
                 guidelineFromCue.setVisible(false);
                 
-                double angle = Math.toDegrees(Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX()));
+                double angle = Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX());
                 setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
 
                 xmr = -1;
@@ -536,17 +563,20 @@ public class GameSceneController {
         thisTurnPottedBalls.add(Integer.valueOf(ballNum));
         ball[ballNum].setDropped(true);
         ball[ballNum].setVelocity(0, 0);
-        ball[ballNum].setPosition(new Vector(1196, stack_y)); // nello stack
+
+        double stackY = Constants.RACKSTACK;
+        ball[ballNum].setPosition(new Vector(1196, stackY)); // nello stack
+
         if(ballNum<=7 && ballNum!= 0){ //ScoreBoard update
             solidScoreBall[ballNum].setVisible(false);
         }
         else if(ballNum>=9 && ballNum!= 0){
-            stripedScoreBall[ballNum].setVisible(false);
+            stripedScoreBall[ballNum - 9].setVisible(false);
         }
 
-        stack_y -= 25; //Se entra la bianca
+        stackY -= 25; //Se entra la bianca
         if (ballNum == 0) {
-            stack_y += 25;
+            stackY += 25;
             ball[0].getSphere ().setVisible (false);
             ball[0].setPosition (new Vector (0, 0));
             ball[0].setDropped (false);
@@ -887,36 +917,6 @@ public class GameSceneController {
         }
         //if (!TurnOffSounds)
             //SoundEffects.TURNCHANGE.play (); Suono per il cambio di turno
-    }
-
-
-    // ANIMATION MANAGEMENT METHODS
-    
-    public void startGame() {
-        KeyFrame keyFrame = new KeyFrame (
-                Duration.seconds(0.015),
-                event -> {
-                    update();
-                });
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    }
-
-    public void stopGame() {
-        timeline.stop ();
-        gamePause = true;
-    }
-
-    public void startFromPause() {
-        gamePause = false;
-        timeline.play ();
-    }
-
-    public void startNewGame() {
-        stopGame ();
-        gamePause = false;
-        timeline.play ();
     }
 
 

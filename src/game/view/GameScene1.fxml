@@ -692,6 +692,5 @@
          </image>
       </ImageView>
       <Label fx:id="sliderVelocityLabel" layoutX="124.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="velocity" />
-      <Circle fill="DODGERBLUE" layoutX="1196.0" layoutY="630.0" radius="12.5" stroke="BLACK" strokeType="INSIDE" />
     </children>
 </Pane>
