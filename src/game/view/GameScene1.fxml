@@ -22,13 +22,17 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
+<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
     <children>
+      <ImageView fitHeight="380.0" fitWidth="68.0" layoutX="1150.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Tables/rack.png" />
+         </image>
+      </ImageView>
         <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="254.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="314.0" layoutY="214.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
       <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true">
          <image>
             <Image url="@../resources/Tables/BrownWood.png" />
@@ -38,7 +42,6 @@
          </effect>
       </ImageView>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="314.0" layoutY="684.0" rotate="180.0" stroke="#433c3c" strokeType="INSIDE" width="780.0" />
         <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true">
             <image>
                 <Image url="@../resources/Tables/BrownWood.png" />
@@ -48,7 +51,6 @@
             </effect>
         </ImageView>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="79.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
                 <Image url="@../resources/Tables/BrownWood.png" />
@@ -57,7 +59,6 @@
                 <Blend />
             </effect>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" layoutX="949.0" layoutY="449.0" rotate="90.0" stroke="#433c3c" strokeType="INSIDE" width="380.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="949.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
             <image>
                 <Image url="@../resources/Tables/BrownWood.png" />
@@ -314,18 +315,15 @@
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111725" height="400.0" layoutX="142.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-      <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" rotate="180.0">
+      <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <DropShadow />
-         </effect></Slider>
+         </cursor></Slider>
       <Line fx:id="guidelineToBall" />
       <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="guidelineFromBall" />
       <Line fx:id="guidelineFromCue" />
-      <MenuButton fx:id="menuBar" layoutX="22.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuButton" text="MenuBar">
+      <MenuButton fx:id="menuBar" layoutX="22.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuButton" text="OPTIONS">
         <items>
           <MenuItem mnemonicParsing="false">
                <graphic>
@@ -338,20 +336,20 @@
             </MenuItem>
         </items>
       </MenuButton>
-      <Label fx:id="scoreboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" text="scena 1" />
+      <Label fx:id="scoreboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" text="SCOREBOARD" />
       <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="20.0" prefWidth="400.0" progress="0.0" />
-      <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="Label" />
-      <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="Label" />
+      <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 1" />
+      <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 2" />
       <Circle layoutX="702.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
-            <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
+            <RadialGradient centerX="0.5" centerY="0.48094107001470415" radius="0.5116279069767442">
                <stops>
                   <Stop>
                      <color>
                         <Color />
                      </color>
                   </Stop>
-                  <Stop offset="0.8187919463087248">
+                  <Stop offset="0.8691275167785235">
                      <color>
                         <Color />
                      </color>
@@ -686,11 +684,6 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <ImageView fitHeight="380.0" fitWidth="157.0" layoutX="1154.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/Tables/rack.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="sliderVelocityLabel" layoutX="124.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="velocity" />
+      <Label fx:id="sliderVelocityLabel" layoutX="124.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="VELOCITY" />
     </children>
 </Pane>

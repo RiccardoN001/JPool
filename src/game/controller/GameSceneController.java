@@ -153,7 +153,7 @@ public class GameSceneController {
         ball[11] = new Ball(Constants.TRIANGLE_ROW2_X-200, Constants.TRIANGLE_COL4_Y+100, "src/game/resources/Balls/Ball11Ext.png", 2, 11);
         ball[6] = new Ball(Constants.TRIANGLE_ROW2_X-600, Constants.TRIANGLE_COL6_Y+100, "src/game/resources/Balls/Ball6Ext.png", 1, 6);
         // TRIANGLE ROW 3
-        ball[14] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball14Ext.png", 2, 14);
+        ball[14] = new Ball(Constants.TRIANGLE_ROW3_X-600, Constants.TRIANGLE_COL3_Y-100, "src/game/resources/Balls/Ball14Ext.png", 2, 14);
         ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball8Ext.png", 3, 8);
         ball[10] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball10Ext.png", 2, 10);
         // TRIANGLE ROW 4
@@ -364,7 +364,7 @@ public class GameSceneController {
                 cue.setVisible(false);
             }
 
-        } 
+        }
     }
 
     public void setCueVelocity(double x, double y) {
