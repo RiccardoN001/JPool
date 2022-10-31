@@ -33,7 +33,7 @@ public class SettingsSceneController{
     @FXML
     private Button playButton;
     @FXML
-    private Button backButton;
+    private Button menuButtonFromSettings;
 
     // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsSceneController instance;
@@ -50,8 +50,8 @@ public class SettingsSceneController{
             @Override
             public Node call(Integer pageIndex){
                 ImageView imageView = new ImageView(new Image("file:src/game/resources/Tables/Table" + (pageIndex+1) + ".png"));
-                imageView.setFitWidth(800);
-                imageView.setFitHeight(400);
+                imageView.setFitWidth(600);
+                imageView.setFitHeight(300);
                 imageView.setPreserveRatio(true);
                 AnchorPane pane = new AnchorPane();
                 pane.getChildren().add(imageView);
@@ -62,7 +62,7 @@ public class SettingsSceneController{
             @Override
             public Node call(Integer pageIndex){
                 ImageView imageView = new ImageView(new Image("file:src/game/resources/Cues/Cue" + (pageIndex+1) + ".png"));
-                imageView.setFitWidth(800);
+                imageView.setFitWidth(600);
                 imageView.setFitHeight(150);
                 imageView.setPreserveRatio(true);
                 AnchorPane pane = new AnchorPane();
@@ -74,8 +74,8 @@ public class SettingsSceneController{
             @Override
             public Node call(Integer pageIndex){
                 ImageView imageView = new ImageView(new Image("file:src/game/resources/Modes/Mode"  + (pageIndex+1) + ".png"));
-                imageView.setFitWidth(290);
-                imageView.setFitHeight(240);
+                imageView.setFitWidth(300);
+                imageView.setFitHeight(300);
                 imageView.setPreserveRatio(true);
                 AnchorPane pane = new AnchorPane();
                 pane.getChildren().add(imageView);
@@ -89,7 +89,7 @@ public class SettingsSceneController{
         Stage stage;
         Scene scene;
         Parent root;
-        stage = (Stage) backButton.getScene().getWindow();
+        stage = (Stage) menuButtonFromSettings.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());

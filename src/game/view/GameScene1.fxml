@@ -3,6 +3,7 @@
 <?import java.lang.Double?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -22,8 +23,31 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
+<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
     <children>
+      <MenuButton fx:id="menuBar" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenuButton" text="OPTIONS">
+        <items>
+            <MenuItem mnemonicParsing="false">
+               <graphic>
+                  <Button mnemonicParsing="false" text="PAUSE" />
+               </graphic>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" text="SOUNDS" />
+               </graphic>
+            </MenuItem>
+          <MenuItem mnemonicParsing="false">
+               <graphic>
+                  <Button fx:id="menuButtonFromGame" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="50.0" prefWidth="100.0" text="MENU">
+                     <font>
+                        <Font name="Futura Medium" size="15.0" />
+                     </font>
+                  </Button>
+               </graphic>
+            </MenuItem>
+        </items>
+      </MenuButton>
       <ImageView fitHeight="380.0" fitWidth="68.0" layoutX="1150.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/Tables/rack.png" />
@@ -314,28 +338,16 @@
             </stroke>
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111725" height="400.0" layoutX="142.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <ImageView fitHeight="400.0" fitWidth="50.0" layoutX="142.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" />
       <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Slider>
+      <Label fx:id="sliderVelocityLabel" layoutX="124.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="VELOCITY" />
       <Line fx:id="guidelineToBall" />
       <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="guidelineFromBall" />
       <Line fx:id="guidelineFromCue" />
-      <MenuButton fx:id="menuBar" layoutX="22.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuButton" text="OPTIONS">
-        <items>
-          <MenuItem mnemonicParsing="false">
-               <graphic>
-                  <Button fx:id="menuButtonFromGame" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="50.0" prefWidth="100.0" text="MENU">
-                     <font>
-                        <Font name="Futura Medium" size="15.0" />
-                     </font>
-                  </Button>
-               </graphic>
-            </MenuItem>
-        </items>
-      </MenuButton>
       <Label fx:id="scoreboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" text="SCOREBOARD" />
       <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="20.0" prefWidth="400.0" progress="0.0" />
       <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 1" />
@@ -684,6 +696,5 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Label fx:id="sliderVelocityLabel" layoutX="124.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="VELOCITY" />
     </children>
 </Pane>
