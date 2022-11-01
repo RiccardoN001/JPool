@@ -2,7 +2,6 @@
 
 <?import java.lang.Double?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -21,31 +20,18 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
+<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
     <children>
       <MenuButton fx:id="menuBar" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenuButton" text="OPTIONS">
         <items>
-            <MenuItem mnemonicParsing="false">
+            <MenuItem fx:id="soundsButton" mnemonicParsing="false" text="SOUNDS">
                <graphic>
-                  <Button mnemonicParsing="false" text="PAUSE" />
+                  <CheckBox mnemonicParsing="false" />
                </graphic>
             </MenuItem>
-            <MenuItem mnemonicParsing="false">
-               <graphic>
-                  <CheckBox mnemonicParsing="false" text="SOUNDS" />
-               </graphic>
-            </MenuItem>
-          <MenuItem mnemonicParsing="false">
-               <graphic>
-                  <Button fx:id="menuButtonFromGame" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="50.0" prefWidth="100.0" text="MENU">
-                     <font>
-                        <Font name="Futura Medium" size="15.0" />
-                     </font>
-                  </Button>
-               </graphic>
-            </MenuItem>
+            <MenuItem fx:id="pauseButton" mnemonicParsing="false" text="PAUSE" />
+          <MenuItem fx:id="menuButtonFromGame" mnemonicParsing="false" onAction="#handleMenuButton" text="MENU" />
         </items>
       </MenuButton>
       <ImageView fitHeight="380.0" fitWidth="68.0" layoutX="1150.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
@@ -338,16 +324,17 @@
             </stroke>
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <ImageView fitHeight="400.0" fitWidth="45.0" layoutX="144.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="GREY" height="400.0" layoutX="150.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+      <ImageView fitHeight="380.0" fitWidth="45.0" layoutX="161.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/Cues/PowerBar.png" />
          </image>
       </ImageView>
-      <Slider fx:id="powerSlider" layoutX="159.0" layoutY="286.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
+      <Slider fx:id="powerSlider" layoutX="166.0" layoutY="284.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Slider>
-      <Label fx:id="sliderVelocityLabel" layoutX="124.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="VELOCITY" />
+      <Label fx:id="sliderVelocityLabel" layoutX="131.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="VELOCITY" />
       <Line fx:id="guidelineToBall" />
       <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
       <Line fx:id="guidelineFromBall" />
@@ -356,7 +343,7 @@
       <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="20.0" prefWidth="400.0" progress="0.0" />
       <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 1" />
       <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 2" />
-      <Circle layoutX="702.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="704.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.48094107001470415" radius="0.5116279069767442">
                <stops>
@@ -378,7 +365,7 @@
                </stops>
             </RadialGradient>
          </fill></Circle>
-      <Circle layoutX="269.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="268.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -401,7 +388,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="309.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="308.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -424,7 +411,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="349.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="348.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -447,7 +434,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="389.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="388.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -470,7 +457,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="429.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="428.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -493,7 +480,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="469.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="468.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -516,7 +503,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="509.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="508.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -539,7 +526,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="894.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="897.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -562,7 +549,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="934.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="937.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -585,7 +572,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="974.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="977.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -608,7 +595,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="1014.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="1017.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -631,7 +618,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="1054.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="1057.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -654,7 +641,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="1094.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="1097.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>
@@ -677,7 +664,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Circle layoutX="1134.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle layoutX="1137.0" layoutY="172.0" radius="15.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.4761904761904761" radius="0.5116279069767442">
                <stops>

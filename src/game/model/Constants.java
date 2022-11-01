@@ -89,8 +89,8 @@ public class Constants {
     public static final double DOWN_BANK = 660;
 
     // scoreballs initial layout x
-    public static final double RACK_LEFT = 254;
-    public static final double RACK_RIGHT = 879;
+    public static final double RACK_LEFT = 253;
+    public static final double RACK_RIGHT = 882;
 
     // rack
     public static final double RACKSTACK = 600; 

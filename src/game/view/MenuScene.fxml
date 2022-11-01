@@ -16,7 +16,7 @@
             <Font name="Futura Medium" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="rulesButton1" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleRulesButton" prefHeight="60.0" prefWidth="270.0" text="EXIT">
+      <Button fx:id="exitButton" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="60.0" prefWidth="270.0" text="EXIT">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>

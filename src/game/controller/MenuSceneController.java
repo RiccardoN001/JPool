@@ -18,6 +18,9 @@ public class MenuSceneController {
     private Button rulesButton;
 
     @FXML
+    private Button exitButton;
+
+    @FXML
     void handlePlaySettingsButton(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
@@ -41,6 +44,13 @@ public class MenuSceneController {
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void handleExitButton(ActionEvent event) throws Exception {
+        Stage stage;
+        stage = (Stage) rulesButton.getScene().getWindow();
+        stage.close();
     }
 
 }
