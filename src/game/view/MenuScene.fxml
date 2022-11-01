@@ -6,17 +6,17 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #1E273C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.MenuSceneController">
    <children>
-      <Button fx:id="playSettingsButton" layoutX="130.0" layoutY="300.0" mnemonicParsing="false" onAction="#handlePlaySettingsButton" prefHeight="59.0" prefWidth="249.0" text="PLAY">
+      <Button fx:id="playSettingsButton" layoutX="130.0" layoutY="300.0" mnemonicParsing="false" onAction="#handlePlaySettingsButton" prefHeight="60.0" prefWidth="270.0" text="PLAY">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="rulesButton" layoutX="130.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleRulesButton" prefHeight="59.0" prefWidth="249.0" text="RULES">
+      <Button fx:id="rulesButton" layoutX="130.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleRulesButton" prefHeight="60.0" prefWidth="270.0" text="HOW TO PLAY">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="rulesButton1" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleRulesButton" prefHeight="59.0" prefWidth="249.0" text="RULES">
+      <Button fx:id="rulesButton1" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleRulesButton" prefHeight="60.0" prefWidth="270.0" text="EXIT">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>

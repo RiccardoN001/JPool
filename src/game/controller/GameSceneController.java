@@ -114,7 +114,12 @@ public class GameSceneController {
         KeyFrame keyFrame = new KeyFrame (
                 Duration.seconds(0.015),
                 event -> {
-                    update();
+                    if(!gameOver) {
+                        update();
+                    } else {
+                        gameOver = false;
+                        // gameoverdilg
+                    }
                 });
         timeline.getKeyFrames().add(keyFrame);
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -138,6 +143,8 @@ public class GameSceneController {
     }
 
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
+
+    // -------------------------------------------------- FXML LINKED --------------------------------------------------
 
     @FXML
     public void initialize() throws Exception {
@@ -206,7 +213,11 @@ public class GameSceneController {
 
     @FXML
     public void guidedTrajectory(MouseEvent event) {
-        if(turn && !gamePause && !gameOver) {
+
+        double xm = event.getSceneX();
+        double ym = event.getSceneY();
+
+        if(turn && !gamePause && !gameOver && xm >= Constants.LEFT_BANK && xm <= Constants.RIGHT_BANK && ym >= Constants.UP_BANK && ym <= Constants.DOWN_BANK) {
 
             guidelineToBall.setStroke(Color.WHITE);
             ghostBall.setStroke(Color.WHITE);
@@ -216,8 +227,6 @@ public class GameSceneController {
 
             double xcb = ball[0].getPosition().getX();
             double ycb = ball[0].getPosition().getY();
-            double xm = event.getSceneX();
-            double ym = event.getSceneY();
 
             guidelineToBall.setStartX(xcb);
             guidelineToBall.setStartY(ycb);
@@ -288,8 +297,8 @@ public class GameSceneController {
             }
 
             cue.setVisible(true);
-            cue.setLayoutX(Constants.HEAD_SPOT_X - 385);
-            cue.setLayoutY(Constants.HEAD_SPOT_Y - 20);
+            cue.setLayoutX(xcb - 385);
+            cue.setLayoutY(ycb - 20);
             double angle = Math.toDegrees(Math.atan2(ym - ycb, xm - xcb));
             cue.setRotate(angle);
 
@@ -318,15 +327,21 @@ public class GameSceneController {
         }
     }
 
+    @FXML
     public void cueLoading() {
         if(turn && !gamePause && !gameOver) {
 
-            sliderVelocityLabel.setText(String.valueOf(Math.floor(powerSlider.getValue() / 30 * 100)));
+            double xcb = ball[0].getPosition().getX();
+            double ycb = ball[0].getPosition().getY();
+
+            double velocity = Math.floor(powerSlider.getValue() / 30 * 100);
+
+            sliderVelocityLabel.setText(String.valueOf(velocity));
             
-            cue.setLayoutX(0);
-            cue.setLayoutY(0);
+            cue.setLayoutX(xcb - 385 - velocity);
+            cue.setLayoutY(ycb - 20);
             
-            double angle = Math.toDegrees(Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX()));
+            double angle = Math.toDegrees(Math.atan2(ymr - ycb, xmr - xcb));
 
             double mid_x = cue.getLayoutX() + cue.getFitWidth() / 2;
             double mid_y = cue.getLayoutY() + cue.getFitHeight() / 2;
@@ -343,11 +358,13 @@ public class GameSceneController {
         }
     }
 
+    @FXML
     public void cueShot()  {
         double cueBallVelocity = 0;
-        if(turn && !gamePause && !gameOver) {
+        if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1) {
 
             cueBallVelocity = powerSlider.getValue();
+            
             if(cueBallVelocity != 0) {
                 
                 guidelineToBall.setVisible(false);
@@ -366,6 +383,8 @@ public class GameSceneController {
 
         }
     }
+
+// -------------------------------------------------- NOT FXML LINKED --------------------------------------------------
 
     public void setCueVelocity(double x, double y) {
         ball[0].setVelocity(x, y);
@@ -889,10 +908,6 @@ public class GameSceneController {
 
         }
 
-    }
-
-    private void showExitAlert() {
-        // to do
     }
 
     private void turnLabel() {
