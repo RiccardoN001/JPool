@@ -386,10 +386,6 @@ public class GameSceneController {
 
 // -------------------------------------------------- NOT FXML LINKED --------------------------------------------------
 
-    public void setCueVelocity(double x, double y) {
-        ball[0].setVelocity(x, y);
-    }
-
     private void update() {
 
         if(turnNum == 1) {
@@ -965,6 +961,11 @@ public class GameSceneController {
             return false;
         }
     }
+
+    public void setCueVelocity(double x, double y) {
+        ball[0].setVelocity(x, y);
+    }
+
 
 
 }

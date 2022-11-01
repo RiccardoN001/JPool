@@ -338,8 +338,12 @@
             </stroke>
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <ImageView fitHeight="400.0" fitWidth="50.0" layoutX="142.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" />
-      <Slider fx:id="powerSlider" layoutX="159.0" layoutY="276.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="380.0" prefWidth="15.0" rotate="180.0">
+      <ImageView fitHeight="400.0" fitWidth="45.0" layoutX="144.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Cues/PowerBar.png" />
+         </image>
+      </ImageView>
+      <Slider fx:id="powerSlider" layoutX="159.0" layoutY="286.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Slider>
