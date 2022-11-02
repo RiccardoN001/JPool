@@ -89,6 +89,7 @@ public class GameSceneController {
 
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean potted[] = new boolean[16];
+    private double stackY = 665;
 
     private boolean turnChange;
     private boolean foulEight;
@@ -192,8 +193,18 @@ public class GameSceneController {
         pane.getChildren().add(cue);
 
         // PLAYERS
-        player1 = new Player(SettingsSceneController.getSettingsSceneController().getP1Nickname());
-        player2 = new Player(SettingsSceneController.getSettingsSceneController().getP2Nickname());
+        if(SettingsSceneController.getSettingsSceneController().getP1Nickname()==""){
+            player1 = new Player("Giocatore 1");
+        }
+        else{
+            player1 = new Player(SettingsSceneController.getSettingsSceneController().getP1Nickname());
+        }
+        if(SettingsSceneController.getSettingsSceneController().getP2Nickname()==""){
+            player2 = new Player("Giocatore 2");
+        }
+        else{
+            player2 = new Player(SettingsSceneController.getSettingsSceneController().getP2Nickname());
+        }
 
         // CONTROL VARIABLES
         player1.setMyTurn(turn); // random ?
@@ -221,7 +232,7 @@ public class GameSceneController {
         double xm = event.getSceneX();
         double ym = event.getSceneY();
 
-        if(turn && !gamePause && !gameOver && xm >= Constants.LEFT_BANK && xm <= Constants.RIGHT_BANK && ym >= Constants.UP_BANK && ym <= Constants.DOWN_BANK) {
+        if(turn && !gamePause && !gameOver && xm >= Constants.A_MARGIN+10 && xm <= Constants.B_MARGIN-10 && ym >= Constants.CD_MARGIN+10 && ym <= Constants.EF_MARGIN-10) {
 
             guidelineToBall.setStroke(Color.WHITE);
             ghostBall.setStroke(Color.WHITE);
@@ -398,6 +409,7 @@ public class GameSceneController {
         }
 
         int flag = 0;
+        moveCueBall();
 
         for(int i = 0; i < 16; i++) {
             if(!ball[i].getVelocity().isNull()) { // per ogni palla non ferma
@@ -444,7 +456,7 @@ public class GameSceneController {
             }
             for(int i=9;i<=15;i++){
                 if(potted[i]){
-                    stripedScoreBall[i-1].setVisible(false);
+                    stripedScoreBall[i-9].setVisible(false);
                 }
             }
 
@@ -477,7 +489,7 @@ public class GameSceneController {
                 guidelineFromBall.setVisible(false);
                 guidelineFromCue.setVisible(false);
                 ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                if(event.getSceneX() >= Constants.LEFT_BANK && event.getSceneX() <= Constants.HEAD_SPOT_X && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // controllo che la palla venga posizionata nel rettangolo head spot
+                if(event.getSceneX() >= Constants.A_MARGIN+12.5 && event.getSceneX() <= Constants.HEAD_SPOT_X && event.getSceneY() >= Constants.CD_MARGIN+12.5 && event.getSceneY() <= Constants.EF_MARGIN-12.5) { // controllo che la palla venga posizionata nel rettangolo head spot
                     ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
             } else if (turn && foul) {
@@ -487,7 +499,7 @@ public class GameSceneController {
                 guidelineFromBall.setVisible(false);
                 guidelineFromCue.setVisible(false);
                 ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                if(event.getSceneX() >= Constants.LEFT_BANK && event.getSceneX() <= Constants.RIGHT_BANK && event.getSceneY() >= Constants.UP_BANK && event.getSceneY() <= Constants.DOWN_BANK) { // palla nel campo
+                if(event.getSceneX() >= Constants.A_MARGIN+12.5 && event.getSceneX() <= Constants.B_MARGIN-12.5 && event.getSceneY() >= Constants.CD_MARGIN+12.5 && event.getSceneY() <= Constants.EF_MARGIN-12.5) { // palla nel campo
                     ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
             }
@@ -555,7 +567,7 @@ public class GameSceneController {
         double x = ball[ballNum].getPosition().getX();
         double y = ball[ballNum].getPosition().getY();
 
-        double check = 25; //forse per 
+        double check = 5; //forse per 
 
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check) {
             dropit (ballNum);
@@ -575,10 +587,7 @@ public class GameSceneController {
         else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check) {
             dropit (ballNum);
         }
-        if ((y <= 230 || y >= 750) && !ball[ballNum].isDropped ()) { //Per essere sicuri che qualsiasi palla fuori dal campo risulti imbucata
-            dropit (ballNum);
-        }
-        if ((x <= 270 || x >= 1190) && !ball[ballNum].isDropped ()) {
+        if ((y <= 244+15 || y >= 700-15 || x <= 290+15 || x >= 1174-15) && !ball[ballNum].isDropped ()) { //Per essere sicuri che qualsiasi palla fuori dal campo risulti imbucata
             dropit (ballNum);
         }
 
@@ -594,10 +603,10 @@ public class GameSceneController {
         ball[ballNum].setDropped(true);
         ball[ballNum].setVelocity(0, 0);
 
-        double stackY = 665;
         ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, stackY)); // nello stack
 
-        stackY -= 25; //Se entra la bianca
+        stackY -= 25;
+
         if (ballNum == 0) {
             stackY += 25;
             ball[0].getSphere ().setVisible (false);
@@ -830,6 +839,16 @@ public class GameSceneController {
                 pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
             }
         }
+       /* for(int i=1;i<=7;i++){
+            if(potted[i]){
+                solidScoreBall[i-1].setVisible(false);
+            }
+        }
+        for(int i=9;i<=15;i++){
+            if(potted[i]){
+                stripedScoreBall[i-9].setVisible(false);
+            }
+        }*/
     }
 
 

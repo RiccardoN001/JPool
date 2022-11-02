@@ -28,15 +28,15 @@ public class Constants {
     public static final double FOOT_SPOT_Y = TRIANGLE_COL5_Y;
 
     // BANKCOLLISION
-    public static final double A_MARGIN = 281;
-    public static final double B_MARGIN = 1106;
-    public static final double CD_MARGIN = 664;
-    public static final double EF_MARGIN = 262;
+    public static final double A_MARGIN = 300;
+    public static final double B_MARGIN = 1108;
+    public static final double CD_MARGIN = 259;
+    public static final double EF_MARGIN = 669;
     // LEFT BANK (A)
     public static final double A_UP_CORNER_START = 268;
     public static final double A_UP_CORNER_END = 286;
-    public static final double A_DOWN_CORNER_START = 647;
-    public static final double A_DOWN_CORNER_END = 660;
+    public static final double A_DOWN_CORNER_START = 647-10;
+    public static final double A_DOWN_CORNER_END = 660-10;
     // RIGHT BANK (B)
     public static final double B_UP_CORNER_START = 270;
     public static final double B_UP_CORNER_END = 282;
@@ -53,8 +53,8 @@ public class Constants {
     public static final double D_RIGHT_CORNER_START = 1082;
     public static final double D_RIGHT_CORNER_END = 1098;
     // LEFT DOWN BANK (E)
-    public static final double E_LEFT_CORNER_START = 307;
-    public static final double E_LEFT_CORNER_END = 324;
+    public static final double E_LEFT_CORNER_START = 307+10;
+    public static final double E_LEFT_CORNER_END = 324+10;
     public static final double E_RIGHT_CORNER_START = 669;
     public static final double E_RIGHT_CORNER_END = 683;
     // RIGHT DOWN BANK (F)
@@ -64,29 +64,23 @@ public class Constants {
     public static final double F_RIGHT_CORNER_END = 1099;
 
     //TOP-LEFT POCKET
-    public static final double TOP_LEFT_POCKET_X = 284;
-    public static final double TOP_LEFT_POCKET_Y = 244;
+    public static final double TOP_LEFT_POCKET_X = 284+25;
+    public static final double TOP_LEFT_POCKET_Y = 244+25;
     //BOTTOM-LEFT POCKET
-    public static final double BOTTOM_LEFT_POCKET_X = 284;
-    public static final double BOTTOM_LEFT_POCKET_Y = 735;
+    public static final double BOTTOM_LEFT_POCKET_X = 284+25;
+    public static final double BOTTOM_LEFT_POCKET_Y = 735-25;
     //TOP-MIDDLE POCKET
-    public static final double TOP_MIDDLE_POCKET_X = 729;
-    public static final double TOP_MIDDLE_POCKET_Y = 241;
+    public static final double TOP_MIDDLE_POCKET_X = 714;
+    public static final double TOP_MIDDLE_POCKET_Y = 241+20;
     //BOTTOM-MIDDLE POCKET
-    public static final double BOTTOM_MIDDLE_POCKET_X = 729;
-    public static final double BOTTOM_MIDDLE_POCKET_Y = 740;
+    public static final double BOTTOM_MIDDLE_POCKET_X = 714;
+    public static final double BOTTOM_MIDDLE_POCKET_Y = 710-20;
     //TOP-RIGHT POCKET
-    public static final double TOP_RIGHT_POCKET_X = 1174;
-    public static final double TOP_RIGHT_POCKET_Y = 244;
+    public static final double TOP_RIGHT_POCKET_X = 1174-25;
+    public static final double TOP_RIGHT_POCKET_Y = 244+25;
     //BOTTOM-RIGHT POCKET
-    public static final double BOTTOM_RIGHT_POCKET_X = 1174;
-    public static final double BOTTOM_RIGHT_POCKET_Y = 735;
-
-    // split rectangle
-    public static final double LEFT_BANK = 310;
-    public static final double RIGHT_BANK = 1030;
-    public static final double UP_BANK = 260;
-    public static final double DOWN_BANK = 660;
+    public static final double BOTTOM_RIGHT_POCKET_X = 1174-25;
+    public static final double BOTTOM_RIGHT_POCKET_Y = 735-25;
 
     // scoreballs initial layout x
     public static final double RACK_LEFT = 253;

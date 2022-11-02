@@ -121,7 +121,7 @@ public class Ball {
 
         }
         // REGION B2
-        if (x + r >= Constants.B_MARGIN && (y >= Constants.B_UP_CORNER_END && y <= Constants.B_DOWN_CORNER_START)) {
+        else if (x + r >= Constants.B_MARGIN && (y >= Constants.B_UP_CORNER_END && y <= Constants.B_DOWN_CORNER_START)) {
             velocity.setX(-Math.abs(velocity.getX()));
         }
         
@@ -131,62 +131,62 @@ public class Ball {
             velocity.setX(0);
         }
 
-        // LEFT UP BANK (C)
-        // REGION C1
-        if (y + r >= Constants.CD_MARGIN && (x >= Constants.C_LEFT_CORNER_START && x <= Constants.C_LEFT_CORNER_END)) {
-            velocity.setX(-velocity.getSize());
-            velocity.setY(0);
-        }
-        // REGION C2
-        else if (y + r >= Constants.CD_MARGIN && (x >= Constants.C_LEFT_CORNER_END && x <= Constants.C_RIGHT_CORNER_START)) {
-            velocity.setY(-Math.abs(velocity.getY()));
-        }
-        // REGION C3
-        else if (y + r >= Constants.CD_MARGIN && (x >= Constants.C_RIGHT_CORNER_START && x <= Constants.C_RIGHT_CORNER_START)) {
-            velocity.setX(Math.abs(velocity.getX()));
-        }
-
-        // RIGHT UP BANK (D)
-        // REGION D1
-        if (y + r >= Constants.CD_MARGIN && (x >= Constants.D_LEFT_CORNER_START && x <= Constants.D_LEFT_CORNER_END)) {
-            velocity.setX(-Math.abs(velocity.getX()));
-        }
-        // REGION D2
-        else if (y + r >= Constants.CD_MARGIN && (x >= Constants.D_LEFT_CORNER_END && x <= Constants.D_RIGHT_CORNER_START)) {
-            velocity.setY(-Math.abs(velocity.getY()));
-        }
-        // REGION D3
-        else if (y + r >= Constants.CD_MARGIN && (x >= Constants.D_RIGHT_CORNER_START && x <= Constants.D_RIGHT_CORNER_END)) {
-            velocity.setX(velocity.getSize());
-            velocity.setY(0);
-        }
-
         // LEFT DOWN BANK (E)
         // REGION E1
-        if (y - r <= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_START && x <= Constants.E_LEFT_CORNER_END)) {
+        if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_START && x <= Constants.E_LEFT_CORNER_END)) {
             velocity.setX(-velocity.getSize());
             velocity.setY(0);
         }
         // REGION E2
-        else if (y - r <= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_END && x <= Constants.E_RIGHT_CORNER_START)) {
-            velocity.setY(Math.abs(velocity.getY()));
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_END && x <= Constants.E_RIGHT_CORNER_START)) {
+            velocity.setY(-Math.abs(velocity.getY()));
         }
         // REGION E3
-        else if (y - r <= Constants.EF_MARGIN && (x >= Constants.E_RIGHT_CORNER_START && x <= Constants.E_RIGHT_CORNER_END)) {
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_RIGHT_CORNER_START && x <= Constants.E_RIGHT_CORNER_START)) {
             velocity.setX(Math.abs(velocity.getX()));
         }
 
         // RIGHT DOWN BANK (F)
         // REGION F1
-        if (y - r <= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_START && x <= Constants.F_LEFT_CORNER_END)) {
+        if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_START && x <= Constants.F_LEFT_CORNER_END)) {
             velocity.setX(-Math.abs(velocity.getX()));
         }
         // REGION F2
-        else if (y - r <= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_END && x <= Constants.F_RIGHT_CORNER_START)) {
-            velocity.setY(Math.abs(velocity.getY()));
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_END && x <= Constants.F_RIGHT_CORNER_START)) {
+            velocity.setY(-Math.abs(velocity.getY()));
         }
         // REGION F3
-        else if (y - r <= Constants.EF_MARGIN && (x >= Constants.F_RIGHT_CORNER_START && x <= Constants.F_RIGHT_CORNER_END)) {
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_RIGHT_CORNER_START && x <= Constants.F_RIGHT_CORNER_END)) {
+            velocity.setX(velocity.getSize());
+            velocity.setY(0);
+        }
+
+        // LEFT UP BANK (C)
+        // REGION C1
+        if (y - r <= Constants.CD_MARGIN && (x >= Constants.C_LEFT_CORNER_START && x <= Constants.C_LEFT_CORNER_END)) {
+            velocity.setX(-velocity.getSize());
+            velocity.setY(0);
+        }
+        // REGION C2
+        else if (y - r <= Constants.CD_MARGIN && (x >= Constants.C_LEFT_CORNER_END && x <= Constants.C_RIGHT_CORNER_START)) {
+            velocity.setY(Math.abs(velocity.getY()));
+        }
+        // REGION C3
+        else if (y - r <= Constants.CD_MARGIN && (x >= Constants.C_RIGHT_CORNER_START && x <= Constants.C_RIGHT_CORNER_END)) {
+            velocity.setX(Math.abs(velocity.getX()));
+        }
+
+        // RIGHT UP BANK (D)
+        // REGION D1
+        if (y - r <= Constants.CD_MARGIN && (x >= Constants.D_LEFT_CORNER_START && x <= Constants.D_LEFT_CORNER_END)) {
+            velocity.setX(-Math.abs(velocity.getX()));
+        }
+        // REGION D2
+        else if (y - r <= Constants.CD_MARGIN && (x >= Constants.D_LEFT_CORNER_END && x <= Constants.D_RIGHT_CORNER_START)) {
+            velocity.setY(Math.abs(velocity.getY()));
+        }
+        // REGION D3
+        else if (y - r <= Constants.CD_MARGIN && (x >= Constants.D_RIGHT_CORNER_START && x <= Constants.D_RIGHT_CORNER_END)) {
             velocity.setX(velocity.getSize());
             velocity.setY(0);
         }
