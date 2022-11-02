@@ -324,12 +324,13 @@
             </stroke>
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="GREY" height="400.0" layoutX="150.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
-      <ImageView fitHeight="380.0" fitWidth="45.0" layoutX="161.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="GREY" height="400.0" layoutX="150.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" width="47.0" />
+      <ImageView fx:id="powerBar" fitHeight="390.0" fitWidth="47.0" layoutX="154.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/Cues/PowerBar.png" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#ffffff00" height="383.0" layoutX="160.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" width="26.0" />
       <Slider fx:id="powerSlider" layoutX="166.0" layoutY="284.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />

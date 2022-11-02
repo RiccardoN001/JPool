@@ -61,6 +61,8 @@ public class GameSceneController {
     @FXML
     private Slider powerSlider;
     @FXML
+    private ImageView powerBar;
+    @FXML
     private Label sliderVelocityLabel;
 
     private double xmr = -1;
@@ -123,7 +125,6 @@ public class GameSceneController {
                         update();
                     } else {
                         gameOver = false;
-                        // gameoverdilg
                     }
                 });
         timeline.getKeyFrames().add(keyFrame);
@@ -132,8 +133,8 @@ public class GameSceneController {
     }
 
     public void stopGame() {
-        timeline.stop();
         gamePause = true;
+        timeline.stop();
     }
 
     public void startFromPause() {
@@ -191,23 +192,22 @@ public class GameSceneController {
         cue.setLayoutY(447);
         cue.setPreserveRatio(true);
         pane.getChildren().add(cue);
+        powerBar.setOpacity(0.3);
 
         // PLAYERS
-        if(SettingsSceneController.getSettingsSceneController().getP1Nickname()==""){
+        if(SettingsSceneController.getSettingsSceneController().getP1Nickname() == ""){
             player1 = new Player("Giocatore 1");
-        }
-        else{
+        } else {
             player1 = new Player(SettingsSceneController.getSettingsSceneController().getP1Nickname());
         }
-        if(SettingsSceneController.getSettingsSceneController().getP2Nickname()==""){
+        if(SettingsSceneController.getSettingsSceneController().getP2Nickname() == ""){
             player2 = new Player("Giocatore 2");
-        }
-        else{
+        } else {
             player2 = new Player(SettingsSceneController.getSettingsSceneController().getP2Nickname());
         }
 
         // CONTROL VARIABLES
-        player1.setMyTurn(turn); // random ?
+        player1.setMyTurn(true);
         turn = true;
         foul = false;
         gamePause = false;
@@ -222,7 +222,7 @@ public class GameSceneController {
         for (int i = 0; i < 16; i++) {
             potted[i] = false;
         }
-        
+
         startGame();
     }
 
@@ -352,6 +352,8 @@ public class GameSceneController {
             double velocity = Math.floor(powerSlider.getValue() / 30 * 100);
 
             sliderVelocityLabel.setText(String.valueOf(velocity));
+
+            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 30 * 0.7);
             
             cue.setLayoutX(xcb - 385 - velocity);
             cue.setLayoutY(ycb - 20);
@@ -394,6 +396,8 @@ public class GameSceneController {
                 ymr = -1;
 
                 cue.setVisible(false);
+
+                powerBar.setOpacity(0.3);
             }
 
         }
@@ -472,9 +476,9 @@ public class GameSceneController {
         player1NicknameLabel.setText(player1.getNickname());
         player2NicknameLabel.setText(player2.getNickname());
         if(player1.isMyTurn()) {
-            scoreboardLabel.setText(player1.getNickname() + "IS BREAKING");
+            scoreboardLabel.setText(player1.getNickname() + " IS BREAKING");
         } else {
-            scoreboardLabel.setText(player2.getNickname() + "IS BREAKING");
+            scoreboardLabel.setText(player2.getNickname() + " IS BREAKING");
         }
     }
 
@@ -492,7 +496,7 @@ public class GameSceneController {
                 if(event.getSceneX() >= Constants.A_MARGIN+12.5 && event.getSceneX() <= Constants.HEAD_SPOT_X && event.getSceneY() >= Constants.CD_MARGIN+12.5 && event.getSceneY() <= Constants.EF_MARGIN-12.5) { // controllo che la palla venga posizionata nel rettangolo head spot
                     ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
-            } else if (turn && foul) {
+            } else if(turn && foul) {
                 cue.setVisible(false);
                 guidelineToBall.setVisible(false);
                 ghostBall.setVisible(false);
@@ -510,12 +514,12 @@ public class GameSceneController {
 
 
     private void updateBalls(int ballNum) {
-        if(ball[ballNum].getVelocity().getSize() <= 8e-2) { // 0.08 da verificare come valore
+        if(ball[ballNum].getVelocity().getSize() <= 8e-2) {
             ball[ballNum].setVelocity(0, 0);  
-        } else { // se ancora si ha velocità significativa
-            ball[ballNum].getPosition ().setX (ball[ballNum].getPosition ().getX () + ball[ballNum].getVelocity ().getX ());
-            ball[ballNum].getPosition ().setY (ball[ballNum].getPosition ().getY () + ball[ballNum].getVelocity ().getY ());
-            for(Ball b: ball) { // scorrimento lista (vedi segnalibro chrome)
+        } else {
+            ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() + ball[ballNum].getVelocity().getX());
+            ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() + ball[ballNum].getVelocity().getY());
+            for(Ball b: ball) {
                 if(ballNum != b.getBallNumber() && ball[ballNum].collides(b)) {
 
                     if(ballNum == 0 && !foulWrongBallType && player1.getBallType() == 0) {
