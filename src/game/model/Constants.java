@@ -93,7 +93,7 @@ public class Constants {
     public static final double RACK_RIGHT = 882;
 
     // rack
-    public static final double RACKSTACK = 600; 
+    public static final double RACKSTACK_X = 1192; 
 
 
 }

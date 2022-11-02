@@ -386,6 +386,7 @@ public class GameSceneController {
             }
 
         }
+        powerSlider.setValue(0);
     }
 
 // -------------------------------------------------- NOT FXML LINKED --------------------------------------------------
@@ -397,7 +398,6 @@ public class GameSceneController {
         }
 
         int flag = 0;
-        moveCueBall();
 
         for(int i = 0; i < 16; i++) {
             if(!ball[i].getVelocity().isNull()) { // per ogni palla non ferma
@@ -416,6 +416,7 @@ public class GameSceneController {
             turnLabel();
         } else if(flag == 0 && turnChange) {
             foul = false;
+            moveCueBall();
             checkCases();
             checkAllPotted();
 
@@ -434,7 +435,17 @@ public class GameSceneController {
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 ball[0].setPosition(new Vector(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y));
-                ball[0].getSphere().setVisible(false);
+                ball[0].getSphere().setVisible(true);
+            }
+            for(int i=1;i<=7;i++){
+                if(potted[i]){
+                    solidScoreBall[i-1].setVisible(false);
+                }
+            }
+            for(int i=9;i<=15;i++){
+                if(potted[i]){
+                    stripedScoreBall[i-1].setVisible(false);
+                }
             }
 
             thisTurnPottedBalls.clear();
@@ -583,15 +594,8 @@ public class GameSceneController {
         ball[ballNum].setDropped(true);
         ball[ballNum].setVelocity(0, 0);
 
-        double stackY = Constants.RACKSTACK;
-        ball[ballNum].setPosition(new Vector(1196, stackY)); // nello stack
-
-        if(ballNum<=7 && ballNum!= 0){ //ScoreBoard update
-            solidScoreBall[ballNum].setVisible(false);
-        }
-        else if(ballNum>=9 && ballNum!= 0){
-            stripedScoreBall[ballNum - 9].setVisible(false);
-        }
+        double stackY = 665;
+        ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, stackY)); // nello stack
 
         stackY -= 25; //Se entra la bianca
         if (ballNum == 0) {
