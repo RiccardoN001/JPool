@@ -2,6 +2,7 @@
 
 <?import java.lang.Double?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -20,6 +21,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
     <children>
@@ -688,5 +690,12 @@
             </RadialGradient>
          </fill>
       </Circle>
+      <Button fx:id="exitYes" layoutX="592.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="92.0" text="YES" />
+      <Button fx:id="exitNo" layoutX="725.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitNoButton" prefHeight="50.0" prefWidth="92.0" text="NO" />
+      <Label fx:id="exitLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="358.0" prefHeight="84.0" prefWidth="225.0" text="Sei sicuro di uscire?" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
     </children>
 </Pane>

@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -45,6 +46,14 @@ public class GameSceneController {
     private MenuItem pauseButton;
     @FXML
     private MenuItem menuButtonFromGame;
+    @FXML
+    private Label exitLabel;
+    @FXML
+    private Button exitNo;
+    @FXML
+    private Button exitYes;
+    @FXML
+    private boolean exit = false;
 
     // -------------------------------------------------- GAME ATTRIBUTES --------------------------------------------------
 
@@ -104,6 +113,15 @@ public class GameSceneController {
 
     @FXML
     public void handleMenuButton(ActionEvent event) throws Exception {
+        exitLabel.setVisible(true);
+        exitNo.setVisible(true);
+        exitYes.setVisible(true);
+        timeline.stop();
+        exit = true;
+        powerSlider.setDisable(true);
+    }
+    @FXML
+    public void handleExitYesButton(ActionEvent event) throws Exception{
         Stage stage;
         Scene scene;
         Parent root;
@@ -113,6 +131,15 @@ public class GameSceneController {
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+    }
+    @FXML
+    public void handleExitNoButton(ActionEvent event) throws Exception{
+        exitLabel.setVisible(false);
+        exitNo.setVisible(false);
+        exitYes.setVisible(false);
+        timeline.play();
+        exit = false;
+        powerSlider.setDisable(false);
     }
 
     // -------------------------------------------------- ANIMATION METHODS --------------------------------------------------
@@ -222,6 +249,10 @@ public class GameSceneController {
         for (int i = 0; i < 16; i++) {
             potted[i] = false;
         }
+        //EXIT LABEL
+        exitLabel.setVisible(false);
+        exitNo.setVisible(false);
+        exitYes.setVisible(false);
 
         startGame();
     }
@@ -232,7 +263,7 @@ public class GameSceneController {
         double xm = event.getSceneX();
         double ym = event.getSceneY();
 
-        if(turn && !gamePause && !gameOver && xm >= Constants.A_MARGIN+10 && xm <= Constants.B_MARGIN-10 && ym >= Constants.CD_MARGIN+10 && ym <= Constants.EF_MARGIN-10) {
+        if(turn && !gamePause && !gameOver && xm >= Constants.A_MARGIN+10 && xm <= Constants.B_MARGIN-10 && ym >= Constants.CD_MARGIN+10 && ym <= Constants.EF_MARGIN-10 && !exit) {
 
             guidelineToBall.setStroke(Color.WHITE);
             ghostBall.setStroke(Color.WHITE);
@@ -336,7 +367,7 @@ public class GameSceneController {
 
     @FXML
     public void fixTrajectory(MouseEvent event) {
-        if(turn && !gamePause && !gameOver) {
+        if(turn && !gamePause && !gameOver && !exit) {
             xmr = event.getSceneX();;
             ymr = event.getSceneY();
         }
@@ -344,7 +375,7 @@ public class GameSceneController {
 
     @FXML
     public void cueLoading() {
-        if(turn && !gamePause && !gameOver) {
+        if(turn && !gamePause && !gameOver && !exit) {
 
             double xcb = ball[0].getPosition().getX();
             double ycb = ball[0].getPosition().getY();
@@ -378,7 +409,7 @@ public class GameSceneController {
     @FXML
     public void cueShot()  {
         double cueBallVelocity = 0;
-        if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1) {
+        if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1 && !exit) {
 
             cueBallVelocity = powerSlider.getValue();
             
