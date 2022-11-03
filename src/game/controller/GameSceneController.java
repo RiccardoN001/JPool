@@ -28,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -49,11 +50,13 @@ public class GameSceneController {
     @FXML
     private Label exitLabel;
     @FXML
-    private Button exitNo;
-    @FXML
     private Button exitYes;
     @FXML
-    private boolean exit = false;
+    private Button exitNo;
+
+    Rectangle blurredScene = new Rectangle(1400, 800, Color.WHITE);
+
+    private boolean exit;
 
     // -------------------------------------------------- GAME ATTRIBUTES --------------------------------------------------
 
@@ -114,14 +117,20 @@ public class GameSceneController {
     @FXML
     public void handleMenuButton(ActionEvent event) throws Exception {
         exitLabel.setVisible(true);
-        exitNo.setVisible(true);
         exitYes.setVisible(true);
+        exitNo.setVisible(true);
         timeline.stop();
-        exit = true;
         powerSlider.setDisable(true);
+        exit = true;
+        blurredScene.setOpacity(0.5);
+        pane.getChildren().add(blurredScene);
+        exitLabel.toFront();
+        exitYes.toFront();
+        exitNo.toFront();
     }
+
     @FXML
-    public void handleExitYesButton(ActionEvent event) throws Exception{
+    public void handleExitYesButton(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
         Parent root;
@@ -132,14 +141,16 @@ public class GameSceneController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void handleExitNoButton(ActionEvent event) throws Exception{
+    public void handleExitNoButton(ActionEvent event) throws Exception {
         exitLabel.setVisible(false);
-        exitNo.setVisible(false);
         exitYes.setVisible(false);
+        exitNo.setVisible(false);
         timeline.play();
-        exit = false;
         powerSlider.setDisable(false);
+        exit = false;
+        pane.getChildren().remove(blurredScene);
     }
 
     // -------------------------------------------------- ANIMATION METHODS --------------------------------------------------
@@ -212,7 +223,7 @@ public class GameSceneController {
         }
 
         // CUE LOADING
-        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue"+String.valueOf(SettingsSceneController.getSettingsSceneController().cueMenuIndex()+1 +".png")));
+        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsSceneController.getSettingsSceneController().cueMenuIndex()+1 + ".png")));
         cue.setFitWidth(400);
         cue.setFitHeight(100);
         cue.setLayoutX(105);
@@ -249,10 +260,12 @@ public class GameSceneController {
         for (int i = 0; i < 16; i++) {
             potted[i] = false;
         }
+
         //EXIT LABEL
         exitLabel.setVisible(false);
-        exitNo.setVisible(false);
         exitYes.setVisible(false);
+        exitNo.setVisible(false);
+        exit = false;
 
         startGame();
     }
@@ -368,7 +381,7 @@ public class GameSceneController {
     @FXML
     public void fixTrajectory(MouseEvent event) {
         if(turn && !gamePause && !gameOver && !exit) {
-            xmr = event.getSceneX();;
+            xmr = event.getSceneX();
             ymr = event.getSceneY();
         }
     }
@@ -545,32 +558,34 @@ public class GameSceneController {
 
 
     private void updateBalls(int ballNum) {
-        if(ball[ballNum].getVelocity().getSize() <= 8e-2) {
+        if(ball[ballNum].getVelocity().getSize() <= 8e-2) { // se il modulo della velocità è abbastanza piccolo, fermiamo la palla
             ball[ballNum].setVelocity(0, 0);  
-        } else {
+        } else { // se la palla ha ancora velocità significativa
+            // aggiorniamo la posizione della palla aggiungendo il vettore velocità (lungo x e y)
             ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() + ball[ballNum].getVelocity().getX());
             ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() + ball[ballNum].getVelocity().getY());
-            for(Ball b: ball) {
-                if(ballNum != b.getBallNumber() && ball[ballNum].collides(b)) {
+
+            for(int i = 0; i < 16; i++) {
+                if(ballNum != ball[i].getBallNumber() && ball[ballNum].collides(ball[i])) {
 
                     if(ballNum == 0 && !foulWrongBallType && player1.getBallType() == 0) {
                         foulWrongBallType = true;
-                        if(b.getBallType() == 3) {
-                            foulEight = true; // first foul type
+                        if(ball[i].getBallType() == 3) {
+                            foulEight = true;
                         }
                     } else if (ballNum == 0 && !foulWrongBallType && player1.getBallType() != 0) {
                         foulWrongBallType = true;
                         if(player1.isMyTurn()) { // se è il turno di P1
-                            if(player1.getBallType() != b.getBallType()) {
-                                if(b.getBallNumber() == 8 && player1.isAllBallsPlotted()) {
+                            if(player1.getBallType() != ball[i].getBallType()) {
+                                if(ball[i].getBallNumber() == 8 && player1.isAllBallsPlotted()) {
                                     foulEight = false;
                                 } else {
                                     foulEight = true;
                                 }
                             }
                         } else { // se è di P2
-                            if(player2.getBallType() != b.getBallType()) {
-                                if(b.getBallNumber() == 8 && player2.isAllBallsPlotted()) {
+                            if(player2.getBallType() != ball[i].getBallType()) {
+                                if(ball[i].getBallNumber() == 8 && player2.isAllBallsPlotted()) {
                                     foulEight = false;
                                 } else {
                                     foulEight = true;
@@ -583,7 +598,7 @@ public class GameSceneController {
 
                     ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() - ball[ballNum].getVelocity().getX());
                     ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() - ball[ballNum].getVelocity().getY());
-                    ball[ballNum].ballCollision(b);
+                    ball[ballNum].ballCollision(ball[i]);
                     break;
 
                 }
@@ -874,7 +889,7 @@ public class GameSceneController {
                 pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
             }
         }
-       /* for(int i=1;i<=7;i++){
+        for(int i=1;i<=7;i++){
             if(potted[i]){
                 solidScoreBall[i-1].setVisible(false);
             }
@@ -883,7 +898,7 @@ public class GameSceneController {
             if(potted[i]){
                 stripedScoreBall[i-9].setVisible(false);
             }
-        }*/
+        }
     }
 
 

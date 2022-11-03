@@ -17,8 +17,8 @@ public class Main extends Application {
         scene.getStylesheets().addAll(getClass().getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.show();
         stage.getIcons().add(new Image("file:src/game/resources/Logo.png"));
+        stage.show();
 
     }
 
