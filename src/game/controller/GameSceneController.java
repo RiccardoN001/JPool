@@ -233,12 +233,12 @@ public class GameSceneController {
         powerBar.setOpacity(0.3);
 
         // PLAYERS
-        if(SettingsSceneController.getSettingsSceneController().getP1Nickname() == ""){
+        if(SettingsSceneController.getSettingsSceneController().getP1Nickname() == "") {
             player1 = new Player("Giocatore 1");
         } else {
             player1 = new Player(SettingsSceneController.getSettingsSceneController().getP1Nickname());
         }
-        if(SettingsSceneController.getSettingsSceneController().getP2Nickname() == ""){
+        if(SettingsSceneController.getSettingsSceneController().getP2Nickname() == "") {
             player2 = new Player("Giocatore 2");
         } else {
             player2 = new Player(SettingsSceneController.getSettingsSceneController().getP2Nickname());

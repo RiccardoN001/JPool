@@ -1,5 +1,4 @@
 /* BUTTONS */
-
 .button {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
@@ -30,10 +29,12 @@
 }
 
 /* LABELS */
+.label {
 
-/* PAGINATIONS 
+}
+
+/* PAGINATIONS */
 .pagination {
     -fx-arrows-visible: false;
-    -fx-tooltip-visible: false;
     -fx-page-information-visible: false;
-}*/
+}
