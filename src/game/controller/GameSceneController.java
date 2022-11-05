@@ -165,7 +165,7 @@ public class GameSceneController {
                     if(!gameOver) {
                         update();
                     } else {
-                        gameOver();
+                        timeline.stop();
                     }
                 });
         timeline.getKeyFrames().add(keyFrame);
@@ -183,10 +183,6 @@ public class GameSceneController {
         timeline.play();
     }
 
-    public void gameOver() {
-        // stats
-    }
-
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
 
     // -------------------------------------------------- FXML LINKED --------------------------------------------------
@@ -200,12 +196,12 @@ public class GameSceneController {
         // HEAD SPOT
         ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/resources/Balls/CueBallExt.png", 0, 0);
         // TRIANGLE ROW 1
-        ball[1] = new Ball(Constants.FOOT_SPOT_X-150, Constants.FOOT_SPOT_Y-100, "src/game/resources/Balls/Ball1Ext.png", 1, 1);
+        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, "src/game/resources/Balls/Ball1Ext.png", 1, 1);
         // TRIANGLE ROW 2
-        ball[11] = new Ball(Constants.TRIANGLE_ROW2_X-200, Constants.TRIANGLE_COL4_Y+100, "src/game/resources/Balls/Ball11Ext.png", 2, 11);
-        ball[6] = new Ball(Constants.TRIANGLE_ROW2_X-600, Constants.TRIANGLE_COL6_Y+100, "src/game/resources/Balls/Ball6Ext.png", 1, 6);
+        ball[11] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball11Ext.png", 2, 11);
+        ball[6] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball6Ext.png", 1, 6);
         // TRIANGLE ROW 3
-        ball[14] = new Ball(Constants.TRIANGLE_ROW3_X-600, Constants.TRIANGLE_COL3_Y-100, "src/game/resources/Balls/Ball14Ext.png", 2, 14);
+        ball[14] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball14Ext.png", 2, 14);
         ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball8Ext.png", 3, 8);
         ball[10] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball10Ext.png", 2, 10);
         // TRIANGLE ROW 4
@@ -255,7 +251,7 @@ public class GameSceneController {
         foulWhite = false;
         foulWrongBallType = false;
         foulEight = false;
-        foulNoBallHit = true;
+        foulNoBallHit = false;
         guided = false;
         ballAssigned = false;
 
@@ -265,7 +261,7 @@ public class GameSceneController {
             potted[i] = false;
         }
 
-        //EXIT LABEL
+        // PAUSE
         exitLabel.setVisible(false);
         exitYes.setVisible(false);
         exitNo.setVisible(false);
@@ -458,16 +454,16 @@ public class GameSceneController {
 
     private void update() {
 
-        // SPLIT
         if(turnNum == 1) {
-            moveCueBall();
             playerBreaking();
         }
+
+        moveCueBall();
 
         boolean ballsMoving = false;
         for(int i = 0; i < 16; i++) {
             if(!ball[i].getVelocity().isNull()) {
-                ballsMoving = true; // almeno una palla in movimento
+                ballsMoving = true;
                 turnChange = true;
             }
             updateBalls(i);
@@ -486,19 +482,20 @@ public class GameSceneController {
             checkCases();
             checkAllPotted();
 
-            if(foul) {
+            if(foul && !gameOver) {
+                pauseGame();
                 showFoul();
+                startFromPause();
             }
 
             turn = true;
+            turnNum++;
             
             turnChange = false;
             foulWhite = false;
             foulWrongBallType = false;
             foulEight = false;
-            foulNoBallHit = true;
-
-            turnNum++;
+            foulNoBallHit = false;
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 ball[0].setPosition(new Vector(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y));
@@ -521,8 +518,6 @@ public class GameSceneController {
             thisTurnPottedBalls.clear();
 
         }
-
-
 
     }
 
@@ -584,12 +579,13 @@ public class GameSceneController {
     }
 
     private void updateBalls(int ballNum) {
-        if(ball[ballNum].getVelocity().getSize() <= 8e-2) { // se il modulo della velocità è abbastanza piccolo, fermiamo la palla
+        if(ball[ballNum].getVelocity().getSize() <= 8e-2) {
             ball[ballNum].setVelocity(0, 0);  
-        } else { // se la palla ha ancora velocità significativa
-            // aggiorniamo la posizione della palla aggiungendo il vettore velocità (lungo x e y)
+        } else {
             ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() + ball[ballNum].getVelocity().getX());
             ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() + ball[ballNum].getVelocity().getY());
+
+            boolean cueCollision = false;
 
             for(int i = 0; i < 16; i++) {
                 if(ballNum != ball[i].getBallNumber() && ball[ballNum].collides(ball[i])) {
@@ -600,7 +596,7 @@ public class GameSceneController {
                             foul = true;
                         }
                     } else if (ballNum == 0 && !foulWrongBallType && player1.getBallType() != 0) {
-                        if(player1.isMyTurn()) { // se è il turno di P1
+                        if(player1.isMyTurn()) {
                             if(player1.getBallType() != ball[i].getBallType()) {
                                 foulWrongBallType = true;
                                 foul = true;
@@ -613,7 +609,7 @@ public class GameSceneController {
                                     foul = false;
                                 }
                             }
-                        } else { // se è di P2
+                        } else {
                             if(player2.getBallType() != ball[i].getBallType()) {
                                 foulWrongBallType = true;
                                 foul = true;
@@ -630,11 +626,8 @@ public class GameSceneController {
                     }
 
                     if(ballNum == 0) {
-                        foulNoBallHit = false;
-                        foul = false;
+                        cueCollision = true;
                     }
-
-
 
                     ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() - ball[ballNum].getVelocity().getX());
                     ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() - ball[ballNum].getVelocity().getY());
@@ -642,6 +635,11 @@ public class GameSceneController {
                     break;
 
                 }
+            }
+
+            if(!cueCollision) {
+                foulNoBallHit = true;;
+                foul = true;
             }
 
             ball[ballNum].bankCollision();
@@ -657,7 +655,7 @@ public class GameSceneController {
         double x = ball[ballNum].getPosition().getX();
         double y = ball[ballNum].getPosition().getY();
 
-        double check = 5; //forse per 
+        double check = 5;
 
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check) {
             dropit (ballNum);
@@ -694,7 +692,6 @@ public class GameSceneController {
                     if(thisTurnPottedBalls.get(i).intValue() == 8) {
                         eightIn();
                     } else if (thisTurnPottedBalls.get(i).intValue() == 0) {
-                        foul = true;
                         foulWhite = true;
                     } else {
                         potted[thisTurnPottedBalls.get(i).intValue()] = true;
@@ -732,7 +729,6 @@ public class GameSceneController {
                     if(thisTurnPottedBalls.get(i).intValue() == 8) {
                         eightIn();
                     } else if (thisTurnPottedBalls.get(i).intValue() == 0) {
-                        foul = true;
                         foulWhite = true;
                     } else {
                         potted[thisTurnPottedBalls.get(i).intValue()] = true;
@@ -820,7 +816,6 @@ public class GameSceneController {
                             eightIn();
                         } else if(thisTurnPottedBalls.get(i).intValue() == 0) {
                             foulWhite = true;
-                            foul = true;
                         } else {
                             potted[thisTurnPottedBalls.get(i).intValue()] = true;
                         }
@@ -837,7 +832,6 @@ public class GameSceneController {
                             eightIn();
                         } else if(thisTurnPottedBalls.get(i).intValue() == 0) {
                             foulWhite = true;
-                            foul = true;
                         } else {
                             potted[thisTurnPottedBalls.get(i).intValue()] = true;
                         }
@@ -849,7 +843,7 @@ public class GameSceneController {
 
         }
 
-        if(foulWhite || foulEight || foulNoBallHit || foulWrongBallType) {
+        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit) {
             foul = true;
             changeTurn();
         }
@@ -914,11 +908,11 @@ public class GameSceneController {
 
     private void showFoul() {
         if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
-            scoreboardLabel.setText("Hai imbucato la bianca");
+            scoreboardLabel.setText("FALLO: BIANCA IMBUCATA");
         } else if(foulWrongBallType || foulEight) {
-            scoreboardLabel.setText("Hai colpito la palla sbagliata");
+            scoreboardLabel.setText("FALLO: CATEGORIA ERRATA");
         } else {
-            scoreboardLabel.setText("Devi colpire una palla");
+            scoreboardLabel.setText("FALLO: NESSUNA PALLA COLPITA");
         }
 
         /*if(player1.isMyTurn()) {
@@ -1009,8 +1003,6 @@ public class GameSceneController {
             player2.setMyTurn (false);
             player1.setMyTurn (true);
         }
-        //if (!TurnOffSounds)
-            //SoundEffects.TURNCHANGE.play (); Suono per il cambio di turno
     }
 
     private boolean collides(Circle circle, Ball ball) {

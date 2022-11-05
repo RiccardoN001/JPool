@@ -11,6 +11,9 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -29,7 +32,7 @@
         <items>
             <MenuItem fx:id="soundsButton" mnemonicParsing="false" text="SOUNDS">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox alignment="CENTER_RIGHT" mnemonicParsing="false" />
                </graphic>
             </MenuItem>
             <MenuItem fx:id="pauseButton" mnemonicParsing="false" text="PAUSE" />
@@ -80,12 +83,12 @@
             </effect>
         </ImageView>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#355748" height="440.0" layoutX="284.0" layoutY="244.0" onMouseDragReleased="#fixTrajectory" onMouseDragged="#guidedTrajectory" onMouseReleased="#fixTrajectory" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
-            <effect>
-                <DropShadow />
-            </effect>
             <cursor>
                 <Cursor fx:constant="DEFAULT" />
             </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
         </Rectangle>
         <Circle layoutX="284.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <fill>
@@ -336,16 +339,26 @@
       <Slider fx:id="powerSlider" layoutX="166.0" layoutY="284.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Slider>
-      <Label fx:id="sliderVelocityLabel" layoutX="131.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="VELOCITY" />
-      <Line fx:id="guidelineToBall" />
-      <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
-      <Line fx:id="guidelineFromBall" />
-      <Line fx:id="guidelineFromCue" />
-      <Label fx:id="scoreboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" text="SCOREBOARD" />
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></Slider>
+      <Label fx:id="sliderVelocityLabel" layoutX="131.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" textFill="WHITE" />
+      <Line fx:id="guidelineToBall" strokeWidth="1.5" />
+      <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" />
+      <Line fx:id="guidelineFromBall" strokeWidth="1.5" />
+      <Line fx:id="guidelineFromCue" strokeWidth="1.5" />
+      <Label fx:id="scoreboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" text="SCOREBOARD" textFill="WHITE" />
       <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="20.0" prefWidth="400.0" progress="0.0" />
-      <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 1" />
-      <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 2" />
+      <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 1" textFill="WHITE" />
+      <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 2" textFill="WHITE" />
       <Circle layoutX="704.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.48094107001470415" radius="0.5116279069767442">

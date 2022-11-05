@@ -12,7 +12,7 @@
    <children>
       <Pagination fx:id="tableMenu" layoutX="50.0" layoutY="170.0" pageCount="4" prefHeight="300.0" prefWidth="600.0" />
       <Pagination fx:id="cueMenu" layoutX="50.0" layoutY="650.0" pageCount="10" prefHeight="100.0" prefWidth="600.0" />
-      <Pagination fx:id="modeMenu" layoutX="750.0" layoutY="170.0" pageCount="2" prefHeight="300.0" prefWidth="300.0" />
+      <Pagination fx:id="modeMenu" layoutX="700.0" layoutY="170.0" pageCount="2" prefHeight="300.0" prefWidth="300.0" />
       <Button fx:id="playButton" layoutX="1050.0" layoutY="650.0" mnemonicParsing="false" onAction="#handleGameSceneChoice" prefHeight="75.0" prefWidth="250.0" text="PLAY">
          <font>
             <Font name="Futura Medium" size="30.0" />
@@ -23,11 +23,11 @@
          </font></Button>
       <TextField fx:id="player1Nickname" layoutX="1130.0" layoutY="230.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 1" />
       <TextField fx:id="player2Nickname" layoutX="1130.0" layoutY="350.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 2" />
-      <Label layoutX="253.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="TABLE" />
-      <Label layoutX="253.0" layoutY="600.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="CUE" />
-      <Label layoutX="800.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="MODE" />
-      <Label layoutX="800.0" layoutY="540.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="SOUNDS" />
-      <Label layoutX="1130.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="NICKNAMES" />
+      <Label layoutX="253.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" text="TABLE" textFill="WHITE" />
+      <Label layoutX="253.0" layoutY="600.0" prefHeight="35.0" prefWidth="200.0" text="CUE" textFill="WHITE" />
+      <Label layoutX="750.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" text="MODE" textFill="WHITE" />
+      <Label layoutX="750.0" layoutY="540.0" prefHeight="35.0" prefWidth="200.0" text="SOUNDS" textFill="WHITE" />
+      <Label layoutX="1130.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" text="NICKNAMES" textFill="WHITE" />
       <ToggleButton layoutX="1100.0" layoutY="540.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="ON/OFF" />
    </children>
 </Pane>
