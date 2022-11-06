@@ -355,7 +355,7 @@
       <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" />
       <Line fx:id="guidelineFromBall" strokeWidth="1.5" />
       <Line fx:id="guidelineFromCue" strokeWidth="1.5" />
-      <Label fx:id="scoreboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" text="SCOREBOARD" textFill="WHITE" />
+      <Label fx:id="turnboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" text="TURNBOARD" textFill="WHITE" />
       <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="20.0" prefWidth="400.0" progress="0.0" />
       <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 1" textFill="WHITE" />
       <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 2" textFill="WHITE" />
@@ -710,5 +710,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Label fx:id="foulboardLabel" layoutX="504.0" layoutY="725.0" prefHeight="60.0" prefWidth="400.0" text="FOULBOARD" textFill="WHITE" />
     </children>
 </Pane>

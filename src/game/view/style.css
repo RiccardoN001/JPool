@@ -23,35 +23,10 @@
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
-.button:Text {
+.button:text {
     -fx-fill: white;
     -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
 }
-
-.menu-button {
-    -fx-background-color: #172d44;
-}
-
-
-.context-menu {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0, 1, 2;
-    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
-    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
-}
-.menu-item {
-    -fx-background-color: transparent;
-}
-
-.menu-button > .arrow-button {
-    -fx-padding: 0;
-}
-
-.menu-button > .arrow-button > .arrow {
-    -fx-padding: 0;
-}
-
-
 
 /* LABELS */
 .label {
@@ -69,18 +44,35 @@
     -fx-page-information-visible: false;
 }
 
+/* MENU BUTTON */
+.context-menu {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
+}
+.menu-button {
+    -fx-background-color: #172d44;
+}
+.menu-item {
+    -fx-background-color: transparent;
+}
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
 
-
+/* PROGRESS BAR */
 .progress-bar {
     -fx-accent: rgba(0, 138, 230, 0.85);
 }
-
 .progress-bar .bar {
     -fx-padding: 1px;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
 }
-
 .progress-bar > .track {
     -fx-border-radius: 0;
     -fx-background-radius: 0;
@@ -89,17 +81,7 @@
     -fx-background-color: rgba(255, 255, 255, 0.1);
 }
 
-
-
-.slider {
-   
-}
-
-.slider .thumb {
-    
-    
-}
-
+/* TEXT FIELDS */
 .text-field {
     -fx-border-color: grey;
     -fx-border-width: 0 0 1 0;
@@ -108,4 +90,4 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
-  }
+}

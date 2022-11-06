@@ -83,13 +83,16 @@ public class GameSceneController {
     private Ball ball[] = new Ball[16];
     private ImageView[] solidScoreBall = new ImageView[7];
     private ImageView[] stripedScoreBall = new ImageView[7];
+    private ImageView blackScoreBall;
 
     @FXML
     private Label player1NicknameLabel;
     @FXML
     private Label player2NicknameLabel;
     @FXML
-    private Label scoreboardLabel;
+    private Label turnboardLabel;
+    @FXML
+    private Label foulboardLabel;
     @FXML
     private ProgressBar timer;
 
@@ -251,7 +254,7 @@ public class GameSceneController {
         foulWhite = false;
         foulWrongBallType = false;
         foulEight = false;
-        foulNoBallHit = false;
+        foulNoBallHit = true;
         guided = false;
         ballAssigned = false;
 
@@ -472,6 +475,7 @@ public class GameSceneController {
 
         if(ballsMoving) {
             turn = false;
+            foulboardLabel.setText("");
         } else if(!ballsMoving && !turnChange) {
             turn = true;
             turnLabel();
@@ -483,9 +487,7 @@ public class GameSceneController {
             checkAllPotted();
 
             if(foul && !gameOver) {
-                pauseGame();
                 showFoul();
-                startFromPause();
             }
 
             turn = true;
@@ -495,7 +497,7 @@ public class GameSceneController {
             foulWhite = false;
             foulWrongBallType = false;
             foulEight = false;
-            foulNoBallHit = false;
+            foulNoBallHit = true;
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 ball[0].setPosition(new Vector(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y));
@@ -515,6 +517,24 @@ public class GameSceneController {
                 }
             }
 
+            if(player1.isAllBallsPlotted() && player1.isMyTurn()) {
+                blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
+                blackScoreBall.setFitWidth(60);
+                blackScoreBall.setFitHeight(60);
+                blackScoreBall.setLayoutX(704-30);
+                blackScoreBall.setLayoutY(172-30);
+                pane.getChildren().add(blackScoreBall);
+            }
+
+            if(player2.isAllBallsPlotted() && player2.isMyTurn()) {
+                blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
+                blackScoreBall.setFitWidth(60);
+                blackScoreBall.setFitHeight(60);
+                blackScoreBall.setLayoutX(704-30);
+                blackScoreBall.setLayoutY(172-30);
+                pane.getChildren().add(blackScoreBall);
+            }
+
             thisTurnPottedBalls.clear();
 
         }
@@ -527,18 +547,18 @@ public class GameSceneController {
         player2NicknameLabel.setText(player2.getNickname());
 
         if(player1.isMyTurn()) {
-            scoreboardLabel.setText(player1.getNickname() + " SPACCA");
+            turnboardLabel.setText(player1.getNickname() + " SPACCA");
         } else {
-            scoreboardLabel.setText(player2.getNickname() + " SPACCA");
+            turnboardLabel.setText(player2.getNickname() + " SPACCA");
         }
 
     }
 
     private void turnLabel() {
         if(player1.isMyTurn()) {
-            scoreboardLabel.setText ("TURNO DI " + player1.getNickname());
+            turnboardLabel.setText ("TURNO DI " + player1.getNickname());
         } else {
-            scoreboardLabel.setText ("TURNO DI " + player2.getNickname());
+            turnboardLabel.setText ("TURNO DI " + player2.getNickname());
         }
     }
 
@@ -585,48 +605,38 @@ public class GameSceneController {
             ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() + ball[ballNum].getVelocity().getX());
             ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() + ball[ballNum].getVelocity().getY());
 
-            boolean cueCollision = false;
-
             for(int i = 0; i < 16; i++) {
                 if(ballNum != ball[i].getBallNumber() && ball[ballNum].collides(ball[i])) {
 
                     if(ballNum == 0 && !foulWrongBallType && player1.getBallType() == 0) {
-                        if(ball[i].getBallType() == 3) {
+                        if(ball[i].getBallNumber() == 8) {
                             foulEight = true;
-                            foul = true;
                         }
-                    } else if (ballNum == 0 && !foulWrongBallType && player1.getBallType() != 0) {
+                    }
+                    if (ballNum == 0 && !foulWrongBallType && player1.getBallType() != 0) {
                         if(player1.isMyTurn()) {
                             if(player1.getBallType() != ball[i].getBallType()) {
                                 foulWrongBallType = true;
-                                foul = true;
-                                if(ball[i].getBallType() == 3 && !player1.isAllBallsPlotted()) {
+                                if(ball[i].getBallNumber() == 8 && !player1.isAllBallsPlotted()) {
                                     foulEight = true;
-                                    foul = true;
-                                } else if(ball[i].getBallType() == 3 && player1.isAllBallsPlotted()) {
+                                } else if(ball[i].getBallNumber() == 8 && player1.isAllBallsPlotted()) {
                                     foulEight = false;
-                                    foulWrongBallType = false;
-                                    foul = false;
                                 }
                             }
                         } else {
                             if(player2.getBallType() != ball[i].getBallType()) {
                                 foulWrongBallType = true;
-                                foul = true;
-                                if(ball[i].getBallType() == 3 && !player2.isAllBallsPlotted()) {
+                                if(ball[i].getBallNumber() == 8 && !player2.isAllBallsPlotted()) {
                                     foulEight = true;
-                                    foul = true;
-                                } else if(ball[i].getBallType() == 3 && player2.isAllBallsPlotted()) {
+                                } else if(ball[i].getBallNumber() == 8 && player2.isAllBallsPlotted()) {
                                     foulEight = false;
-                                    foulWrongBallType = false;
-                                    foul = false;
                                 }
                             }
                         }
                     }
 
                     if(ballNum == 0) {
-                        cueCollision = true;
+                        foulNoBallHit = false;
                     }
 
                     ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() - ball[ballNum].getVelocity().getX());
@@ -635,11 +645,6 @@ public class GameSceneController {
                     break;
 
                 }
-            }
-
-            if(!cueCollision) {
-                foulNoBallHit = true;;
-                foul = true;
             }
 
             ball[ballNum].bankCollision();
@@ -675,7 +680,7 @@ public class GameSceneController {
         else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check) {
             dropit (ballNum);
         }
-        if ((y <= 244+15 || y >= 700-15 || x <= 290+15 || x >= 1174-15) && !ball[ballNum].isDropped ()) { //Per essere sicuri che qualsiasi palla fuori dal campo risulti imbucata
+        if ((y <= 244+15 || y >= 700-15 || x <= 290+15 || x >= 1174-15) && !ball[ballNum].isDropped ()) {
             dropit (ballNum);
         }
 
@@ -737,7 +742,7 @@ public class GameSceneController {
 
             }
 
-        } else { // turno maggiore di 2 ma player1 non ha balltype 0 (balltype assegnata)
+        } else {
 
             if(thisTurnPottedBalls.size() == 0) {
                 foulWhite = true;
@@ -748,7 +753,7 @@ public class GameSceneController {
                     if(player1.getBallType() == 1) {
                         int f = 0;
                         for(int i = 1; i<= 7; i++) {
-                            if(!potted[i]) { // imbuco la nera con almeno una intera non imbucata
+                            if(!potted[i]) {
                                 f = 1;
                                 eightIn();
                             }
@@ -756,11 +761,11 @@ public class GameSceneController {
                         if(f == 0) {
                             win();
                         }
-                    } else { // spezzate
+                    } else {
 
                         int f = 0;
                         for(int i = 9; i<= 15; i++) {
-                            if(!potted[i]) { // imbuco la nera con almeno una spezzata non imbucata
+                            if(!potted[i]) {
                                 f = 1;
                                 eightIn();
                             }
@@ -776,7 +781,7 @@ public class GameSceneController {
                     if(player2.getBallType() == 1) {
                         int f = 0;
                         for(int i = 1; i<= 7; i++) {
-                            if(!potted[i]) { // imbuco la nera con almeno una intera non imbucata
+                            if(!potted[i]) {
                                 f = 1;
                                 eightIn();
                             }
@@ -784,11 +789,11 @@ public class GameSceneController {
                         if(f == 0) {
                             win();
                         }
-                    } else { // spezzate
+                    } else {
 
                         int f = 0;
                         for(int i = 9; i<= 15; i++) {
-                            if(!potted[i]) { // imbuco la nera con almeno una spezzata non imbucata
+                            if(!potted[i]) {
                                 f = 1;
                                 eightIn();
                             }
@@ -843,8 +848,11 @@ public class GameSceneController {
 
         }
 
-        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit) {
+        if(foulWrongBallType || foulEight || foulNoBallHit) {
             foul = true;
+        }
+
+        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit) {
             changeTurn();
         }
 
@@ -908,18 +916,12 @@ public class GameSceneController {
 
     private void showFoul() {
         if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
-            scoreboardLabel.setText("FALLO: BIANCA IMBUCATA");
+            foulboardLabel.setText("FALLO: BIANCA IMBUCATA");
         } else if(foulWrongBallType || foulEight) {
-            scoreboardLabel.setText("FALLO: CATEGORIA ERRATA");
-        } else {
-            scoreboardLabel.setText("FALLO: NESSUNA PALLA COLPITA");
+            foulboardLabel.setText("FALLO: CATEGORIA ERRATA");
+        } else if(foulNoBallHit) {
+            foulboardLabel.setText("FALLO: NESSUNA PALLA COLPITA");
         }
-
-        /*if(player1.isMyTurn()) {
-            scoreboardLabel.setText(player1.getNickname() + "ha la bianca in mano");
-        } else {
-            scoreboardLabel.setText(player2.getNickname() + "ha la bianca in mano");
-        }*/
     }
 
     private void ballAssignment() {
@@ -928,7 +930,7 @@ public class GameSceneController {
 
         if(!foul) {
             if(player1.getBallType() == 1) {
-                scoreboardLabel.setText(player1.getNickname() + "ha le piene\n" + player2.getNickname() + "ha le spezzate");
+                turnboardLabel.setText(player1.getNickname() + "ha le piene\n" + player2.getNickname() + "ha le spezzate");
                 for(int i = 0; i < 7; i++) {
                     solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
                     solidScoreBall[i].setFitHeight(30);
@@ -943,7 +945,7 @@ public class GameSceneController {
                     pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
                 }
             } else {
-                scoreboardLabel.setText(player1.getNickname() + "ha le spezzate\n" + player2.getNickname() + "ha le piene");
+                turnboardLabel.setText(player1.getNickname() + "ha le spezzate\n" + player2.getNickname() + "ha le piene");
                 for(int i = 0; i < 7; i++) {
                     solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
                     solidScoreBall[i].setFitHeight(30);
@@ -961,11 +963,6 @@ public class GameSceneController {
         }
         
     }
-
-
-
-
-
 
     private void eightIn() {
         if(player1.isMyTurn()) {
@@ -990,9 +987,6 @@ public class GameSceneController {
             gameOver = true;
         }
     }
-
-
-
 
     private void changeTurn() {
         if (player1.isMyTurn ()) {
@@ -1041,6 +1035,5 @@ public class GameSceneController {
             ball[0].setDropped (false);
         }
     }
-
 
 }
