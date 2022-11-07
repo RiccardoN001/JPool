@@ -39,7 +39,7 @@ public class Ball {
         sphere.setLayoutX(position.getX());
         sphere.setLayoutY(position.getY());
         sphere.setRotationAxis(Rotate.Y_AXIS);
-        sphere.setRotate(270); // angolo necessario a mostrare numero?
+        sphere.setRotate(270);
 
         // 3D
         PhongMaterial material = new PhongMaterial();
@@ -259,7 +259,7 @@ public class Ball {
         }
 
         // ROW 4 -> 2 EXTERNAL VERTICES
-        int solidOrStriped4 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX)
+        int solidOrStriped4 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX REFERENCE)
         int randomSolid4;
         do {
             randomSolid4 = (int)(Math.random()*6+2);
@@ -277,7 +277,7 @@ public class Ball {
         }
 
         // ROW 4 -> 2 INTERNAL VERTICES
-        int solidOrStriped5 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX)
+        int solidOrStriped5 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX REFERENCE)
         int randomSolid5;
         do {
             randomSolid5 = (int)(Math.random()*6+2);
@@ -295,7 +295,7 @@ public class Ball {
         }
 
         // ROW 5 -> 2 INTERNAL VERTICES
-        int solidOrStriped6 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX)
+        int solidOrStriped6 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX REFERENCE)
         int randomSolid6;
         do {
             randomSolid6 = (int)(Math.random()*6+2);

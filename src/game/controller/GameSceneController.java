@@ -111,6 +111,7 @@ public class GameSceneController {
     private boolean foulNoBallHit;
     private boolean guided;
     private boolean ballAssigned;
+    private boolean firstCueBallCollision;
 
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean potted[] = new boolean[16];
@@ -235,6 +236,7 @@ public class GameSceneController {
         foulNoBallHit = true;
         guided = false;
         ballAssigned = false;
+        firstCueBallCollision = false;
 
         // POTTED BALLS
         thisTurnPottedBalls = new ArrayList<>();
@@ -376,11 +378,11 @@ public class GameSceneController {
             double xcb = ball[0].getPosition().getX();
             double ycb = ball[0].getPosition().getY();
 
-            double velocity = Math.floor(powerSlider.getValue() / 30 * 100);
+            double velocity = Math.floor(powerSlider.getValue() / 17 * 100);
 
-            sliderVelocityLabel.setText(String.valueOf(velocity));
+            sliderVelocityLabel.setText(String.valueOf((int)velocity) + "%");
 
-            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 30 * 0.7);
+            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 17 * 0.7);
             
             cue.setLayoutX(xcb - 385 - velocity);
             cue.setLayoutY(ycb - 20);
@@ -449,6 +451,10 @@ public class GameSceneController {
             }
             updateBalls(i);
             checkPocket(i);
+        }
+
+        if(firstCueBallCollision) {
+            firstCueBallCollision = false;
         }
 
         if(ballsMoving) {
@@ -584,37 +590,45 @@ public class GameSceneController {
             ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() + ball[ballNum].getVelocity().getY());
 
             for(int i = 0; i < 16; i++) {
-                if(ballNum != ball[i].getBallNumber() && ball[ballNum].collides(ball[i])) {
+                if(ball[ballNum].collides(ball[i]) && ballNum != ball[i].getBallNumber()) {
 
-                    if(ballNum == 0 && !foulWrongBallType && player1.getBallType() == 0) {
+                    if(ballNum == 0) {
+                        foulNoBallHit = false;
+                        if(!firstCueBallCollision) {
+                            firstCueBallCollision = true;
+                        }
+                    }
+
+                    if(ballNum == 0 && player1.getBallType() == 0) {
                         if(ball[i].getBallNumber() == 8) {
                             foulEight = true;
                         }
                     }
-                    if (ballNum == 0 && !foulWrongBallType && player1.getBallType() != 0) {
+
+                    if (ballNum == 0 && player1.getBallType() != 0) {
                         if(player1.isMyTurn()) {
-                            if(player1.getBallType() != ball[i].getBallType()) {
+                            if(player1.getBallType() != ball[i].getBallType() && firstCueBallCollision) {
                                 foulWrongBallType = true;
                                 if(ball[i].getBallNumber() == 8 && !player1.isAllBallsPlotted()) {
                                     foulEight = true;
                                 } else if(ball[i].getBallNumber() == 8 && player1.isAllBallsPlotted()) {
                                     foulEight = false;
                                 }
+                            } else if(player1.getBallType() == ball[i].getBallType() && firstCueBallCollision) {
+                                foulWrongBallType = false;
                             }
                         } else {
-                            if(player2.getBallType() != ball[i].getBallType()) {
+                            if(player2.getBallType() != ball[i].getBallType() && firstCueBallCollision) {
                                 foulWrongBallType = true;
                                 if(ball[i].getBallNumber() == 8 && !player2.isAllBallsPlotted()) {
                                     foulEight = true;
                                 } else if(ball[i].getBallNumber() == 8 && player2.isAllBallsPlotted()) {
                                     foulEight = false;
                                 }
+                            } else if(player2.getBallType() == ball[i].getBallType() && firstCueBallCollision) {
+                                foulWrongBallType = false;
                             }
                         }
-                    }
-
-                    if(ballNum == 0) {
-                        foulNoBallHit = false;
                     }
 
                     ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() - ball[ballNum].getVelocity().getX());

@@ -75,7 +75,7 @@
 }
 .progress-bar > .track {
     -fx-border-radius: 0;
-    -fx-background-radius: 0;
+    -fx-background-radius: 25;
     -fx-text-box-border: transparent;
     -fx-control-inner-background: transparent;
     -fx-background-color: rgba(255, 255, 255, 0.1);
