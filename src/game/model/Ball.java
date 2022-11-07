@@ -198,6 +198,159 @@ public class Ball {
         velocity.setY (velocity.getY() * acceleration);
     }
 
+    public static void triangle(Ball ball[]) {
+
+        // FIXED POSITIONS
+
+        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/resources/Balls/CueBallExt.png", 0, 0);
+        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, "src/game/resources/Balls/Ball1Ext.png", 1, 1);
+        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball8Ext.png", 3, 8);
+
+        // VARIABLE POSITIONS
+
+        // (int)(Math.random()*(max-min+1)+min)
+
+        // ROW 5 -> 2 EXTERNAL VERTICES
+        int solidOrStriped1 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX REFERENCE)
+        int randomSolid1 = (int)(Math.random()*6+2);
+        int randomStriped1 = (int)(Math.random()*7+9);
+        // UP VERTEX
+        if(solidOrStriped1 == 0) {
+            ball[randomSolid1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, "src/game/resources/Balls/Ball" + randomSolid1 + "Ext.png", 1, randomSolid1);
+        } else {
+            ball[randomStriped1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, "src/game/resources/Balls/Ball" + randomStriped1 + "Ext.png", 2, randomStriped1);
+        }
+        // DOWN VERTEX
+        if(solidOrStriped1 == 0) {
+            ball[randomStriped1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, "src/game/resources/Balls/Ball" + randomStriped1 + "Ext.png", 2, randomStriped1);
+        } else {
+            ball[randomSolid1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, "src/game/resources/Balls/Ball" + randomSolid1 + "Ext.png", 1, randomSolid1);
+        }
+
+        // ROW 2 -> 2 VERTICES
+        int solidOrStriped2 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX REFERENCE)
+        int randomSolid2;
+        do {
+            randomSolid2 = (int)(Math.random()*6+2);
+        } while (randomSolid2 == randomSolid1);
+        int randomStriped2;
+        do {
+            randomStriped2 = (int)(Math.random()*7+9);
+        } while (randomStriped2 == randomStriped1);
+        // UP VERTEX
+        if(solidOrStriped2 == 0) {
+            ball[randomSolid2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomSolid2 + "Ext.png", 1, randomSolid2);
+        } else {
+            ball[randomStriped2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomStriped2 + "Ext.png", 2, randomStriped2);
+        }
+        // DOWN VERTEX
+        if(solidOrStriped2 == 0) {
+            ball[randomStriped2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomStriped2 + "Ext.png", 2, randomStriped2);
+        } else {
+            ball[randomSolid2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomSolid2 + "Ext.png", 1, randomSolid2);
+        }
+
+        // ROW 3 -> 2 VERTICES
+        int solidOrStriped3 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX REFERENCE)
+        int randomSolid3;
+        do {
+            randomSolid3 = (int)(Math.random()*6+2);
+        } while (randomSolid3 == randomSolid1 || randomSolid3 == randomSolid2);
+        int randomStriped3;
+        do {
+            randomStriped3 = (int)(Math.random()*7+9);
+        } while (randomStriped3 == randomStriped1 || randomStriped3 == randomStriped2);
+        // UP VERTEX
+        if(solidOrStriped3 == 0) {
+            ball[randomSolid3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomSolid3 + "Ext.png", 1, randomSolid3);
+        } else {
+            ball[randomStriped3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomStriped3 + "Ext.png", 2, randomStriped3);
+        }
+        // DOWN VERTEX
+        if(solidOrStriped3 == 0) {
+            ball[randomStriped3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomStriped3 + "Ext.png", 2, randomStriped3);
+        } else {
+            ball[randomSolid3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomSolid3 + "Ext.png", 1, randomSolid3);
+        }
+
+        // ROW 4 -> 2 EXTERNAL VERTICES
+        int solidOrStriped4 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX)
+        int randomSolid4;
+        do {
+            randomSolid4 = (int)(Math.random()*6+2);
+        } while (randomSolid4 == randomSolid1 || randomSolid4 == randomSolid2 || randomSolid4 == randomSolid3);
+        int randomStriped4;
+        do {
+            randomStriped4 = (int)(Math.random()*7+9);
+        } while (randomStriped4 == randomStriped1 || randomStriped4 == randomStriped2 || randomStriped4 == randomStriped3);
+        // UP VERTEX
+        if(solidOrStriped4 == 0) {
+            ball[randomSolid4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, "src/game/resources/Balls/Ball" + randomSolid4 + "Ext.png", 1, randomSolid4);
+        } else {
+            ball[randomStriped4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, "src/game/resources/Balls/Ball" + randomStriped4 + "Ext.png", 2, randomStriped4);
+        }
+        // DOWN VERTEX
+        if(solidOrStriped4 == 0) {
+            ball[randomStriped4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, "src/game/resources/Balls/Ball" + randomStriped4 + "Ext.png", 2, randomStriped4);
+        } else {
+            ball[randomSolid4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, "src/game/resources/Balls/Ball" + randomSolid4 + "Ext.png", 1, randomSolid4);
+        }
+
+        // ROW 4 -> 2 INTERNAL VERTICES
+        int solidOrStriped5 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX)
+        int randomSolid5;
+        do {
+            randomSolid5 = (int)(Math.random()*6+2);
+        } while (randomSolid5 == randomSolid1 || randomSolid5 == randomSolid2 || randomSolid5 == randomSolid3 || randomSolid5 == randomSolid4);
+        int randomStriped5;
+        do {
+            randomStriped5 = (int)(Math.random()*7+9);
+        } while (randomStriped5 == randomStriped1 || randomStriped5 == randomStriped2 || randomStriped5 == randomStriped3 || randomStriped5 == randomStriped4);
+        // UP VERTEX
+        if(solidOrStriped5 == 0) {
+            ball[randomSolid5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomSolid5 + "Ext.png", 1, randomSolid5);
+        } else {
+            ball[randomStriped5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomStriped5 + "Ext.png", 2, randomStriped5);
+        }
+        // DOWN VERTEX
+        if(solidOrStriped5 == 0) {
+            ball[randomStriped5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomStriped5 + "Ext.png", 2, randomStriped5);
+        } else {
+            ball[randomSolid5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomSolid5 + "Ext.png", 1, randomSolid5);
+        }
+
+        // ROW 5 -> 2 INTERNAL VERTICES
+        int solidOrStriped6 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX)
+        int randomSolid6;
+        do {
+            randomSolid6 = (int)(Math.random()*6+2);
+        } while (randomSolid6 == randomSolid1 || randomSolid6 == randomSolid2 || randomSolid6 == randomSolid3 || randomSolid6 == randomSolid4 || randomSolid6 == randomSolid5);
+        int randomStriped6;
+        do {
+            randomStriped6 = (int)(Math.random()*7+9);
+        } while (randomStriped6 == randomStriped1 || randomStriped6 == randomStriped2 || randomStriped6 == randomStriped3 || randomStriped6 == randomStriped4 || randomStriped6 == randomStriped5);
+        // UP VERTEX
+        if(solidOrStriped6 == 0) {
+            ball[randomSolid6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomSolid6 + "Ext.png", 1, randomSolid6);
+        } else {
+            ball[randomStriped6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomStriped6 + "Ext.png", 2, randomStriped6);
+        }
+        // DOWN VERTEX
+        if(solidOrStriped6 == 0) {
+            ball[randomStriped6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomStriped6 + "Ext.png", 2, randomStriped6);
+        } else {
+            ball[randomSolid6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomSolid6 + "Ext.png", 1, randomSolid6);
+        }
+
+        // ROW 5 -> CENTER
+        int randomStriped7;
+        do {
+            randomStriped7 = (int)(Math.random()*7+9);
+        } while (randomStriped7 == randomStriped1 || randomStriped7 == randomStriped2 || randomStriped7 == randomStriped3 || randomStriped7 == randomStriped4 || randomStriped7 == randomStriped5 || randomStriped7 == randomStriped6);
+        ball[randomStriped7] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball" + randomStriped7 + "Ext.png", 2, randomStriped7);
+
+    }
+
     // GET/SET METHODS
 
     public Vector getInitialPosition() {
