@@ -190,8 +190,6 @@ public class GameSceneController {
 
     // -------------------------------------------------- FXML LINKED --------------------------------------------------
 
-    
-
     @FXML
     public void initialize() throws Exception {
         
