@@ -410,7 +410,12 @@ public class GameSceneController {
         double cueBallVelocity = 0;
         if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1 && !exit) {
 
-            Sounds.cueSound();
+            if(turnNum == 1) {
+                Sounds.cueSplitSound();
+            } else {
+                Sounds.cueSound();
+            }
+
             cueBallVelocity = powerSlider.getValue();
             
             if(cueBallVelocity != 0) {
@@ -454,7 +459,6 @@ public class GameSceneController {
             updateBalls(i);
             checkPocket(i);
         }
-        
 
         if(ballsMoving) {
             turn = false;
@@ -592,6 +596,10 @@ public class GameSceneController {
             for(int i = 0; i < 16; i++) {
                 if(ball[ballNum].collides(ball[i]) && ballNum != ball[i].getBallNumber()) {
 
+                    if(turnNum!=1) {
+                        Sounds.ballSound();
+                    }
+
                     if(ballNum == 0) {
                         foulNoBallHit = false;
                         cueBallCollisions++;
@@ -637,20 +645,12 @@ public class GameSceneController {
 
                 }
             }
-
             ball[ballNum].bankCollision();
             ball[ballNum].tableFriction();
             ball[ballNum].spin();
         }
         ball[ballNum].getSphere().setLayoutX(ball[ballNum].getPosition().getX());
         ball[ballNum].getSphere().setLayoutY(ball[ballNum].getPosition().getY());
-        if(turnNum==1 && cueBallCollisions==1){
-            Sounds.splitSound();
-            return;
-        }
-        else if(turnNum!=1){
-           Sounds.ballSound();
-        }
     }
 
 
