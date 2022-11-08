@@ -13,41 +13,39 @@ public class Ball {
     // BRIEF CLASS DESCRIPTION (FINISHED)
     // Represents the physical model of a (3D) billiard ball
 
-    private Vector initialPosition, position, velocity;
-    private double acceleration, diameter;
-    private Sphere sphere = new Sphere(12.5);
-    private String imagePath;
+    private Sphere sphere = new Sphere(Constants.BALL_RADIUS);
+
+    private Vector position, velocity;
     private int ballType;
     private int ballNumber;
     private boolean dropped;
 
+    private static double acceleration = .99;
+
     // CONSTRUCTOR METHOD
-    public Ball(double positionX, double positionY, String imagePath, int ballType, int ballNumber) {
+    public Ball(double positionX, double positionY, int ballType, int ballNumber) {
         position = new Vector(positionX, positionY);
         velocity = new Vector(0, 0);
-        this.imagePath = imagePath;
         this.ballType = ballType;
         this.ballNumber = ballNumber;
         dropped = false;
-        acceleration = .99;
-        diameter = 25;
-        initialPosition = new Vector(positionX, positionY);
     }
     
-    public Node DrawBall() {
+    public Node drawBall() {
 
         sphere.setLayoutX(position.getX());
         sphere.setLayoutY(position.getY());
+
         sphere.setRotationAxis(Rotate.Y_AXIS);
         sphere.setRotate(270);
 
-        // 3D
         PhongMaterial material = new PhongMaterial();
+        Image ballExt = new Image("file:src/game/resources/Balls/Ball" + this.ballNumber + "Ext.png");
+        material.setDiffuseMap(ballExt);
         material.setSpecularColor(Color.WHITE);
-        Image img = new Image("file:" + this.imagePath);
-        material.setDiffuseMap(img);
         material.setSpecularPower(30);
         sphere.setMaterial(material);
+
         DropShadow dropShadow = new DropShadow();
         dropShadow.setSpread(30);
         dropShadow.setOffsetX(10);
@@ -57,16 +55,16 @@ public class Ball {
         return sphere;
     }
 
+    public boolean collides(Ball b) {
+        return position.sub(b.position).getSize() <= 2 * Constants.BALL_RADIUS;
+    }
+
     public void spin() {
         Rotate rx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
         Rotate ry = new Rotate (0, 0, 0, 0, Rotate.Y_AXIS);
         rx.setAngle(Math.toDegrees(velocity.getY() / 10)); // 10?
         ry.setAngle(Math.toDegrees(velocity.getX() / 10)); // 10?
         sphere.getTransforms().addAll(rx, ry);
-    }
-
-    public boolean collides(Ball b) {
-        return position.sub(b.position).getSize() <= (diameter/2 + b.diameter/2);
     }
 
     public void ballCollision(Ball b) {
@@ -95,7 +93,7 @@ public class Ball {
 
         double x = position.getX();
         double y = position.getY();
-        double r = diameter/2;
+        double r = Constants.BALL_RADIUS;
 
         // LEFT BANK (A)
         // REGION A1
@@ -202,9 +200,9 @@ public class Ball {
 
         // FIXED POSITIONS
 
-        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, "src/game/resources/Balls/CueBallExt.png", 0, 0);
-        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, "src/game/resources/Balls/Ball1Ext.png", 1, 1);
-        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball8Ext.png", 3, 8);
+        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, 0, 0);
+        ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, 1, 1);
+        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, 3, 8);
 
         // VARIABLE POSITIONS
 
@@ -215,11 +213,11 @@ public class Ball {
         int randomSolid1 = (int)(Math.random()*6+2);
         int randomStriped1 = (int)(Math.random()*7+9);
         if(solidOrStriped1 == 0) {
-            ball[randomSolid1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, "src/game/resources/Balls/Ball" + randomSolid1 + "Ext.png", 1, randomSolid1);
-            ball[randomStriped1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, "src/game/resources/Balls/Ball" + randomStriped1 + "Ext.png", 2, randomStriped1);
+            ball[randomSolid1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, 1, randomSolid1);
+            ball[randomStriped1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, 2, randomStriped1);
         } else {
-            ball[randomStriped1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, "src/game/resources/Balls/Ball" + randomStriped1 + "Ext.png", 2, randomStriped1);
-            ball[randomSolid1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, "src/game/resources/Balls/Ball" + randomSolid1 + "Ext.png", 1, randomSolid1);
+            ball[randomStriped1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL1_Y, 2, randomStriped1);
+            ball[randomSolid1] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL9_Y, 1, randomSolid1);
         }
 
         // ROW 2 -> 2 VERTICES
@@ -233,11 +231,11 @@ public class Ball {
             randomStriped2 = (int)(Math.random()*7+9);
         } while (randomStriped2 == randomStriped1);
         if(solidOrStriped2 == 0) {
-            ball[randomSolid2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomSolid2 + "Ext.png", 1, randomSolid2);
-            ball[randomStriped2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomStriped2 + "Ext.png", 2, randomStriped2);
+            ball[randomSolid2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, 1, randomSolid2);
+            ball[randomStriped2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, 2, randomStriped2);
         } else {
-            ball[randomStriped2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomStriped2 + "Ext.png", 2, randomStriped2);
-            ball[randomSolid2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomSolid2 + "Ext.png", 1, randomSolid2);
+            ball[randomStriped2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL4_Y, 2, randomStriped2);
+            ball[randomSolid2] = new Ball(Constants.TRIANGLE_ROW2_X, Constants.TRIANGLE_COL6_Y, 1, randomSolid2);
         }
 
         // ROW 3 -> 2 VERTICES
@@ -251,11 +249,11 @@ public class Ball {
             randomStriped3 = (int)(Math.random()*7+9);
         } while (randomStriped3 == randomStriped1 || randomStriped3 == randomStriped2);
         if(solidOrStriped3 == 0) {
-            ball[randomSolid3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomSolid3 + "Ext.png", 1, randomSolid3);
-            ball[randomStriped3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomStriped3 + "Ext.png", 2, randomStriped3);
+            ball[randomSolid3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, 1, randomSolid3);
+            ball[randomStriped3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, 2, randomStriped3);
         } else {
-            ball[randomStriped3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomStriped3 + "Ext.png", 2, randomStriped3);
-            ball[randomSolid3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomSolid3 + "Ext.png", 1, randomSolid3);
+            ball[randomStriped3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL3_Y, 2, randomStriped3);
+            ball[randomSolid3] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL7_Y, 1, randomSolid3);
         }
 
         // ROW 4 -> 2 EXTERNAL VERTICES
@@ -269,11 +267,11 @@ public class Ball {
             randomStriped4 = (int)(Math.random()*7+9);
         } while (randomStriped4 == randomStriped1 || randomStriped4 == randomStriped2 || randomStriped4 == randomStriped3);
         if(solidOrStriped4 == 0) {
-            ball[randomSolid4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, "src/game/resources/Balls/Ball" + randomSolid4 + "Ext.png", 1, randomSolid4);
-            ball[randomStriped4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, "src/game/resources/Balls/Ball" + randomStriped4 + "Ext.png", 2, randomStriped4);
+            ball[randomSolid4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, 1, randomSolid4);
+            ball[randomStriped4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, 2, randomStriped4);
         } else {
-            ball[randomStriped4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, "src/game/resources/Balls/Ball" + randomStriped4 + "Ext.png", 2, randomStriped4);
-            ball[randomSolid4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, "src/game/resources/Balls/Ball" + randomSolid4 + "Ext.png", 1, randomSolid4);
+            ball[randomStriped4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL2_Y, 2, randomStriped4);
+            ball[randomSolid4] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL8_Y, 1, randomSolid4);
         }
 
         // ROW 4 -> 2 INTERNAL VERTICES
@@ -287,11 +285,11 @@ public class Ball {
             randomStriped5 = (int)(Math.random()*7+9);
         } while (randomStriped5 == randomStriped1 || randomStriped5 == randomStriped2 || randomStriped5 == randomStriped3 || randomStriped5 == randomStriped4);
         if(solidOrStriped5 == 0) {
-            ball[randomSolid5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomSolid5 + "Ext.png", 1, randomSolid5);
-            ball[randomStriped5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomStriped5 + "Ext.png", 2, randomStriped5);
+            ball[randomSolid5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, 1, randomSolid5);
+            ball[randomStriped5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, 2, randomStriped5);
         } else {
-            ball[randomStriped5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, "src/game/resources/Balls/Ball" + randomStriped5 + "Ext.png", 2, randomStriped5);
-            ball[randomSolid5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, "src/game/resources/Balls/Ball" + randomSolid5 + "Ext.png", 1, randomSolid5);
+            ball[randomStriped5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL4_Y, 2, randomStriped5);
+            ball[randomSolid5] = new Ball(Constants.TRIANGLE_ROW4_X, Constants.TRIANGLE_COL6_Y, 1, randomSolid5);
         }
 
         // ROW 5 -> 2 INTERNAL VERTICES
@@ -305,11 +303,11 @@ public class Ball {
             randomStriped6 = (int)(Math.random()*7+9);
         } while (randomStriped6 == randomStriped1 || randomStriped6 == randomStriped2 || randomStriped6 == randomStriped3 || randomStriped6 == randomStriped4 || randomStriped6 == randomStriped5);
         if(solidOrStriped6 == 0) {
-            ball[randomSolid6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomSolid6 + "Ext.png", 1, randomSolid6);
-            ball[randomStriped6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomStriped6 + "Ext.png", 2, randomStriped6);
+            ball[randomSolid6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, 1, randomSolid6);
+            ball[randomStriped6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, 2, randomStriped6);
         } else {
-            ball[randomStriped6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, "src/game/resources/Balls/Ball" + randomStriped6 + "Ext.png", 2, randomStriped6);
-            ball[randomSolid6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, "src/game/resources/Balls/Ball" + randomSolid6 + "Ext.png", 1, randomSolid6);
+            ball[randomStriped6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL3_Y, 2, randomStriped6);
+            ball[randomSolid6] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL7_Y, 1, randomSolid6);
         }
         
         // ROW 5 -> CENTER
@@ -317,15 +315,11 @@ public class Ball {
         do {
             randomStriped7 = (int)(Math.random()*7+9);
         } while (randomStriped7 == randomStriped1 || randomStriped7 == randomStriped2 || randomStriped7 == randomStriped3 || randomStriped7 == randomStriped4 || randomStriped7 == randomStriped5 || randomStriped7 == randomStriped6);
-        ball[randomStriped7] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL5_Y, "src/game/resources/Balls/Ball" + randomStriped7 + "Ext.png", 2, randomStriped7);
+        ball[randomStriped7] = new Ball(Constants.TRIANGLE_ROW5_X, Constants.TRIANGLE_COL5_Y, 2, randomStriped7);
 
     }
 
     // GET/SET METHODS
-
-    public Vector getInitialPosition() {
-        return initialPosition;
-    }
 
     public Vector getPosition() {
         return position;
@@ -362,10 +356,6 @@ public class Ball {
     
     public void setDropped(boolean dropped) {
         this.dropped = dropped;
-    }
-
-    public double getDiameter() {
-        return diameter;
     }
 
 }

@@ -199,7 +199,7 @@ public class GameSceneController {
         turnNum = 1;
         Ball.triangle(ball);
         for(int i = 0; i < 16; i++) {
-            pane.getChildren().add(ball[i].DrawBall());
+            pane.getChildren().add(ball[i].drawBall());
         }
 
         // CUE LOADING
@@ -645,9 +645,9 @@ public class GameSceneController {
 
                 }
             }
+            ball[ballNum].spin();
             ball[ballNum].bankCollision();
             ball[ballNum].tableFriction();
-            ball[ballNum].spin();
         }
         ball[ballNum].getSphere().setLayoutX(ball[ballNum].getPosition().getX());
         ball[ballNum].getSphere().setLayoutY(ball[ballNum].getPosition().getY());
@@ -1003,7 +1003,7 @@ public class GameSceneController {
         double y = circle.getCenterY() - ball.getPosition().getY();
         double centersdistance = Math.sqrt(x * x + y * y);
 
-        if (centersdistance - ball.getDiameter() <= 3) {
+        if (centersdistance - Constants.BALL_DIAMETER <= 3) {
             return true;
         } else {
             return false;

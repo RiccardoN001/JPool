@@ -1,6 +1,9 @@
 package game.model;
 
 public class Constants {
+
+    public static final double BALL_RADIUS = 12.5;
+    public static final double BALL_DIAMETER = 2 * BALL_RADIUS;
     
     // GAMEBALLS INITIALIZATION (SPLIT)
     // HEAD SPOT
