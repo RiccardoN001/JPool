@@ -6,6 +6,7 @@ import game.Main;
 import game.model.Ball;
 import game.model.Constants;
 import game.model.Player;
+import game.model.Sounds;
 import game.model.Vector;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -111,7 +112,7 @@ public class GameSceneController {
     private boolean foulNoBallHit;
     private boolean guided;
     private boolean ballAssigned;
-    private boolean firstCueBallCollision;
+    private int cueBallCollisions;
 
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean potted[] = new boolean[16];
@@ -236,7 +237,7 @@ public class GameSceneController {
         foulNoBallHit = true;
         guided = false;
         ballAssigned = false;
-        firstCueBallCollision = false;
+        cueBallCollisions = 0;
 
         // POTTED BALLS
         thisTurnPottedBalls = new ArrayList<>();
@@ -409,6 +410,7 @@ public class GameSceneController {
         double cueBallVelocity = 0;
         if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1 && !exit) {
 
+            Sounds.cueSound();
             cueBallVelocity = powerSlider.getValue();
             
             if(cueBallVelocity != 0) {
@@ -452,10 +454,7 @@ public class GameSceneController {
             updateBalls(i);
             checkPocket(i);
         }
-
-        if(firstCueBallCollision) {
-            firstCueBallCollision = false;
-        }
+        
 
         if(ballsMoving) {
             turn = false;
@@ -482,6 +481,7 @@ public class GameSceneController {
             foulWrongBallType = false;
             foulEight = false;
             foulNoBallHit = true;
+            cueBallCollisions = 0;
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 ball[0].setPosition(new Vector(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y));
@@ -594,9 +594,7 @@ public class GameSceneController {
 
                     if(ballNum == 0) {
                         foulNoBallHit = false;
-                        if(!firstCueBallCollision) {
-                            firstCueBallCollision = true;
-                        }
+                        cueBallCollisions++;
                     }
 
                     if(ballNum == 0 && player1.getBallType() == 0) {
@@ -607,25 +605,25 @@ public class GameSceneController {
 
                     if (ballNum == 0 && player1.getBallType() != 0) {
                         if(player1.isMyTurn()) {
-                            if(player1.getBallType() != ball[i].getBallType() && firstCueBallCollision) {
+                            if(player1.getBallType() != ball[i].getBallType() && cueBallCollisions==1) {
                                 foulWrongBallType = true;
                                 if(ball[i].getBallNumber() == 8 && !player1.isAllBallsPlotted()) {
                                     foulEight = true;
                                 } else if(ball[i].getBallNumber() == 8 && player1.isAllBallsPlotted()) {
                                     foulEight = false;
                                 }
-                            } else if(player1.getBallType() == ball[i].getBallType() && firstCueBallCollision) {
+                            } else if(player1.getBallType() == ball[i].getBallType() && cueBallCollisions==1) {
                                 foulWrongBallType = false;
                             }
                         } else {
-                            if(player2.getBallType() != ball[i].getBallType() && firstCueBallCollision) {
+                            if(player2.getBallType() != ball[i].getBallType() && cueBallCollisions==1) {
                                 foulWrongBallType = true;
                                 if(ball[i].getBallNumber() == 8 && !player2.isAllBallsPlotted()) {
                                     foulEight = true;
                                 } else if(ball[i].getBallNumber() == 8 && player2.isAllBallsPlotted()) {
                                     foulEight = false;
                                 }
-                            } else if(player2.getBallType() == ball[i].getBallType() && firstCueBallCollision) {
+                            } else if(player2.getBallType() == ball[i].getBallType() && cueBallCollisions==1) {
                                 foulWrongBallType = false;
                             }
                         }
@@ -634,6 +632,7 @@ public class GameSceneController {
                     ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() - ball[ballNum].getVelocity().getX());
                     ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() - ball[ballNum].getVelocity().getY());
                     ball[ballNum].ballCollision(ball[i]);
+                    
                     break;
 
                 }
@@ -645,7 +644,15 @@ public class GameSceneController {
         }
         ball[ballNum].getSphere().setLayoutX(ball[ballNum].getPosition().getX());
         ball[ballNum].getSphere().setLayoutY(ball[ballNum].getPosition().getY());
+        if(turnNum==1 && cueBallCollisions==1){
+            Sounds.splitSound();
+            return;
+        }
+        else if(turnNum!=1){
+           Sounds.ballSound();
+        }
     }
+
 
     private void checkPocket(int ballNum) {
 
@@ -1012,6 +1019,7 @@ public class GameSceneController {
     }
 
     private void dropit(int ballNum) {
+        Sounds.pocketSound();
         thisTurnPottedBalls.add(Integer.valueOf(ballNum));
         ball[ballNum].setDropped(true);
         ball[ballNum].setVelocity(0, 0);

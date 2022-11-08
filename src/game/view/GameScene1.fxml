@@ -706,5 +706,10 @@
          </font>
       </Label>
       <Label fx:id="foulboardLabel" layoutX="504.0" layoutY="725.0" prefHeight="60.0" prefWidth="400.0" text="FOULBOARD" textFill="WHITE" />
+      <ImageView fitHeight="84.0" fitWidth="70.0" layoutX="102.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Sounds/SpeakerHigh.png" />
+         </image>
+      </ImageView>
     </children>
 </Pane>
