@@ -1,6 +1,7 @@
 package game.controller;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import game.Main;
 import game.model.Ball;
@@ -62,6 +63,8 @@ public class GameSceneController {
     // -------------------------------------------------- GAME ATTRIBUTES --------------------------------------------------
 
     private ImageView cue;
+    private ImageView soundIconOff;
+    private ImageView soundIconOn;
     @FXML
     private Line guidelineToBall;
     @FXML
@@ -95,7 +98,7 @@ public class GameSceneController {
     @FXML
     private Label foulboardLabel;
     @FXML
-    private ProgressBar timer;
+    private ProgressBar timerBar;
 
     private Player player1;
     private Player player2;
@@ -113,6 +116,7 @@ public class GameSceneController {
     private boolean guided;
     private boolean ballAssigned;
     private int cueBallCollisions;
+    private boolean soundOff;
 
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean potted[] = new boolean[16];
@@ -159,6 +163,19 @@ public class GameSceneController {
         powerSlider.setDisable(false);
         exit = false;
         pane.getChildren().remove(blurredScene);
+    }
+    @FXML
+    public void handleSoundsButton(ActionEvent event) throws Exception {
+        if(!soundOff){
+            soundOff = true;
+            soundIconOn.setVisible(false);
+            soundIconOff.setVisible(true);
+        }
+        else if(soundOff){
+            soundOff = false;
+            soundIconOff.setVisible(false);
+            soundIconOn.setVisible(true);
+        }
     }
 
     // -------------------------------------------------- ANIMATION METHODS --------------------------------------------------
@@ -250,6 +267,26 @@ public class GameSceneController {
         exitYes.setVisible(false);
         exitNo.setVisible(false);
         exit = false;
+
+        //SOUNDS
+        soundOff = false;
+        soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
+        soundIconOn.setFitWidth(70);
+        soundIconOn.setFitHeight(70);
+        soundIconOn.setLayoutX(127);
+        soundIconOn.setLayoutY(4);
+        soundIconOn.setPreserveRatio(true);
+        pane.getChildren().add(soundIconOn);
+
+        soundIconOff = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOff.png"));
+        soundIconOff.setFitWidth(70);
+        soundIconOff.setFitHeight(70);
+        soundIconOff.setLayoutX(127);
+        soundIconOff.setLayoutY(7);
+        soundIconOff.setPreserveRatio(true);
+        soundIconOff.setVisible(false);
+        pane.getChildren().add(soundIconOff);
+        
 
         startGame();
     }
@@ -410,9 +447,7 @@ public class GameSceneController {
         double cueBallVelocity = 0;
         if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1 && !exit) {
 
-            if(turnNum == 1) {
-                Sounds.cueSplitSound();
-            } else {
+            if(!soundOff){
                 Sounds.cueSound();
             }
 
@@ -443,6 +478,7 @@ public class GameSceneController {
 // -------------------------------------------------- NOT FXML LINKED --------------------------------------------------
 
     private void update() {
+
 
         if(turnNum == 1) {
             playerBreaking();
@@ -596,13 +632,15 @@ public class GameSceneController {
             for(int i = 0; i < 16; i++) {
                 if(ball[ballNum].collides(ball[i]) && ballNum != ball[i].getBallNumber()) {
 
-                    if(turnNum!=1) {
-                        Sounds.ballSound();
-                    }
-
                     if(ballNum == 0) {
                         foulNoBallHit = false;
                         cueBallCollisions++;
+                    }
+                    if(ballNum == 0 && cueBallCollisions == 1 && turnNum==1 && !soundOff){
+                        Sounds.splitSound();
+                    }
+                    else if(turnNum != 1 && !soundOff){
+                        Sounds.ballSound();
                     }
 
                     if(ballNum == 0 && player1.getBallType() == 0) {
@@ -1019,7 +1057,9 @@ public class GameSceneController {
     }
 
     private void dropit(int ballNum) {
-        Sounds.pocketSound();
+        if(!soundOff){
+            Sounds.pocketSound();
+        }
         thisTurnPottedBalls.add(Integer.valueOf(ballNum));
         ball[ballNum].setDropped(true);
         ball[ballNum].setVelocity(0, 0);

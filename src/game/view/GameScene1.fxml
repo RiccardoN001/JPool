@@ -29,7 +29,7 @@
     <children>
       <MenuButton fx:id="menuBar" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenuButton" text="OPTIONS">
         <items>
-            <MenuItem fx:id="soundsButton" mnemonicParsing="false" text="SOUNDS" />
+            <MenuItem fx:id="soundsButton" mnemonicParsing="false" onAction="#handleSoundsButton" text="SOUNDS" />
             <MenuItem fx:id="pauseButton" mnemonicParsing="false" text="PAUSE" />
           <MenuItem fx:id="menuButtonFromGame" mnemonicParsing="false" onAction="#handleMenuButton" text="MENU" />
         </items>
@@ -351,7 +351,7 @@
       <Line fx:id="guidelineFromBall" strokeWidth="1.5" />
       <Line fx:id="guidelineFromCue" strokeWidth="1.5" />
       <Label fx:id="turnboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" text="TURNBOARD" textFill="WHITE" />
-      <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="10.0" prefWidth="400.0" progress="0.0" />
+      <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="10.0" prefWidth="400.0" progress="1.0" />
       <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 1" textFill="WHITE" />
       <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 2" textFill="WHITE" />
       <Circle layoutX="704.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
@@ -706,10 +706,5 @@
          </font>
       </Label>
       <Label fx:id="foulboardLabel" layoutX="504.0" layoutY="725.0" prefHeight="60.0" prefWidth="400.0" text="FOULBOARD" textFill="WHITE" />
-      <ImageView fitHeight="84.0" fitWidth="70.0" layoutX="102.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/Sounds/SpeakerHigh.png" />
-         </image>
-      </ImageView>
     </children>
 </Pane>
