@@ -4,6 +4,8 @@ public class Constants {
 
     public static final double BALL_RADIUS = 12.5;
     public static final double BALL_DIAMETER = 2 * BALL_RADIUS;
+
+    public static final double TABLE_FRICTION = .99;
     
     // GAMEBALLS INITIALIZATION (SPLIT)
     // HEAD SPOT

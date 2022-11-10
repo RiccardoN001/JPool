@@ -2,6 +2,7 @@ package game.controller;
 
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import game.Main;
 import game.model.Ball;
@@ -63,8 +64,6 @@ public class GameSceneController {
     // -------------------------------------------------- GAME ATTRIBUTES --------------------------------------------------
 
     private ImageView cue;
-    private ImageView soundIconOff;
-    private ImageView soundIconOn;
     @FXML
     private Line guidelineToBall;
     @FXML
@@ -98,7 +97,10 @@ public class GameSceneController {
     @FXML
     private Label foulboardLabel;
     @FXML
-    private ProgressBar timerBar;
+    private ProgressBar shotClockBar;
+
+    private ImageView soundIconOff;
+    private ImageView soundIconOn;
 
     private Player player1;
     private Player player2;
@@ -113,6 +115,7 @@ public class GameSceneController {
     private boolean foulWrongBallType;
     private boolean foulEight;
     private boolean foulNoBallHit;
+    private boolean foulShotClock;
     private boolean guided;
     private boolean ballAssigned;
     private int cueBallCollisions;
@@ -122,7 +125,9 @@ public class GameSceneController {
     private boolean potted[] = new boolean[16];
     private double stackY = 665;
 
+    // threads
     private Timeline timeline = new Timeline();
+    private Timer shotClock;
 
     // -------------------------------------------------- SCENE METHODS --------------------------------------------------
 
@@ -205,6 +210,31 @@ public class GameSceneController {
         timeline.play();
     }
 
+    // -------------------------------------------------- SHOTCLOCK METHODS --------------------------------------------------
+
+    public void startShotClock() {
+        shotClock = new Timer();
+        TimerTask task = new TimerTask() {
+            double countdown = 10;
+            @Override
+            public void run() {
+                if(countdown > 0) {
+                    shotClockBar.setProgress(countdown / 10);
+                    countdown--;
+                } else {
+                    foulShotClock = true;
+                    shotClock.cancel();
+                }
+            }
+        };
+        shotClock.scheduleAtFixedRate(task, 0, 1000);
+    }
+
+    public void stopShotClock() {
+        shotClock.cancel();
+        shotClockBar.setProgress(1);
+    }
+
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
 
     // -------------------------------------------------- FXML LINKED --------------------------------------------------
@@ -252,6 +282,7 @@ public class GameSceneController {
         foulWrongBallType = false;
         foulEight = false;
         foulNoBallHit = true;
+        foulShotClock = false;
         guided = false;
         ballAssigned = false;
         cueBallCollisions = 0;
@@ -286,7 +317,8 @@ public class GameSceneController {
         soundIconOff.setPreserveRatio(true);
         soundIconOff.setVisible(false);
         pane.getChildren().add(soundIconOff);
-        
+
+        startShotClock();
 
         startGame();
     }
@@ -447,6 +479,8 @@ public class GameSceneController {
         double cueBallVelocity = 0;
         if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1 && !exit) {
 
+            stopShotClock();
+
             if(!soundOff){
                 Sounds.cueSound();
             }
@@ -479,7 +513,6 @@ public class GameSceneController {
 
     private void update() {
 
-
         if(turnNum == 1) {
             playerBreaking();
         }
@@ -506,6 +539,8 @@ public class GameSceneController {
 
             foul = false;
 
+            startShotClock();
+            
             checkCases();
             checkAllPotted();
 
@@ -521,6 +556,7 @@ public class GameSceneController {
             foulWrongBallType = false;
             foulEight = false;
             foulNoBallHit = true;
+            foulShotClock = false;
             cueBallCollisions = 0;
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
@@ -636,6 +672,7 @@ public class GameSceneController {
                         foulNoBallHit = false;
                         cueBallCollisions++;
                     }
+
                     if(ballNum == 0 && cueBallCollisions == 1 && turnNum==1 && !soundOff){
                         Sounds.splitSound();
                     }
@@ -885,11 +922,11 @@ public class GameSceneController {
 
         }
 
-        if(foulWrongBallType || foulEight || foulNoBallHit) {
+        if(foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
             foul = true;
         }
 
-        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit) {
+        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
             changeTurn();
         }
 
@@ -958,6 +995,8 @@ public class GameSceneController {
             foulboardLabel.setText("FALLO: CATEGORIA ERRATA");
         } else if(foulNoBallHit) {
             foulboardLabel.setText("FALLO: NESSUNA PALLA COLPITA");
+        } else if(foulShotClock) {
+            foulboardLabel.setText("SHOTCLOCK");
         }
     }
 
