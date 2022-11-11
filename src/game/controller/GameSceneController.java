@@ -120,6 +120,9 @@ public class GameSceneController {
     private boolean ballAssigned;
     private int cueBallCollisions;
     private boolean soundOff;
+    private boolean eightDeclared;
+    private int eightPocket;
+    private int eightDelcaledPocket;
 
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean potted[] = new boolean[16];
@@ -128,6 +131,34 @@ public class GameSceneController {
     // threads
     private Timeline timeline = new Timeline();
     private Timer shotClock;
+
+    @FXML
+    private Button topLeftPocket;
+    @FXML
+    private Button topPocket;
+    @FXML
+    private Button topRightPocket;
+    @FXML
+    private Button bottomLeftPocket;
+    @FXML
+    private Button bottomPocket;
+    @FXML
+    private Button bottomRightPocket;
+
+    @FXML
+    private Circle topLeftCircle;
+    @FXML
+    private Circle topCircle;
+    @FXML
+    private Circle topRightCircle;
+    @FXML
+    private Circle bottomLeftCircle;
+    @FXML
+    private Circle bottomCircle;
+    @FXML
+    private Circle bottomRightCircle;
+
+
 
     // -------------------------------------------------- SCENE METHODS --------------------------------------------------
 
@@ -215,12 +246,15 @@ public class GameSceneController {
     public void startShotClock() {
         shotClock = new Timer();
         TimerTask task = new TimerTask() {
-            double countdown = 10;
+            double countdown = 30;
             @Override
             public void run() {
                 if(countdown > 0) {
-                    shotClockBar.setProgress(countdown / 10);
-                    countdown -= 0.001;
+                    shotClockBar.setProgress(countdown / 30);
+                    countdown -= 1;
+                    if(countdown == 5) {
+                        Sounds.playSound("ShotClockSound");
+                    }
                 } else {
                     turnChange = true;
                     foulShotClock = true;
@@ -228,7 +262,7 @@ public class GameSceneController {
                 }
             }
         };
-        shotClock.scheduleAtFixedRate(task, 0, 1);
+        shotClock.scheduleAtFixedRate(task, 1000, 1000);
     }
 
     public void stopShotClock() {
@@ -287,6 +321,7 @@ public class GameSceneController {
         guided = false;
         ballAssigned = false;
         cueBallCollisions = 0;
+        eightDeclared = false;
 
         // POTTED BALLS
         thisTurnPottedBalls = new ArrayList<>();
@@ -482,8 +517,10 @@ public class GameSceneController {
 
             stopShotClock();
 
+            Sounds.stopSound("ShotClockSound");
+
             if(!soundOff){
-                Sounds.cueSound();
+                Sounds.playSound("CueSound");
             }
 
             cueBallVelocity = powerSlider.getValue();
@@ -514,7 +551,7 @@ public class GameSceneController {
 
     private void update() {
 
-        if(turnNum == 1) {
+        if(turnNum == 1 && !foulShotClock) {
             playerBreaking();
         }
 
@@ -581,6 +618,29 @@ public class GameSceneController {
                 }
             }
 
+            if(player1.isAllBallsPlotted() || player2.isAllBallsPlotted()) {
+                topLeftPocket.setVisible(true);
+                topPocket.setVisible(true);
+                topRightPocket.setVisible(true);
+                bottomLeftPocket.setVisible(true);
+                bottomPocket.setVisible(true);
+                bottomRightPocket.setVisible(true);
+
+                topLeftCircle.setStroke(Color.DARKGRAY);
+                topLeftCircle.setStrokeWidth(3);
+                topCircle.setStroke(Color.DARKGRAY);
+                topCircle.setStrokeWidth(3);
+                topRightCircle.setStroke(Color.DARKGRAY);
+                topRightCircle.setStrokeWidth(3);
+                bottomLeftCircle.setStroke(Color.DARKGRAY);
+                bottomLeftCircle.setStrokeWidth(3);
+                bottomCircle.setStroke(Color.DARKGRAY);
+                bottomCircle.setStrokeWidth(3);
+                bottomRightCircle.setStroke(Color.DARKGRAY);
+                bottomRightCircle.setStrokeWidth(3);
+
+            }
+
             if(player1.isAllBallsPlotted() && player1.isMyTurn()) {
                 blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
                 blackScoreBall.setFitWidth(60);
@@ -603,6 +663,35 @@ public class GameSceneController {
 
         }
 
+    }
+
+    @FXML
+    private void eightPocket(ActionEvent event) {
+        if(event.getSource() == topLeftPocket && !eightDeclared) {
+            topLeftCircle.setStroke(Color.GREEN);
+            eightDelcaledPocket = 1;
+            eightDeclared = true;
+        } else if(event.getSource() == topPocket && !eightDeclared) {
+            topCircle.setStroke(Color.GREEN);
+            eightDelcaledPocket = 1;
+            eightDeclared = true;
+        } else if(event.getSource() == topRightPocket && !eightDeclared) {
+            topRightCircle.setStroke(Color.GREEN);
+            eightDelcaledPocket = 1;
+            eightDeclared = true;
+        } else if(event.getSource() == bottomLeftPocket && !eightDeclared) {
+            bottomLeftCircle.setStroke(Color.GREEN);
+            eightDelcaledPocket = 1;
+            eightDeclared = true;
+        } else if(event.getSource() == bottomPocket && !eightDeclared) {
+            bottomCircle.setStroke(Color.GREEN);
+            eightDelcaledPocket = 1;
+            eightDeclared = true;
+        } else if(event.getSource() == bottomRightPocket && !eightDeclared) {
+            bottomRightCircle.setStroke(Color.GREEN);
+            eightDelcaledPocket = 1;
+            eightDeclared = true;
+        }
     }
 
     private void playerBreaking() {
@@ -678,10 +767,10 @@ public class GameSceneController {
                     }
 
                     if(ballNum == 0 && cueBallCollisions == 1 && turnNum==1 && !soundOff){
-                        Sounds.splitSound();
+                        Sounds.playSound("SplitSound");
                     }
                     else if(turnNum != 1 && !soundOff){
-                        Sounds.ballSound();
+                        Sounds.playSound("BallSound");
                     }
 
                     if(ballNum == 0 && player1.getBallType() == 0) {
@@ -742,21 +831,39 @@ public class GameSceneController {
 
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check) {
             dropit (ballNum);
+            if(ballNum == 8) {
+                eightPocket = 1;
+            }
         }
         else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check) {
             dropit (ballNum);
+            if(ballNum == 8) {
+                eightPocket = 2;
+            }
         }
         else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check) {
             dropit (ballNum);
+            if(ballNum == 8) {
+                eightPocket = 3;
+            }
         }
         else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check) {
             dropit (ballNum);
+            if(ballNum == 8) {
+                eightPocket = 4;
+            }
         }
         else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check) {
             dropit (ballNum);
+            if(ballNum == 8) {
+                eightPocket = 5;
+            }
         }
         else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check) {
             dropit (ballNum);
+            if(ballNum == 8) {
+                eightPocket = 6;
+            }
         }
         if ((y <= 244+15 || y >= 700-15 || x <= 290+15 || x >= 1174-15) && !ball[ballNum].isDropped ()) {
             dropit (ballNum);
@@ -836,8 +943,11 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0) {
+                        if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
+                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
+                            System.out.println("BUca errata dichiarata");
+                            eightIn();
                         }
                     } else {
 
@@ -848,8 +958,11 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0) {
+                        if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
+                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
+                            System.out.println("BUca errata dichiarata");
+                            eightIn();
                         }
 
                     }
@@ -864,8 +977,11 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0) {
+                        if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
+                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
+                            System.out.println("BUca errata dichiarata");
+                            eightIn();
                         }
                     } else {
 
@@ -876,8 +992,11 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0) {
+                        if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
+                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
+                            System.out.println("BUca errata dichiarata");
+                            eightIn();
                         }
 
                     }
@@ -1049,10 +1168,12 @@ public class GameSceneController {
             player2.setWin(true);
             player1.setWin(false);
             gameOver = true;
+            turnboardLabel.setText("Vince " + player2.getNickname());
         } else {
             player2.setWin(false);
             player1.setWin(true);
             gameOver = true;
+            turnboardLabel.setText("Vince " + player1.getNickname());
         }
     }
 
@@ -1061,10 +1182,12 @@ public class GameSceneController {
             player2.setWin(false);
             player1.setWin(true);
             gameOver = true;
+            turnboardLabel.setText("Vince " + player1.getNickname());
         } else {
             player2.setWin(true);
             player1.setWin(false);
             gameOver = true;
+            turnboardLabel.setText("Vince " + player2.getNickname());
         }
     }
 
@@ -1100,8 +1223,8 @@ public class GameSceneController {
     }
 
     private void dropit(int ballNum) {
-        if(!soundOff){
-            Sounds.pocketSound();
+        if(!soundOff && ballNum != 0){
+            Sounds.playSound("PocketSound");
         }
         thisTurnPottedBalls.add(Integer.valueOf(ballNum));
         ball[ballNum].setDropped(true);

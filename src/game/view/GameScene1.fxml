@@ -85,7 +85,7 @@
             <DropShadow />
          </effect>
         </Rectangle>
-        <Circle layoutX="284.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="topLeftCircle" layoutX="284.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <fill>
                 <RadialGradient focusAngle="-153.81" focusDistance="-0.09174311926605505" radius="1.0">
                     <stops>
@@ -104,7 +104,7 @@
                 <DropShadow />
             </effect>
         </Circle>
-        <Circle layoutX="704.0" layoutY="241.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="topCircle" layoutX="704.0" layoutY="241.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
             <fill>
                 <RadialGradient centerX="0.4715909090909091" radius="1.0">
                     <stops>
@@ -133,7 +133,7 @@
                 <DropShadow />
             </effect>
         </Circle>
-        <Circle layoutX="1124.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="topRightCircle" layoutX="1124.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -152,7 +152,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Circle layoutX="284.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="bottomLeftCircle" layoutX="284.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -171,7 +171,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Circle layoutX="704.0" layoutY="690.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="bottomCircle" layoutX="704.0" layoutY="690.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -200,7 +200,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Circle layoutX="1124.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="bottomRightCircle" layoutX="1124.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -706,5 +706,11 @@
          </font>
       </Label>
       <Label fx:id="foulboardLabel" layoutX="504.0" layoutY="725.0" prefHeight="60.0" prefWidth="400.0" text="FOULBOARD" textFill="WHITE" />
+      <Button fx:id="topLeftPocket" layoutX="254.0" layoutY="214.0" mnemonicParsing="false" onAction="#eightPocket" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="topPocket" layoutX="675.0" layoutY="214.0" mnemonicParsing="false" onAction="#eightPocket" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="topRightPocket" layoutX="1091.0" layoutY="214.0" mnemonicParsing="false" onAction="#eightPocket" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="bottomLeftPocket" layoutX="254.0" layoutY="653.0" mnemonicParsing="false" onAction="#eightPocket" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="bottomPocket" layoutX="675.0" layoutY="653.0" mnemonicParsing="false" onAction="#eightPocket" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="bottomRightPocket" layoutX="1091.0" layoutY="653.0" mnemonicParsing="false" onAction="#eightPocket" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
     </children>
 </Pane>
