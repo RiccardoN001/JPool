@@ -13,6 +13,7 @@ import game.model.Vector;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -133,32 +134,30 @@ public class GameSceneController {
     private Timer shotClock;
 
     @FXML
-    private Button topLeftPocket;
+    private Circle pocket1;
     @FXML
-    private Button topPocket;
+    private Circle pocket2;
     @FXML
-    private Button topRightPocket;
+    private Circle pocket3;
     @FXML
-    private Button bottomLeftPocket;
+    private Circle pocket4;
     @FXML
-    private Button bottomPocket;
+    private Circle pocket5;
     @FXML
-    private Button bottomRightPocket;
+    private Circle pocket6;
 
     @FXML
-    private Circle topLeftCircle;
+    private Button pocketButton1;
     @FXML
-    private Circle topCircle;
+    private Button pocketButton2;
     @FXML
-    private Circle topRightCircle;
+    private Button pocketButton3;
     @FXML
-    private Circle bottomLeftCircle;
+    private Button pocketButton4;
     @FXML
-    private Circle bottomCircle;
+    private Button pocketButton5;
     @FXML
-    private Circle bottomRightCircle;
-
-
+    private Button pocketButton6;
 
     // -------------------------------------------------- SCENE METHODS --------------------------------------------------
 
@@ -200,6 +199,7 @@ public class GameSceneController {
         exit = false;
         pane.getChildren().remove(blurredScene);
     }
+
     @FXML
     public void handleSoundsButton(ActionEvent event) throws Exception {
         if(!soundOff){
@@ -354,6 +354,14 @@ public class GameSceneController {
         soundIconOff.setVisible(false);
         pane.getChildren().add(soundIconOff);
 
+        blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
+        blackScoreBall.setFitWidth(60);
+        blackScoreBall.setFitHeight(60);
+        blackScoreBall.setLayoutX(704-30);
+        blackScoreBall.setLayoutY(172-30);
+        pane.getChildren().add(blackScoreBall);
+        blackScoreBall.setVisible(false);
+
         startShotClock();
 
         startGame();
@@ -484,11 +492,11 @@ public class GameSceneController {
             double xcb = ball[0].getPosition().getX();
             double ycb = ball[0].getPosition().getY();
 
-            double velocity = Math.floor(powerSlider.getValue() / 17 * 100);
+            double velocity = Math.floor(powerSlider.getValue() / 30 * 100);
 
             sliderVelocityLabel.setText(String.valueOf((int)velocity) + "%");
 
-            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 17 * 0.7);
+            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 30 * 0.7);
             
             cue.setLayoutX(xcb - 385 - velocity);
             cue.setLayoutY(ycb - 20);
@@ -567,6 +575,19 @@ public class GameSceneController {
             checkPocket(i);
         }
 
+        if(player1.isAllBallsPlotted() && player1.isMyTurn()) {
+            showEightPockets();
+            blackScoreBall.setVisible(true);
+            eightPocketDeclaration();
+        }
+
+        if(player2.isAllBallsPlotted() && player2.isMyTurn()) {
+            showEightPockets();
+            blackScoreBall.setVisible(true);
+            eightPocketDeclaration();
+            eightPocketDeclaration();
+        }
+
         if(ballsMoving) {
             turn = false;
             foulboardLabel.setText("");
@@ -577,7 +598,10 @@ public class GameSceneController {
 
             foul = false;
 
-            startShotClock();
+            if(!gamePause && !gameOver) {
+                startShotClock();
+            }
+            
             if(foulShotClock) {
                 foulNoBallHit = false;
             }
@@ -599,6 +623,7 @@ public class GameSceneController {
             foulNoBallHit = true;
             foulShotClock = false;
             cueBallCollisions = 0;
+            eightDeclared = false;
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 ball[0].setPosition(new Vector(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y));
@@ -618,46 +643,8 @@ public class GameSceneController {
                 }
             }
 
-            if(player1.isAllBallsPlotted() || player2.isAllBallsPlotted()) {
-                topLeftPocket.setVisible(true);
-                topPocket.setVisible(true);
-                topRightPocket.setVisible(true);
-                bottomLeftPocket.setVisible(true);
-                bottomPocket.setVisible(true);
-                bottomRightPocket.setVisible(true);
-
-                topLeftCircle.setStroke(Color.DARKGRAY);
-                topLeftCircle.setStrokeWidth(3);
-                topCircle.setStroke(Color.DARKGRAY);
-                topCircle.setStrokeWidth(3);
-                topRightCircle.setStroke(Color.DARKGRAY);
-                topRightCircle.setStrokeWidth(3);
-                bottomLeftCircle.setStroke(Color.DARKGRAY);
-                bottomLeftCircle.setStrokeWidth(3);
-                bottomCircle.setStroke(Color.DARKGRAY);
-                bottomCircle.setStrokeWidth(3);
-                bottomRightCircle.setStroke(Color.DARKGRAY);
-                bottomRightCircle.setStrokeWidth(3);
-
-            }
-
-            if(player1.isAllBallsPlotted() && player1.isMyTurn()) {
-                blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
-                blackScoreBall.setFitWidth(60);
-                blackScoreBall.setFitHeight(60);
-                blackScoreBall.setLayoutX(704-30);
-                blackScoreBall.setLayoutY(172-30);
-                pane.getChildren().add(blackScoreBall);
-            }
-
-            if(player2.isAllBallsPlotted() && player2.isMyTurn()) {
-                blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
-                blackScoreBall.setFitWidth(60);
-                blackScoreBall.setFitHeight(60);
-                blackScoreBall.setLayoutX(704-30);
-                blackScoreBall.setLayoutY(172-30);
-                pane.getChildren().add(blackScoreBall);
-            }
+            removeEightPockets();
+            blackScoreBall.setVisible(false);
 
             thisTurnPottedBalls.clear();
 
@@ -665,33 +652,85 @@ public class GameSceneController {
 
     }
 
-    @FXML
-    private void eightPocket(ActionEvent event) {
-        if(event.getSource() == topLeftPocket && !eightDeclared) {
-            topLeftCircle.setStroke(Color.GREEN);
+    private void showEightPockets() {
+
+        pocket1.setStroke(Color.DARKGRAY);
+        pocket1.setStrokeWidth(3);
+        pocket2.setStroke(Color.DARKGRAY);
+        pocket2.setStrokeWidth(3);
+        pocket3.setStroke(Color.DARKGRAY);
+        pocket3.setStrokeWidth(3);
+        pocket4.setStroke(Color.DARKGRAY);
+        pocket4.setStrokeWidth(3);
+        pocket5.setStroke(Color.DARKGRAY);
+        pocket5.setStrokeWidth(3);
+        pocket6.setStroke(Color.DARKGRAY);
+        pocket6.setStrokeWidth(3);
+
+        pocketButton1.setVisible(true);
+        pocketButton2.setVisible(true);
+        pocketButton3.setVisible(true);
+        pocketButton4.setVisible(true);
+        pocketButton5.setVisible(true);
+        pocketButton6.setVisible(true);
+
+    }
+
+    private void removeEightPockets() {
+
+        pocket1.setStroke(Color.BLACK);
+        pocket1.setStrokeWidth(1);
+        pocket2.setStroke(Color.BLACK);
+        pocket2.setStrokeWidth(1);
+        pocket3.setStroke(Color.BLACK);
+        pocket3.setStrokeWidth(1);
+        pocket4.setStroke(Color.BLACK);
+        pocket4.setStrokeWidth(1);
+        pocket5.setStroke(Color.BLACK);
+        pocket5.setStrokeWidth(1);
+        pocket6.setStroke(Color.BLACK);
+        pocket6.setStrokeWidth(1);
+
+        pocketButton1.setVisible(false);
+        pocketButton2.setVisible(false);
+        pocketButton3.setVisible(false);
+        pocketButton4.setVisible(false);
+        pocketButton5.setVisible(false);
+        pocketButton6.setVisible(false);
+
+    }
+
+    private void eightPocketDeclaration() {
+        pocketButton1.setOnAction(event -> {
+            pocket1.setStroke(Color.GREEN);
             eightDelcaledPocket = 1;
             eightDeclared = true;
-        } else if(event.getSource() == topPocket && !eightDeclared) {
-            topCircle.setStroke(Color.GREEN);
-            eightDelcaledPocket = 1;
+        });
+        pocketButton2.setOnAction(event -> {
+            pocket2.setStroke(Color.GREEN);
+            eightDelcaledPocket = 2;
             eightDeclared = true;
-        } else if(event.getSource() == topRightPocket && !eightDeclared) {
-            topRightCircle.setStroke(Color.GREEN);
-            eightDelcaledPocket = 1;
+        });
+        pocketButton3.setOnAction(event -> {
+            pocket3.setStroke(Color.GREEN);
+            eightDelcaledPocket = 3;
             eightDeclared = true;
-        } else if(event.getSource() == bottomLeftPocket && !eightDeclared) {
-            bottomLeftCircle.setStroke(Color.GREEN);
-            eightDelcaledPocket = 1;
+        });
+        pocketButton4.setOnAction(event -> {
+            pocket4.setStroke(Color.GREEN);
+            eightDelcaledPocket = 4;
             eightDeclared = true;
-        } else if(event.getSource() == bottomPocket && !eightDeclared) {
-            bottomCircle.setStroke(Color.GREEN);
-            eightDelcaledPocket = 1;
+        });
+        pocketButton5.setOnAction(event -> {
+            pocket5.setStroke(Color.GREEN);
+            eightDelcaledPocket = 5;
             eightDeclared = true;
-        } else if(event.getSource() == bottomRightPocket && !eightDeclared) {
-            bottomRightCircle.setStroke(Color.GREEN);
-            eightDelcaledPocket = 1;
+        });
+        pocketButton6.setOnAction(event -> {
+            pocket6.setStroke(Color.GREEN);
+            eightDelcaledPocket = 6;
             eightDeclared = true;
-        }
+        });
     }
 
     private void playerBreaking() {
@@ -787,6 +826,7 @@ public class GameSceneController {
                                     foulEight = true;
                                 } else if(ball[i].getBallNumber() == 8 && player1.isAllBallsPlotted()) {
                                     foulEight = false;
+                                    foulWrongBallType = false;
                                 }
                             } else if(player1.getBallType() == ball[i].getBallType() && cueBallCollisions==1) {
                                 foulWrongBallType = false;
@@ -798,6 +838,7 @@ public class GameSceneController {
                                     foulEight = true;
                                 } else if(ball[i].getBallNumber() == 8 && player2.isAllBallsPlotted()) {
                                     foulEight = false;
+                                    foulWrongBallType = false;
                                 }
                             } else if(player2.getBallType() == ball[i].getBallType() && cueBallCollisions==1) {
                                 foulWrongBallType = false;
@@ -838,25 +879,25 @@ public class GameSceneController {
         else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check) {
             dropit (ballNum);
             if(ballNum == 8) {
-                eightPocket = 2;
+                eightPocket = 4;
             }
         }
         else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check) {
             dropit (ballNum);
             if(ballNum == 8) {
-                eightPocket = 3;
+                eightPocket = 2;
             }
         }
         else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check) {
             dropit (ballNum);
             if(ballNum == 8) {
-                eightPocket = 4;
+                eightPocket = 5;
             }
         }
         else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check) {
             dropit (ballNum);
             if(ballNum == 8) {
-                eightPocket = 5;
+                eightPocket = 3;
             }
         }
         else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check) {
@@ -945,8 +986,8 @@ public class GameSceneController {
                         }
                         if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
-                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
-                            System.out.println("BUca errata dichiarata");
+                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
+                            System.out.println("Buca errata dichiarata");
                             eightIn();
                         }
                     } else {
@@ -960,8 +1001,8 @@ public class GameSceneController {
                         }
                         if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
-                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
-                            System.out.println("BUca errata dichiarata");
+                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
+                            System.out.println("Buca errata dichiarata");
                             eightIn();
                         }
 
@@ -979,8 +1020,8 @@ public class GameSceneController {
                         }
                         if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
-                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
-                            System.out.println("BUca errata dichiarata");
+                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
+                            System.out.println("Buca errata dichiarata");
                             eightIn();
                         }
                     } else {
@@ -994,8 +1035,8 @@ public class GameSceneController {
                         }
                         if(f == 0 && eightPocket == eightDelcaledPocket) {
                             win();
-                        } else if(f == 0 && eightPocket == eightDelcaledPocket) {
-                            System.out.println("BUca errata dichiarata");
+                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
+                            System.out.println("Buca errata dichiarata");
                             eightIn();
                         }
 
@@ -1230,7 +1271,7 @@ public class GameSceneController {
         ball[ballNum].setDropped(true);
         ball[ballNum].setVelocity(0, 0);
 
-        ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, stackY)); // nello stack
+        ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, stackY));
 
         stackY -= 25;
 
