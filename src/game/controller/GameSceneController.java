@@ -220,14 +220,15 @@ public class GameSceneController {
             public void run() {
                 if(countdown > 0) {
                     shotClockBar.setProgress(countdown / 10);
-                    countdown--;
+                    countdown -= 0.001;
                 } else {
+                    turnChange = true;
                     foulShotClock = true;
                     shotClock.cancel();
                 }
             }
         };
-        shotClock.scheduleAtFixedRate(task, 0, 1000);
+        shotClock.scheduleAtFixedRate(task, 0, 1);
     }
 
     public void stopShotClock() {
@@ -540,6 +541,9 @@ public class GameSceneController {
             foul = false;
 
             startShotClock();
+            if(foulShotClock) {
+                foulNoBallHit = false;
+            }
             
             checkCases();
             checkAllPotted();
