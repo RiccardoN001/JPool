@@ -20,8 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -1231,6 +1229,7 @@ public class GameSceneController {
     }
 
     private void eightIn() {
+        Sounds.playSound("WinSound");
         stopShotClock();
         if(player1.isMyTurn()) {
             player2.setWin(true);
@@ -1246,6 +1245,7 @@ public class GameSceneController {
     }
 
     private void win() {
+        Sounds.playSound("WinSound");
         stopShotClock();
         if(player1.isMyTurn()) {
             player2.setWin(false);
@@ -1261,6 +1261,7 @@ public class GameSceneController {
     }
 
     private void changeTurn() {
+        Sounds.playSound("TurnChangeSound");
         if (player1.isMyTurn ()) {
             player1.setMyTurn (false);
             player2.setMyTurn (true);
