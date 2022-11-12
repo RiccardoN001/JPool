@@ -648,6 +648,7 @@ public class GameSceneController {
     
             if(player2.isAllBallsPlotted() && player2.isMyTurn() && !gameOver) {
                 showEightPockets();
+                eightPocketDeclaration();
                 System.out.println("Ciao G2");
             }
 
@@ -1021,9 +1022,11 @@ public class GameSceneController {
                         }
                         if(f == 0 && eightPocket == eightDeclaredPocket) {
                             win();
+                            return;
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
                             System.out.println("Buca errata dichiarata");
                             eightIn();
+                            return;
                         }
                     } else {
 
@@ -1036,9 +1039,11 @@ public class GameSceneController {
                         }
                         if(f == 0 && eightPocket == eightDeclaredPocket) {
                             win();
+                            return;
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
                             System.out.println("Buca errata dichiarata");
                             eightIn();
+                            return; 
                         }
 
                     }
@@ -1059,6 +1064,7 @@ public class GameSceneController {
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
                             System.out.println("Buca errata dichiarata");
                             eightIn();
+                            return;
                         }
                     } else {
 
@@ -1075,6 +1081,7 @@ public class GameSceneController {
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
                             System.out.println("Buca errata dichiarata");
                             eightIn();
+                            return;
                         }
 
                     }
