@@ -7,8 +7,8 @@
             "request": "launch",
             "mainClass": "game.Main",
             // Name and VM arguments
-            "projectName": "JPool_ba81ef56",
-          "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml",
+            "projectName": "JPool_b490f64b",
+            "vmArgs": "--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml",
         }
     ]
 }

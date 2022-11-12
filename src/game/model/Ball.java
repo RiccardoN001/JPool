@@ -208,7 +208,7 @@ public class Ball {
 
         ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, 0);
         ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, 1);
-        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X-600, Constants.TRIANGLE_COL5_Y-100, 8);
+        ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, 8);
 
         // VARIABLE POSITIONS
 

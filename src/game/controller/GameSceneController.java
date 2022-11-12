@@ -198,13 +198,13 @@ public class GameSceneController {
     public void handleSoundsButton(ActionEvent event) throws Exception {
         if(!soundOff){
             soundOff = true;
-            soundIconOn.setVisible(false);
-            soundIconOff.setVisible(true);
+            soundsButton.setGraphic(soundIconOff);
+            soundsButton.setPrefSize(60, 60);
         }
         else if(soundOff){
             soundOff = false;
-            soundIconOff.setVisible(false);
-            soundIconOn.setVisible(true);
+            soundsButton.setGraphic(soundIconOn);
+            soundsButton.setPrefSize(60, 60);
         }
     }
 
@@ -331,22 +331,16 @@ public class GameSceneController {
 
         //SOUNDS
         soundOff = false;
-        soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
-        soundIconOn.setFitWidth(70);
-        soundIconOn.setFitHeight(70);
-        soundIconOn.setLayoutX(30);
-        soundIconOn.setLayoutY(76);
-        soundIconOn.setPreserveRatio(true);
-        pane.getChildren().add(soundIconOn);
 
+        soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
+        soundIconOn.setFitWidth(60);
+        soundIconOn.setFitHeight(60);
         soundIconOff = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOff.png"));
-        soundIconOff.setFitWidth(70);
-        soundIconOff.setFitHeight(70);
-        soundIconOff.setLayoutX(30);
-        soundIconOff.setLayoutY(77);
-        soundIconOff.setPreserveRatio(true);
-        soundIconOff.setVisible(false);
-        pane.getChildren().add(soundIconOff);
+        soundIconOff.setFitWidth(60);
+        soundIconOff.setFitHeight(60);
+
+        soundsButton.setGraphic(soundIconOn);
+        soundsButton.setPrefSize(60, 60);
 
         blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
         blackScoreBall.setFitWidth(60);
@@ -355,14 +349,6 @@ public class GameSceneController {
         blackScoreBall.setLayoutY(172-30);
         pane.getChildren().add(blackScoreBall);
         blackScoreBall.setVisible(false);
-
-        for(int i = 1; i <= 6; i++) {
-            dropit(i);
-        }
-
-        for(int i = 9; i <= 14; i++) {
-            dropit(i);
-        }
 
         startShotClock();
 
@@ -1306,6 +1292,7 @@ public class GameSceneController {
     }
 
     private void dropit(int ballNum) {
+
         if(!soundOff && ballNum != 0){
             Sounds.playSound("PocketSound");
         }

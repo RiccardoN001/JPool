@@ -689,8 +689,8 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Button fx:id="exitYes" layoutX="592.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="92.0" text="YES" />
-      <Button fx:id="exitNo" layoutX="725.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitNoButton" prefHeight="50.0" prefWidth="92.0" text="NO" />
+      <Button fx:id="exitYes" layoutX="592.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="92.0" styleClass="orange-button" text="YES" />
+      <Button fx:id="exitNo" layoutX="725.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitNoButton" prefHeight="50.0" prefWidth="92.0" styleClass="orange-button" text="NO" />
       <Label fx:id="exitLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="358.0" prefHeight="84.0" prefWidth="225.0" text="Sei sicuro di uscire?" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
@@ -703,7 +703,7 @@
       <Button fx:id="pocketButton4" layoutX="254.0" layoutY="653.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
       <Button fx:id="pocketButton5" layoutX="675.0" layoutY="653.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
       <Button fx:id="pocketButton6" layoutX="1091.0" layoutY="653.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
-      <Button fx:id="menuButtonFromGame" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuButton" text="MENU" />
-      <Button fx:id="soundsButton" layoutX="41.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleSoundsButton" prefHeight="70.0" prefWidth="79.0" styleClass="sounds-button" />
+      <Button fx:id="menuButtonFromGame" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuButton" styleClass="orange-button" text="MENU" />
+      <Button fx:id="soundsButton" layoutX="30.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSoundsButton" prefHeight="70.0" prefWidth="70.0" styleClass="sounds-button" />
     </children>
 </Pane>
