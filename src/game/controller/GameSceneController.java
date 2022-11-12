@@ -123,7 +123,7 @@ public class GameSceneController {
     private boolean soundOff;
     private boolean eightDeclared;
     private int eightPocket;
-    private int eightDelcaledPocket;
+    private int eightDeclaredPocket;
 
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean potted[] = new boolean[16];
@@ -267,7 +267,7 @@ public class GameSceneController {
 
     public void stopShotClock() {
         shotClock.cancel();
-        shotClockBar.setProgress(1);
+        shotClockBar.setProgress(0);
     }
 
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
@@ -322,6 +322,7 @@ public class GameSceneController {
         ballAssigned = false;
         cueBallCollisions = 0;
         eightDeclared = false;
+        eightPocket = 0;
 
         // POTTED BALLS
         thisTurnPottedBalls = new ArrayList<>();
@@ -361,6 +362,14 @@ public class GameSceneController {
         blackScoreBall.setLayoutY(172-30);
         pane.getChildren().add(blackScoreBall);
         blackScoreBall.setVisible(false);
+
+        for(int i = 1; i <= 6; i++) {
+            dropit(i);
+        }
+
+        for(int i = 9; i <= 14; i++) {
+            dropit(i);
+        }
 
         startShotClock();
 
@@ -492,11 +501,11 @@ public class GameSceneController {
             double xcb = ball[0].getPosition().getX();
             double ycb = ball[0].getPosition().getY();
 
-            double velocity = Math.floor(powerSlider.getValue() / 30 * 100);
+            double velocity = Math.floor(powerSlider.getValue() / 17 * 100);
 
             sliderVelocityLabel.setText(String.valueOf((int)velocity) + "%");
 
-            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 30 * 0.7);
+            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 17 * 0.7);
             
             cue.setLayoutX(xcb - 385 - velocity);
             cue.setLayoutY(ycb - 20);
@@ -575,19 +584,6 @@ public class GameSceneController {
             checkPocket(i);
         }
 
-        if(player1.isAllBallsPlotted() && player1.isMyTurn()) {
-            showEightPockets();
-            blackScoreBall.setVisible(true);
-            eightPocketDeclaration();
-        }
-
-        if(player2.isAllBallsPlotted() && player2.isMyTurn()) {
-            showEightPockets();
-            blackScoreBall.setVisible(true);
-            eightPocketDeclaration();
-            eightPocketDeclaration();
-        }
-
         if(ballsMoving) {
             turn = false;
             foulboardLabel.setText("");
@@ -595,6 +591,9 @@ public class GameSceneController {
             turn = true;
             turnLabel();
         } else if(!ballsMoving && turnChange) {
+
+            removeEightPockets();
+            blackScoreBall.setVisible(false);
 
             foul = false;
 
@@ -605,7 +604,11 @@ public class GameSceneController {
             if(foulShotClock) {
                 foulNoBallHit = false;
             }
-            
+
+            System.out.println(eightPocket);
+            System.out.println(eightDeclaredPocket + "\n");
+
+
             checkCases();
             checkAllPotted();
 
@@ -643,8 +646,19 @@ public class GameSceneController {
                 }
             }
 
-            removeEightPockets();
-            blackScoreBall.setVisible(false);
+            if(player1.isAllBallsPlotted() && player1.isMyTurn()) {
+                showEightPockets();
+                blackScoreBall.setVisible(true);
+                eightPocketDeclaration();
+                System.out.println("Ciao G1");
+            }
+    
+            if(player2.isAllBallsPlotted() && player2.isMyTurn()) {
+                showEightPockets();
+                blackScoreBall.setVisible(true);
+                eightPocketDeclaration();
+                System.out.println("Ciao G2");
+            }
 
             thisTurnPottedBalls.clear();
 
@@ -691,46 +705,42 @@ public class GameSceneController {
         pocket6.setStroke(Color.BLACK);
         pocket6.setStrokeWidth(1);
 
-        pocketButton1.setVisible(false);
-        pocketButton2.setVisible(false);
-        pocketButton3.setVisible(false);
-        pocketButton4.setVisible(false);
-        pocketButton5.setVisible(false);
-        pocketButton6.setVisible(false);
-
     }
 
     private void eightPocketDeclaration() {
-        pocketButton1.setOnAction(event -> {
-            pocket1.setStroke(Color.GREEN);
-            eightDelcaledPocket = 1;
+        if(!eightDeclared) {
             eightDeclared = true;
-        });
-        pocketButton2.setOnAction(event -> {
-            pocket2.setStroke(Color.GREEN);
-            eightDelcaledPocket = 2;
-            eightDeclared = true;
-        });
-        pocketButton3.setOnAction(event -> {
-            pocket3.setStroke(Color.GREEN);
-            eightDelcaledPocket = 3;
-            eightDeclared = true;
-        });
-        pocketButton4.setOnAction(event -> {
-            pocket4.setStroke(Color.GREEN);
-            eightDelcaledPocket = 4;
-            eightDeclared = true;
-        });
-        pocketButton5.setOnAction(event -> {
-            pocket5.setStroke(Color.GREEN);
-            eightDelcaledPocket = 5;
-            eightDeclared = true;
-        });
-        pocketButton6.setOnAction(event -> {
-            pocket6.setStroke(Color.GREEN);
-            eightDelcaledPocket = 6;
-            eightDeclared = true;
-        });
+            pocketButton1.setOnAction(event -> {
+                pocket1.setStroke(Color.GREEN);
+                eightDeclaredPocket = 1;
+                return;
+            });
+            pocketButton2.setOnAction(event -> {
+                pocket2.setStroke(Color.GREEN);
+                eightDeclaredPocket = 2;
+                return;
+            });
+            pocketButton3.setOnAction(event -> {
+                pocket3.setStroke(Color.GREEN);
+                eightDeclaredPocket = 3;
+                return;
+            });
+            pocketButton4.setOnAction(event -> {
+                pocket4.setStroke(Color.GREEN);
+                eightDeclaredPocket = 4;
+                return;
+            });
+            pocketButton5.setOnAction(event -> {
+                pocket5.setStroke(Color.GREEN);
+                eightDeclaredPocket = 5;
+                return;
+            });
+            pocketButton6.setOnAction(event -> {
+                pocket6.setStroke(Color.GREEN);
+                eightDeclaredPocket = 6;
+                return;
+            });
+        }
     }
 
     private void playerBreaking() {
@@ -868,11 +878,12 @@ public class GameSceneController {
         double x = ball[ballNum].getPosition().getX();
         double y = ball[ballNum].getPosition().getY();
 
-        double check = 5;
+        double check = 25;
 
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check) {
             dropit (ballNum);
             if(ballNum == 8) {
+                dropit (ballNum);
                 eightPocket = 1;
             }
         }
@@ -882,13 +893,13 @@ public class GameSceneController {
                 eightPocket = 4;
             }
         }
-        else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check) {
+        else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check-5) {
             dropit (ballNum);
             if(ballNum == 8) {
                 eightPocket = 2;
             }
         }
-        else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check) {
+        else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check-5) {
             dropit (ballNum);
             if(ballNum == 8) {
                 eightPocket = 5;
@@ -906,7 +917,7 @@ public class GameSceneController {
                 eightPocket = 6;
             }
         }
-        if ((y <= 244+15 || y >= 700-15 || x <= 290+15 || x >= 1174-15) && !ball[ballNum].isDropped ()) {
+        if ((y <= 244+15 || y >= 700-15 || x <= 290+15 || x >= 1174-15) && !ball[ballNum].isDropped () && ballNum != 8) {
             dropit (ballNum);
         }
 
@@ -914,10 +925,12 @@ public class GameSceneController {
 
     private void checkCases() {
 
+        boolean change = false;
+
         if(turnNum == 1) {
 
             if(thisTurnPottedBalls.size() == 0) {
-                foulWhite = true;
+                change = true;
             } else {
                 for(int i = 0; i < thisTurnPottedBalls.size(); i++) {
                     if(thisTurnPottedBalls.get(i).intValue() == 8) {
@@ -933,7 +946,7 @@ public class GameSceneController {
         } else if(turnNum >= 2 && player1.getBallType() == 0) {
 
             if(thisTurnPottedBalls.size()== 0) {
-                foulWhite = true;
+                change = true;
             } else {
                 int firstPuttedBallNum = thisTurnPottedBalls.get(0).intValue();
                 if(firstPuttedBallNum >= 1 && firstPuttedBallNum <= 8) {
@@ -971,7 +984,7 @@ public class GameSceneController {
         } else {
 
             if(thisTurnPottedBalls.size() == 0) {
-                foulWhite = true;
+                change = true;
             } else if(thisTurnPottedBalls.size() == 1 && thisTurnPottedBalls.get(0).intValue() == 8) {
 
                 if(player1.isMyTurn()) {
@@ -984,11 +997,13 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0 && eightPocket == eightDelcaledPocket) {
+                        if(f == 0 && eightPocket == eightDeclaredPocket) {
                             win();
-                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            return;
+                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
+                            foulboardLabel.setText("Buca errata dichiarata");
                             eightIn();
+                            return;
                         }
                     } else {
 
@@ -999,11 +1014,13 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0 && eightPocket == eightDelcaledPocket) {
+                        if(f == 0 && eightPocket == eightDeclaredPocket) {
                             win();
-                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            return;
+                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
+                            foulboardLabel.setText("Buca errata dichiarata");
                             eightIn();
+                            return;
                         }
 
                     }
@@ -1018,11 +1035,13 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0 && eightPocket == eightDelcaledPocket) {
+                        if(f == 0 && eightPocket == eightDeclaredPocket) {
                             win();
-                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            return;
+                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
+                            foulboardLabel.setText("Buca errata dichiarata");
                             eightIn();
+                            return;
                         }
                     } else {
 
@@ -1033,11 +1052,13 @@ public class GameSceneController {
                                 eightIn();
                             }
                         }
-                        if(f == 0 && eightPocket == eightDelcaledPocket) {
+                        if(f == 0 && eightPocket == eightDeclaredPocket) {
                             win();
-                        } else if(f == 0 && eightPocket != eightDelcaledPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            return;
+                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
+                            foulboardLabel.setText("Buca errata dichiarata");
                             eightIn();
+                            return;
                         }
 
                     }
@@ -1051,7 +1072,7 @@ public class GameSceneController {
                 if(player1.isMyTurn()) {
 
                     if(player1.getBallType() != ball[firstPuttedBallNum].getBallType()) {
-                        foulWhite = true;
+                        change = true;
                     }
 
                     for(int i = 0; i < thisTurnPottedBalls.size(); i++) {
@@ -1067,7 +1088,7 @@ public class GameSceneController {
                 } else {
 
                     if(player2.getBallType() != ball[firstPuttedBallNum].getBallType()) {
-                        foulWhite = true;
+                        change = true;
                     }
 
                     for(int i = 0; i < thisTurnPottedBalls.size(); i++) {
@@ -1086,11 +1107,11 @@ public class GameSceneController {
 
         }
 
-        if(foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
+        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
             foul = true;
         }
 
-        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
+        if(change || foulWhite || foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
             changeTurn();
         }
 
@@ -1205,6 +1226,7 @@ public class GameSceneController {
     }
 
     private void eightIn() {
+        stopShotClock();
         if(player1.isMyTurn()) {
             player2.setWin(true);
             player1.setWin(false);
@@ -1219,6 +1241,7 @@ public class GameSceneController {
     }
 
     private void win() {
+        stopShotClock();
         if(player1.isMyTurn()) {
             player2.setWin(false);
             player1.setWin(true);
