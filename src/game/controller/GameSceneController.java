@@ -335,7 +335,7 @@ public class GameSceneController {
         soundIconOn.setFitWidth(70);
         soundIconOn.setFitHeight(70);
         soundIconOn.setLayoutX(30);
-        soundIconOn.setLayoutY(90);
+        soundIconOn.setLayoutY(76);
         soundIconOn.setPreserveRatio(true);
         pane.getChildren().add(soundIconOn);
 
@@ -343,7 +343,7 @@ public class GameSceneController {
         soundIconOff.setFitWidth(70);
         soundIconOff.setFitHeight(70);
         soundIconOff.setLayoutX(30);
-        soundIconOff.setLayoutY(90);
+        soundIconOff.setLayoutY(77);
         soundIconOff.setPreserveRatio(true);
         soundIconOff.setVisible(false);
         pane.getChildren().add(soundIconOff);
