@@ -43,13 +43,9 @@ public class GameSceneController {
     private Pane pane;
 
     @FXML
-    private MenuButton menuBar;
+    private Button soundsButton;
     @FXML
-    private MenuItem soundsButton;
-    @FXML
-    private MenuItem pauseButton;
-    @FXML
-    private MenuItem menuButtonFromGame;
+    private Button menuButtonFromGame;
     @FXML
     private Label exitLabel;
     @FXML
@@ -179,7 +175,7 @@ public class GameSceneController {
         Stage stage;
         Scene scene;
         Parent root;
-        stage = (Stage) menuBar.getScene().getWindow();
+        stage = (Stage) exitYes.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
@@ -338,16 +334,16 @@ public class GameSceneController {
         soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
         soundIconOn.setFitWidth(70);
         soundIconOn.setFitHeight(70);
-        soundIconOn.setLayoutX(127);
-        soundIconOn.setLayoutY(4);
+        soundIconOn.setLayoutX(30);
+        soundIconOn.setLayoutY(90);
         soundIconOn.setPreserveRatio(true);
         pane.getChildren().add(soundIconOn);
 
         soundIconOff = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOff.png"));
         soundIconOff.setFitWidth(70);
         soundIconOff.setFitHeight(70);
-        soundIconOff.setLayoutX(127);
-        soundIconOff.setLayoutY(7);
+        soundIconOff.setLayoutX(30);
+        soundIconOff.setLayoutY(90);
         soundIconOff.setPreserveRatio(true);
         soundIconOff.setVisible(false);
         pane.getChildren().add(soundIconOff);

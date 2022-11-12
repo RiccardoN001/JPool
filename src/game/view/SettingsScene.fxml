@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -26,8 +25,6 @@
       <Label layoutX="253.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" text="TABLE" textFill="WHITE" />
       <Label layoutX="253.0" layoutY="600.0" prefHeight="35.0" prefWidth="200.0" text="CUE" textFill="WHITE" />
       <Label layoutX="750.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" text="MODE" textFill="WHITE" />
-      <Label layoutX="750.0" layoutY="540.0" prefHeight="35.0" prefWidth="200.0" text="SOUNDS" textFill="WHITE" />
       <Label layoutX="1130.0" layoutY="120.0" prefHeight="35.0" prefWidth="200.0" text="NICKNAMES" textFill="WHITE" />
-      <ToggleButton layoutX="1100.0" layoutY="540.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="ON/OFF" />
    </children>
 </Pane>
