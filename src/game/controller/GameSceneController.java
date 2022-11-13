@@ -155,6 +155,9 @@ public class GameSceneController {
 
     @FXML
     public void handleMenuButton(ActionEvent event) throws Exception {
+        if(!soundOff){
+          Sounds.playSound("PauseSound");  
+        }
         exitLabel.setVisible(true);
         exitYes.setVisible(true);
         exitNo.setVisible(true);
@@ -268,6 +271,8 @@ public class GameSceneController {
 
     @FXML
     public void initialize() throws Exception {
+
+        Sounds.playSound("RackSound");
         
         // SPLIT
         turnNum = 1;
@@ -539,6 +544,7 @@ public class GameSceneController {
 
         }
         powerSlider.setValue(0);
+        sliderVelocityLabel.setText(0 +"%");
     }
 
 // -------------------------------------------------- NOT FXML LINKED --------------------------------------------------
@@ -1229,7 +1235,9 @@ public class GameSceneController {
     }
 
     private void eightIn() {
-        Sounds.playSound("WinSound");
+        if(!soundOff){
+            Sounds.playSound("WinSound");
+        }
         stopShotClock();
         if(player1.isMyTurn()) {
             player2.setWin(true);
@@ -1245,7 +1253,9 @@ public class GameSceneController {
     }
 
     private void win() {
-        Sounds.playSound("WinSound");
+        if(!soundOff){
+            Sounds.playSound("WinSound");
+        }
         stopShotClock();
         if(player1.isMyTurn()) {
             player2.setWin(false);
@@ -1261,7 +1271,14 @@ public class GameSceneController {
     }
 
     private void changeTurn() {
-        Sounds.playSound("TurnChangeSound");
+        if(!soundOff){
+            if(foul){
+                Sounds.playSound("FoulSound");
+            }else{
+                Sounds.playSound("TurnChangeSound");
+            }
+        }
+
         if (player1.isMyTurn ()) {
             player1.setMyTurn (false);
             player2.setMyTurn (true);
