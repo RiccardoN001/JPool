@@ -10,12 +10,14 @@ import game.model.Constants;
 import game.model.Player;
 import game.model.Sounds;
 import game.model.Vector;
+import game.view.Board;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -151,6 +153,16 @@ public class GameSceneController {
     @FXML
     private Button pocketButton6;
 
+
+    // CONTROLLER-CONTROLLER COMMUNICATION
+    private static GameSceneController instance;
+    public GameSceneController() {
+        instance = this;
+    }
+    public static GameSceneController getGameSceneController() {
+        return instance;
+    }
+
     // -------------------------------------------------- SCENE METHODS --------------------------------------------------
 
     @FXML
@@ -247,7 +259,7 @@ public class GameSceneController {
                 if(countdown > 0) {
                     shotClockBar.setProgress(countdown / 30);
                     countdown -= 1;
-                    if(countdown == 5) {
+                    if(countdown == 5 && !soundOff && !gameOver) {
                         Sounds.playSound("ShotClockSound");
                     }
                 } else {
@@ -302,6 +314,7 @@ public class GameSceneController {
         } else {
             player2 = new Player(SettingsSceneController.getSettingsSceneController().getP2Nickname());
         }
+        Board.showPlayerNickname();
 
         // CONTROL VARIABLES
         player1.setMyTurn(true);
@@ -552,7 +565,7 @@ public class GameSceneController {
     private void update() {
 
         if(turnNum == 1 && !foulShotClock) {
-            playerBreaking();
+            Board.showPlayerBreaking();
         }
 
         moveCueBall();
@@ -572,7 +585,7 @@ public class GameSceneController {
             foulboardLabel.setText("");
         } else if(!ballsMoving && !turnChange) {
             turn = true;
-            turnLabel();
+            Board.showPlayerTurn();
         } else if(!ballsMoving && turnChange) {
 
             removeEightPockets();
@@ -593,8 +606,12 @@ public class GameSceneController {
             checkCases();
             checkAllPotted();
 
+            if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
+                foulNoBallHit = false;
+            }
+
             if(foul && !gameOver) {
-                showFoul();
+                Board.showFoul();
             }
 
             turn = true;
@@ -750,27 +767,6 @@ public class GameSceneController {
             pocketButton5.setVisible(false);
             pocketButton6.setVisible(false);
         });
-    }
-
-    private void playerBreaking() {
-
-        player1NicknameLabel.setText(player1.getNickname());
-        player2NicknameLabel.setText(player2.getNickname());
-
-        if(player1.isMyTurn()) {
-            turnboardLabel.setText(player1.getNickname() + " SPACCA");
-        } else {
-            turnboardLabel.setText(player2.getNickname() + " SPACCA");
-        }
-
-    }
-
-    private void turnLabel() {
-        if(player1.isMyTurn()) {
-            turnboardLabel.setText ("TURNO DI " + player1.getNickname());
-        } else {
-            turnboardLabel.setText ("TURNO DI " + player2.getNickname());
-        }
     }
 
     private void moveCueBall() {
@@ -1182,18 +1178,6 @@ public class GameSceneController {
 
     }
 
-    private void showFoul() {
-        if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
-            foulboardLabel.setText("FALLO: BIANCA IMBUCATA");
-        } else if(foulWrongBallType || foulEight) {
-            foulboardLabel.setText("FALLO: CATEGORIA ERRATA");
-        } else if(foulNoBallHit) {
-            foulboardLabel.setText("FALLO: NESSUNA PALLA COLPITA");
-        } else if(foulShotClock) {
-            foulboardLabel.setText("SHOTCLOCK");
-        }
-    }
-
     private void ballAssignment() {
 
         ballAssigned = true;
@@ -1329,5 +1313,76 @@ public class GameSceneController {
             ball[0].setDropped (false);
         }
     }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setTurnboardLabelText(String turnboardText) {
+        turnboardLabel.setText(turnboardText);
+    }
+
+    public void setFoulboardLabelText(String foulboardText) {
+        foulboardLabel.setText(foulboardText);
+    }
+
+    public void setPlayer1NicknameLabelText(String player1NicknameText) {
+        player1NicknameLabel.setText(player1NicknameText);
+    }
+
+    public void setPlayer2NicknameLabelText(String player2NicknameText) {
+        player1NicknameLabel.setText(player2NicknameText);
+    }
+
+    public ArrayList<Integer> getThisTurnPottedBalls() {
+        return thisTurnPottedBalls;
+    }
+
+    public boolean isFoulWhite() {
+        return foulWhite;
+    }
+
+    public boolean isFoulEight() {
+        return foulEight;
+    }
+
+    public boolean isFoulWrongBallType() {
+        return foulWrongBallType;
+    }
+
+    public boolean isFoulNoBallHit() {
+        return foulNoBallHit;
+    }
+
+    public boolean isFoulShotClock() {
+        return foulShotClock;
+    }
+
+    public ImageView[] getSolidScoreBall() {
+        return solidScoreBall;
+    }
+
+    public ImageView[] getStripedScoreBall() {
+        return stripedScoreBall;
+    }
+
+    public void setBallAssigned(boolean ballAssigned) {
+        this.ballAssigned = ballAssigned;
+    }
+
+    public boolean isFoul() {
+        return foul;
+    }
+
+    public void addToPane(Node node) {
+        pane.getChildren().add(node);
+    }
+
+    
+
 
 }
