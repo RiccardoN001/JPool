@@ -6,10 +6,10 @@ import java.util.TimerTask;
 
 import game.Main;
 import game.model.Ball;
-import game.model.Constants;
 import game.model.Player;
-import game.model.Sounds;
 import game.model.Vector;
+import game.utils.Constants;
+import game.utils.Sounds;
 import game.view.Board;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -35,7 +35,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class GameSceneController {
+public class GameController {
 
     // -------------------------------------------------- SCENE ATTRIBUTES --------------------------------------------------
 
@@ -155,11 +155,11 @@ public class GameSceneController {
 
 
     // CONTROLLER-CONTROLLER COMMUNICATION
-    private static GameSceneController instance;
-    public GameSceneController() {
+    private static GameController instance;
+    public GameController() {
         instance = this;
     }
-    public static GameSceneController getGameSceneController() {
+    public static GameController getGameSceneController() {
         return instance;
     }
 
@@ -189,7 +189,7 @@ public class GameSceneController {
         Scene scene;
         Parent root;
         stage = (Stage) exitYes.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
@@ -260,7 +260,7 @@ public class GameSceneController {
                     shotClockBar.setProgress(countdown / 30);
                     countdown -= 1;
                     if(countdown == 5 && !soundOff && !gameOver) {
-                        Sounds.playSound("ShotClockSound");
+                        //Sounds.playSound("ShotClockSound");
                     }
                 } else {
                     turnChange = true;
@@ -294,7 +294,7 @@ public class GameSceneController {
         }
 
         // CUE LOADING
-        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsSceneController.getSettingsSceneController().cueMenuIndex()+1 + ".png")));
+        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getSettingsSceneController().cueMenuIndex()+1 + ".png")));
         cue.setFitWidth(400);
         cue.setFitHeight(100);
         cue.setLayoutX(105);
@@ -304,15 +304,15 @@ public class GameSceneController {
         powerBar.setOpacity(0.3);
 
         // PLAYERS
-        if(SettingsSceneController.getSettingsSceneController().getP1Nickname().isEmpty()) {
+        if(SettingsController.getSettingsSceneController().getP1Nickname().isEmpty()) {
             player1 = new Player("Giocatore 1");
         } else {
-            player1 = new Player(SettingsSceneController.getSettingsSceneController().getP1Nickname());
+            player1 = new Player(SettingsController.getSettingsSceneController().getP1Nickname());
         }
-        if(SettingsSceneController.getSettingsSceneController().getP2Nickname().isEmpty()) {
+        if(SettingsController.getSettingsSceneController().getP2Nickname().isEmpty()) {
             player2 = new Player("Giocatore 2");
         } else {
-            player2 = new Player(SettingsSceneController.getSettingsSceneController().getP2Nickname());
+            player2 = new Player(SettingsController.getSettingsSceneController().getP2Nickname());
         }
         Board.showPlayerNickname();
 
@@ -403,7 +403,7 @@ public class GameSceneController {
             guidelineFromBall.setVisible(false);
             guidelineFromCue.setVisible(false);
 
-            if(SettingsSceneController.getSettingsSceneController().modeMenuIndex() == 0) {
+            if(SettingsController.getSettingsSceneController().modeMenuIndex() == 0) {
                 for(int i = 0; i < 16; i++) {
                     if(collides(ghostBall, ball[i])) {
     

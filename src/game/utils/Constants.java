@@ -1,4 +1,4 @@
-package game.model;
+package game.utils;
 
 public class Constants {
 

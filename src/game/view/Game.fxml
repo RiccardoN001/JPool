@@ -2,14 +2,15 @@
 
 <?import java.lang.Double?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -20,39 +21,29 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameSceneController">
+<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" onMouseDragEntered="#cueLoading" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.GameController">
     <children>
-      <MenuButton fx:id="menuBar" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenuButton" text="OPTIONS">
-        <items>
-            <MenuItem fx:id="soundsButton" mnemonicParsing="false" text="SOUNDS">
-               <graphic>
-                  <CheckBox mnemonicParsing="false" />
-               </graphic>
-            </MenuItem>
-            <MenuItem fx:id="pauseButton" mnemonicParsing="false" text="PAUSE" />
-          <MenuItem fx:id="menuButtonFromGame" mnemonicParsing="false" onAction="#handleMenuButton" text="MENU" />
-        </items>
-      </MenuButton>
       <ImageView fitHeight="380.0" fitWidth="68.0" layoutX="1150.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/Tables/rack.png" />
          </image>
       </ImageView>
-        <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="254.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-      <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true">
-         <image>
-            <Image url="@../resources/Tables/BrownWood.png" />
-         </image>
+        <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="254.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+      <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true" styleClass="bank">
          <effect>
             <Blend />
          </effect>
+         <image>
+            <Image url="@../resources/Tables/BrownWood.png" />
+         </image>
       </ImageView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-        <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+        <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true" styleClass="bank">
             <image>
                 <Image url="@../resources/Tables/BrownWood.png" />
             </image>
@@ -60,8 +51,8 @@
                 <Blend />
             </effect>
         </ImageView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" width="70.0" />
-        <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+        <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0" styleClass="bank">
             <image>
                 <Image url="@../resources/Tables/BrownWood.png" />
             </image>
@@ -69,7 +60,7 @@
                 <Blend />
             </effect>
         </ImageView>
-        <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="949.0" layoutY="449.0" pickOnBounds="true" rotate="90.0">
+        <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="949.0" layoutY="449.0" pickOnBounds="true" rotate="90.0" styleClass="bank">
             <image>
                 <Image url="@../resources/Tables/BrownWood.png" />
             </image>
@@ -77,15 +68,15 @@
                 <Blend />
             </effect>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#437893" height="440.0" layoutX="284.0" layoutY="244.0" onMouseDragReleased="#fixTrajectory" onMouseDragged="#guidedTrajectory" onMouseReleased="#fixTrajectory" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="840.0">
-            <effect>
-                <DropShadow />
-            </effect>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#355748" height="440.0" layoutX="284.0" layoutY="244.0" onMouseDragReleased="#fixTrajectory" onMouseDragged="#guidedTrajectory" onMouseReleased="#fixTrajectory" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="table" width="840.0">
             <cursor>
                 <Cursor fx:constant="DEFAULT" />
             </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
         </Rectangle>
-        <Circle layoutX="284.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="pocket1" layoutX="284.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <fill>
                 <RadialGradient focusAngle="-153.81" focusDistance="-0.09174311926605505" radius="1.0">
                     <stops>
@@ -104,7 +95,7 @@
                 <DropShadow />
             </effect>
         </Circle>
-        <Circle layoutX="704.0" layoutY="241.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="pocket2" layoutX="704.0" layoutY="241.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
             <fill>
                 <RadialGradient centerX="0.4715909090909091" radius="1.0">
                     <stops>
@@ -133,7 +124,7 @@
                 <DropShadow />
             </effect>
         </Circle>
-        <Circle layoutX="1124.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="pocket3" layoutX="1124.0" layoutY="244.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -152,7 +143,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Circle layoutX="284.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="pocket4" layoutX="284.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -171,7 +162,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Circle layoutX="704.0" layoutY="690.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="pocket5" layoutX="704.0" layoutY="690.0" radius="20.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -200,7 +191,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Circle layoutX="1124.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="pocket6" layoutX="1124.0" layoutY="685.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
             <effect>
                 <DropShadow />
             </effect>
@@ -219,7 +210,7 @@
                 </RadialGradient>
             </fill>
         </Circle>
-        <Polygon fill="#437893cc" layoutX="314.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#355748cc" layoutX="314.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE" styleClass="table">
             <effect>
                 <DropShadow />
             </effect>
@@ -234,7 +225,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#437893cc" layoutX="724.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#355748cc" layoutX="724.0" layoutY="244.0" rotate="180.0" stroke="#a48e8e" strokeType="INSIDE" styleClass="table">
             <effect>
                 <DropShadow />
             </effect>
@@ -249,7 +240,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#437893" layoutX="314.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#355748" layoutX="314.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE" styleClass="table">
             <points>
                 <Double fx:value="15" />
                 <Double fx:value="0" />
@@ -265,7 +256,7 @@
                 <DropShadow />
             </effect>
         </Polygon>
-        <Polygon fill="#437893" layoutX="724.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#355748" layoutX="724.0" layoutY="670.0" stroke="#a48e8e" strokeType="INSIDE" styleClass="table">
             <effect>
                 <DropShadow />
             </effect>
@@ -280,7 +271,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#437893" layoutX="99.0" layoutY="457.0" rotate="90.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#355748" layoutX="99.0" layoutY="457.0" rotate="90.0" stroke="#a48e8e" strokeType="INSIDE" styleClass="table">
             <effect>
                 <DropShadow />
             </effect>
@@ -295,7 +286,7 @@
                 <Double fx:value="15" />
             </points>
         </Polygon>
-        <Polygon fill="#437893" layoutX="924.0" layoutY="457.0" rotate="270.0" stroke="#a48e8e" strokeType="INSIDE">
+        <Polygon fill="#355748" layoutX="924.0" layoutY="457.0" rotate="270.0" stroke="#a48e8e" strokeType="INSIDE" styleClass="table">
             <effect>
                 <DropShadow />
             </effect>
@@ -324,25 +315,36 @@
             </stroke>
         </Rectangle>
         <Circle fill="#d0e3f5" layoutX="499.0" layoutY="465.0" opacity="0.68" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="GREY" height="400.0" layoutX="150.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
-      <ImageView fitHeight="380.0" fitWidth="45.0" layoutX="161.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="GREY" height="400.0" layoutX="150.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" width="47.0" />
+      <ImageView fx:id="powerBar" fitHeight="390.0" fitWidth="47.0" layoutX="154.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/Cues/PowerBar.png" />
          </image>
       </ImageView>
-      <Slider fx:id="powerSlider" layoutX="166.0" layoutY="284.0" max="30.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#ffffff00" height="383.0" layoutX="160.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" width="26.0" />
+      <Slider fx:id="powerSlider" layoutX="166.0" layoutY="284.0" max="17.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Slider>
-      <Label fx:id="sliderVelocityLabel" layoutX="131.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #ffffff;" text="VELOCITY" />
-      <Line fx:id="guidelineToBall" />
-      <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" />
-      <Line fx:id="guidelineFromBall" />
-      <Line fx:id="guidelineFromCue" />
-      <Label fx:id="scoreboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" text="SCOREBOARD" />
-      <ProgressBar fx:id="timer" layoutX="503.0" layoutY="101.0" prefHeight="20.0" prefWidth="400.0" progress="0.0" />
-      <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 1" />
-      <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="PLAYER 2" />
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></Slider>
+      <Label fx:id="sliderVelocityLabel" layoutX="131.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" textFill="WHITE" />
+      <Line fx:id="guidelineToBall" strokeWidth="1.5" />
+      <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" />
+      <Line fx:id="guidelineFromBall" strokeWidth="1.5" />
+      <Line fx:id="guidelineFromCue" strokeWidth="1.5" />
+      <Label fx:id="turnboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" text="TURNBOARD" textFill="WHITE" />
+      <ProgressBar fx:id="shotClockBar" layoutX="503.0" layoutY="101.0" prefHeight="10.0" prefWidth="400.0" progress="0.0" />
+      <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 1" textFill="WHITE" />
+      <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 2" textFill="WHITE" />
       <Circle layoutX="704.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.48094107001470415" radius="0.5116279069767442">
@@ -687,5 +689,21 @@
             </RadialGradient>
          </fill>
       </Circle>
+      <Button fx:id="exitYes" layoutX="592.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="92.0" styleClass="orange-button" text="YES" />
+      <Button fx:id="exitNo" layoutX="725.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitNoButton" prefHeight="50.0" prefWidth="92.0" styleClass="orange-button" text="NO" />
+      <Label fx:id="exitLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="358.0" prefHeight="84.0" prefWidth="225.0" text="Sei sicuro di uscire?" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="foulboardLabel" layoutX="504.0" layoutY="725.0" prefHeight="60.0" prefWidth="400.0" text="FOULBOARD" textFill="WHITE" />
+      <Button fx:id="pocketButton1" layoutX="254.0" layoutY="214.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="pocketButton2" layoutX="675.0" layoutY="214.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="pocketButton3" layoutX="1091.0" layoutY="214.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="pocketButton4" layoutX="254.0" layoutY="653.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="pocketButton5" layoutX="675.0" layoutY="653.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="pocketButton6" layoutX="1091.0" layoutY="653.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
+      <Button fx:id="menuButtonFromGame" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuButton" styleClass="orange-button" text="MENU" />
+      <Button fx:id="soundsButton" layoutX="1300.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleSoundsButton" prefHeight="70.0" prefWidth="70.0" styleClass="sounds-button" />
     </children>
 </Pane>

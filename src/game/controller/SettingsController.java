@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class SettingsSceneController{
+public class SettingsController{
 
     @FXML
     private Pagination tableMenu;
@@ -36,11 +36,11 @@ public class SettingsSceneController{
     private Button menuButtonFromSettings;
 
     // CONTROLLER-CONTROLLER COMMUNICATION
-    private static SettingsSceneController instance;
-    public SettingsSceneController() {
+    private static SettingsController instance;
+    public SettingsController() {
         instance = this;
     }
-    public static SettingsSceneController getSettingsSceneController() {
+    public static SettingsController getSettingsSceneController() {
         return instance;
     }
    
@@ -90,9 +90,9 @@ public class SettingsSceneController{
         Scene scene;
         Parent root;
         stage = (Stage) menuButtonFromSettings.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+        scene.getStylesheets().add(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -102,22 +102,22 @@ public class SettingsSceneController{
         Stage stage;
         Parent root;
 
+        stage = (Stage) playButton.getScene().getWindow();
+        root = FXMLLoader.load(Main.class.getResource("view/Game.fxml"));
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(Main.class.getResource("view/style.css").toExternalForm());
+
         if(tableMenu.getCurrentPageIndex()==0) {
-            stage = (Stage) playButton.getScene().getWindow();
-            root = FXMLLoader.load(Main.class.getResource("view/GameScene1.fxml"));
+            scene.getStylesheets().add(Main.class.getResource("view/table1.css").toExternalForm());
         } else if(tableMenu.getCurrentPageIndex()==1) {
-            stage = (Stage) playButton.getScene().getWindow();
-            root = FXMLLoader.load(Main.class.getResource("view/GameScene2.fxml"));
+            scene.getStylesheets().add(Main.class.getResource("view/table2.css").toExternalForm());
         } else if(tableMenu.getCurrentPageIndex()==2) {
-            stage = (Stage) playButton.getScene().getWindow();
-            root = FXMLLoader.load(Main.class.getResource("view/GameScene3.fxml"));
+            scene.getStylesheets().add(Main.class.getResource("view/table3.css").toExternalForm());
         } else {
-            stage = (Stage) playButton.getScene().getWindow();
-            root = FXMLLoader.load(Main.class.getResource("view/GameScene4.fxml"));
+            scene.getStylesheets().add(Main.class.getResource("view/table4.css").toExternalForm());
         }
         
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

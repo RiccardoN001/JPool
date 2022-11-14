@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class RulesSceneController{
+public class HTPController{
 
     @FXML
     private Button menuButtonFromRules;
@@ -20,7 +20,7 @@ public class RulesSceneController{
         Scene scene;
         Parent root;
         stage = (Stage) menuButtonFromRules.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/MenuScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);

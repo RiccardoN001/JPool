@@ -1,0 +1,11 @@
+.table {
+    -fx-fill: #355748;
+}
+
+.bank {
+    -fx-image: url("file:src/game/resources/Tables/BrownWood.png");
+}
+
+.pocket {
+    -fx-fill: #c0c0c0;
+}

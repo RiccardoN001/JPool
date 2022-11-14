@@ -1,5 +1,6 @@
 package game.model;
 
+import game.utils.Constants;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;

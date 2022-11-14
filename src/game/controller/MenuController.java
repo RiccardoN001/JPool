@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class MenuSceneController {
+public class MenuController {
 
     @FXML
     private Button playSettingsButton;
@@ -26,7 +26,7 @@ public class MenuSceneController {
         Scene scene;
         Parent root;
         stage = (Stage) playSettingsButton.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/SettingsScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/Settings.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
@@ -39,7 +39,7 @@ public class MenuSceneController {
         Scene scene;
         Parent root;
         stage = (Stage) rulesButton.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/RulesScene.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("view/HTP.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
