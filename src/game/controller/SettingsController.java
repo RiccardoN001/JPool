@@ -40,7 +40,7 @@ public class SettingsController{
     public SettingsController() {
         instance = this;
     }
-    public static SettingsController getSettingsSceneController() {
+    public static SettingsController getController() {
         return instance;
     }
    

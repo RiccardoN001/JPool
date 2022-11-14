@@ -79,49 +79,47 @@ public class GameController {
     private double xmr = -1;
     private double ymr = -1;
 
-    private Ball ball[] = new Ball[16];
-    private ImageView[] solidScoreBall = new ImageView[7];
-    private ImageView[] stripedScoreBall = new ImageView[7];
-    private ImageView blackScoreBall;
+    public Ball ball[] = new Ball[16];
+    public ImageView[] solidScoreBall = new ImageView[7];
+    public ImageView[] stripedScoreBall = new ImageView[7];
+    public ImageView blackScoreBall;
 
     @FXML
-    private Label player1NicknameLabel;
+    public Label player1NicknameLabel;
     @FXML
-    private Label player2NicknameLabel;
+    public Label player2NicknameLabel;
     @FXML
-    private Label turnboardLabel;
+    public Label turnboardLabel;
     @FXML
-    private Label foulboardLabel;
+    public Label foulboardLabel;
     @FXML
-    private ProgressBar shotClockBar;
+    public ProgressBar shotClockBar;
 
     private ImageView soundIconOff;
     private ImageView soundIconOn;
 
-    private Player player1;
-    private Player player2;
+    public Player player1;
+    public Player player2;
 
-    private int turnNum;
-    private boolean turn;
-    private boolean foul;
-    private boolean gamePause;
-    private boolean gameOver;
-    private boolean turnChange;
-    private boolean foulWhite;
-    private boolean foulWrongBallType;
-    private boolean foulEight;
-    private boolean foulNoBallHit;
-    private boolean foulShotClock;
-    private boolean guided;
-    private boolean ballAssigned;
-    private int cueBallCollisions;
-    private boolean soundOff;
-    private int eightPocket;
-    private int eightDeclaredPocket;
-    private boolean shot;
+    public int turnNum;
+    public boolean turn;
+    public boolean foul;
+    public boolean gamePause;
+    public boolean gameOver;
+    public boolean turnChange;
+    public boolean foulWhite;
+    public boolean foulWrongBallType;
+    public boolean foulEight;
+    public boolean foulNoBallHit;
+    public boolean foulShotClock;
+    public boolean guided;
+    public boolean ballAssigned;
+    public int cueBallCollisions;
+    public boolean soundOff;
+    public boolean shot;
 
-    private ArrayList<Integer> thisTurnPottedBalls;
-    private boolean potted[] = new boolean[16];
+    public ArrayList<Integer> thisTurnPottedBalls;
+    public boolean potted[] = new boolean[16];
     private double stackY = 665;
 
     // threads
@@ -129,30 +127,32 @@ public class GameController {
     private Timer shotClock;
 
     @FXML
-    private Circle pocket1;
+    public Circle pocket1;
     @FXML
-    private Circle pocket2;
+    public Circle pocket2;
     @FXML
-    private Circle pocket3;
+    public Circle pocket3;
     @FXML
-    private Circle pocket4;
+    public Circle pocket4;
     @FXML
-    private Circle pocket5;
+    public Circle pocket5;
     @FXML
-    private Circle pocket6;
+    public Circle pocket6;
 
     @FXML
-    private Button pocketButton1;
+    public Button pocketButton1;
     @FXML
-    private Button pocketButton2;
+    public Button pocketButton2;
     @FXML
-    private Button pocketButton3;
+    public Button pocketButton3;
     @FXML
-    private Button pocketButton4;
+    public Button pocketButton4;
     @FXML
-    private Button pocketButton5;
+    public Button pocketButton5;
     @FXML
-    private Button pocketButton6;
+    public Button pocketButton6;
+
+    public int eightPocket = 0;
 
 
     // CONTROLLER-CONTROLLER COMMUNICATION
@@ -160,7 +160,7 @@ public class GameController {
     public GameController() {
         instance = this;
     }
-    public static GameController getGameSceneController() {
+    public static GameController getController() {
         return instance;
     }
 
@@ -260,7 +260,7 @@ public class GameController {
                 if(countdown > 0) {
                     shotClockBar.setProgress(countdown / 30);
                     countdown -= 0.001;
-                    if(shot) {
+                    if(shot || gameOver) {
                         shotClock.cancel();
                     }
                 } else {
@@ -295,7 +295,7 @@ public class GameController {
         }
 
         // CUE LOADING
-        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getSettingsSceneController().cueMenuIndex()+1 + ".png")));
+        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getController().cueMenuIndex()+1 + ".png")));
         cue.setFitWidth(400);
         cue.setFitHeight(100);
         cue.setLayoutX(105);
@@ -305,15 +305,15 @@ public class GameController {
         powerBar.setOpacity(0.3);
 
         // PLAYERS
-        if(SettingsController.getSettingsSceneController().getP1Nickname().isEmpty()) {
+        if(SettingsController.getController().getP1Nickname().isEmpty()) {
             player1 = new Player("Giocatore 1");
         } else {
-            player1 = new Player(SettingsController.getSettingsSceneController().getP1Nickname());
+            player1 = new Player(SettingsController.getController().getP1Nickname());
         }
-        if(SettingsController.getSettingsSceneController().getP2Nickname().isEmpty()) {
+        if(SettingsController.getController().getP2Nickname().isEmpty()) {
             player2 = new Player("Giocatore 2");
         } else {
-            player2 = new Player(SettingsController.getSettingsSceneController().getP2Nickname());
+            player2 = new Player(SettingsController.getController().getP2Nickname());
         }
         Board.showPlayerNickname();
 
@@ -332,7 +332,6 @@ public class GameController {
         guided = false;
         ballAssigned = false;
         cueBallCollisions = 0;
-        eightPocket = 0;
         shot = false;
 
         // POTTED BALLS
@@ -405,7 +404,7 @@ public class GameController {
             guidelineFromBall.setVisible(false);
             guidelineFromCue.setVisible(false);
 
-            if(SettingsController.getSettingsSceneController().modeMenuIndex() == 0) {
+            if(SettingsController.getController().modeMenuIndex() == 0) {
                 for(int i = 0; i < 16; i++) {
                     if(collides(ghostBall, ball[i])) {
     
@@ -588,7 +587,7 @@ public class GameController {
             Board.showPlayerTurn();
         } else if(!ballsMoving && turnChange) {
 
-            removeEightPockets();
+            Board.removeEightPockets();
 
             foul = false;
 
@@ -603,8 +602,8 @@ public class GameController {
             //System.out.println(eightPocket);
             //System.out.println(eightDeclaredPocket + "\n");
 
-            checkCases();
-            checkAllPotted();
+            Rules.checkFoul();
+            Rules.checkPotted();
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 foulNoBallHit = false;
@@ -645,14 +644,14 @@ public class GameController {
             }
 
             if(player1.isAllBallsPlotted() && player1.isMyTurn() && !gameOver) {
-                showEightPockets();
-                eightPocketDeclaration();
+                Board.showEightPockets();
+                Board.eightPocketDeclaration();
                 //System.out.println("Ciao G1");
             }
     
             if(player2.isAllBallsPlotted() && player2.isMyTurn() && !gameOver) {
-                showEightPockets();
-                eightPocketDeclaration();
+                Board.showEightPockets();
+                Board.eightPocketDeclaration();
                 //System.out.println("Ciao G2");
             }
 
@@ -662,113 +661,7 @@ public class GameController {
 
     }
 
-    private void showEightPockets() {
-
-        blackScoreBall.setVisible(true);
-
-        pocket1.setStroke(Color.DARKGRAY);
-        pocket1.setStrokeWidth(3);
-        pocket2.setStroke(Color.DARKGRAY);
-        pocket2.setStrokeWidth(3);
-        pocket3.setStroke(Color.DARKGRAY);
-        pocket3.setStrokeWidth(3);
-        pocket4.setStroke(Color.DARKGRAY);
-        pocket4.setStrokeWidth(3);
-        pocket5.setStroke(Color.DARKGRAY);
-        pocket5.setStrokeWidth(3);
-        pocket6.setStroke(Color.DARKGRAY);
-        pocket6.setStrokeWidth(3);
-
-        pocketButton1.setVisible(true);
-        pocketButton2.setVisible(true);
-        pocketButton3.setVisible(true);
-        pocketButton4.setVisible(true);
-        pocketButton5.setVisible(true);
-        pocketButton6.setVisible(true);
-
-    }
-
-    private void removeEightPockets() {
-
-        blackScoreBall.setVisible(false);
-
-        pocket1.setStroke(Color.BLACK);
-        pocket1.setStrokeWidth(1);
-        pocket2.setStroke(Color.BLACK);
-        pocket2.setStrokeWidth(1);
-        pocket3.setStroke(Color.BLACK);
-        pocket3.setStrokeWidth(1);
-        pocket4.setStroke(Color.BLACK);
-        pocket4.setStrokeWidth(1);
-        pocket5.setStroke(Color.BLACK);
-        pocket5.setStrokeWidth(1);
-        pocket6.setStroke(Color.BLACK);
-        pocket6.setStrokeWidth(1);
-
-    }
-
-    private void eightPocketDeclaration() {
-        pocketButton1.setOnAction(event -> {
-            pocket1.setStroke(Color.GREEN);
-            eightDeclaredPocket = 1;
-            pocketButton1.setVisible(false);
-            pocketButton2.setVisible(false);
-            pocketButton3.setVisible(false);
-            pocketButton4.setVisible(false);
-            pocketButton5.setVisible(false);
-            pocketButton6.setVisible(false);
-        });
-        pocketButton2.setOnAction(event -> {
-            pocket2.setStroke(Color.GREEN);
-            eightDeclaredPocket = 2;
-            pocketButton1.setVisible(false);
-            pocketButton2.setVisible(false);
-            pocketButton3.setVisible(false);
-            pocketButton4.setVisible(false);
-            pocketButton5.setVisible(false);
-            pocketButton6.setVisible(false);
-        });
-        pocketButton3.setOnAction(event -> {
-            pocket3.setStroke(Color.GREEN);
-            eightDeclaredPocket = 3;
-            pocketButton1.setVisible(false);
-            pocketButton2.setVisible(false);
-            pocketButton3.setVisible(false);
-            pocketButton4.setVisible(false);
-            pocketButton5.setVisible(false);
-            pocketButton6.setVisible(false);
-        });
-        pocketButton4.setOnAction(event -> {
-            pocket4.setStroke(Color.GREEN);
-            eightDeclaredPocket = 4;
-            pocketButton1.setVisible(false);
-            pocketButton2.setVisible(false);
-            pocketButton3.setVisible(false);
-            pocketButton4.setVisible(false);
-            pocketButton5.setVisible(false);
-            pocketButton6.setVisible(false);
-        });
-        pocketButton5.setOnAction(event -> {
-            pocket5.setStroke(Color.GREEN);
-            eightDeclaredPocket = 5;
-            pocketButton1.setVisible(false);
-            pocketButton2.setVisible(false);
-            pocketButton3.setVisible(false);
-            pocketButton4.setVisible(false);
-            pocketButton5.setVisible(false);
-            pocketButton6.setVisible(false);
-        });
-        pocketButton6.setOnAction(event -> {
-            pocket6.setStroke(Color.GREEN);
-            eightDeclaredPocket = 6;
-            pocketButton1.setVisible(false);
-            pocketButton2.setVisible(false);
-            pocketButton3.setVisible(false);
-            pocketButton4.setVisible(false);
-            pocketButton5.setVisible(false);
-            pocketButton6.setVisible(false);
-        });
-    }
+    
 
     private void moveCueBall() {
 
@@ -929,351 +822,6 @@ public class GameController {
 
     }
 
-    private void checkCases() {
-
-        boolean change = false;
-
-        if(turnNum == 1) {
-
-            if(thisTurnPottedBalls.size() == 0) {
-                change = true;
-            } else {
-                for(int i = 0; i < thisTurnPottedBalls.size(); i++) {
-                    if(thisTurnPottedBalls.get(i).intValue() == 8) {
-                        eightIn();
-                    } else if (thisTurnPottedBalls.get(i).intValue() == 0) {
-                        foulWhite = true;
-                    } else {
-                        potted[thisTurnPottedBalls.get(i).intValue()] = true;
-                    }
-                }
-            }
-
-        } else if(turnNum >= 2 && player1.getBallType() == 0) {
-
-            if(thisTurnPottedBalls.size()== 0) {
-                change = true;
-            } else {
-                int firstPuttedBallNum = thisTurnPottedBalls.get(0).intValue();
-                if(firstPuttedBallNum >= 1 && firstPuttedBallNum <= 8) {
-                    if(player1.isMyTurn()) {
-                        player1.setBallType(1);
-                        player2.setBallType(2);
-                    } else {
-                        player1.setBallType(2);
-                        player2.setBallType(1);
-                    }
-                    ballAssignment();
-                } else if(firstPuttedBallNum >= 9 && firstPuttedBallNum <= 15) {
-                    if(player1.isMyTurn()) {
-                        player1.setBallType(2);
-                        player2.setBallType(1);
-                    } else {
-                        player1.setBallType(1);
-                        player2.setBallType(2);
-                    }
-                    ballAssignment();
-                }
-
-                for(int i = 0; i < thisTurnPottedBalls.size(); i++) {
-                    if(thisTurnPottedBalls.get(i).intValue() == 8) {
-                        eightIn();
-                    } else if (thisTurnPottedBalls.get(i).intValue() == 0) {
-                        foulWhite = true;
-                    } else {
-                        potted[thisTurnPottedBalls.get(i).intValue()] = true;
-                    }
-                }
-
-            }
-
-        } else {
-
-            if(thisTurnPottedBalls.size() == 0) {
-                change = true;
-            } else if(thisTurnPottedBalls.size() == 1 && thisTurnPottedBalls.get(0).intValue() == 8) {
-
-                if(player1.isMyTurn()) {
-
-                    if(player1.getBallType() == 1) {
-                        int f = 0;
-                        for(int i = 1; i<= 7; i++) {
-                            if(!potted[i]) {
-                                f = 1;
-                                eightIn();
-                            }
-                        }
-                        if(f == 0 && eightPocket == eightDeclaredPocket) {
-                            win();
-                            return;
-                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
-                            eightIn();
-                            return;
-                        }
-                    } else {
-
-                        int f = 0;
-                        for(int i = 9; i<= 15; i++) {
-                            if(!potted[i]) {
-                                f = 1;
-                                eightIn();
-                            }
-                        }
-                        if(f == 0 && eightPocket == eightDeclaredPocket) {
-                            win();
-                            return;
-                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
-                            eightIn();
-                            return; 
-                        }
-
-                    }
-
-                } else {
-
-                    if(player2.getBallType() == 1) {
-                        int f = 0;
-                        for(int i = 1; i<= 7; i++) {
-                            if(!potted[i]) {
-                                f = 1;
-                                eightIn();
-                            }
-                        }
-                        if(f == 0 && eightPocket == eightDeclaredPocket) {
-                            win();
-                            return;
-                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
-                            eightIn();
-                            return;
-                        }
-                    } else {
-
-                        int f = 0;
-                        for(int i = 9; i<= 15; i++) {
-                            if(!potted[i]) {
-                                f = 1;
-                                eightIn();
-                            }
-                        }
-                        if(f == 0 && eightPocket == eightDeclaredPocket) {
-                            win();
-                            return;
-                        } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
-                            eightIn();
-                            return;
-                        }
-
-                    }
-
-                }
-
-            } else {
-
-                int firstPuttedBallNum = thisTurnPottedBalls.get(0).intValue();
-
-                if(player1.isMyTurn()) {
-
-                    if(player1.getBallType() != ball[firstPuttedBallNum].getBallType()) {
-                        change = true;
-                    }
-
-                    for(int i = 0; i < thisTurnPottedBalls.size(); i++) {
-                        if(thisTurnPottedBalls.get(i).intValue() == 8) {
-                            eightIn();
-                        } else if(thisTurnPottedBalls.get(i).intValue() == 0) {
-                            foulWhite = true;
-                        } else {
-                            potted[thisTurnPottedBalls.get(i).intValue()] = true;
-                        }
-                    }
-
-                } else {
-
-                    if(player2.getBallType() != ball[firstPuttedBallNum].getBallType()) {
-                        change = true;
-                    }
-
-                    for(int i = 0; i < thisTurnPottedBalls.size(); i++) {
-                        if(thisTurnPottedBalls.get(i).intValue() == 8) {
-                            eightIn();
-                        } else if(thisTurnPottedBalls.get(i).intValue() == 0) {
-                            foulWhite = true;
-                        } else {
-                            potted[thisTurnPottedBalls.get(i).intValue()] = true;
-                        }
-                    }
-
-                }
-
-            }
-
-        }
-
-        if(foulWhite || foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
-            foul = true;
-        }
-
-        if(change || foulWhite || foulWrongBallType || foulEight || foulNoBallHit || foulShotClock) {
-            changeTurn();
-        }
-
-    }
-
-    private void checkAllPotted() {
-
-        if(player1.getBallType() == 0) {
-            return;
-        } 
-
-        if(player1.isMyTurn()) {
-           
-            int f = 0;
-            if(player1.getBallType() == 1) {
-                for(int i = 1; i<= 7; i++) {
-                    if(!potted[i]) {
-                        f = 1;
-                        break;
-                    }
-                }
-            } else {
-                for(int i = 9; i<= 15; i++) {
-                    if(!potted[i]) {
-                        f = 1;
-                        break;
-                    }
-                }
-            }
-
-            if(f==0) {
-                player1.setAllBallsPlotted(true);
-            }
-
-        } else {
-
-            int f = 0;
-            if(player2.getBallType() == 1) {
-                for(int i = 1; i<= 7; i++) {
-                    if(!potted[i]) {
-                        f = 1;
-                        break;
-                    }
-                }
-            } else {
-                for(int i = 9; i<= 15; i++) {
-                    if(!potted[i]) {
-                        f = 1;
-                        break;
-                    }
-                }
-            }
-
-            if(f==0) {
-                player2.setAllBallsPlotted(true);
-            }
-
-        }
-
-    }
-
-    private void ballAssignment() {
-
-        ballAssigned = true;
-
-        if(!foul) {
-            if(player1.getBallType() == 1) {
-                turnboardLabel.setText(player1.getNickname() + "ha le piene\n" + player2.getNickname() + "ha le spezzate");
-                for(int i = 0; i < 7; i++) {
-                    solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
-                    solidScoreBall[i].setFitHeight(30);
-                    solidScoreBall[i].setFitWidth(30);
-                    solidScoreBall[i].setLayoutX(Constants.RACK_LEFT + 40*i);
-                    solidScoreBall[i].setLayoutY(157);
-                    stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 9) + ".png"));
-                    stripedScoreBall[i].setFitHeight(30);
-                    stripedScoreBall[i].setFitWidth(30);
-                    stripedScoreBall[i].setLayoutX(Constants.RACK_RIGHT + 40*i);
-                    stripedScoreBall[i].setLayoutY(157);
-                    pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
-                }
-            } else {
-                turnboardLabel.setText(player1.getNickname() + "ha le spezzate\n" + player2.getNickname() + "ha le piene");
-                for(int i = 0; i < 7; i++) {
-                    solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
-                    solidScoreBall[i].setFitHeight(30);
-                    solidScoreBall[i].setFitWidth(30);
-                    solidScoreBall[i].setLayoutX(Constants.RACK_RIGHT + 40*i);
-                    solidScoreBall[i].setLayoutY(157);
-                    stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 9) + ".png"));
-                    stripedScoreBall[i].setFitHeight(30);
-                    stripedScoreBall[i].setFitWidth(30);
-                    stripedScoreBall[i].setLayoutX(Constants.RACK_LEFT + 40*i);
-                    stripedScoreBall[i].setLayoutY(157);
-                    pane.getChildren().addAll(solidScoreBall[i], stripedScoreBall[i]);
-                }
-            }
-        }
-        
-    }
-
-    private void eightIn() {
-        if(!soundOff){
-            Sounds.playSound("WinSound");
-        }
-        stopShotClock();
-        if(player1.isMyTurn()) {
-            player2.setWin(true);
-            player1.setWin(false);
-            gameOver = true;
-            turnboardLabel.setText("Vince " + player2.getNickname());
-        } else {
-            player2.setWin(false);
-            player1.setWin(true);
-            gameOver = true;
-            turnboardLabel.setText("Vince " + player1.getNickname());
-        }
-    }
-
-    private void win() {
-        if(!soundOff){
-            Sounds.playSound("WinSound");
-        }
-        stopShotClock();
-        if(player1.isMyTurn()) {
-            player2.setWin(false);
-            player1.setWin(true);
-            gameOver = true;
-            turnboardLabel.setText("Vince " + player1.getNickname());
-        } else {
-            player2.setWin(true);
-            player1.setWin(false);
-            gameOver = true;
-            turnboardLabel.setText("Vince " + player2.getNickname());
-        }
-    }
-
-    private void changeTurn() {
-        if(!soundOff){
-            if(foul){
-                Sounds.playSound("FoulSound");
-            }else{
-                Sounds.playSound("TurnChangeSound");
-            }
-        }
-
-        if (player1.isMyTurn ()) {
-            player1.setMyTurn (false);
-            player2.setMyTurn (true);
-        }
-        else {
-            player2.setMyTurn (false);
-            player1.setMyTurn (true);
-        }
-    }
-
     private boolean collides(Circle circle, Ball ball) {
         double x = circle.getCenterX() - ball.getPosition().getX();
         double y = circle.getCenterY() - ball.getPosition().getY();
@@ -1315,75 +863,8 @@ public class GameController {
         }
     }
 
-    public Player getPlayer1() {
-        return player1;
+    public void addToPane(Node node1, Node node2) {
+        pane.getChildren().addAll(node1, node2);
     }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setTurnboardLabelText(String turnboardText) {
-        turnboardLabel.setText(turnboardText);
-    }
-
-    public void setFoulboardLabelText(String foulboardText) {
-        foulboardLabel.setText(foulboardText);
-    }
-
-    public void setPlayer1NicknameLabelText(String player1NicknameText) {
-        player1NicknameLabel.setText(player1NicknameText);
-    }
-
-    public void setPlayer2NicknameLabelText(String player2NicknameText) {
-        player2NicknameLabel.setText(player2NicknameText);
-    }
-
-    public ArrayList<Integer> getThisTurnPottedBalls() {
-        return thisTurnPottedBalls;
-    }
-
-    public boolean isFoulWhite() {
-        return foulWhite;
-    }
-
-    public boolean isFoulEight() {
-        return foulEight;
-    }
-
-    public boolean isFoulWrongBallType() {
-        return foulWrongBallType;
-    }
-
-    public boolean isFoulNoBallHit() {
-        return foulNoBallHit;
-    }
-
-    public boolean isFoulShotClock() {
-        return foulShotClock;
-    }
-
-    public ImageView[] getSolidScoreBall() {
-        return solidScoreBall;
-    }
-
-    public ImageView[] getStripedScoreBall() {
-        return stripedScoreBall;
-    }
-
-    public void setBallAssigned(boolean ballAssigned) {
-        this.ballAssigned = ballAssigned;
-    }
-
-    public boolean isFoul() {
-        return foul;
-    }
-
-    public void addToPane(Node node) {
-        pane.getChildren().add(node);
-    }
-
-    
-
 
 }
