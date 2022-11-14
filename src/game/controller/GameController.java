@@ -118,6 +118,7 @@ public class GameController {
     private boolean soundOff;
     private int eightPocket;
     private int eightDeclaredPocket;
+    private boolean shot;
 
     private ArrayList<Integer> thisTurnPottedBalls;
     private boolean potted[] = new boolean[16];
@@ -258,9 +259,9 @@ public class GameController {
             public void run() {
                 if(countdown > 0) {
                     shotClockBar.setProgress(countdown / 30);
-                    countdown -= 1;
-                    if(countdown == 5 && !soundOff && !gameOver) {
-                        //Sounds.playSound("ShotClockSound");
+                    countdown -= 0.001;
+                    if(shot) {
+                        shotClock.cancel();
                     }
                 } else {
                     turnChange = true;
@@ -269,7 +270,7 @@ public class GameController {
                 }
             }
         };
-        shotClock.scheduleAtFixedRate(task, 1000, 1000);
+        shotClock.scheduleAtFixedRate(task, 1500, 1);
     }
 
     public void stopShotClock() {
@@ -332,6 +333,7 @@ public class GameController {
         ballAssigned = false;
         cueBallCollisions = 0;
         eightPocket = 0;
+        shot = false;
 
         // POTTED BALLS
         thisTurnPottedBalls = new ArrayList<>();
@@ -527,9 +529,7 @@ public class GameController {
         double cueBallVelocity = 0;
         if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1 && !exit) {
 
-            stopShotClock();
-
-            Sounds.stopSound("ShotClockSound");
+            shot = true;
 
             if(!soundOff){
                 Sounds.playSound("CueSound");
@@ -600,8 +600,8 @@ public class GameController {
                 foulNoBallHit = false;
             }
 
-            System.out.println(eightPocket);
-            System.out.println(eightDeclaredPocket + "\n");
+            //System.out.println(eightPocket);
+            //System.out.println(eightDeclaredPocket + "\n");
 
             checkCases();
             checkAllPotted();
@@ -624,6 +624,7 @@ public class GameController {
             foulNoBallHit = true;
             foulShotClock = false;
             cueBallCollisions = 0;
+            shot = false;
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 ball[0].setPosition(new Vector(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y));
@@ -646,13 +647,13 @@ public class GameController {
             if(player1.isAllBallsPlotted() && player1.isMyTurn() && !gameOver) {
                 showEightPockets();
                 eightPocketDeclaration();
-                System.out.println("Ciao G1");
+                //System.out.println("Ciao G1");
             }
     
             if(player2.isAllBallsPlotted() && player2.isMyTurn() && !gameOver) {
                 showEightPockets();
                 eightPocketDeclaration();
-                System.out.println("Ciao G2");
+                //System.out.println("Ciao G2");
             }
 
             thisTurnPottedBalls.clear();
@@ -1006,7 +1007,7 @@ public class GameController {
                             win();
                             return;
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            //System.out.println("Buca errata dichiarata");
                             eightIn();
                             return;
                         }
@@ -1023,7 +1024,7 @@ public class GameController {
                             win();
                             return;
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            //System.out.println("Buca errata dichiarata");
                             eightIn();
                             return; 
                         }
@@ -1044,7 +1045,7 @@ public class GameController {
                             win();
                             return;
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            //System.out.println("Buca errata dichiarata");
                             eightIn();
                             return;
                         }
@@ -1061,7 +1062,7 @@ public class GameController {
                             win();
                             return;
                         } else if(f == 0 && eightPocket != eightDeclaredPocket) {
-                            System.out.println("Buca errata dichiarata");
+                            //System.out.println("Buca errata dichiarata");
                             eightIn();
                             return;
                         }
@@ -1335,7 +1336,7 @@ public class GameController {
     }
 
     public void setPlayer2NicknameLabelText(String player2NicknameText) {
-        player1NicknameLabel.setText(player2NicknameText);
+        player2NicknameLabel.setText(player2NicknameText);
     }
 
     public ArrayList<Integer> getThisTurnPottedBalls() {

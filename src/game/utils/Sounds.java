@@ -29,21 +29,8 @@ public class Sounds {
         clip.start();
     }
 
-    public static void stopSound(String soundName) {
-        try {
-            URL url = Main.class.getResource("resources/Sounds/" + soundName + ".wav");
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
-            clip = AudioSystem.getClip ();
-            clip.open(audioInputStream);
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-
-        clip.stop();
+    public static Clip getClip() {
+        return clip;
     }
 
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import game.controller.GameController;
 import game.model.Player;
-import javafx.scene.image.ImageView;
 
 public class Board {
 
@@ -13,7 +12,7 @@ public class Board {
 
     public static void showPlayerNickname() {
         GameController.getGameSceneController().setPlayer1NicknameLabelText(player1.getNickname());
-        GameController.getGameSceneController().setPlayer1NicknameLabelText(player2.getNickname());
+        GameController.getGameSceneController().setPlayer2NicknameLabelText(player2.getNickname());
     }
     
     public static void showPlayerBreaking() {
