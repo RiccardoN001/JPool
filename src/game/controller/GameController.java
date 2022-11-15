@@ -410,13 +410,21 @@ public class GameController {
 
                         // ORTHOGONAL VECTOR
                         Vector cueFinalVelocity = new Vector(0, 0);
-                        if(xm > ball[i].getPosition().getX() && ym > ball[i].getPosition().getY()) {
+                        if(xm > ball[i].getPosition().getX() && ym > ball[i].getPosition().getY() && xcb > ball[i].getPosition().getX()) {
                             cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
-                        } else if(xm > ball[i].getPosition().getX() && ym < ball[i].getPosition().getY()) {
+                        } else if(xm > ball[i].getPosition().getX() && ym > ball[i].getPosition().getY() && xcb < ball[i].getPosition().getX()) {
                             cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
-                        } else if(xm < ball[i].getPosition().getX() && ym > ball[i].getPosition().getY()) {
+                        } else if(xm > ball[i].getPosition().getX() && ym < ball[i].getPosition().getY() && xcb > ball[i].getPosition().getX()) {
                             cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
-                        } else if(xm < ball[i].getPosition().getX() && ym < ball[i].getPosition().getY()) {
+                        } else if(xm > ball[i].getPosition().getX() && ym < ball[i].getPosition().getY() && xcb < ball[i].getPosition().getX()) {
+                            cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
+                        } else if(xm < ball[i].getPosition().getX() && ym > ball[i].getPosition().getY() && xcb < ball[i].getPosition().getX()) {
+                            cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
+                        } else if(xm < ball[i].getPosition().getX() && ym > ball[i].getPosition().getY() && xcb > ball[i].getPosition().getX()) {
+                            cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
+                        } else if(xm < ball[i].getPosition().getX() && ym < ball[i].getPosition().getY() && xcb < ball[i].getPosition().getX()) {
+                            cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
+                        } else if(xm < ball[i].getPosition().getX() && ym < ball[i].getPosition().getY() && xcb > ball[i].getPosition().getX()) {
                             cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
                         }
 
