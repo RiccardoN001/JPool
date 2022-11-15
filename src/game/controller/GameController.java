@@ -113,8 +113,6 @@ public class GameController {
     public boolean soundOff;
     public boolean shot;
 
-    
-
     @FXML
     public Circle pocket1;
     @FXML

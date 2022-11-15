@@ -156,7 +156,7 @@ public class Rules {
 
                 if(game.player1.isMyTurn()) {
 
-                    if(game.player1.getBallType() != game.ball[firstPuttedBallNum].getBallType()) {
+                    if(game.player1.getBallType() != GameController.ball[firstPuttedBallNum].getBallType()) {
                         change = true;
                     }
 
@@ -172,7 +172,7 @@ public class Rules {
 
                 } else {
 
-                    if(game.player2.getBallType() != game.ball[firstPuttedBallNum].getBallType()) {
+                    if(game.player2.getBallType() != GameController.ball[firstPuttedBallNum].getBallType()) {
                         change = true;
                     }
 

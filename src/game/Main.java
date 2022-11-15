@@ -11,7 +11,6 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("JPool");
 
         Parent root = FXMLLoader.load(getClass().getResource("view/Menu.fxml"));
         Scene scene = new Scene(root);
@@ -19,6 +18,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.getIcons().add(new Image("file:src/game/resources/Logo.png"));
+        stage.setTitle("JPOOL");
         stage.show();
 
     }

@@ -1,7 +1,5 @@
 package game.controller;
 
-import java.lang.ModuleLayer.Controller;
-
 import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +34,6 @@ public class SettingsController{
     private Button playButton;
     @FXML
     private Button menuButtonFromSettings;
-    private GameController game = GameController.getController();
 
     // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsController instance;
@@ -121,10 +118,9 @@ public class SettingsController{
             scene.getStylesheets().add(Main.class.getResource("view/table4.css").toExternalForm());
         }
 
-       // stage.setOnHidden(e->game.shutdown());
-        
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(e -> System.exit(0));
     }
 
     public int cueMenuIndex () {
