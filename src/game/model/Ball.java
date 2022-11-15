@@ -480,7 +480,7 @@ public class Ball {
                         Sounds.playSound("BallSound");
                     }
 
-                    if(ballNum == 0 && game.player1.getBallType() == 0) {
+                    if(ballNum == 0 && game.player1.getBallType() == 0 && game.cueBallCollisions==1) {
                         if(GameController.ball[i].getBallNumber() == 8) {
                             game.foulEight = true;
                         }

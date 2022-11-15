@@ -42,7 +42,9 @@ public class Rules {
                         game.player1.setBallType(2);
                         game.player2.setBallType(1);
                     }
-                    Board.ballAssignment();
+                    if(!game.foul) {
+                        Board.ballAssignment();
+                    }
                 } else if(firstPuttedBallNum >= 9 && firstPuttedBallNum <= 15) {
                     if(game.player1.isMyTurn()) {
                         game.player1.setBallType(2);
@@ -51,7 +53,9 @@ public class Rules {
                         game.player1.setBallType(1);
                         game.player2.setBallType(2);
                     }
-                    Board.ballAssignment();
+                    if(!game.foul) {
+                        Board.ballAssignment();
+                    }
                 }
 
                 for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {

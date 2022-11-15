@@ -256,7 +256,6 @@ public class GameController {
                     if(shot || gameOver) {
                         shotClock.cancel();
                     }
-
                 } else {
                     turnChange = true;
                     foulShotClock = true;
@@ -411,18 +410,14 @@ public class GameController {
 
                         // ORTHOGONAL VECTOR
                         Vector cueFinalVelocity = new Vector(0, 0);
-                        if(xm > ball[i].getPosition().getX()) {
-                            if(ym > ball[i].getPosition().getY()) {
-                                cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
-                            } else {
-                                cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
-                            }
-                        } else {
-                            if(ym > ball[i].getPosition().getY()) {
-                                cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
-                            } else {
-                                cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
-                            }
+                        if(xm > ball[i].getPosition().getX() && ym > ball[i].getPosition().getY()) {
+                            cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
+                        } else if(xm > ball[i].getPosition().getX() && ym < ball[i].getPosition().getY()) {
+                            cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
+                        } else if(xm < ball[i].getPosition().getX() && ym > ball[i].getPosition().getY()) {
+                            cueFinalVelocity = new Vector(-ballFinalVelocity.getY(), ballFinalVelocity.getX());
+                        } else if(xm < ball[i].getPosition().getX() && ym < ball[i].getPosition().getY()) {
+                            cueFinalVelocity = new Vector(ballFinalVelocity.getY(), -ballFinalVelocity.getX());
                         }
 
                         double x = ball[i].getSphere().getLayoutX();
@@ -647,10 +642,6 @@ public class GameController {
 
     public void addToPane(Node node) {
         pane.getChildren().add(node);
-    }
-
-    public void removeFromPane(Node node) {
-        pane.getChildren().remove(node);
     }
 
 }
