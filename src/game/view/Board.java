@@ -5,7 +5,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import game.controller.GameController;
 import game.controller.Rules;
-import game.model.Player;
 import game.utils.Constants;
 import game.utils.Sounds;
 

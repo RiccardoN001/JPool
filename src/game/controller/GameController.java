@@ -16,7 +16,6 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,48 +40,44 @@ public class GameController {
 
     @FXML
     private Pane pane;
-
-    @FXML
-    private Button soundsButton;
     @FXML
     private Button menuButtonFromGame;
+    @FXML
+    private Button soundsButton;
     @FXML
     private Label exitLabel;
     @FXML
     private Button exitYes;
     @FXML
     private Button exitNo;
-
     Rectangle blurredScene = new Rectangle(1400, 800, Color.WHITE);
-
     private boolean exit;
+    private ImageView soundIconOff;
+    private ImageView soundIconOn;
 
     // -------------------------------------------------- GAME ATTRIBUTES --------------------------------------------------
 
-    private ImageView cue;
-    @FXML
-    private Line guidelineToBall;
-    @FXML
-    private Circle ghostBall;
-    @FXML
-    private Line guidelineFromBall;
-    @FXML
-    private Line guidelineFromCue;
+    public Player player1;
+    public Player player2;
+    public Ball ball[] = new Ball[16];
 
+    public ImageView cue;
+    @FXML
+    public Line guidelineToBall;
+    @FXML
+    public Circle ghostBall;
+    @FXML
+    public Line guidelineFromBall;
+    @FXML
+    public Line guidelineFromCue;
     @FXML
     private Slider powerSlider;
     @FXML
     private ImageView powerBar;
     @FXML
     private Label sliderVelocityLabel;
-
-    private double xmr = -1;
-    private double ymr = -1;
-
-    public Ball ball[] = new Ball[16];
-    public ImageView[] solidScoreBall = new ImageView[7];
-    public ImageView[] stripedScoreBall = new ImageView[7];
-    public ImageView blackScoreBall;
+    private double xMouseReleased = -1;
+    private double yMouseReleased = -1;
 
     @FXML
     public Label player1NicknameLabel;
@@ -94,12 +89,13 @@ public class GameController {
     public Label foulboardLabel;
     @FXML
     public ProgressBar shotClockBar;
+    public ImageView[] solidScoreBall = new ImageView[7];
+    public ImageView[] stripedScoreBall = new ImageView[7];
+    public ImageView blackScoreBall;
 
-    private ImageView soundIconOff;
-    private ImageView soundIconOn;
-
-    public Player player1;
-    public Player player2;
+    public ArrayList<Integer> thisTurnPottedBalls;
+    public boolean potted[] = new boolean[16];
+    public double rackStack = 665;
 
     public int turnNum;
     public boolean turn;
@@ -118,11 +114,6 @@ public class GameController {
     public boolean soundOff;
     public boolean shot;
 
-    public ArrayList<Integer> thisTurnPottedBalls;
-    public boolean potted[] = new boolean[16];
-    private double stackY = 665;
-
-    // threads
     private Timeline timeline = new Timeline();
     private Timer shotClock;
 
@@ -406,7 +397,7 @@ public class GameController {
 
             if(SettingsController.getController().modeMenuIndex() == 0) {
                 for(int i = 0; i < 16; i++) {
-                    if(collides(ghostBall, ball[i])) {
+                    if(Ball.ghostCollides(ghostBall, ball[i])) {
     
                         guidelineFromBall.setVisible(true);
                         guidelineFromCue.setVisible(true);
@@ -485,8 +476,8 @@ public class GameController {
     @FXML
     public void fixTrajectory(MouseEvent event) {
         if(turn && !gamePause && !gameOver && !exit) {
-            xmr = event.getSceneX();
-            ymr = event.getSceneY();
+            xMouseReleased = event.getSceneX();
+            yMouseReleased = event.getSceneY();
         }
     }
 
@@ -506,7 +497,7 @@ public class GameController {
             cue.setLayoutX(xcb - 385 - velocity);
             cue.setLayoutY(ycb - 20);
             
-            double angle = Math.toDegrees(Math.atan2(ymr - ycb, xmr - xcb));
+            double angle = Math.toDegrees(Math.atan2(yMouseReleased - ycb, xMouseReleased - xcb));
 
             double mid_x = cue.getLayoutX() + cue.getFitWidth() / 2;
             double mid_y = cue.getLayoutY() + cue.getFitHeight() / 2;
@@ -526,7 +517,7 @@ public class GameController {
     @FXML
     public void cueShot()  {
         double cueBallVelocity = 0;
-        if(turn && !gamePause && !gameOver && xmr != -1 && ymr != -1 && !exit) {
+        if(turn && !gamePause && !gameOver && xMouseReleased != -1 && yMouseReleased != -1 && !exit) {
 
             shot = true;
 
@@ -543,11 +534,11 @@ public class GameController {
                 guidelineFromBall.setVisible(false);
                 guidelineFromCue.setVisible(false);
                 
-                double angle = Math.atan2(ymr - ball[0].getPosition().getY(), xmr - ball[0].getPosition().getX());
-                setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
+                double angle = Math.atan2(yMouseReleased - ball[0].getPosition().getY(), xMouseReleased - ball[0].getPosition().getX());
+                Ball.setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
 
-                xmr = -1;
-                ymr = -1;
+                xMouseReleased = -1;
+                yMouseReleased = -1;
 
                 cue.setVisible(false);
 
@@ -567,7 +558,7 @@ public class GameController {
             Board.showPlayerBreaking();
         }
 
-        moveCueBall();
+        Ball.moveCueBall();
 
         boolean ballsMoving = false;
         for(int i = 0; i < 16; i++) {
@@ -575,8 +566,8 @@ public class GameController {
                 ballsMoving = true;
                 turnChange = true;
             }
-            updateBalls(i);
-            checkPocket(i);
+            Ball.ballAnimation(i);
+            Ball.checkPocket(i);
         }
 
         if(ballsMoving) {
@@ -662,206 +653,6 @@ public class GameController {
     }
 
     
-
-    private void moveCueBall() {
-
-        ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-
-            if(turn && turnNum == 1) {
-                cue.setVisible(false);
-                guidelineToBall.setVisible(false);
-                ghostBall.setVisible(false);
-                guidelineFromBall.setVisible(false);
-                guidelineFromCue.setVisible(false);
-                ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                if(event.getSceneX() >= Constants.A_MARGIN+12.5 && 
-                    event.getSceneX() <= Constants.HEAD_SPOT_X && 
-                    event.getSceneY() >= Constants.CD_MARGIN+12.5 && 
-                    event.getSceneY() <= Constants.EF_MARGIN-12.5) {
-                    ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
-                }
-            } else if(turn && foul) {
-                cue.setVisible(false);
-                guidelineToBall.setVisible(false);
-                ghostBall.setVisible(false);
-                guidelineFromBall.setVisible(false);
-                guidelineFromCue.setVisible(false);
-                ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                if(event.getSceneX() >= Constants.A_MARGIN+12.5 && 
-                    event.getSceneX() <= Constants.B_MARGIN-12.5 && 
-                    event.getSceneY() >= Constants.CD_MARGIN+12.5 && 
-                    event.getSceneY() <= Constants.EF_MARGIN-12.5) {
-                    ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
-                }
-            }
-
-        });
-
-    }
-
-    private void updateBalls(int ballNum) {
-        if(ball[ballNum].getVelocity().getSize() <= 8e-2) {
-            ball[ballNum].setVelocity(0, 0);  
-        } else {
-            ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() + ball[ballNum].getVelocity().getX());
-            ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() + ball[ballNum].getVelocity().getY());
-
-            for(int i = 0; i < 16; i++) {
-                if(ball[ballNum].collides(ball[i]) && ballNum != ball[i].getBallNumber()) {
-
-                    if(ballNum == 0) {
-                        foulNoBallHit = false;
-                        cueBallCollisions++;
-                    }
-
-                    if(ballNum == 0 && cueBallCollisions == 1 && turnNum==1 && !soundOff){
-                        Sounds.playSound("SplitSound");
-                    }
-                    else if(turnNum != 1 && !soundOff){
-                        Sounds.playSound("BallSound");
-                    }
-
-                    if(ballNum == 0 && player1.getBallType() == 0) {
-                        if(ball[i].getBallNumber() == 8) {
-                            foulEight = true;
-                        }
-                    }
-
-                    if (ballNum == 0 && player1.getBallType() != 0) {
-                        if(player1.isMyTurn()) {
-                            if(player1.getBallType() != ball[i].getBallType() && cueBallCollisions==1) {
-                                foulWrongBallType = true;
-                                if(ball[i].getBallNumber() == 8 && !player1.isAllBallsPlotted()) {
-                                    foulEight = true;
-                                } else if(ball[i].getBallNumber() == 8 && player1.isAllBallsPlotted()) {
-                                    foulEight = false;
-                                    foulWrongBallType = false;
-                                }
-                            } else if(player1.getBallType() == ball[i].getBallType() && cueBallCollisions==1) {
-                                foulWrongBallType = false;
-                            }
-                        } else {
-                            if(player2.getBallType() != ball[i].getBallType() && cueBallCollisions==1) {
-                                foulWrongBallType = true;
-                                if(ball[i].getBallNumber() == 8 && !player2.isAllBallsPlotted()) {
-                                    foulEight = true;
-                                } else if(ball[i].getBallNumber() == 8 && player2.isAllBallsPlotted()) {
-                                    foulEight = false;
-                                    foulWrongBallType = false;
-                                }
-                            } else if(player2.getBallType() == ball[i].getBallType() && cueBallCollisions==1) {
-                                foulWrongBallType = false;
-                            }
-                        }
-                    }
-
-                    ball[ballNum].getPosition().setX(ball[ballNum].getPosition().getX() - ball[ballNum].getVelocity().getX());
-                    ball[ballNum].getPosition().setY(ball[ballNum].getPosition().getY() - ball[ballNum].getVelocity().getY());
-                    ball[ballNum].ballCollision(ball[i]);
-                    
-                    break;
-
-                }
-            }
-            ball[ballNum].spin();
-            ball[ballNum].bankCollision();
-            ball[ballNum].tableFriction();
-        }
-        ball[ballNum].getSphere().setLayoutX(ball[ballNum].getPosition().getX());
-        ball[ballNum].getSphere().setLayoutY(ball[ballNum].getPosition().getY());
-    }
-
-
-    private void checkPocket(int ballNum) {
-
-        double x = ball[ballNum].getPosition().getX();
-        double y = ball[ballNum].getPosition().getY();
-
-        double check = 25;
-
-        if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check
-            || ((y <= 244+15 || x <= 290+15) && !ball[ballNum].isDropped ())) {
-            dropit (ballNum);
-            if(ballNum == 8) {
-                eightPocket = 1;
-            }
-        }
-        else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check
-            || ((y >= 700-15 || x <= 290+15) && !ball[ballNum].isDropped ())) {
-            dropit (ballNum);
-            if(ballNum == 8) {
-                eightPocket = 4;
-            }
-        }
-        else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check-5) {
-            dropit (ballNum);
-            if(ballNum == 8) {
-                eightPocket = 2;
-            }
-        }
-        else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check-5) {
-            dropit (ballNum);
-            if(ballNum == 8) {
-                eightPocket = 5;
-            }
-        }
-        else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check
-            || ((y <= 244+15 || x >= 1174-15) && !ball[ballNum].isDropped ())) {
-            dropit (ballNum);
-            if(ballNum == 8) {
-                eightPocket = 3;
-            }
-        }
-        else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check
-            || ((y >= 700-15 || x >= 1174-15) && !ball[ballNum].isDropped ())) {
-            dropit (ballNum);
-            if(ballNum == 8) {
-                eightPocket = 6;
-            }
-        }
-
-    }
-
-    private boolean collides(Circle circle, Ball ball) {
-        double x = circle.getCenterX() - ball.getPosition().getX();
-        double y = circle.getCenterY() - ball.getPosition().getY();
-        double centersdistance = Math.sqrt(x * x + y * y);
-
-        if (centersdistance - Constants.BALL_DIAMETER <= 3) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void setCueVelocity(double x, double y) {
-        ball[0].setVelocity(x, y);
-    }
-
-    private double distance(double x1, double y1, double x2, double y2) {
-        return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
-    }
-
-    private void dropit(int ballNum) {
-
-        if(!soundOff && ballNum != 0){
-            Sounds.playSound("PocketSound");
-        }
-        thisTurnPottedBalls.add(Integer.valueOf(ballNum));
-        ball[ballNum].setDropped(true);
-        ball[ballNum].setVelocity(0, 0);
-
-        ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, stackY));
-
-        stackY -= 25;
-
-        if (ballNum == 0) {
-            stackY += 25;
-            ball[0].getSphere ().setVisible (false);
-            ball[0].setPosition (new Vector (0, 0));
-            ball[0].setDropped (false);
-        }
-    }
 
     public void addToPane(Node node1, Node node2) {
         pane.getChildren().addAll(node1, node2);
