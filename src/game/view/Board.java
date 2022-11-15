@@ -88,7 +88,8 @@ public class Board {
                     game.stripedScoreBall[i].setFitHeight(30);
                     game.stripedScoreBall[i].setLayoutX(Constants.RACK_RIGHT + 40*i);
                     game.stripedScoreBall[i].setLayoutY(157);
-                    game.addToPane(game.solidScoreBall[i], game.stripedScoreBall[i]);
+                    game.addToPane(game.solidScoreBall[i]);
+                    game.addToPane(game.stripedScoreBall[i]);
                 }
             } else {
                 for(int i = 0; i < 7; i++) {
@@ -102,7 +103,8 @@ public class Board {
                     game.stripedScoreBall[i].setFitHeight(30);
                     game.stripedScoreBall[i].setLayoutX(Constants.RACK_LEFT + 40*i);
                     game.stripedScoreBall[i].setLayoutY(157);
-                    game.addToPane(game.solidScoreBall[i], game.stripedScoreBall[i]);
+                    game.addToPane(game.solidScoreBall[i]);
+                    game.addToPane(game.stripedScoreBall[i]);
                 }
             }
         }
@@ -111,7 +113,13 @@ public class Board {
 
     public static void showEightPockets() {
 
+        game.blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
+        game.blackScoreBall.setFitWidth(60);
+        game.blackScoreBall.setFitHeight(60);
+        game.blackScoreBall.setLayoutX(704-30);
+        game.blackScoreBall.setLayoutY(172-30);
         game.blackScoreBall.setVisible(true);
+        game.addToPane(game.blackScoreBall);
 
         game.pocket1.setStroke(Color.DARKGRAY);
         game.pocket1.setStrokeWidth(3);

@@ -91,7 +91,7 @@ public class GameController {
     public ProgressBar shotClockBar;
     public ImageView[] solidScoreBall = new ImageView[7];
     public ImageView[] stripedScoreBall = new ImageView[7];
-    public ImageView blackScoreBall;
+    public ImageView blackScoreBall = new ImageView();
 
     public ArrayList<Integer> thisTurnPottedBalls;
     public boolean potted[] = new boolean[16];
@@ -114,8 +114,7 @@ public class GameController {
     public boolean soundOff;
     public boolean shot;
 
-    private Timeline timeline = new Timeline();
-    private Timer shotClock;
+    
 
     @FXML
     public Circle pocket1;
@@ -145,8 +144,13 @@ public class GameController {
 
     public int eightPocket = 0;
 
+    // -------------------------------------------------- THREAD ATTRIBUTES --------------------------------------------------
 
-    // CONTROLLER-CONTROLLER COMMUNICATION
+    private Timeline timeline = new Timeline();
+    private Timer shotClock;
+
+    // -------------------------------------------------- CONTROLLER COMMUNICATION --------------------------------------------------
+
     private static GameController instance;
     public GameController() {
         instance = this;
@@ -159,7 +163,7 @@ public class GameController {
 
     @FXML
     public void handleMenuButton(ActionEvent event) throws Exception {
-        if(!soundOff){
+        if(!soundOff) {
           Sounds.playSound("PauseSound");  
         }
         exitLabel.setVisible(true);
@@ -201,12 +205,11 @@ public class GameController {
 
     @FXML
     public void handleSoundsButton(ActionEvent event) throws Exception {
-        if(!soundOff){
+        if(!soundOff) {
             soundOff = true;
             soundsButton.setGraphic(soundIconOff);
             soundsButton.setPrefSize(60, 60);
-        }
-        else if(soundOff){
+        } else if(soundOff) {
             soundOff = false;
             soundsButton.setGraphic(soundIconOn);
             soundsButton.setPrefSize(60, 60);
@@ -227,16 +230,6 @@ public class GameController {
                 });
         timeline.getKeyFrames().add(keyFrame);
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    }
-
-    public void pauseGame() {
-        gamePause = true;
-        timeline.stop();
-    }
-
-    public void startFromPause() {
-        gamePause = false;
         timeline.play();
     }
 
@@ -271,29 +264,8 @@ public class GameController {
 
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
 
-    // -------------------------------------------------- FXML LINKED --------------------------------------------------
-
     @FXML
     public void initialize() throws Exception {
-
-        Sounds.playSound("RackSound");
-        
-        // SPLIT
-        turnNum = 1;
-        Ball.triangle(ball);
-        for(int i = 0; i < 16; i++) {
-            pane.getChildren().add(ball[i].drawBall());
-        }
-
-        // CUE LOADING
-        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getController().cueMenuIndex()+1 + ".png")));
-        cue.setFitWidth(400);
-        cue.setFitHeight(100);
-        cue.setLayoutX(105);
-        cue.setLayoutY(447);
-        cue.setPreserveRatio(true);
-        pane.getChildren().add(cue);
-        powerBar.setOpacity(0.3);
 
         // PLAYERS
         if(SettingsController.getController().getP1Nickname().isEmpty()) {
@@ -307,9 +279,27 @@ public class GameController {
             player2 = new Player(SettingsController.getController().getP2Nickname());
         }
         Board.showPlayerNickname();
-
-        // CONTROL VARIABLES
         player1.setMyTurn(true);
+
+        // CUE LOADING
+        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getController().cueMenuIndex()+1 + ".png")));
+        cue.setFitWidth(400);
+        cue.setFitHeight(100);
+        cue.setLayoutX(105);
+        cue.setLayoutY(447);
+        cue.setPreserveRatio(true);
+        pane.getChildren().add(cue);
+        powerBar.setOpacity(0.3);
+        
+        // SPLIT
+        turnNum = 1;
+        Ball.triangle(ball);
+        for(int i = 0; i < 16; i++) {
+            pane.getChildren().add(ball[i].drawBall());
+        }
+        Sounds.playSound("RackSound");
+
+        // RULES VARIABLES
         turn = true;
         foul = false;
         gamePause = false;
@@ -331,7 +321,7 @@ public class GameController {
             potted[i] = false;
         }
 
-        // PAUSE
+        // SCENE VARIABLES
         exitLabel.setVisible(false);
         exitYes.setVisible(false);
         exitNo.setVisible(false);
@@ -350,16 +340,8 @@ public class GameController {
         soundsButton.setGraphic(soundIconOn);
         soundsButton.setPrefSize(60, 60);
 
-        blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
-        blackScoreBall.setFitWidth(60);
-        blackScoreBall.setFitHeight(60);
-        blackScoreBall.setLayoutX(704-30);
-        blackScoreBall.setLayoutY(172-30);
-        pane.getChildren().add(blackScoreBall);
-        blackScoreBall.setVisible(false);
-
+        // THREAD
         startShotClock();
-
         startGame();
     }
 
@@ -652,10 +634,8 @@ public class GameController {
 
     }
 
-    
-
-    public void addToPane(Node node1, Node node2) {
-        pane.getChildren().addAll(node1, node2);
+    public void addToPane(Node node) {
+        pane.getChildren().add(node);
     }
 
 }
