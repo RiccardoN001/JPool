@@ -216,6 +216,11 @@ public class GameController {
         }
     }
 
+    public void shutdown(){
+        shotClock.cancel();
+        //Anche i suoni
+    }
+
     // -------------------------------------------------- ANIMATION METHODS --------------------------------------------------
 
     public void startGame() {
@@ -245,13 +250,15 @@ public class GameController {
                     shotClockBar.setProgress(countdown / 30);
                     countdown -= 0.001;
                     if(Math.floor(countdown) == 3 && startShotClock) {
-                        Sounds.playSound("WinSound");
+                        if(!soundOff){
+                            Sounds.playSound("ShotClockSound");
+                        }
                         startShotClock = false;
                     }
                     if(shot || gameOver) {
                         shotClock.cancel();
                     }
-                    System.out.println(countdown);
+
                 } else {
                     turnChange = true;
                     foulShotClock = true;

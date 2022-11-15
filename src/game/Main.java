@@ -11,6 +11,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setTitle("JPool");
 
         Parent root = FXMLLoader.load(getClass().getResource("view/Menu.fxml"));
         Scene scene = new Scene(root);
