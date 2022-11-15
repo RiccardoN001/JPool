@@ -59,7 +59,7 @@ public class GameController {
 
     public Player player1;
     public Player player2;
-    public Ball ball[] = new Ball[16];
+    public static Ball ball[] = new Ball[16];
 
     public ImageView cue;
     @FXML
@@ -100,7 +100,6 @@ public class GameController {
     public int turnNum;
     public boolean turn;
     public boolean foul;
-    public boolean gamePause;
     public boolean gameOver;
     public boolean turnChange;
     public boolean foulWhite;
@@ -148,6 +147,7 @@ public class GameController {
 
     private Timeline timeline = new Timeline();
     private Timer shotClock;
+    private boolean startShotClock;
 
     // -------------------------------------------------- CONTROLLER COMMUNICATION --------------------------------------------------
 
@@ -244,9 +244,14 @@ public class GameController {
                 if(countdown > 0) {
                     shotClockBar.setProgress(countdown / 30);
                     countdown -= 0.001;
+                    if(Math.floor(countdown) == 3 && startShotClock) {
+                        Sounds.playSound("WinSound");
+                        startShotClock = false;
+                    }
                     if(shot || gameOver) {
                         shotClock.cancel();
                     }
+                    System.out.println(countdown);
                 } else {
                     turnChange = true;
                     foulShotClock = true;
@@ -302,7 +307,6 @@ public class GameController {
         // RULES VARIABLES
         turn = true;
         foul = false;
-        gamePause = false;
         gameOver = false;
         turnChange = false;
         foulWhite = false;
@@ -341,6 +345,7 @@ public class GameController {
         soundsButton.setPrefSize(60, 60);
 
         // THREAD
+        startShotClock = true;
         startShotClock();
         startGame();
     }
@@ -351,7 +356,7 @@ public class GameController {
         double xm = event.getSceneX();
         double ym = event.getSceneY();
 
-        if(turn && !gamePause && !gameOver && xm >= Constants.A_MARGIN+10 && xm <= Constants.B_MARGIN-10 && ym >= Constants.CD_MARGIN+10 && ym <= Constants.EF_MARGIN-10 && !exit) {
+        if(turn && !gameOver && xm >= Constants.A_MARGIN+10 && xm <= Constants.B_MARGIN-10 && ym >= Constants.CD_MARGIN+10 && ym <= Constants.EF_MARGIN-10 && !exit) {
 
             guided = true;
 
@@ -457,7 +462,7 @@ public class GameController {
 
     @FXML
     public void fixTrajectory(MouseEvent event) {
-        if(turn && !gamePause && !gameOver && !exit) {
+        if(turn && !gameOver && !exit) {
             xMouseReleased = event.getSceneX();
             yMouseReleased = event.getSceneY();
         }
@@ -465,7 +470,7 @@ public class GameController {
 
     @FXML
     public void cueLoading() {
-        if(turn && !gamePause && !gameOver && !exit && guided) {
+        if(turn && !gameOver && !exit && guided) {
 
             double xcb = ball[0].getPosition().getX();
             double ycb = ball[0].getPosition().getY();
@@ -499,7 +504,7 @@ public class GameController {
     @FXML
     public void cueShot()  {
         double cueBallVelocity = 0;
-        if(turn && !gamePause && !gameOver && xMouseReleased != -1 && yMouseReleased != -1 && !exit) {
+        if(turn && !gameOver && xMouseReleased != -1 && yMouseReleased != -1 && !exit) {
 
             shot = true;
 
@@ -564,7 +569,8 @@ public class GameController {
 
             foul = false;
 
-            if(!gamePause && !gameOver) {
+            if(!gameOver) {
+                startShotClock = true;
                 startShotClock();
             }
             
@@ -636,6 +642,10 @@ public class GameController {
 
     public void addToPane(Node node) {
         pane.getChildren().add(node);
+    }
+
+    public void removeFromPane(Node node) {
+        pane.getChildren().remove(node);
     }
 
 }

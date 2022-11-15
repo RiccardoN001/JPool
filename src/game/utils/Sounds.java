@@ -9,7 +9,7 @@ import javax.sound.sampled.*;
 
 public class Sounds {
 
-    private static Clip clip;
+    public static Clip clip;
 
     public static void playSound(String soundName) {
         try {
@@ -27,10 +27,6 @@ public class Sounds {
 
         clip.setFramePosition (0);
         clip.start();
-    }
-
-    public static Clip getClip() {
-        return clip;
     }
 
 }
