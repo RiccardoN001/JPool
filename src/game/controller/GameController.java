@@ -275,6 +275,8 @@ public class GameController {
 
     @FXML
     public void initialize() throws Exception {
+        soundOff = SettingsController.getController().getSoundOff();//oppure direttamente alla dichiarazione della variabile
+        System.out.println("GameScene Init " +soundOff);
 
         // PLAYERS
         if(SettingsController.getController().getP1Nickname().isEmpty()) {
@@ -306,7 +308,10 @@ public class GameController {
         for(int i = 0; i < 16; i++) {
             pane.getChildren().add(ball[i].drawBall());
         }
-        Sounds.playSound("RackSound");
+        if(!soundOff){
+           Sounds.playSound("RackSound");
+        }
+       
 
         // RULES VARIABLES
         turn = true;
@@ -336,8 +341,6 @@ public class GameController {
         exit = false;
 
         //SOUNDS
-        soundOff = false;
-
         soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
         soundIconOn.setFitWidth(60);
         soundIconOn.setFitHeight(60);
@@ -345,8 +348,15 @@ public class GameController {
         soundIconOff.setFitWidth(60);
         soundIconOff.setFitHeight(60);
 
-        soundsButton.setGraphic(soundIconOn);
-        soundsButton.setPrefSize(60, 60);
+        if(!soundOff){
+          soundsButton.setGraphic(soundIconOn);
+          soundsButton.setPrefSize(60, 60);  
+        }
+        else if(soundOff){
+            soundsButton.setGraphic(soundIconOff);
+            soundsButton.setPrefSize(60, 60); 
+        }
+        
 
         // THREAD
         startShotClock = true;

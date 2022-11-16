@@ -8,8 +8,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -34,6 +36,11 @@ public class SettingsController{
     private Button playButton;
     @FXML
     private Button menuButtonFromSettings;
+    @FXML
+    private Label soundLabel;
+    @FXML
+    private Button soundButton;
+    private boolean soundOff = false;
 
     // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsController instance;
@@ -96,6 +103,19 @@ public class SettingsController{
         stage.setScene(scene);
         stage.show();
     }
+
+     @FXML
+    void handleSoundButton(ActionEvent event) throws Exception{
+        if(!soundOff){
+            soundOff = true;
+            soundLabel.setText("OFF");
+        }
+        else if(soundOff){
+            soundOff = false;
+            soundLabel.setText("ON");
+        }
+        System.out.println("Settings "+ soundOff);
+    }
     
     @FXML
     void handlePlayButton(ActionEvent event) throws Exception {
@@ -137,6 +157,9 @@ public class SettingsController{
 
     public String getP2Nickname() {
         return this.player2Nickname.getText();
+    }
+    public boolean getSoundOff(){
+        return this.soundOff;
     }
 
 }
