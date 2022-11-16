@@ -12,7 +12,7 @@
       <Pagination fx:id="tableMenu" layoutX="50.0" layoutY="170.0" pageCount="4" prefHeight="300.0" prefWidth="600.0" />
       <Pagination fx:id="cueMenu" layoutX="50.0" layoutY="650.0" pageCount="10" prefHeight="100.0" prefWidth="600.0" />
       <Pagination fx:id="modeMenu" layoutX="700.0" layoutY="200.0" pageCount="2" prefHeight="300.0" prefWidth="300.0" />
-      <Button fx:id="playButton" layoutX="1050.0" layoutY="650.0" mnemonicParsing="false" onAction="#handleGameSceneChoice" prefHeight="75.0" prefWidth="250.0" styleClass="orange-button" text="PLAY">
+      <Button fx:id="playButton" layoutX="1050.0" layoutY="650.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="75.0" prefWidth="250.0" styleClass="orange-button" text="PLAY">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font></Button>

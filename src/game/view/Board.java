@@ -12,6 +12,15 @@ public class Board {
 
     private static GameController game = GameController.getController();
 
+    public static void showSplitPlayer() {
+        int splitPlayer = (int)(Math.random()*2);
+        if(splitPlayer == 0) {
+            game.player1.setMyTurn(true);
+        } else {
+            game.player2.setMyTurn(true);
+        }
+    }
+
     public static void showPlayerNickname() {
         game.player1NicknameLabel.setText(game.player1.getNickname());
         game.player2NicknameLabel.setText(game.player2.getNickname());

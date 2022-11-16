@@ -98,7 +98,7 @@ public class SettingsController{
     }
     
     @FXML
-    void handleGameSceneChoice(ActionEvent event) throws Exception {
+    void handlePlayButton(ActionEvent event) throws Exception {
         Stage stage;
         Parent root;
 

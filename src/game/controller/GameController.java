@@ -288,7 +288,7 @@ public class GameController {
             player2 = new Player(SettingsController.getController().getP2Nickname());
         }
         Board.showPlayerNickname();
-        player1.setMyTurn(true);
+        Board.showSplitPlayer();
 
         // CUE LOADING
         cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getController().cueMenuIndex()+1 + ".png")));
