@@ -114,7 +114,7 @@ public class SettingsController{
             soundOff = false;
             soundLabel.setText("ON");
         }
-        System.out.println("Settings "+ soundOff);
+        //System.out.println("Settings "+ soundOff);
     }
     
     @FXML

@@ -88,6 +88,8 @@ public class GameController {
     @FXML
     public Label foulboardLabel;
     @FXML
+    public Label winLabel;
+    @FXML
     public ProgressBar shotClockBar;
     public ImageView[] solidScoreBall = new ImageView[7];
     public ImageView[] stripedScoreBall = new ImageView[7];
@@ -273,10 +275,10 @@ public class GameController {
 
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
 
+    
     @FXML
     public void initialize() throws Exception {
-        soundOff = SettingsController.getController().getSoundOff();//oppure direttamente alla dichiarazione della variabile
-        System.out.println("GameScene Init " +soundOff);
+        soundOff = SettingsController.getController().getSoundOff();
 
         // PLAYERS
         if(SettingsController.getController().getP1Nickname().isEmpty()) {
@@ -339,6 +341,7 @@ public class GameController {
         exitYes.setVisible(false);
         exitNo.setVisible(false);
         exit = false;
+        winLabel.setVisible(false);
 
         //SOUNDS
         soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));

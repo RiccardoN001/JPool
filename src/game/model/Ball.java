@@ -210,6 +210,10 @@ public class Ball {
         velocity.setY (velocity.getY() * Constants.TABLE_FRICTION);
     }
 
+    public static void playerDecision(Ball ball[]){
+        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, 0);
+    }
+
     public static void triangle(Ball ball[]) {
 
         // FIXED POSITIONS
