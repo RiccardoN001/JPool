@@ -708,5 +708,10 @@
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
       <Button fx:id="soundsButton" layoutX="1300.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleSoundsButton" prefHeight="70.0" prefWidth="70.0" styleClass="sounds-button" />
+      <Label fx:id="winLabel" layoutX="428.0" layoutY="421.0" prefHeight="70.0" prefWidth="554.0" text="WIN LABEL" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
     </children>
 </Pane>

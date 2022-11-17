@@ -244,12 +244,16 @@ public class Board {
             game.player1.setWin(true);
             game.player2.setWin(false);
             game.gameOver = true;
-            game.turnboardLabel.setText("VINCE  " + game.player1.getNickname());
+            game.winLabel.setVisible(true);
+            game.winLabel.toFront();
+            game.winLabel.setText("VINCE  " + game.player1.getNickname());
         } else {
             game.player1.setWin(false);
             game.player2.setWin(true);
             game.gameOver = true;
-            game.turnboardLabel.setText("VINCE  " + game.player2.getNickname());
+            game.winLabel.setVisible(true);
+            game.winLabel.toFront();
+            game.winLabel.setText("VINCE  " + game.player2.getNickname());
         }
 
     }
@@ -264,12 +268,17 @@ public class Board {
             game.player1.setWin(false);
             game.player2.setWin(true);
             game.gameOver = true;
-            game.turnboardLabel.setText("VINCE  " + game.player2.getNickname());
+            game.winLabel.setVisible(true);
+            game.winLabel.toFront();
+            game.winLabel.setText("VINCE  " + game.player2.getNickname());
         } else {
             game.player1.setWin(true);
             game.player2.setWin(false);
             game.gameOver = true;
-            game.turnboardLabel.setText("VINCE  " + game.player1.getNickname());
+            game.winLabel.setVisible(true);
+            game.winLabel.toFront();
+            game.winLabel.setText("VINCE  " + game.player1.getNickname());
+
         }
 
     }
