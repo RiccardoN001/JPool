@@ -26,9 +26,14 @@ public class Ball {
     private int ballNumber;
     private boolean dropped;
 
-    private static GameController game = GameController.getController();
+    private GameController game = GameController.getController();
 
     // CONSTRUCTOR METHOD
+
+    public Ball() {
+        // only for methods
+    }
+
     public Ball(double positionX, double positionY, int ballNumber) {
         position = new Vector(positionX, positionY);
         velocity = new Vector(0, 0);
@@ -333,7 +338,7 @@ public class Ball {
 
     }
 
-    public static void moveCueBall() {
+    public void moveCueBall() {
 
         GameController.ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
 
@@ -369,7 +374,7 @@ public class Ball {
 
     }
 
-    public static void pocketed(int ballNum) {
+    public void pocketed(int ballNum) {
 
         if(!game.soundOff && ballNum != 0){
             Sounds.playSound("PocketSound");
@@ -390,7 +395,7 @@ public class Ball {
         }
     }
 
-    public static boolean ghostCollides(Circle circle, Ball ball) {
+    public boolean ghostCollides(Circle circle, Ball ball) {
 
         double x = circle.getCenterX() - ball.getPosition().getX();
         double y = circle.getCenterY() - ball.getPosition().getY();
@@ -404,7 +409,7 @@ public class Ball {
 
     }
 
-    public static void checkPocket(int ballNum) {
+    public void checkPocket(int ballNum) {
 
         double x = GameController.ball[ballNum].getPosition().getX();
         double y = GameController.ball[ballNum].getPosition().getY();
@@ -458,7 +463,7 @@ public class Ball {
         return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
     }
 
-    public static void ballAnimation(int ballNum) {
+    public void ballAnimation(int ballNum) {
         if(GameController.ball[ballNum].getVelocity().getSize() <= 8e-2) {
             GameController.ball[ballNum].setVelocity(0, 0);  
         } else {

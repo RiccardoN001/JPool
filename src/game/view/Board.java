@@ -10,9 +10,9 @@ import game.utils.Sounds;
 
 public class Board {
 
-    private static GameController game = GameController.getController();
+    private GameController game = GameController.getController();
 
-    public static void showSplitPlayer() {
+    public void showSplitPlayer() {
         int splitPlayer = (int)(Math.random()*2);
         if(splitPlayer == 0) {
             game.player1.setMyTurn(true);
@@ -21,12 +21,12 @@ public class Board {
         }
     }
 
-    public static void showPlayerNickname() {
+    public void showPlayerNickname() {
         game.player1NicknameLabel.setText(game.player1.getNickname());
         game.player2NicknameLabel.setText(game.player2.getNickname());
     }
     
-    public static void showPlayerBreaking() {
+    public void showPlayerBreaking() {
         if(game.player1.isMyTurn()) {
             game.turnboardLabel.setText("SPACCA " + game.player1.getNickname());
         } else {
@@ -34,7 +34,7 @@ public class Board {
         }
     }
 
-    public static void showPlayerTurn() {
+    public void showPlayerTurn() {
         if(game.player1.isMyTurn()) {
             game.turnboardLabel.setText("TURNO DI " + game.player1.getNickname());
         } else {
@@ -42,7 +42,7 @@ public class Board {
         }
     }
 
-    public static void showFoul() {
+    public void showFoul() {
         if(game.foulWhite) {
             game.foulboardLabel.setText("BIANCA IMBUCATA");
         }
@@ -60,7 +60,7 @@ public class Board {
         }
     }
 
-    public static void changeTurn() {
+    public void changeTurn() {
 
         if(!game.soundOff) {
             if(game.foul) {
@@ -80,7 +80,7 @@ public class Board {
 
     }
 
-    public static void ballAssignment() {
+    public void ballAssignment() {
 
         game.ballAssigned = true;
 
@@ -120,7 +120,7 @@ public class Board {
         
     }
 
-    public static void showEightPockets() {
+    public void showEightPockets() {
 
         game.blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
         game.blackScoreBall.setFitWidth(60);
@@ -152,7 +152,7 @@ public class Board {
 
     }
 
-    public static void removeEightPockets() {
+    public void removeEightPockets() {
 
         game.blackScoreBall.setVisible(false);
 
@@ -171,7 +171,7 @@ public class Board {
 
     }
 
-    public static void eightPocketDeclaration() {
+    public void eightPocketDeclaration() {
         game.pocketButton1.setOnAction(event -> {
             game.pocket1.setStroke(Color.GREEN);
             Rules.eightDeclaredPocket = 1;
@@ -234,7 +234,7 @@ public class Board {
         });
     }
 
-    public static void win() {
+    public void win() {
 
         if(!game.soundOff) {
             Sounds.playSound("WinSound");
@@ -254,7 +254,7 @@ public class Board {
 
     }
 
-    public static void eightPotted() {
+    public void eightPotted() {
 
         if(!game.soundOff) {
             Sounds.playSound("WinSound");

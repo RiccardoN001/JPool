@@ -141,6 +141,13 @@ public class GameController {
 
     public int eightPocket = 0;
 
+
+    private Board board;
+    private Rules rules;
+    private Ball ballMethods;
+
+
+
     // -------------------------------------------------- THREAD ATTRIBUTES --------------------------------------------------
 
     private Timeline timeline = new Timeline();
@@ -275,8 +282,13 @@ public class GameController {
 
     @FXML
     public void initialize() throws Exception {
+
         soundOff = SettingsController.getController().getSoundOff();//oppure direttamente alla dichiarazione della variabile
         System.out.println("GameScene Init " +soundOff);
+
+        board = new Board();
+        rules = new Rules();
+        ballMethods = new Ball();
 
         // PLAYERS
         if(SettingsController.getController().getP1Nickname().isEmpty()) {
@@ -289,8 +301,8 @@ public class GameController {
         } else {
             player2 = new Player(SettingsController.getController().getP2Nickname());
         }
-        Board.showPlayerNickname();
-        Board.showSplitPlayer();
+        board.showPlayerNickname();
+        board.showSplitPlayer();
 
         // CUE LOADING
         cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getController().cueMenuIndex()+1 + ".png")));
@@ -398,7 +410,7 @@ public class GameController {
 
             if(SettingsController.getController().modeMenuIndex() == 0) {
                 for(int i = 0; i < 16; i++) {
-                    if(Ball.ghostCollides(ghostBall, ball[i])) {
+                    if(ballMethods.ghostCollides(ghostBall, ball[i])) {
     
                         guidelineFromBall.setVisible(true);
                         guidelineFromCue.setVisible(true);
@@ -560,10 +572,10 @@ public class GameController {
     private void update() {
 
         if(turnNum == 1 && !foulShotClock) {
-            Board.showPlayerBreaking();
+            board.showPlayerBreaking();
         }
 
-        Ball.moveCueBall();
+        ballMethods.moveCueBall();
 
         boolean ballsMoving = false;
         for(int i = 0; i < 16; i++) {
@@ -571,8 +583,8 @@ public class GameController {
                 ballsMoving = true;
                 turnChange = true;
             }
-            Ball.ballAnimation(i);
-            Ball.checkPocket(i);
+            ballMethods.ballAnimation(i);
+            ballMethods.checkPocket(i);
         }
 
         if(ballsMoving) {
@@ -580,10 +592,10 @@ public class GameController {
             foulboardLabel.setText("");
         } else if(!ballsMoving && !turnChange) {
             turn = true;
-            Board.showPlayerTurn();
+            board.showPlayerTurn();
         } else if(!ballsMoving && turnChange) {
 
-            Board.removeEightPockets();
+            board.removeEightPockets();
 
             foul = false;
 
@@ -599,15 +611,15 @@ public class GameController {
             //System.out.println(eightPocket);
             //System.out.println(eightDeclaredPocket + "\n");
 
-            Rules.checkFoul();
-            Rules.checkPotted();
+            rules.checkFoul();
+            rules.checkPotted();
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 foulNoBallHit = false;
             }
 
             if(foul && !gameOver) {
-                Board.showFoul();
+                board.showFoul();
             }
 
             turn = true;
@@ -641,14 +653,14 @@ public class GameController {
             }
 
             if(player1.isAllBallsPlotted() && player1.isMyTurn() && !gameOver) {
-                Board.showEightPockets();
-                Board.eightPocketDeclaration();
+                board.showEightPockets();
+                board.eightPocketDeclaration();
                 //System.out.println("Ciao G1");
             }
     
             if(player2.isAllBallsPlotted() && player2.isMyTurn() && !gameOver) {
-                Board.showEightPockets();
-                Board.eightPocketDeclaration();
+                board.showEightPockets();
+                board.eightPocketDeclaration();
                 //System.out.println("Ciao G2");
             }
 

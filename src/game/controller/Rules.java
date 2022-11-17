@@ -4,11 +4,13 @@ import game.view.Board;
 
 public class Rules {
 
-    private static GameController game = GameController.getController();
+    private GameController game = GameController.getController();
 
     public static int eightDeclaredPocket = 0;
 
-    public static void checkFoul() {
+    private Board board = new Board();
+
+    public void checkFoul() {
 
         boolean change = false;
 
@@ -19,7 +21,7 @@ public class Rules {
             } else {
                 for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                     if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
-                        Board.eightPotted();
+                        board.eightPotted();
                     } else if (game.thisTurnPottedBalls.get(i).intValue() == 0) {
                         game.foulWhite = true;
                     } else {
@@ -42,9 +44,6 @@ public class Rules {
                         game.player1.setBallType(2);
                         game.player2.setBallType(1);
                     }
-                    if(!game.foul) {
-                        Board.ballAssignment();
-                    }
                 } else if(firstPuttedBallNum >= 9 && firstPuttedBallNum <= 15) {
                     if(game.player1.isMyTurn()) {
                         game.player1.setBallType(2);
@@ -53,20 +52,19 @@ public class Rules {
                         game.player1.setBallType(1);
                         game.player2.setBallType(2);
                     }
-                    if(!game.foul) {
-                        Board.ballAssignment();
-                    }
                 }
 
                 for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                     if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
-                        Board.eightPotted();
+                        board.eightPotted();
                     } else if (game.thisTurnPottedBalls.get(i).intValue() == 0) {
                         game.foulWhite = true;
                     } else {
                         game.potted[game.thisTurnPottedBalls.get(i).intValue()] = true;
                     }
                 }
+
+                board.ballAssignment();
 
             }
 
@@ -83,15 +81,15 @@ public class Rules {
                         for(int i = 1; i<= 7; i++) {
                             if(!game.potted[i]) {
                                 f = 1;
-                                Board.eightPotted();
+                                board.eightPotted();
                             }
                         }
                         if(f == 0 && game.eightPocket == eightDeclaredPocket) {
-                            Board.win();
+                            board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
                             //System.out.println("Buca errata dichiarata");
-                            Board.eightPotted();
+                            board.eightPotted();
                             return;
                         }
                     } else {
@@ -100,15 +98,15 @@ public class Rules {
                         for(int i = 9; i<= 15; i++) {
                             if(!game.potted[i]) {
                                 f = 1;
-                                Board.eightPotted();
+                                board.eightPotted();
                             }
                         }
                         if(f == 0 && game.eightPocket == eightDeclaredPocket) {
-                            Board.win();
+                            board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
                             //System.out.println("Buca errata dichiarata");
-                            Board.eightPotted();
+                            board.eightPotted();
                             return; 
                         }
 
@@ -121,15 +119,15 @@ public class Rules {
                         for(int i = 1; i<= 7; i++) {
                             if(!game.potted[i]) {
                                 f = 1;
-                                Board.eightPotted();
+                                board.eightPotted();
                             }
                         }
                         if(f == 0 && game.eightPocket == eightDeclaredPocket) {
-                            Board.win();
+                            board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
                             //System.out.println("Buca errata dichiarata");
-                            Board.eightPotted();
+                            board.eightPotted();
                             return;
                         }
                     } else {
@@ -138,15 +136,15 @@ public class Rules {
                         for(int i = 9; i<= 15; i++) {
                             if(!game.potted[i]) {
                                 f = 1;
-                                Board.eightPotted();
+                                board.eightPotted();
                             }
                         }
                         if(f == 0 && game.eightPocket == eightDeclaredPocket) {
-                            Board.win();
+                            board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
                             //System.out.println("Buca errata dichiarata");
-                            Board.eightPotted();
+                            board.eightPotted();
                             return;
                         }
 
@@ -166,7 +164,7 @@ public class Rules {
 
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                         if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
-                            Board.eightPotted();
+                            board.eightPotted();
                         } else if(game.thisTurnPottedBalls.get(i).intValue() == 0) {
                             game.foulWhite = true;
                         } else {
@@ -182,7 +180,7 @@ public class Rules {
 
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                         if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
-                            Board.eightPotted();
+                            board.eightPotted();
                         } else if(game.thisTurnPottedBalls.get(i).intValue() == 0) {
                             game.foulWhite = true;
                         } else {
@@ -201,12 +199,12 @@ public class Rules {
         }
 
         if(change || game.foulWhite || game.foulWrongBallType|| game.foul || game.foulNoBallHit || game.foulShotClock) {
-            Board.changeTurn();
+            board.changeTurn();
         }
 
     }
 
-    public static void checkPotted() {
+    public void checkPotted() {
 
         if(game.player1.getBallType() == 0) {
             return;

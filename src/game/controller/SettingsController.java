@@ -4,6 +4,7 @@ import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,10 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -57,11 +58,12 @@ public class SettingsController{
             @Override
             public Node call(Integer pageIndex){
                 ImageView imageView = new ImageView(new Image("file:src/game/resources/Tables/Table" + (pageIndex+1) + ".png"));
-                imageView.setFitWidth(600);
-                imageView.setFitHeight(300);
+                imageView.setFitWidth(500);
+                imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
-                AnchorPane pane = new AnchorPane();
+                StackPane pane = new StackPane();
                 pane.getChildren().add(imageView);
+                StackPane.setAlignment(imageView, Pos.CENTER);
                 return pane;
             }
         });
@@ -69,11 +71,12 @@ public class SettingsController{
             @Override
             public Node call(Integer pageIndex){
                 ImageView imageView = new ImageView(new Image("file:src/game/resources/Cues/Cue" + (pageIndex+1) + ".png"));
-                imageView.setFitWidth(600);
-                imageView.setFitHeight(150);
+                imageView.setFitWidth(500);
+                imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
-                AnchorPane pane = new AnchorPane();
+                StackPane pane = new StackPane();
                 pane.getChildren().add(imageView);
+                StackPane.setAlignment(imageView, Pos.CENTER);
                 return pane;
             }
         });
@@ -81,11 +84,12 @@ public class SettingsController{
             @Override
             public Node call(Integer pageIndex){
                 ImageView imageView = new ImageView(new Image("file:src/game/resources/Modes/Mode"  + (pageIndex+1) + ".png"));
-                imageView.setFitWidth(300);
-                imageView.setFitHeight(300);
+                imageView.setFitWidth(250);
+                imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
-                AnchorPane pane = new AnchorPane();
+                StackPane pane = new StackPane();
                 pane.getChildren().add(imageView);
+                StackPane.setAlignment(imageView, Pos.CENTER);
                 return pane;
             }
         });
