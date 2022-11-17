@@ -25,7 +25,7 @@
       <Label layoutX="50.0" layoutY="125.0" prefHeight="50.0" prefWidth="600.0" text="TABLE" textFill="WHITE" />
       <Label layoutX="50.0" layoutY="525.0" prefHeight="50.0" prefWidth="600.0" text="CUE" textFill="WHITE" />
       <Label layoutX="750.0" layoutY="125.0" prefHeight="50.0" prefWidth="300.0" text="MODE" textFill="WHITE" />
-      <Label layoutX="1150.0" layoutY="120.0" prefHeight="50.0" prefWidth="200.0" text="NICKNAMES" textFill="WHITE" />
+      <Label layoutX="1150.0" layoutY="125.0" prefHeight="50.0" prefWidth="200.0" text="NICKNAMES" textFill="WHITE" />
       <Button fx:id="soundButton" layoutX="1150.0" layoutY="425.0" mnemonicParsing="false" onAction="#handleSoundButton" prefHeight="40.0" prefWidth="90.0" styleClass="orange-button" text="SOUNDS" />
       <Label fx:id="soundLabel" alignment="CENTER" layoutX="1240.0" layoutY="425.0" prefHeight="40.0" prefWidth="50.0" text="ON" textFill="WHITE" />
       <Label layoutX="1150.0" layoutY="350.0" prefHeight="50.0" prefWidth="200.0" text="SOUNDS" textFill="WHITE" />

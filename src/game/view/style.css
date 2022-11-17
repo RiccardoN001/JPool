@@ -49,8 +49,13 @@
 
 /* PAGINATIONS */
 .pagination {
-    -fx-arrows-visible: false;
+    -fx-arrows-visible: true;
     -fx-page-information-visible: false;
+}
+
+.pagination > .pagination-control > .control-box > .number-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: transparent;
 }
 
 /* PROGRESS BAR */
