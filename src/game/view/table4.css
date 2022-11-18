@@ -1,11 +1,11 @@
 .table {
-    -fx-fill: #1b1919cc;
+    -fx-fill: grey;
 }
 
 .bank {
-    -fx-image: url("file:src/game/resources/Tables/WhiteWood.png");
+    -fx-image: url("file:src/game/resources/Tables/BlackWood.png");
 }
 
 .pocket {
-    -fx-fill: #c0c0c0;
+    -fx-fill: silver;
 }

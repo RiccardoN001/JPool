@@ -49,13 +49,22 @@
 
 /* PAGINATIONS */
 .pagination {
-    -fx-arrows-visible: true;
+    -fx-arrows-visible: false;
     -fx-page-information-visible: false;
 }
 
 .pagination > .pagination-control > .control-box > .number-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: transparent;
+    -fx-background-color: #c54e2c;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
+.pagination.bullet > .pagination-control > .control-box > .left-arrow-button {
+    
+}
+.pagination.bullet > .pagination-control > .control-box > .right-arrow-button {
+
 }
 
 /* PROGRESS BAR */

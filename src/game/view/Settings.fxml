@@ -12,22 +12,30 @@
       <Pagination fx:id="tableMenu" layoutX="50.0" layoutY="200.0" pageCount="4" prefHeight="300.0" prefWidth="600.0" />
       <Pagination fx:id="cueMenu" layoutX="50.0" layoutY="600.0" pageCount="10" prefHeight="150.0" prefWidth="600.0" />
       <Pagination fx:id="modeMenu" layoutX="750.0" layoutY="200.0" pageCount="2" prefHeight="300.0" prefWidth="300.0" />
-      <Button fx:id="playButton" layoutX="1100.0" layoutY="675.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="75.0" prefWidth="250.0" styleClass="orange-button" text="PLAY">
+      <Button fx:id="playButton" layoutX="1270.0" layoutY="720.0" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="PLAY">
          <font>
-            <Font name="Futura Medium" size="30.0" />
+            <Font name="Futura Medium" size="15.0" />
          </font></Button>
       <Button fx:id="menuButtonFromSettings" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleMenuFromSettings" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="MENU">
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
-      <TextField fx:id="player1Nickname" layoutX="1150.0" layoutY="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 1" />
-      <TextField fx:id="player2Nickname" layoutX="1150.0" layoutY="250.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 2" />
+      <TextField fx:id="player1Nickname" layoutX="1150.0" layoutY="225.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 1" />
+      <TextField fx:id="player2Nickname" layoutX="1150.0" layoutY="275.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 2" />
       <Label layoutX="50.0" layoutY="125.0" prefHeight="50.0" prefWidth="600.0" text="TABLE" textFill="WHITE" />
       <Label layoutX="50.0" layoutY="525.0" prefHeight="50.0" prefWidth="600.0" text="CUE" textFill="WHITE" />
       <Label layoutX="750.0" layoutY="125.0" prefHeight="50.0" prefWidth="300.0" text="MODE" textFill="WHITE" />
+      <Label layoutX="750.0" layoutY="525.0" prefHeight="50.0" prefWidth="300.0" text="SOUNDS" textFill="WHITE" />
+      <Button fx:id="soundButton" layoutX="800.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleSoundButton" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="SOUNDS">
+         <font>
+            <Font name="Futura Medium" size="15.0" />
+         </font></Button>
+      <Label fx:id="soundLabel" alignment="CENTER" layoutX="900.0" layoutY="600.0" prefHeight="50.0" prefWidth="100.0" text="ON" textFill="WHITE" />
       <Label layoutX="1150.0" layoutY="125.0" prefHeight="50.0" prefWidth="200.0" text="NICKNAMES" textFill="WHITE" />
-      <Button fx:id="soundButton" layoutX="1150.0" layoutY="425.0" mnemonicParsing="false" onAction="#handleSoundButton" prefHeight="40.0" prefWidth="90.0" styleClass="orange-button" text="SOUNDS" />
-      <Label fx:id="soundLabel" alignment="CENTER" layoutX="1240.0" layoutY="425.0" prefHeight="40.0" prefWidth="50.0" text="ON" textFill="WHITE" />
-      <Label layoutX="1150.0" layoutY="350.0" prefHeight="50.0" prefWidth="200.0" text="SOUNDS" textFill="WHITE" />
+      <Button layoutX="1200.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="COIN">
+         <font>
+            <Font name="Futura Medium" size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

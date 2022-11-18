@@ -689,9 +689,15 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Button fx:id="exitYes" layoutX="592.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="92.0" styleClass="orange-button" text="YES" />
-      <Button fx:id="exitNo" layoutX="725.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleExitNoButton" prefHeight="50.0" prefWidth="92.0" styleClass="orange-button" text="NO" />
-      <Label fx:id="exitLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="358.0" prefHeight="84.0" prefWidth="225.0" text="Sei sicuro di uscire?" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="exitYes" layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="YES">
+         <font>
+            <Font name="Futura Medium" size="15.0" />
+         </font></Button>
+      <Button fx:id="exitNo" layoutX="725.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleExitNoButton" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="NO">
+         <font>
+            <Font name="Futura Medium" size="15.0" />
+         </font></Button>
+      <Label fx:id="exitLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="600.0" layoutY="350.0" prefHeight="75.0" prefWidth="225.0" text="Sei sicuro di uscire?" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -708,7 +714,7 @@
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
       <Button fx:id="soundsButton" layoutX="1300.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleSoundsButton" prefHeight="70.0" prefWidth="70.0" styleClass="sounds-button" />
-      <Label fx:id="winLabel" layoutX="428.0" layoutY="421.0" prefHeight="70.0" prefWidth="554.0" text="WIN LABEL" textFill="WHITE">
+      <Label fx:id="winLabel" alignment="CENTER" layoutX="500.0" layoutY="400.0" prefHeight="100.0" prefWidth="400.0" text="WIN LABEL" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
