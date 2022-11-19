@@ -1,6 +1,9 @@
 package game.controller;
 
 import game.Main;
+import game.utils.Sounds;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +18,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 
 public class SettingsController{
+    @FXML
+    private Pane pane;
 
     @FXML
     private Pagination tableMenu;
@@ -32,16 +39,26 @@ public class SettingsController{
     private TextField player1Nickname;
     @FXML
     private TextField player2Nickname;
+    private String playerNick1;
+    private String playerNick2;
     
     @FXML
     private Button playButton;
+    @FXML
+    private Button coinButton;
     @FXML
     private Button menuButtonFromSettings;
     @FXML
     private Label soundLabel;
     @FXML
+    private Label selectedPlayer;
+    @FXML
     private Button soundButton;
     private boolean soundOff = false;
+    private ImageView coin;
+    Timeline timeline = new Timeline();
+    int count = 1;
+    int flip = 0;
 
     // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsController instance;
@@ -53,7 +70,8 @@ public class SettingsController{
     }
    
     @FXML
-    public void initialize(){
+    public void initialize() throws Exception{
+        
         tableMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
@@ -118,7 +136,43 @@ public class SettingsController{
             soundOff = false;
             soundLabel.setText("ON");
         }
-        //System.out.println("Settings "+ soundOff);
+    }
+    @FXML
+     void handleCoinButton(ActionEvent event) throws Exception{
+        Sounds.playSound("CoinSound2");
+
+        KeyFrame frame = new KeyFrame(
+            Duration.seconds(0.03), 
+            e->{
+             if(count<10){
+                pane.getChildren().remove(coin);
+                coin = new ImageView(new Image("file:src/game/resources/Coin/coin"+flip+".png"));
+                coin.setFitWidth(120);
+                coin.setFitHeight(120);
+                coin.setLayoutX(1200);
+                coin.setLayoutY(450);
+                coin.setPreserveRatio(true);
+                pane.getChildren().add(coin);
+                flip++;
+                if(flip==10){
+                    flip = 1;
+                    count++;
+                }
+            }
+            else{
+                timeline.stop();
+                randomChoice();
+            if(playerNick1!=""){
+               selectedPlayer.setText(playerNick1);
+            }else{
+            selectedPlayer.setText("Giocatore 1");
+            }
+          }
+        });
+        timeline.getKeyFrames().add(frame);
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+        coinButton.setDisable(true);
     }
     
     @FXML
@@ -146,6 +200,17 @@ public class SettingsController{
         stage.show();
         stage.setOnCloseRequest(e -> System.exit(0));
     }
+    public void randomChoice(){
+        int choice = (int)(Math.random()*2);
+        if(choice==0){
+            playerNick1 = this.getP1Nickname();
+            playerNick2 = this.getP2Nickname();
+        }
+        else if(choice==1){
+            playerNick1 = this.getP2Nickname();
+            playerNick2 = this.getP1Nickname();
+        }
+    }
 
     public int cueMenuIndex () {
         return this.cueMenu.getCurrentPageIndex();
@@ -153,6 +218,13 @@ public class SettingsController{
 
     public int modeMenuIndex() {
         return this.modeMenu.getCurrentPageIndex();
+    }
+
+    public String getPlayerNick1() {
+        return this.playerNick1;
+    }
+    public String getPlayerNick2() {
+        return this.playerNick2;
     }
 
     public String getP1Nickname() {

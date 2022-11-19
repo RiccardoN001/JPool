@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.SettingsController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.SettingsController">
    <children>
       <Pagination fx:id="tableMenu" layoutX="50.0" layoutY="200.0" pageCount="4" prefHeight="300.0" prefWidth="600.0" />
       <Pagination fx:id="cueMenu" layoutX="50.0" layoutY="600.0" pageCount="10" prefHeight="150.0" prefWidth="600.0" />
@@ -32,10 +32,11 @@
          </font></Button>
       <Label fx:id="soundLabel" alignment="CENTER" layoutX="900.0" layoutY="600.0" prefHeight="50.0" prefWidth="100.0" text="ON" textFill="WHITE" />
       <Label layoutX="1150.0" layoutY="125.0" prefHeight="50.0" prefWidth="200.0" text="NICKNAMES" textFill="WHITE" />
-      <Button layoutX="1200.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="COIN">
+      <Button fx:id="coinButton" layoutX="1200.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleCoinButton" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="COIN">
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font>
       </Button>
+      <Label fx:id="selectedPlayer" layoutX="1114.0" layoutY="600.0" prefHeight="40.0" prefWidth="221.0" textFill="WHITE" />
    </children>
 </Pane>

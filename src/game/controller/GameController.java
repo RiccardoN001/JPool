@@ -285,8 +285,7 @@ public class GameController {
     
     @FXML
     public void initialize() throws Exception {
-        soundOff = SettingsController.getController().getSoundOff();//oppure direttamente alla dichiarazione della variabile
-        System.out.println("GameScene Init " +soundOff);
+        soundOff = SettingsController.getController().getSoundOff();
 
         board = new Board();
         rules = new Rules();
@@ -296,12 +295,12 @@ public class GameController {
         if(SettingsController.getController().getP1Nickname().isEmpty()) {
             player1 = new Player("Giocatore 1");
         } else {
-            player1 = new Player(SettingsController.getController().getP1Nickname());
+            player1 = new Player(SettingsController.getController().getPlayerNick1());
         }
         if(SettingsController.getController().getP2Nickname().isEmpty()) {
             player2 = new Player("Giocatore 2");
         } else {
-            player2 = new Player(SettingsController.getController().getP2Nickname());
+            player2 = new Player(SettingsController.getController().getPlayerNick2());
         }
         board.showPlayerNickname();
         board.showSplitPlayer();
