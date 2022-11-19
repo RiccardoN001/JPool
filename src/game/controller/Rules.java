@@ -1,7 +1,5 @@
 package game.controller;
 
-import game.view.Board;
-
 public class Rules {
 
     private GameController game = GameController.getController();

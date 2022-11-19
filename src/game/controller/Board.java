@@ -1,10 +1,8 @@
-package game.view;
+package game.controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import game.controller.GameController;
-import game.controller.Rules;
 import game.utils.Constants;
 import game.utils.Sounds;
 

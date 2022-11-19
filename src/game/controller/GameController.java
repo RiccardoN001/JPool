@@ -10,7 +10,6 @@ import game.model.Player;
 import game.model.Vector;
 import game.utils.Constants;
 import game.utils.Sounds;
-import game.view.Board;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -286,7 +285,7 @@ public class GameController {
     @FXML
     public void initialize() throws Exception {
         soundOff = SettingsController.getController().getSoundOff();//oppure direttamente alla dichiarazione della variabile
-        System.out.println("GameScene Init " +soundOff);
+        //System.out.println("GameScene Init " +soundOff);
 
         board = new Board();
         rules = new Rules();
