@@ -10,15 +10,6 @@ public class Board {
 
     private GameController game = GameController.getController();
 
-    public void showSplitPlayer() {
-        int splitPlayer = (int)(Math.random()*2);
-        if(splitPlayer == 0) {
-            game.player1.setMyTurn(true);
-        } else {
-            game.player2.setMyTurn(true);
-        }
-    }
-
     public void showPlayerNickname() {
         game.player1NicknameLabel.setText(game.player1.getNickname());
         game.player2NicknameLabel.setText(game.player2.getNickname());
@@ -81,6 +72,7 @@ public class Board {
     public void ballAssignment() {
 
         game.ballAssigned = true;
+        game.centralboardLabel.setVisible(true);
 
         if(!game.foul) {
             if(game.player1.getBallType() == 1) {
@@ -97,6 +89,11 @@ public class Board {
                     game.stripedScoreBall[i].setLayoutY(157);
                     game.addToPane(game.solidScoreBall[i]);
                     game.addToPane(game.stripedScoreBall[i]);
+                    if(game.player1.isMyTurn()) {
+                        game.centralboardLabel.setText(game.player1.getNickname() + " HA LE PIENE");
+                    } else {
+                        game.centralboardLabel.setText(game.player2.getNickname() + " HA LE SPEZZATE");
+                    }
                 }
             } else {
                 for(int i = 0; i < 7; i++) {
@@ -112,6 +109,11 @@ public class Board {
                     game.stripedScoreBall[i].setLayoutY(157);
                     game.addToPane(game.solidScoreBall[i]);
                     game.addToPane(game.stripedScoreBall[i]);
+                    if(game.player1.isMyTurn()) {
+                        game.centralboardLabel.setText(game.player1.getNickname() + " HA LE SPEZZATE");
+                    } else {
+                        game.centralboardLabel.setText(game.player2.getNickname() + " HA LE PIENE");
+                    }
                 }
             }
         }
@@ -242,16 +244,16 @@ public class Board {
             game.player1.setWin(true);
             game.player2.setWin(false);
             game.gameOver = true;
-            game.winLabel.setVisible(true);
-            game.winLabel.toFront();
-            game.winLabel.setText("VINCE  " + game.player1.getNickname());
+            game.centralboardLabel.setVisible(true);
+            game.centralboardLabel.toFront();
+            game.centralboardLabel.setText("VINCE  " + game.player1.getNickname());
         } else {
             game.player1.setWin(false);
             game.player2.setWin(true);
             game.gameOver = true;
-            game.winLabel.setVisible(true);
-            game.winLabel.toFront();
-            game.winLabel.setText("VINCE  " + game.player2.getNickname());
+            game.centralboardLabel.setVisible(true);
+            game.centralboardLabel.toFront();
+            game.centralboardLabel.setText("VINCE  " + game.player2.getNickname());
         }
 
     }
@@ -266,16 +268,16 @@ public class Board {
             game.player1.setWin(false);
             game.player2.setWin(true);
             game.gameOver = true;
-            game.winLabel.setVisible(true);
-            game.winLabel.toFront();
-            game.winLabel.setText("VINCE  " + game.player2.getNickname());
+            game.centralboardLabel.setVisible(true);
+            game.centralboardLabel.toFront();
+            game.centralboardLabel.setText("VINCE  " + game.player2.getNickname());
         } else {
             game.player1.setWin(true);
             game.player2.setWin(false);
             game.gameOver = true;
-            game.winLabel.setVisible(true);
-            game.winLabel.toFront();
-            game.winLabel.setText("VINCE  " + game.player1.getNickname());
+            game.centralboardLabel.setVisible(true);
+            game.centralboardLabel.toFront();
+            game.centralboardLabel.setText("VINCE  " + game.player1.getNickname());
 
         }
 

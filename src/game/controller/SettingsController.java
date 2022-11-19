@@ -17,7 +17,6 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -39,8 +38,6 @@ public class SettingsController{
     private TextField player1Nickname;
     @FXML
     private TextField player2Nickname;
-    private String playerNick1;
-    private String playerNick2;
     
     @FXML
     private Button playButton;
@@ -51,7 +48,7 @@ public class SettingsController{
     @FXML
     private Label soundLabel;
     @FXML
-    private Label selectedPlayer;
+    private Label splitPlayerLabel;
     @FXML
     private Button soundButton;
     private boolean soundOff = false;
@@ -59,6 +56,8 @@ public class SettingsController{
     Timeline timeline = new Timeline();
     int count = 1;
     int flip = 0;
+
+    private int splitPlayer;
 
     // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsController instance;
@@ -111,6 +110,8 @@ public class SettingsController{
                 return pane;
             }
         });
+
+        playButton.setDisable(true);
     }
 
     @FXML
@@ -126,7 +127,7 @@ public class SettingsController{
         stage.show();
     }
 
-     @FXML
+    @FXML
     void handleSoundButton(ActionEvent event) throws Exception{
         if(!soundOff){
             soundOff = true;
@@ -139,6 +140,9 @@ public class SettingsController{
     }
     @FXML
      void handleCoinButton(ActionEvent event) throws Exception{
+        player1Nickname.setDisable(true);
+        player2Nickname.setDisable(true);
+
         Sounds.playSound("CoinSound2");
 
         KeyFrame frame = new KeyFrame(
@@ -150,7 +154,7 @@ public class SettingsController{
                 coin.setFitWidth(120);
                 coin.setFitHeight(120);
                 coin.setLayoutX(1200);
-                coin.setLayoutY(450);
+                coin.setLayoutY(425);
                 coin.setPreserveRatio(true);
                 pane.getChildren().add(coin);
                 flip++;
@@ -158,16 +162,10 @@ public class SettingsController{
                     flip = 1;
                     count++;
                 }
-            }
-            else{
+            } else {
                 timeline.stop();
-                randomChoice();
-            if(playerNick1!=""){
-               selectedPlayer.setText(playerNick1);
-            }else{
-            selectedPlayer.setText("Giocatore 1");
+                splitPlayer();
             }
-          }
         });
         timeline.getKeyFrames().add(frame);
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -200,16 +198,25 @@ public class SettingsController{
         stage.show();
         stage.setOnCloseRequest(e -> System.exit(0));
     }
-    public void randomChoice(){
-        int choice = (int)(Math.random()*2);
-        if(choice==0){
-            playerNick1 = this.getP1Nickname();
-            playerNick2 = this.getP2Nickname();
+
+    public void splitPlayer() {
+        int coinToss = (int)(Math.random()*2);
+        if(coinToss == 0) {
+            splitPlayer = 0;
+            if(player1Nickname.getText().isEmpty()) {
+                splitPlayerLabel.setText("INIZIA GIOCATORE 1");
+            } else {
+                splitPlayerLabel.setText("INIZIA " + player1Nickname.getText());
+            }
+        } else {
+            splitPlayer = 1;
+            if(player1Nickname.getText().isEmpty()) {
+                splitPlayerLabel.setText("INIZIA GIOCATORE 2");
+            } else {
+                splitPlayerLabel.setText("INIZIA " + player2Nickname.getText());
+            }
         }
-        else if(choice==1){
-            playerNick1 = this.getP2Nickname();
-            playerNick2 = this.getP1Nickname();
-        }
+        playButton.setDisable(false);
     }
 
     public int cueMenuIndex () {
@@ -218,13 +225,6 @@ public class SettingsController{
 
     public int modeMenuIndex() {
         return this.modeMenu.getCurrentPageIndex();
-    }
-
-    public String getPlayerNick1() {
-        return this.playerNick1;
-    }
-    public String getPlayerNick2() {
-        return this.playerNick2;
     }
 
     public String getP1Nickname() {
@@ -236,6 +236,9 @@ public class SettingsController{
     }
     public boolean getSoundOff(){
         return this.soundOff;
+    }
+    public int getSplitPlayer() {
+        return splitPlayer;
     }
 
 }

@@ -37,6 +37,6 @@
             <Font name="Futura Medium" size="15.0" />
          </font>
       </Button>
-      <Label fx:id="selectedPlayer" layoutX="1114.0" layoutY="600.0" prefHeight="40.0" prefWidth="221.0" textFill="WHITE" />
+      <Label fx:id="splitPlayerLabel" layoutX="1125.0" layoutY="600.0" prefHeight="50.0" prefWidth="250.0" text="SPLITTING PLAYER" textFill="WHITE" />
    </children>
 </Pane>

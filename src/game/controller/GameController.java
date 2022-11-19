@@ -87,7 +87,7 @@ public class GameController {
     @FXML
     public Label foulboardLabel;
     @FXML
-    public Label winLabel;
+    public Label centralboardLabel;
     @FXML
     public ProgressBar shotClockBar;
     public ImageView[] solidScoreBall = new ImageView[7];
@@ -196,6 +196,7 @@ public class GameController {
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+        stopShotClock();
     }
 
     @FXML
@@ -295,15 +296,19 @@ public class GameController {
         if(SettingsController.getController().getP1Nickname().isEmpty()) {
             player1 = new Player("Giocatore 1");
         } else {
-            player1 = new Player(SettingsController.getController().getPlayerNick1());
+            player1 = new Player(SettingsController.getController().getP1Nickname());
         }
         if(SettingsController.getController().getP2Nickname().isEmpty()) {
             player2 = new Player("Giocatore 2");
         } else {
-            player2 = new Player(SettingsController.getController().getPlayerNick2());
+            player2 = new Player(SettingsController.getController().getP2Nickname());
         }
         board.showPlayerNickname();
-        board.showSplitPlayer();
+        if(SettingsController.getController().getSplitPlayer()==0) {
+            player1.setMyTurn(true);
+        } else {
+            player2.setMyTurn(true);
+        }
 
         // CUE LOADING
         cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(SettingsController.getController().cueMenuIndex()+1 + ".png")));
@@ -352,7 +357,7 @@ public class GameController {
         exitYes.setVisible(false);
         exitNo.setVisible(false);
         exit = false;
-        winLabel.setVisible(false);
+        centralboardLabel.setVisible(false);
 
         //SOUNDS
         soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
@@ -592,6 +597,7 @@ public class GameController {
         if(ballsMoving) {
             turn = false;
             foulboardLabel.setText("");
+            centralboardLabel.setVisible(false);
         } else if(!ballsMoving && !turnChange) {
             turn = true;
             board.showPlayerTurn();

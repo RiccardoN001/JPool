@@ -714,7 +714,7 @@
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
       <Button fx:id="soundsButton" layoutX="1300.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleSoundsButton" prefHeight="70.0" prefWidth="70.0" styleClass="sounds-button" />
-      <Label fx:id="winLabel" alignment="CENTER" layoutX="500.0" layoutY="400.0" prefHeight="100.0" prefWidth="400.0" text="WIN LABEL" textFill="WHITE">
+      <Label fx:id="centralboardLabel" alignment="CENTER" layoutX="500.0" layoutY="400.0" prefHeight="100.0" prefWidth="400.0" text="CENTRALBOARD" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
