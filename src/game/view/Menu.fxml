@@ -6,12 +6,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.MenuController">
    <children>
-      <Button fx:id="playSettingsButton" layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#handlePlaySettingsButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="PLAY">
+      <Button fx:id="startgameButton" layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleStartGameButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="START GAME">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="rulesButton" layoutX="150.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleRulesButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="HOW TO PLAY">
+      <Button fx:id="htpButton" layoutX="150.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleHTPButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="HOW TO PLAY">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>
