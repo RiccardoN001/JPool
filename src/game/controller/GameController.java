@@ -620,8 +620,6 @@ public class GameController {
             turnNum++;
             guided = false;
             shot = false;
-            ballAssigned = false;
-            foul = false;
             foulWhite = false;
             foulWrongBallType = false;
             foulEight = false;
@@ -637,14 +635,14 @@ public class GameController {
             }
             
             if(ballAssigned) {
-                for(int i=1;i<=7;i++) {
+                for(int i = 1; i <=7 ; i++) {
                     if(potted[i]) {
-                        solidScoreBall[i-1].setVisible(false);
+                        solidScoreBall[i - 1].setVisible(false);
                     }
                 }
-                for(int i=9;i<=15;i++) {
+                for(int i = 9; i <= 15; i++) {
                     if(potted[i]) {
-                        stripedScoreBall[i-9].setVisible(false);
+                        stripedScoreBall[i - 9].setVisible(false);
                     }
                 }
             }

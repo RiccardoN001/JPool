@@ -81,8 +81,8 @@ public class Ball {
     public void spin() {
         Rotate rx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
         Rotate ry = new Rotate (0, 0, 0, 0, Rotate.Y_AXIS);
-        rx.setAngle(Math.toDegrees(velocity.getY() / 10)); // 10?
-        ry.setAngle(Math.toDegrees(velocity.getX() / 10)); // 10?
+        rx.setAngle(Math.toDegrees(velocity.getY() / 10));
+        ry.setAngle(Math.toDegrees(velocity.getX() / 10));
         sphere.getTransforms().addAll(rx, ry);
     }
 
@@ -146,36 +146,6 @@ public class Ball {
             velocity.setX(0);
         }
 
-        // LEFT DOWN BANK (E)
-        // REGION E1
-        if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_START && x <= Constants.E_LEFT_CORNER_END)) {
-            velocity.setX(-velocity.getSize());
-            velocity.setY(0);
-        }
-        // REGION E2
-        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_END && x <= Constants.E_RIGHT_CORNER_START)) {
-            velocity.setY(-Math.abs(velocity.getY()));
-        }
-        // REGION E3
-        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_RIGHT_CORNER_START && x <= Constants.E_RIGHT_CORNER_START)) {
-            velocity.setX(Math.abs(velocity.getX()));
-        }
-
-        // RIGHT DOWN BANK (F)
-        // REGION F1
-        if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_START && x <= Constants.F_LEFT_CORNER_END)) {
-            velocity.setX(-Math.abs(velocity.getX()));
-        }
-        // REGION F2
-        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_END && x <= Constants.F_RIGHT_CORNER_START)) {
-            velocity.setY(-Math.abs(velocity.getY()));
-        }
-        // REGION F3
-        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_RIGHT_CORNER_START && x <= Constants.F_RIGHT_CORNER_END)) {
-            velocity.setX(velocity.getSize());
-            velocity.setY(0);
-        }
-
         // LEFT UP BANK (C)
         // REGION C1
         if (y - r <= Constants.CD_MARGIN && (x >= Constants.C_LEFT_CORNER_START && x <= Constants.C_LEFT_CORNER_END)) {
@@ -206,15 +176,41 @@ public class Ball {
             velocity.setY(0);
         }
 
+        // LEFT DOWN BANK (E)
+        // REGION E1
+        if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_START && x <= Constants.E_LEFT_CORNER_END)) {
+            velocity.setX(-velocity.getSize());
+            velocity.setY(0);
+        }
+        // REGION E2
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_LEFT_CORNER_END && x <= Constants.E_RIGHT_CORNER_START)) {
+            velocity.setY(-Math.abs(velocity.getY()));
+        }
+        // REGION E3
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_RIGHT_CORNER_START && x <= Constants.E_RIGHT_CORNER_START)) {
+            velocity.setX(Math.abs(velocity.getX()));
+        }
+
+        // RIGHT DOWN BANK (F)
+        // REGION F1
+        if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_START && x <= Constants.F_LEFT_CORNER_END)) {
+            velocity.setX(-Math.abs(velocity.getX()));
+        }
+        // REGION F2
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_LEFT_CORNER_END && x <= Constants.F_RIGHT_CORNER_START)) {
+            velocity.setY(-Math.abs(velocity.getY()));
+        }
+        // REGION F3
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.F_RIGHT_CORNER_START && x <= Constants.F_RIGHT_CORNER_END)) {
+            velocity.setX(velocity.getSize());
+            velocity.setY(0);
+        }
+
     }
 
     public void tableFriction() {
         velocity.setX (velocity.getX() * Constants.TABLE_FRICTION);
         velocity.setY (velocity.getY() * Constants.TABLE_FRICTION);
-    }
-
-    public static void playerDecision(Ball ball[]){
-        ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, 0);
     }
 
     public static void triangle(Ball ball[]) {
@@ -226,8 +222,6 @@ public class Ball {
         ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, 8);
 
         // VARIABLE POSITIONS
-
-        // (int)(Math.random()*(max-min+1)+min)
 
         // ROW 5 -> 2 EXTERNAL VERTICES
         int solidOrStriped1 = (int)(Math.random()*2); // 0 -> SOLID , 1 -> STRIPED (UP VERTEX REFERENCE)
