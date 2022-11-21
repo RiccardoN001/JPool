@@ -1,9 +1,9 @@
 package game.model;
 
+// BRIEF CLASS DESCRIPTION
+// Represents a player
+
 public class Player {
-    
-    // BRIEF CLASS DESCRIPTION (FINISHED)
-    // Represents a player
 
     private String nickname;
     private boolean myTurn;
@@ -11,13 +11,13 @@ public class Player {
     private boolean win;
     private int ballType;
 
-    // CONSTRUCTOR METHODS
+    // CONSTRUCTOR METHOD
     public Player(String nickname) {
         this.nickname = nickname;
-        myTurn = false;
-        allBallsPlotted = false;
-        win = false;
-        ballType = 0;
+        this.myTurn = false;
+        this.allBallsPlotted = false;
+        this.win = false;
+        this.ballType = 0;
     }
 
     // GET/SET METHODS

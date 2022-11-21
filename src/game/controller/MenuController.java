@@ -1,5 +1,8 @@
 package game.controller;
 
+// BRIEF CLASS DESCRIPTION
+// Controls Menu page (Menu.fxml)
+
 import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,10 +16,8 @@ public class MenuController {
 
     @FXML
     private Button startgameButton;
-
     @FXML
     private Button htpButton;
-
     @FXML
     private Button exitButton;
 

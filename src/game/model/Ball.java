@@ -1,5 +1,8 @@
 package game.model;
 
+// BRIEF CLASS DESCRIPTION 
+// Represents the physical model of a (3D) billiard ball
+
 import game.controller.GameController;
 import game.utils.Constants;
 import game.utils.Sounds;
@@ -15,9 +18,6 @@ import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 
 public class Ball {
-
-    // BRIEF CLASS DESCRIPTION (FINISHED)
-    // Represents the physical model of a (3D) billiard ball
 
     private Sphere sphere = new Sphere(Constants.BALL_RADIUS);
 
@@ -87,8 +87,6 @@ public class Ball {
     }
 
     public void ballCollision(Ball b) {
-
-        // ball A calls the method, ball B is given as an input
 
         Vector normalToB = position.sub(b.position);
         normalToB.normalize();
@@ -344,7 +342,7 @@ public class Ball {
 
     public void moveCueBall() {
 
-        GameController.ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
+        game.ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
 
             if(game.turn && game.turnNum == 1) {
                 game.cue.setVisible(false);
@@ -352,12 +350,12 @@ public class Ball {
                 game.ghostBall.setVisible(false);
                 game.guidelineFromBall.setVisible(false);
                 game.guidelineFromCue.setVisible(false);
-                GameController.ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
+                game.ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
                 if(event.getSceneX() >= Constants.A_MARGIN+12.5 && 
                     event.getSceneX() <= Constants.HEAD_SPOT_X && 
                     event.getSceneY() >= Constants.CD_MARGIN+12.5 && 
                     event.getSceneY() <= Constants.EF_MARGIN-12.5) {
-                    GameController.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
+                    game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
             } else if(game.turn && game.foul) {
                 game.cue.setVisible(false);
@@ -365,12 +363,12 @@ public class Ball {
                 game.ghostBall.setVisible(false);
                 game.guidelineFromBall.setVisible(false);
                 game.guidelineFromCue.setVisible(false);
-                GameController.ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
+                game.ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
                 if(event.getSceneX() >= Constants.A_MARGIN+12.5 && 
                     event.getSceneX() <= Constants.B_MARGIN-12.5 && 
                     event.getSceneY() >= Constants.CD_MARGIN+12.5 && 
                     event.getSceneY() <= Constants.EF_MARGIN-12.5) {
-                    GameController.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
+                    game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
             }
 
@@ -384,23 +382,23 @@ public class Ball {
             Sounds.playSound("PocketSound");
         }
         game.thisTurnPottedBalls.add(Integer.valueOf(ballNum));
-        GameController.ball[ballNum].setDropped(true);
-        GameController.ball[ballNum].setVelocity(0, 0);
+        game.ball[ballNum].setDropped(true);
+        game.ball[ballNum].setVelocity(0, 0);
 
-        GameController.ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, game.rackStack));
+        game.ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, game.rackStack));
 
         game.rackStack -= 25;
 
         if (ballNum == 0) {
             game.rackStack += 25;
-            GameController.ball[0].getSphere ().setVisible (false);
-            GameController.ball[0].setPosition (new Vector (0, 0));
-            GameController.ball[0].setDropped (false);
+            game.ball[0].getSphere ().setVisible (false);
+            game.ball[0].setPosition (new Vector (0, 0));
+            game.ball[0].setDropped (false);
         }
         if(ballNum==8){
-            GameController.ball[8].setDropped(true);
-            GameController.ball[8].setVelocity(0, 0);
-            GameController.ball[8].getSphere().setVisible(false);
+            game.ball[8].setDropped(true);
+            game.ball[8].setVelocity(0, 0);
+            game.ball[8].getSphere().setVisible(false);
         }
     }
 
@@ -420,20 +418,20 @@ public class Ball {
 
     public void checkPocket(int ballNum) {
 
-        double x = GameController.ball[ballNum].getPosition().getX();
-        double y = GameController.ball[ballNum].getPosition().getY();
+        double x = game.ball[ballNum].getPosition().getX();
+        double y = game.ball[ballNum].getPosition().getY();
 
         double check = 25;
 
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check
-            || ((y <= 244+15 || x <= 290+15) && !GameController.ball[ballNum].isDropped ())) {
+            || ((y <= 244+15 || x <= 290+15) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 1;
             }
         }
         else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check
-            || ((y >= 700-15 || x <= 290+15) && !GameController.ball[ballNum].isDropped ())) {
+            || ((y >= 700-15 || x <= 290+15) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 4;
@@ -452,14 +450,14 @@ public class Ball {
             }
         }
         else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check
-            || ((y <= 244+15 || x >= 1174-15) && !GameController.ball[ballNum].isDropped ())) {
+            || ((y <= 244+15 || x >= 1174-15) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 3;
             }
         }
         else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check
-            || ((y >= 700-15 || x >= 1174-15) && !GameController.ball[ballNum].isDropped ())) {
+            || ((y >= 700-15 || x >= 1174-15) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 6;
@@ -473,14 +471,14 @@ public class Ball {
     }
 
     public void ballAnimation(int ballNum) {
-        if(GameController.ball[ballNum].getVelocity().getSize() <= 8e-2) {
-            GameController.ball[ballNum].setVelocity(0, 0);  
+        if(game.ball[ballNum].getVelocity().getSize() <= 8e-2) {
+            game.ball[ballNum].setVelocity(0, 0);  
         } else {
-            GameController.ball[ballNum].getPosition().setX(GameController.ball[ballNum].getPosition().getX() + GameController.ball[ballNum].getVelocity().getX());
-            GameController.ball[ballNum].getPosition().setY(GameController.ball[ballNum].getPosition().getY() + GameController.ball[ballNum].getVelocity().getY());
+            game.ball[ballNum].getPosition().setX(game.ball[ballNum].getPosition().getX() + game.ball[ballNum].getVelocity().getX());
+            game.ball[ballNum].getPosition().setY(game.ball[ballNum].getPosition().getY() + game.ball[ballNum].getVelocity().getY());
 
             for(int i = 0; i < 16; i++) {
-                if(GameController.ball[ballNum].collides(GameController.ball[i]) && ballNum != GameController.ball[i].getBallNumber()) {
+                if(game.ball[ballNum].collides(game.ball[i]) && ballNum != game.ball[i].getBallNumber()) {
 
                     if(ballNum == 0) {
                         game.foulNoBallHit = false;
@@ -495,57 +493,57 @@ public class Ball {
                     }
 
                     if(ballNum == 0 && game.player1.getBallType() == 0 && game.cueBallCollisions==1) {
-                        if(GameController.ball[i].getBallNumber() == 8) {
+                        if(game.ball[i].getBallNumber() == 8) {
                             game.foulEight = true;
                         }
                     }
 
                     if (ballNum == 0 && game.player1.getBallType() != 0) {
                         if(game.player1.isMyTurn()) {
-                            if(game.player1.getBallType() != GameController.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            if(game.player1.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions==1) {
                                 game.foulWrongBallType = true;
-                                if(GameController.ball[i].getBallNumber() == 8 && !game.player1.isAllBallsPlotted()) {
+                                if(game.ball[i].getBallNumber() == 8 && !game.player1.isAllBallsPlotted()) {
                                     game.foulEight = true;
-                                } else if(GameController.ball[i].getBallNumber() == 8 && game.player1.isAllBallsPlotted()) {
+                                } else if(game.ball[i].getBallNumber() == 8 && game.player1.isAllBallsPlotted()) {
                                     game.foulEight = false;
                                     game.foulWrongBallType = false;
                                 }
-                            } else if(game.player1.getBallType() == GameController.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            } else if(game.player1.getBallType() == game.ball[i].getBallType() && game.cueBallCollisions==1) {
                                 game.foulWrongBallType = false;
                             }
                         } else {
-                            if(game.player2.getBallType() != GameController.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            if(game.player2.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions==1) {
                                 game.foulWrongBallType = true;
-                                if(GameController.ball[i].getBallNumber() == 8 && !game.player2.isAllBallsPlotted()) {
+                                if(game.ball[i].getBallNumber() == 8 && !game.player2.isAllBallsPlotted()) {
                                     game.foulEight = true;
-                                } else if(GameController.ball[i].getBallNumber() == 8 && game.player2.isAllBallsPlotted()) {
+                                } else if(game.ball[i].getBallNumber() == 8 && game.player2.isAllBallsPlotted()) {
                                     game.foulEight = false;
                                     game.foulWrongBallType = false;
                                 }
-                            } else if(game.player2.getBallType() == GameController.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            } else if(game.player2.getBallType() == game.ball[i].getBallType() && game.cueBallCollisions==1) {
                                 game.foulWrongBallType = false;
                             }
                         }
                     }
 
-                    GameController.ball[ballNum].getPosition().setX(GameController.ball[ballNum].getPosition().getX() - GameController.ball[ballNum].getVelocity().getX());
-                    GameController.ball[ballNum].getPosition().setY(GameController.ball[ballNum].getPosition().getY() - GameController.ball[ballNum].getVelocity().getY());
-                    GameController.ball[ballNum].ballCollision(GameController.ball[i]);
+                    game.ball[ballNum].getPosition().setX(game.ball[ballNum].getPosition().getX() - game.ball[ballNum].getVelocity().getX());
+                    game.ball[ballNum].getPosition().setY(game.ball[ballNum].getPosition().getY() - game.ball[ballNum].getVelocity().getY());
+                    game.ball[ballNum].ballCollision(game.ball[i]);
                     
                     break;
 
                 }
             }
-            GameController.ball[ballNum].spin();
-            GameController.ball[ballNum].bankCollision();
-            GameController.ball[ballNum].tableFriction();
+            game.ball[ballNum].spin();
+            game.ball[ballNum].bankCollision();
+            game.ball[ballNum].tableFriction();
         }
-        GameController.ball[ballNum].getSphere().setLayoutX(GameController.ball[ballNum].getPosition().getX());
-        GameController.ball[ballNum].getSphere().setLayoutY(GameController.ball[ballNum].getPosition().getY());
+        game.ball[ballNum].getSphere().setLayoutX(game.ball[ballNum].getPosition().getX());
+        game.ball[ballNum].getSphere().setLayoutY(game.ball[ballNum].getPosition().getY());
     }
 
-    public static void setCueVelocity(double x, double y) {
-        GameController.ball[0].setVelocity(x, y);
+    public void setCueVelocity(double x, double y) {
+        game.ball[0].setVelocity(x, y);
     }
 
     // GET/SET METHODS

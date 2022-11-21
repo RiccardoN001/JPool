@@ -1,9 +1,9 @@
 package game.model;
 
-public class Vector {
+// BRIEF CLASS DESCRIPTION (FINISHED)
+// Represents 2D vectors starting from the origin of the xy plane (Pane)
 
-    // BRIEF CLASS DESCRIPTION (FINISHED)
-    // Represents 2D vectors starting from the origin of the xy plane
+public class Vector {
     
     private double x, y; // vector x,y components
 
@@ -53,6 +53,19 @@ public class Vector {
         return ((x == 0) && (y == 0));
     }
 
+    public Vector perpendicularLeft() {
+        return new Vector(y, -x);
+    }
+
+    public Vector perpendicularRight() {
+        return new Vector(-y, x);
+    }
+
+    // orthognal vecto -> to be explained!
+    public double determinant(Vector a, Vector b) {
+        return ((x-a.getX())*(b.getY()-a.getY()) - (y-a.getY())*(b.getX()-a.getX()));
+    }
+
     // GET/SET METHODS
 
     public double getX() {
@@ -72,24 +85,6 @@ public class Vector {
     }
 
 
-
-   /*  public static void sphereCollisionVelocities(Vector c1, Vector v1, Vector c2, Vector v2) {
-
-        Vector pDiff1 = c1.sub(c2);
-        Vector vDiff1 = v1.sub(v2);
-        pDiff1.normalize();
-        pDiff1.multiply(vDiff1.scalar(pDiff1));
-
-        v1 = v1.sub(pDiff1);
-
-        Vector pDiff2 = c2.sub(c1);
-        Vector vDiff2 = v2.sub(v1);
-        pDiff2.normalize();
-        pDiff2.multiply(vDiff2.scalar(pDiff2));
-
-        v2 = v2.sub(pDiff2);
-
-    }*/
 
 
 }

@@ -1,10 +1,13 @@
 package game.controller;
 
+// BRIEF CLASS DESCRIPTION 
+// Referee: updates the View with graphics to direct the match
+
+import game.utils.Constants;
+import game.utils.Sounds;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import game.utils.Constants;
-import game.utils.Sounds;
 
 public class Board {
 
@@ -72,7 +75,6 @@ public class Board {
     public void ballAssignment() {
 
         game.ballAssigned = true;
-        game.centralboardLabel.setVisible(true);
 
         if(!game.foul) {
             if(game.player1.getBallType() == 1) {
@@ -89,11 +91,6 @@ public class Board {
                     game.stripedScoreBall[i].setLayoutY(157);
                     game.addToPane(game.solidScoreBall[i]);
                     game.addToPane(game.stripedScoreBall[i]);
-                    if(game.player1.isMyTurn()) {
-                        game.centralboardLabel.setText(game.player1.getNickname() + " HA LE PIENE");
-                    } else {
-                        game.centralboardLabel.setText(game.player2.getNickname() + " HA LE SPEZZATE");
-                    }
                 }
             } else {
                 for(int i = 0; i < 7; i++) {
@@ -109,11 +106,6 @@ public class Board {
                     game.stripedScoreBall[i].setLayoutY(157);
                     game.addToPane(game.solidScoreBall[i]);
                     game.addToPane(game.stripedScoreBall[i]);
-                    if(game.player1.isMyTurn()) {
-                        game.centralboardLabel.setText(game.player1.getNickname() + " HA LE SPEZZATE");
-                    } else {
-                        game.centralboardLabel.setText(game.player2.getNickname() + " HA LE PIENE");
-                    }
                 }
             }
         }
@@ -125,8 +117,8 @@ public class Board {
         game.blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
         game.blackScoreBall.setFitWidth(60);
         game.blackScoreBall.setFitHeight(60);
-        game.blackScoreBall.setLayoutX(704-30);
-        game.blackScoreBall.setLayoutY(172-30);
+        game.blackScoreBall.setLayoutX(674);
+        game.blackScoreBall.setLayoutY(142);
         game.blackScoreBall.setVisible(true);
         game.addToPane(game.blackScoreBall);
 

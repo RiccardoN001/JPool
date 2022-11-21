@@ -1,5 +1,8 @@
 package game.controller;
 
+// BRIEF CLASS DESCRIPTION
+// Controls the settings of the started game (table, cue, mode, sound)
+
 import game.Main;
 import game.utils.Sounds;
 import javafx.animation.KeyFrame;
@@ -24,8 +27,14 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class SettingsController{
+    
     @FXML
     private Pane pane;
+
+    @FXML
+    private Button menuButtonFromSettings;
+    @FXML
+    private Button playButton;
 
     @FXML
     private Pagination tableMenu;
@@ -38,28 +47,23 @@ public class SettingsController{
     private TextField player1Nickname;
     @FXML
     private TextField player2Nickname;
-    
-    @FXML
-    private Button playButton;
-    @FXML
-    private Button coinButton;
-    @FXML
-    private Button menuButtonFromSettings;
-    @FXML
-    private Label soundLabel;
-    @FXML
-    private Label splitPlayerLabel;
+
     @FXML
     private Button soundButton;
-    private boolean soundOff = false;
+    @FXML
+    private Label soundLabel;
+    private boolean soundOff;
+
+    private Timeline timeline = new Timeline();
+    @FXML
+    private Button coinButton;
     private ImageView coin;
-    Timeline timeline = new Timeline();
-    int count = 1;
-    int flip = 0;
-
+    private int count;
+    private int flip;
     private int splitPlayer;
+    @FXML
+    private Label splitPlayerLabel;
 
-    // CONTROLLER-CONTROLLER COMMUNICATION
     private static SettingsController instance;
     public SettingsController() {
         instance = this;
@@ -112,10 +116,14 @@ public class SettingsController{
         });
 
         playButton.setDisable(true);
+        soundOff = false;
+        count = 1;
+        flip = 0;
+
     }
 
     @FXML
-    void handleMenuFromSettings(ActionEvent event) throws Exception{
+    public void handleMenuFromSettings(ActionEvent event) throws Exception{
         Stage stage;
         Scene scene;
         Parent root;
@@ -128,29 +136,30 @@ public class SettingsController{
     }
 
     @FXML
-    void handleSoundButton(ActionEvent event) throws Exception{
-        if(!soundOff){
+    public void handleSoundButton(ActionEvent event) throws Exception{
+        if(!soundOff) {
             soundOff = true;
             soundLabel.setText("OFF");
-        }
-        else if(soundOff){
+        } else {
             soundOff = false;
             soundLabel.setText("ON");
         }
     }
+
     @FXML
-     void handleCoinButton(ActionEvent event) throws Exception{
+    public void handleCoinButton(ActionEvent event) throws Exception{
+
         player1Nickname.setDisable(true);
         player2Nickname.setDisable(true);
 
-        Sounds.playSound("CoinSound2");
+        Sounds.playSound("CoinSound");
 
         KeyFrame frame = new KeyFrame(
             Duration.seconds(0.03), 
-            e->{
-             if(count<10){
+            e -> {
+            if(count<10) {
                 pane.getChildren().remove(coin);
-                coin = new ImageView(new Image("file:src/game/resources/Coin/coin"+flip+".png"));
+                coin = new ImageView(new Image("file:src/game/resources/Coin/coin" + flip + ".png"));
                 coin.setFitWidth(120);
                 coin.setFitHeight(120);
                 coin.setLayoutX(1200);
@@ -158,7 +167,7 @@ public class SettingsController{
                 coin.setPreserveRatio(true);
                 pane.getChildren().add(coin);
                 flip++;
-                if(flip==10){
+                if(flip==10) {
                     flip = 1;
                     count++;
                 }
@@ -171,24 +180,26 @@ public class SettingsController{
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
         coinButton.setDisable(true);
+
     }
     
     @FXML
-    void handlePlayButton(ActionEvent event) throws Exception {
+    public void handlePlayButton(ActionEvent event) throws Exception {
         Stage stage;
         Parent root;
+        Scene scene;
 
         stage = (Stage) playButton.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/Game.fxml"));
 
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         scene.getStylesheets().add(Main.class.getResource("view/style.css").toExternalForm());
 
-        if(tableMenu.getCurrentPageIndex()==0) {
+        if(tableMenu.getCurrentPageIndex() == 0) {
             scene.getStylesheets().add(Main.class.getResource("view/table1.css").toExternalForm());
-        } else if(tableMenu.getCurrentPageIndex()==1) {
+        } else if(tableMenu.getCurrentPageIndex() == 1) {
             scene.getStylesheets().add(Main.class.getResource("view/table2.css").toExternalForm());
-        } else if(tableMenu.getCurrentPageIndex()==2) {
+        } else if(tableMenu.getCurrentPageIndex() == 2) {
             scene.getStylesheets().add(Main.class.getResource("view/table3.css").toExternalForm());
         } else {
             scene.getStylesheets().add(Main.class.getResource("view/table4.css").toExternalForm());
@@ -227,6 +238,10 @@ public class SettingsController{
         return this.modeMenu.getCurrentPageIndex();
     }
 
+    public boolean getSoundOff(){
+        return this.soundOff;
+    }
+
     public String getP1Nickname() {
         return this.player1Nickname.getText();
     }
@@ -234,9 +249,7 @@ public class SettingsController{
     public String getP2Nickname() {
         return this.player2Nickname.getText();
     }
-    public boolean getSoundOff(){
-        return this.soundOff;
-    }
+
     public int getSplitPlayer() {
         return splitPlayer;
     }

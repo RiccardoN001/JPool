@@ -1,5 +1,8 @@
 package game.controller;
 
+// BRIEF CLASS DESCRIPTION
+// Controls HTP page (HTP.fxml)
+
 import game.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
