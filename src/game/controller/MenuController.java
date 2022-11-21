@@ -12,20 +12,20 @@ import javafx.stage.Stage;
 public class MenuController {
 
     @FXML
-    private Button playSettingsButton;
+    private Button startgameButton;
 
     @FXML
-    private Button rulesButton;
+    private Button htpButton;
 
     @FXML
     private Button exitButton;
 
     @FXML
-    void handlePlaySettingsButton(ActionEvent event) throws Exception {
+    void handleStartGameButton(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
         Parent root;
-        stage = (Stage) playSettingsButton.getScene().getWindow();
+        stage = (Stage) startgameButton.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/Settings.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
@@ -34,11 +34,11 @@ public class MenuController {
     }
 
     @FXML
-    void handleRulesButton(ActionEvent event) throws Exception {
+    void handleHTPButton(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
         Parent root;
-        stage = (Stage) rulesButton.getScene().getWindow();
+        stage = (Stage) htpButton.getScene().getWindow();
         root = FXMLLoader.load(Main.class.getResource("view/HTP.fxml"));
         scene = new Scene(root);
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
@@ -49,8 +49,9 @@ public class MenuController {
     @FXML
     void handleExitButton(ActionEvent event) throws Exception {
         Stage stage;
-        stage = (Stage) rulesButton.getScene().getWindow();
+        stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+        stage.setOnCloseRequest(e -> System.exit(0));
     }
 
 }
