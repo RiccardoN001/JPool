@@ -397,6 +397,11 @@ public class Ball {
             GameController.ball[0].setPosition (new Vector (0, 0));
             GameController.ball[0].setDropped (false);
         }
+        if(ballNum==8){
+            GameController.ball[8].setDropped(true);
+            GameController.ball[8].setVelocity(0, 0);
+            GameController.ball[8].getSphere().setVisible(false);
+        }
     }
 
     public boolean ghostCollides(Circle circle, Ball ball) {
