@@ -539,6 +539,10 @@ public class Ball {
 
     // GET/SET METHODS
 
+    public Sphere getSphere() {
+        return sphere;
+    }
+
     public Vector getPosition() {
         return position;
     }
@@ -554,10 +558,6 @@ public class Ball {
     public void setVelocity(double x, double y) {
         this.velocity.setX(x);
         this.velocity.setY(y);
-    }
-
-    public Sphere getSphere() {
-        return sphere;
     }
 
     public int getBallType() {

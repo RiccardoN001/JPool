@@ -1,11 +1,11 @@
 package game.model;
 
-// BRIEF CLASS DESCRIPTION (FINISHED)
+// BRIEF CLASS DESCRIPTION
 // Represents 2D vectors starting from the origin of the xy plane (Pane)
 
 public class Vector {
     
-    private double x, y; // vector x,y components
+    private double x, y;
 
     // CONSTRUCTOR METHOD
     public Vector(double x, double y) {
@@ -15,42 +15,26 @@ public class Vector {
 
     // VECTOR OPERATIONS
 
-    // vector sum
     public Vector add(Vector v) {
         return new Vector(x + v.x, y + v.y);
     }
 
-    // vector difference
     public Vector sub(Vector v) {
         return new Vector(x - v.x, y - v.y);
     }
 
-    // vector scalar multiplication
     public void multiply(double k) {
         x *= k;
         y *= k;
     }
 
-    // scalar product
     public double scalar(Vector v) {
         return x*v.x + y*v.y;
     }
 
-    // vector module
-    public double getSize() {
-        return Math.sqrt(x*x + y*y);
-    }
-
-    // vector normalization
     public void normalize() {
-        double size = getSize();
-        x /= size;
-        y /= size;
-    }
-
-    // null vector
-    public Boolean isNull() {
-        return ((x == 0) && (y == 0));
+        x /= getSize();
+        y /= getSize();
     }
 
     public Vector perpendicularLeft() {
@@ -61,9 +45,16 @@ public class Vector {
         return new Vector(-y, x);
     }
 
-    // orthognal vecto -> to be explained!
     public double determinant(Vector a, Vector b) {
-        return ((x-a.getX())*(b.getY()-a.getY()) - (y-a.getY())*(b.getX()-a.getX()));
+        return ((x - a.getX()) * (b.getY() - a.getY()) - (y - a.getY()) * (b.getX() - a.getX()));
+    }
+
+    public double getSize() {
+        return Math.sqrt(x*x + y*y);
+    }
+
+    public Boolean isNull() {
+        return ((x == 0) && (y == 0));
     }
 
     // GET/SET METHODS
@@ -72,19 +63,16 @@ public class Vector {
         return x;
     }
 
-    public double getY() {
-        return y;
-    }
-
     public void setX(double x) {
         this.x = x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     public void setY(double y) {
         this.y = y;
     }
-
-
-
 
 }
