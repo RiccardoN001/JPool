@@ -423,11 +423,11 @@ public class GameController {
                 for(int i = 0; i < 16; i++) {
                     if(ballInstance.ghostCollides(ghostBall, ball[i])) {
 
+                        double cueBallVelocity = 50;
+
                         Vector ballPosition = new Vector(ball[i].getPosition().getX(), ball[i].getPosition().getY());
                         
                         double angle = Math.atan2(ym - cueBallPosition.getY(), xm - cueBallPosition.getX());
-                        
-                        double cueBallVelocity = 50;
                         Vector velocity = new Vector(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
 
                         Vector n1 = ghostBallPosition.sub(ball[i].getPosition());
@@ -442,16 +442,12 @@ public class GameController {
                         Vector ballFinalVelocity = v2f.add(n1);
 
                         Vector cueFinalVelocity = new Vector(0, 0);
-
                         double d = ghostBallPosition.determinant(cueBallPosition, ballPosition);
-
                         if(d > 0) {
                             cueFinalVelocity = ballFinalVelocity.perpendicularLeft();
                         } else {
                             cueFinalVelocity = ballFinalVelocity.perpendicularRight();
                         }
-
-
 
                         double x = ball[i].getSphere().getLayoutX();
                         double y = ball[i].getSphere().getLayoutY();
