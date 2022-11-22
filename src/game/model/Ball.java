@@ -418,7 +418,7 @@ public class Ball {
         double x = game.ball[ballNum].getPosition().getX();
         double y = game.ball[ballNum].getPosition().getY();
 
-        double check = 25;
+        double check = 10;
 
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check
             || ((y <= 244+15 || x <= 290+15) && !game.ball[ballNum].isDropped ())) {

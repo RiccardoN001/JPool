@@ -167,62 +167,32 @@ public class Board {
         game.pocketButton1.setOnAction(event -> {
             game.pocket1.setStroke(Color.GREEN);
             Rules.eightDeclaredPocket = 1;
-            game.pocketButton1.setVisible(false);
-            game.pocketButton2.setVisible(false);
-            game.pocketButton3.setVisible(false);
-            game.pocketButton4.setVisible(false);
-            game.pocketButton5.setVisible(false);
-            game.pocketButton6.setVisible(false);
+            eightOff();
         });
         game.pocketButton2.setOnAction(event -> {
             game.pocket2.setStroke(Color.GREEN);
             Rules.eightDeclaredPocket = 2;
-            game.pocketButton1.setVisible(false);
-            game.pocketButton2.setVisible(false);
-            game.pocketButton3.setVisible(false);
-            game.pocketButton4.setVisible(false);
-            game.pocketButton5.setVisible(false);
-            game.pocketButton6.setVisible(false);
+            eightOff();
         });
         game.pocketButton3.setOnAction(event -> {
             game.pocket3.setStroke(Color.GREEN);
             Rules.eightDeclaredPocket = 3;
-            game.pocketButton1.setVisible(false);
-            game.pocketButton2.setVisible(false);
-            game.pocketButton3.setVisible(false);
-            game.pocketButton4.setVisible(false);
-            game.pocketButton5.setVisible(false);
-            game.pocketButton6.setVisible(false);
+            eightOff();
         });
         game.pocketButton4.setOnAction(event -> {
             game.pocket4.setStroke(Color.GREEN);
             Rules.eightDeclaredPocket = 4;
-            game.pocketButton1.setVisible(false);
-            game.pocketButton2.setVisible(false);
-            game.pocketButton3.setVisible(false);
-            game.pocketButton4.setVisible(false);
-            game.pocketButton5.setVisible(false);
-            game.pocketButton6.setVisible(false);
+            eightOff();
         });
         game.pocketButton5.setOnAction(event -> {
             game.pocket5.setStroke(Color.GREEN);
             Rules.eightDeclaredPocket = 5;
-            game.pocketButton1.setVisible(false);
-            game.pocketButton2.setVisible(false);
-            game.pocketButton3.setVisible(false);
-            game.pocketButton4.setVisible(false);
-            game.pocketButton5.setVisible(false);
-            game.pocketButton6.setVisible(false);
+            eightOff();
         });
         game.pocketButton6.setOnAction(event -> {
             game.pocket6.setStroke(Color.GREEN);
             Rules.eightDeclaredPocket = 6;
-            game.pocketButton1.setVisible(false);
-            game.pocketButton2.setVisible(false);
-            game.pocketButton3.setVisible(false);
-            game.pocketButton4.setVisible(false);
-            game.pocketButton5.setVisible(false);
-            game.pocketButton6.setVisible(false);
+            eightOff();
         });
     }
 
@@ -273,6 +243,14 @@ public class Board {
 
         }
 
+    }
+    private void eightOff(){
+            game.pocketButton1.setVisible(false);
+            game.pocketButton2.setVisible(false);
+            game.pocketButton3.setVisible(false);
+            game.pocketButton4.setVisible(false);
+            game.pocketButton5.setVisible(false);
+            game.pocketButton6.setVisible(false);
     }
 
 }

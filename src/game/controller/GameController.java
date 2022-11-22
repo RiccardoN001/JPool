@@ -331,10 +331,7 @@ public class GameController {
         for(int i = 0; i < 16; i++) {
             pane.getChildren().add(ball[i].drawBall());
         }
-        if(!soundOff){
-           Sounds.playSound("RackSound");
-        }
-       
+
         turn = true;
         guided = false;
         shot = false;
@@ -364,6 +361,16 @@ public class GameController {
         // SOUNDS
         soundOff = settings.getSoundOff();
         if(!soundOff){
+            Sounds.playSound("RackSound");
+         }
+        soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
+        soundIconOn.setFitWidth(60);
+        soundIconOn.setFitHeight(60);
+        soundIconOff = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOff.png"));
+        soundIconOff.setFitWidth(60);
+        soundIconOff.setFitHeight(60);
+
+        if(!soundOff){
           soundsButton.setGraphic(soundIconOn);
           soundsButton.setPrefSize(60, 60);  
         }
@@ -371,12 +378,6 @@ public class GameController {
             soundsButton.setGraphic(soundIconOff);
             soundsButton.setPrefSize(60, 60); 
         }
-        soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
-        soundIconOn.setFitWidth(60);
-        soundIconOn.setFitHeight(60);
-        soundIconOff = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOff.png"));
-        soundIconOff.setFitWidth(60);
-        soundIconOff.setFitHeight(60);
 
         // THREAD
         startGame();

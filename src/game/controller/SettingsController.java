@@ -152,7 +152,9 @@ public class SettingsController{
         player1Nickname.setDisable(true);
         player2Nickname.setDisable(true);
 
-        Sounds.playSound("CoinSound");
+        if(!soundOff){
+            Sounds.playSound("CoinSound");
+        }
 
         KeyFrame frame = new KeyFrame(
             Duration.seconds(0.03), 
