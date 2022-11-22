@@ -18,6 +18,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -428,14 +429,16 @@ public class GameController {
                         double cueBallVelocity = 50;
                         Vector velocity = new Vector(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
 
-                        Vector normalToB = ghostBallPosition.sub(ball[i].getPosition());
-                        normalToB.normalize();
-                        normalToB.multiply(velocity.scalar(normalToB));
-                        Vector normalToA = ball[i].getPosition().sub(ghostBallPosition);
-                        normalToA.normalize();
-                        normalToA.multiply(ball[i].getVelocity().scalar(normalToA));
-                        Vector aCollisionVector = ball[i].getVelocity().sub(normalToA);
-                        Vector ballFinalVelocity = aCollisionVector.add(normalToB);
+                        Vector n1 = ghostBallPosition.sub(ball[i].getPosition());
+                        n1.normalize(); // un1
+                        double v1n = velocity.scalar(n1);
+                        n1.multiply(v1n); // v1n (vector)
+                        Vector n2 = ball[i].getPosition().sub(ghostBallPosition);
+                        n2.normalize(); // un2
+                        double v2n = ball[i].getVelocity().scalar(n2);
+                        n2.multiply(v2n); // v2n (vector)
+                        Vector v2f = ball[i].getVelocity().sub(n2);
+                        Vector ballFinalVelocity = v2f.add(n1);
 
                         Vector cueFinalVelocity = new Vector(0, 0);
 
@@ -591,6 +594,8 @@ public class GameController {
             turn = true;
             board.showPlayerTurn();
         } else if(!ballsMoving && turnChange) {
+
+            ball[0].getSphere().setCursor(Cursor.DEFAULT);
 
             board.removeEightPockets();
 

@@ -28,15 +28,10 @@ public class Ball {
 
     private GameController game = GameController.getController();
 
-    // CONSTRUCTOR METHOD
-
-    public Ball() {
-        // only for methods
-    }
-
+    // CONSTRUCTOR METHODS
     public Ball(double positionX, double positionY, int ballNumber) {
-        position = new Vector(positionX, positionY);
-        velocity = new Vector(0, 0);
+        this.position = new Vector(positionX, positionY);
+        this.velocity = new Vector(0, 0);
         this.ballNumber = ballNumber;
         if(ballNumber >= 1 && ballNumber <= 7) {
             this.ballType = 1;
@@ -48,6 +43,9 @@ public class Ball {
             this.ballType = 0;
         }
         dropped = false;
+    }
+    public Ball() {
+        
     }
     
     public Node drawBall() {
@@ -72,6 +70,7 @@ public class Ball {
         sphere.setEffect(dropShadow);
 
         return sphere;
+        
     }
 
     public boolean collides(Ball b) {
@@ -88,21 +87,23 @@ public class Ball {
 
     public void ballCollision(Ball b) {
 
-        Vector normalToB = position.sub(b.position);
-        normalToB.normalize();
-        normalToB.multiply(velocity.scalar(normalToB));
+        Vector n1 = position.sub(b.position);
+        n1.normalize(); // un1
+        double v1n = velocity.scalar(n1);
+        n1.multiply(v1n); // v1n (vector)
 
-        Vector bCollisionVector = velocity.sub(normalToB);
+        Vector v1f = velocity.sub(n1);
 
-        Vector normalToA = b.position.sub(position);
-        normalToA.normalize();
-        normalToA.multiply(b.velocity.scalar(normalToA));
+        Vector n2 = b.position.sub(position);
+        n2.normalize(); // un2
+        double v2n = b.velocity.scalar(n2);
+        n2.multiply(v2n); // v2n (vector)
 
-        Vector aCollisionVector = b.velocity.sub(normalToA);
+        Vector v2f = b.velocity.sub(n2);
         
 
-        velocity = normalToA.add(bCollisionVector);
-        b.velocity = normalToB.add(aCollisionVector);
+        velocity = v1f.add(n2);
+        b.velocity = v2f.add(n1);
         
     }
 
@@ -375,25 +376,27 @@ public class Ball {
         if(!game.soundOff && ballNum != 0){
             Sounds.playSound("PocketSound");
         }
+
         game.thisTurnPottedBalls.add(Integer.valueOf(ballNum));
         game.ball[ballNum].setDropped(true);
         game.ball[ballNum].setVelocity(0, 0);
-
         game.ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, game.rackStack));
 
         game.rackStack -= 25;
 
-        if (ballNum == 0) {
+        if(ballNum == 0) {
             game.rackStack += 25;
-            game.ball[0].getSphere ().setVisible (false);
-            game.ball[0].setPosition (new Vector (0, 0));
-            game.ball[0].setDropped (false);
+            game.ball[0].setDropped(false);
+            game.ball[0].setPosition(new Vector(0, 0));
+            game.ball[0].getSphere().setVisible(false);
         }
-        if(ballNum==8){
+
+        if(ballNum==8) {
             game.ball[8].setDropped(true);
             game.ball[8].setVelocity(0, 0);
             game.ball[8].getSphere().setVisible(false);
         }
+
     }
 
     public boolean ghostCollides(Circle circle, Ball ball) {
@@ -423,34 +426,29 @@ public class Ball {
             if(ballNum == 8) {
                 game.eightPocket = 1;
             }
-        }
-        else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check
+        } else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check
             || ((y >= 700-15 || x <= 290+15) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 4;
             }
-        }
-        else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check-5) {
+        } else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check-5) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 2;
             }
-        }
-        else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check-5) {
+        } else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check-5) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 5;
             }
-        }
-        else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check
+        } else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check
             || ((y <= 244+15 || x >= 1174-15) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 3;
             }
-        }
-        else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check
+        } else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check
             || ((y >= 700-15 || x >= 1174-15) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
@@ -468,6 +466,7 @@ public class Ball {
         if(game.ball[ballNum].getVelocity().getSize() <= 8e-2) {
             game.ball[ballNum].setVelocity(0, 0);  
         } else {
+
             game.ball[ballNum].getPosition().setX(game.ball[ballNum].getPosition().getX() + game.ball[ballNum].getVelocity().getX());
             game.ball[ballNum].getPosition().setY(game.ball[ballNum].getPosition().getY() + game.ball[ballNum].getVelocity().getY());
 
@@ -479,10 +478,9 @@ public class Ball {
                         game.cueBallCollisions++;
                     }
 
-                    if(ballNum == 0 && game.cueBallCollisions == 1 && game.turnNum==1 && !game.soundOff){
+                    if(ballNum == 0 && game.cueBallCollisions == 1 && game.turnNum==1 && !game.soundOff) {
                         Sounds.playSound("SplitSound");
-                    }
-                    else if(game.turnNum != 1 && !game.soundOff){
+                    } else if(game.turnNum != 1 && !game.soundOff) {
                         Sounds.playSound("BallSound");
                     }
 
@@ -494,7 +492,7 @@ public class Ball {
 
                     if (ballNum == 0 && game.player1.getBallType() != 0) {
                         if(game.player1.isMyTurn()) {
-                            if(game.player1.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            if(game.player1.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions == 1) {
                                 game.foulWrongBallType = true;
                                 if(game.ball[i].getBallNumber() == 8 && !game.player1.isAllBallsPlotted()) {
                                     game.foulEight = true;
@@ -502,11 +500,11 @@ public class Ball {
                                     game.foulEight = false;
                                     game.foulWrongBallType = false;
                                 }
-                            } else if(game.player1.getBallType() == game.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            } else if(game.player1.getBallType() == game.ball[i].getBallType() && game.cueBallCollisions == 1) {
                                 game.foulWrongBallType = false;
                             }
                         } else {
-                            if(game.player2.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            if(game.player2.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions == 1) {
                                 game.foulWrongBallType = true;
                                 if(game.ball[i].getBallNumber() == 8 && !game.player2.isAllBallsPlotted()) {
                                     game.foulEight = true;
@@ -514,7 +512,7 @@ public class Ball {
                                     game.foulEight = false;
                                     game.foulWrongBallType = false;
                                 }
-                            } else if(game.player2.getBallType() == game.ball[i].getBallType() && game.cueBallCollisions==1) {
+                            } else if(game.player2.getBallType() == game.ball[i].getBallType() && game.cueBallCollisions == 1) {
                                 game.foulWrongBallType = false;
                             }
                         }
@@ -531,13 +529,12 @@ public class Ball {
             game.ball[ballNum].spin();
             game.ball[ballNum].bankCollision();
             game.ball[ballNum].tableFriction();
+
         }
+
         game.ball[ballNum].getSphere().setLayoutX(game.ball[ballNum].getPosition().getX());
         game.ball[ballNum].getSphere().setLayoutY(game.ball[ballNum].getPosition().getY());
-    }
-
-    public void setCueVelocity(double x, double y) {
-        game.ball[0].setVelocity(x, y);
+        
     }
 
     // GET/SET METHODS
@@ -577,6 +574,10 @@ public class Ball {
     
     public void setDropped(boolean dropped) {
         this.dropped = dropped;
+    }
+
+    public void setCueVelocity(double x, double y) {
+        game.ball[0].setVelocity(x, y);
     }
 
 }
