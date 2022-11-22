@@ -101,7 +101,6 @@ public class Ball {
 
         Vector v2f = b.velocity.sub(n2);
         
-
         velocity = v1f.add(n2);
         b.velocity = v2f.add(n1);
         

@@ -33,8 +33,9 @@ public class Vector {
     }
 
     public void normalize() {
-        x /= getSize();
-        y /= getSize();
+        double size = getSize();
+        x /= size;
+        y /= size;
     }
 
     public Vector perpendicularLeft() {
