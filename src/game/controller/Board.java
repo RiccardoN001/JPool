@@ -1,7 +1,7 @@
 package game.controller;
 
 // BRIEF CLASS DESCRIPTION 
-// Referee: updates the View with graphics to direct the match
+// Visual Referee: updates the View with graphics to direct the match
 
 import game.utils.Constants;
 import game.utils.Sounds;

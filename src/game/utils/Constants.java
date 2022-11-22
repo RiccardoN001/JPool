@@ -1,13 +1,18 @@
 package game.utils;
 
+// BRIEF CLASS DESCRIPTION
+// Contains constants relative to the main components of the game
+
 public class Constants {
 
+    // BALL SIZE
     public static final double BALL_RADIUS = 12.5;
     public static final double BALL_DIAMETER = 2 * BALL_RADIUS;
 
+    // TABLE FRICTION
     public static final double TABLE_FRICTION = .99;
     
-    // GAMEBALLS INITIALIZATION (SPLIT)
+    // SPLIT
     // HEAD SPOT
     public static final double HEAD_SPOT_X = 500;
     public static final double HEAD_SPOT_Y = 465;
@@ -31,6 +36,10 @@ public class Constants {
     // FOOT SPOT
     public static final double FOOT_SPOT_X = TRIANGLE_ROW1_X;
     public static final double FOOT_SPOT_Y = TRIANGLE_COL5_Y;
+
+    // SCOREBALLS RACKS
+    public static final double RACK_LEFT = 253;
+    public static final double RACK_RIGHT = 882;
 
     // BANKCOLLISION
     public static final double A_MARGIN = 300;
@@ -68,6 +77,7 @@ public class Constants {
     public static final double F_RIGHT_CORNER_START = 1078;
     public static final double F_RIGHT_CORNER_END = 1099;
 
+    // POCKETS
     //TOP-LEFT POCKET
     public static final double TOP_LEFT_POCKET_X = 284+25;
     public static final double TOP_LEFT_POCKET_Y = 244+25;
@@ -86,13 +96,7 @@ public class Constants {
     //BOTTOM-RIGHT POCKET
     public static final double BOTTOM_RIGHT_POCKET_X = 1174-25;
     public static final double BOTTOM_RIGHT_POCKET_Y = 735-25;
-
-    // scoreballs initial layout x
-    public static final double RACK_LEFT = 253;
-    public static final double RACK_RIGHT = 882;
-
-    // rack
+    // RACK
     public static final double RACKSTACK_X = 1192; 
-
 
 }

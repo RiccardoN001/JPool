@@ -1,5 +1,8 @@
 package game.utils;
 
+// BRIEF CLASS DESCRIPTION
+// Used to implement sound effects in the game
+
 import game.Main;
 
 import java.io.IOException;
@@ -12,6 +15,7 @@ public class Sounds {
     public static Clip clip;
 
     public static void playSound(String soundName) {
+
         try {
             URL url = Main.class.getResource("resources/Sounds/" + soundName + ".wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
@@ -27,6 +31,7 @@ public class Sounds {
 
         clip.setFramePosition (0);
         clip.start();
+        
     }
 
 }

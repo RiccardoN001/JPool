@@ -1,5 +1,8 @@
 package game.controller;
 
+// BRIEF CLASS DESCRIPTION 
+// Logical Referee: directs the match, implementing the rules
+
 public class Rules {
 
     private GameController game = GameController.getController();
