@@ -13,32 +13,11 @@
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
-      <Label layoutX="30.0" layoutY="108.0" prefHeight="50.0" prefWidth="250.0" text="REGOLE DEL BILIARDO" textAlignment="CENTER" textFill="WHITE" />
-      <Label alignment="TOP_LEFT" layoutX="30.0" layoutY="158.0" prefHeight="525.0" prefWidth="456.0" text="Si gioca con una bilia bianca e 15 bilie colorate e numerate.Di queste ultime si distinguono quelle totalmente colorate (piene), numerate dalla 1 alla 8, da quelle parzialmente colorate (spezzate), numerate dalla 9 alla 15.La bilia 8 (nera), nonostante sia rappresentata come piena, non è considerata (da un punto di vista regolamentare) né piena né spezzata." textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="575.0" layoutY="197.0" prefHeight="50.0" prefWidth="334.0" text="COME INDIRIZZARE" textAlignment="CENTER" textFill="WHITE" />
-      <ImageView fitHeight="188.0" fitWidth="334.0" layoutX="575.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="700.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/HTP/HTP.gif" />
+            <Image url="@../resources/HTP/Tiro.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="188.0" fitWidth="379.0" layoutX="575.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/HTP/Fallo.gif" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="575.0" layoutY="474.0" prefHeight="50.0" prefWidth="334.0" text="FALLI" textAlignment="CENTER" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="791.0" layoutY="108.0" prefHeight="50.0" prefWidth="250.0" text="HOW TO PLAY" textAlignment="CENTER" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="1014.0" layoutY="197.0" prefHeight="50.0" prefWidth="334.0" text="ASSEGNAZIONE" textAlignment="CENTER" textFill="WHITE" />
-      <ImageView fitHeight="188.0" fitWidth="334.0" layoutX="1014.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/HTP/Assegnazione.gif" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="1014.0" layoutY="474.0" prefHeight="50.0" prefWidth="334.0" text="DICHIARAZIONE" textAlignment="CENTER" textFill="WHITE" />
-      <ImageView fitHeight="188.0" fitWidth="334.0" layoutX="1014.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/HTP/Dichiarazione.gif" />
-         </image>
-      </ImageView>
+      <Label alignment="CENTER" layoutX="300.0" layoutY="100.0" prefHeight="50.0" prefWidth="250.0" text="TIRO" />
    </children>
 </Pane>
