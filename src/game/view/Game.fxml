@@ -719,61 +719,95 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Polygon fill="#ffffffcc" layoutX="485.0" layoutY="214.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+      <Polygon fill="#ffffffcc" layoutX="485.0" layoutY="213.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
             <DropShadow />
          </effect>
       </Polygon>
-      <Polygon fill="#ffffffcc" layoutX="373.0" layoutY="215.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+      <Polygon fill="#ffffffcc" layoutX="375.0" layoutY="213.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
             <DropShadow />
          </effect>
       </Polygon>
-      <Polygon fill="#ffffffcc" layoutX="584.0" layoutY="214.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+      <Polygon fill="#ffffffcc" layoutX="595.0" layoutY="213.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
             <DropShadow />
          </effect>
       </Polygon>
-      <Polygon fill="#ffffffcc" layoutX="892.0" layoutY="215.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+      <Polygon fill="#ffffffcc" layoutX="892.0" layoutY="213.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
             <DropShadow />
          </effect>
       </Polygon>
-      <Polygon fill="#ffffffcc" layoutX="1000.0" layoutY="214.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+      <Polygon fill="#ffffffcc" layoutX="782.0" layoutY="213.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
             <DropShadow />
          </effect>
       </Polygon>
-      <Polygon fill="#ffffffcc" layoutX="785.0" layoutY="214.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+      <Polygon fill="#ffffffcc" layoutX="1002.0" layoutY="213.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
             <DropShadow />
          </effect>
       </Polygon>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="550.0" layoutX="703.0" layoutY="230.0" opacity="0.32" strokeType="INSIDE" width="1.0">
+      <Polygon fill="#ffffffcc" layoutX="485.0" layoutY="685.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
-            <DropShadow color="#686464" />
+            <DropShadow />
          </effect>
-         <stroke>
-            <RadialGradient centerX="0.3011363636363636" centerY="0.5436893203883495" radius="0.5">
-               <stops>
-                  <Stop color="#e1cccc" />
-                  <Stop color="#ffd6d6" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </stroke>
-      </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="410.0" layoutX="907.0" layoutY="269.0" opacity="0.32" strokeType="INSIDE" width="1.0">
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="375.0" layoutY="685.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
-            <DropShadow color="#686464" />
+            <DropShadow />
          </effect>
-         <stroke>
-            <RadialGradient centerX="0.3011363636363636" centerY="0.5436893203883495" radius="0.5">
-               <stops>
-                  <Stop color="#e1cccc" />
-                  <Stop color="#ffd6d6" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </stroke>
-      </Rectangle>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="595.0" layoutY="685.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="892.0" layoutY="685.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="782.0" layoutY="685.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="1002.0" layoutY="685.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="253.0" layoutY="340.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" rotate="90.0" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="253.0" layoutY="450.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" rotate="90.0" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="253.0" layoutY="560.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" rotate="90.0" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="1124.0" layoutY="340.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" rotate="90.0" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="1124.0" layoutY="450.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" rotate="90.0" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
+      <Polygon fill="#ffffffcc" layoutX="1124.0" layoutY="560.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" rotate="90.0" stroke="WHITE" strokeType="INSIDE" styleClass="table">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Polygon>
     </children>
 </Pane>
