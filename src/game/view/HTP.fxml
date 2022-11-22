@@ -13,11 +13,64 @@
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
-      <ImageView fitHeight="400.0" fitWidth="700.0" layoutX="50.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="700.0" layoutX="678.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/HTP/Tiro.gif" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="300.0" layoutY="100.0" prefHeight="50.0" prefWidth="250.0" text="TIRO" />
+      <Label alignment="CENTER" layoutX="911.0" layoutY="202.0" prefHeight="50.0" prefWidth="250.0" text="TIRO" textFill="WHITE" />
+      <Label alignment="CENTER" layoutX="181.0" layoutY="134.0" prefHeight="27.0" prefWidth="275.0" text="SCOPO DEL GIOCO" textFill="WHITE" wrapText="true" />
+      <Label fx:id="label1" alignment="TOP_LEFT" layoutX="94.0" layoutY="175.0" prefHeight="104.0" prefWidth="449.0" text="L'obbiettivo di palla 8 è imbucare la nera. Le bilie possono essere toccate soltanto mediante la bilia bianca. La prima bilia imbucata da un giocatore assegnerà le categorie (piene o spezzate) Un giocatore può continuare a tirare fintanto che imbuca bilie (della propria categoria) nel suo turno." textFill="WHITE" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="181.0" layoutY="298.0" prefHeight="27.0" prefWidth="275.0" text="FALLI" textFill="WHITE" wrapText="true" />
+      <Label fx:id="label1" layoutX="106.0" layoutY="414.0" prefHeight="27.0" prefWidth="426.0" text="-La bianca colpisce una bilia dell'avversario" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="106.0" layoutY="441.0" prefHeight="27.0" prefWidth="426.0" text="-La bianca entra in buca" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="106.0" layoutY="468.0" prefHeight="27.0" prefWidth="527.0" text="-La bianca colpisce la 8 (prima di aver imbucato tutte le proprie bilie)" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="181.0" layoutY="516.0" prefHeight="27.0" prefWidth="275.0" text="VITTORIA" textFill="WHITE" wrapText="true" />
+      <Label fx:id="label1" alignment="TOP_LEFT" layoutX="98.0" layoutY="555.0" prefHeight="81.0" prefWidth="466.0" text="Una volta imbucate tutte le bilie il giocatore è legittimato ad imbucare la 8. A differenza delle altre bilie la 8 deve essere imbucata nella buca dichiarata dal giocatore. Le seguenti situazioni determinano la sconfitta della partita:" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="106.0" layoutY="647.0" prefHeight="27.0" prefWidth="475.0" text="-La nera viene imbucata prima di aver imbucato tutte le proprie bilie" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="107.0" layoutY="674.0" prefHeight="27.0" prefWidth="426.0" text="-La nera viene imbucata in una buca diversa da quella dichiarata" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="107.0" layoutY="701.0" prefHeight="27.0" prefWidth="426.0" text="-La bianca viene imbucata dopo la nera" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" alignment="TOP_LEFT" layoutX="94.0" layoutY="331.0" prefHeight="69.0" prefWidth="449.0" text="Se un giocatore commette un fallo, l'avversario è legittimato a muovere la bilia bianca a proprio piacimento,è fallo nei seguenti casi:" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="106.0" layoutY="387.0" prefHeight="27.0" prefWidth="426.0" text="-La bianca non colpisce nulla" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

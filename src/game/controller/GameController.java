@@ -505,7 +505,7 @@ public class GameController {
 
             Vector cueBallPosition = new Vector(ball[0].getPosition().getX(), ball[0].getPosition().getY());
 
-            double velocity = Math.floor(powerSlider.getValue() / 15 * 100);
+            double velocity = Math.floor(powerSlider.getValue() / 15*100);
             sliderVelocityLabel.setText(String.valueOf((int)velocity) + "%");
             powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 15 * 0.7);
             

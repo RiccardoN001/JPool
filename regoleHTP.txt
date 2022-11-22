@@ -1,0 +1,25 @@
+SCOPO DEL GIOCO
+L'obbiettivo di palla 8 è imbucare la nera. 
+Le bilie possono essere toccate soltanto mediante la bilia bianca. 
+La prima bilia imbucata da un giocatore assegnerà le categorie (piene o spezzate) 
+Un giocatore può continuare a tirare fintanto che imbuca bilie (della propria categoria) nel suo turno.
+
+FALLI
+Se un giocatore commette un fallo, l'avversario è legittimato a muovere la bilia bianca a proprio piacimento,
+è fallo nei seguenti casi:
+ -La bianca non colpisce nulla
+ -La bianca colpisce una bilia dell'avversario
+ -La bianca entra in buca
+ -La bianca colpisce la 8 (prima di aver imbucato tutte le proprie bilie)
+
+
+VITTORIA
+Una volta imbucate tutte le bilie il giocatore è legittimato ad imbucare la 8.
+ A differenza delle altre bilie la 8 deve essere imbucata nella buca dichiarata dal giocatore.
+ Le seguenti situazioni determinano la sconfitta della partita:
+ -La nera viene imbucata prima di aver imbucato tutte le proprie bilie
+ -La nera viene imbucata in una buca diversa da quella dichiarata
+ -La bianca viene imbucata dopo la nera
+
+
+

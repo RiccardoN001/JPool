@@ -37,7 +37,7 @@
     -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
 }
 
-/* LABELS */
+ /*LABELS */
 .label {
     -fx-background-color: #172d44;
     -fx-background-radius: 10;
@@ -46,6 +46,13 @@
     -fx-font-weight: bold;
     -fx-alignment:center;
 }
+#label1 {
+    -fx-font-family: "Futura";
+    -fx-font-size: 14px; 
+    -fx-alignment:center-left;
+    -fx-background-color: #11111107;
+}
+
 
 /* PAGINATIONS */
 .pagination {
