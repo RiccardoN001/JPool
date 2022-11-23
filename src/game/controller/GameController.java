@@ -445,7 +445,7 @@ public class GameController {
                         double d = ghostBallPosition.determinant(cueBallPosition, ballPosition);
                         if(d > 0) {
                             cueFinalVelocity = ballFinalVelocity.perpendicularLeft();
-                        } else {
+                        } else if(d < 0) {
                             cueFinalVelocity = ballFinalVelocity.perpendicularRight();
                         }
 
