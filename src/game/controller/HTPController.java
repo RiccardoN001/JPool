@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 
 public class HTPController{
-    
 
     @FXML
     private Button menuButtonFromRules;

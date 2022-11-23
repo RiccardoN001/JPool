@@ -91,18 +91,16 @@ public class Ball {
         n1.normalize(); // un1
         double v1n = velocity.scalar(n1);
         n1.multiply(v1n); // v1n (vector)
-
-        Vector v1f = velocity.sub(n1);
+        Vector v1t = velocity.sub(n1);
 
         Vector n2 = b.position.sub(position);
         n2.normalize(); // un2
         double v2n = b.velocity.scalar(n2);
         n2.multiply(v2n); // v2n (vector)
-
-        Vector v2f = b.velocity.sub(n2);
+        Vector v2t = b.velocity.sub(n2);
         
-        velocity = v1f.add(n2);
-        b.velocity = v2f.add(n1);
+        velocity = v1t.add(n2);
+        b.velocity = v2t.add(n1);
         
     }
 
