@@ -669,4 +669,8 @@ public class GameController {
         pane.getChildren().add(node);
     }
 
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
 }

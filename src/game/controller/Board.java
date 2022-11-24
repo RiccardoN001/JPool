@@ -1,5 +1,8 @@
 package game.controller;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 // BRIEF CLASS DESCRIPTION 
 // Visual Referee: updates the View with graphics to direct the match
 
@@ -74,9 +77,11 @@ public class Board {
 
     public void ballAssignment() {
 
-        game.ballAssigned = true;
-
         if(!game.foul) {
+
+            game.ballAssigned = true;
+            game.centralboardLabel.setVisible(true);
+
             if(game.player1.getBallType() == 1) {
                 for(int i = 0; i < 7; i++) {
                     game.solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
@@ -91,6 +96,11 @@ public class Board {
                     game.stripedScoreBall[i].setLayoutY(157);
                     game.addToPane(game.solidScoreBall[i]);
                     game.addToPane(game.stripedScoreBall[i]);
+                }
+                if(game.player1.isMyTurn()) {
+                    game.centralboardLabel.setText(game.player1.getNickname() + " HA LE PIENE");
+                } else {
+                    game.centralboardLabel.setText(game.player2.getNickname() + " HA LE SPEZZATE");
                 }
             } else {
                 for(int i = 0; i < 7; i++) {
@@ -107,7 +117,28 @@ public class Board {
                     game.addToPane(game.solidScoreBall[i]);
                     game.addToPane(game.stripedScoreBall[i]);
                 }
+                if(game.player1.isMyTurn()) {
+                    game.centralboardLabel.setText(game.player1.getNickname() + " HA LE SPEZZATE");
+                } else {
+                    game.centralboardLabel.setText(game.player2.getNickname() + " HA LE PIENE");
+                }
             }
+
+            Timer popup = new Timer();
+            TimerTask task = new TimerTask() {
+                double countdown = 2;
+                @Override
+                public void run() {
+                    if(countdown > 0) {
+                        countdown -= 1;
+                    } else {
+                        game.centralboardLabel.setVisible(false);
+                        popup.cancel();
+                    }
+                }
+            };
+            popup.scheduleAtFixedRate(task, 0, 1000);
+
         }
         
     }
@@ -196,6 +227,15 @@ public class Board {
         });
     }
 
+    private void eightOff(){
+        game.pocketButton1.setVisible(false);
+        game.pocketButton2.setVisible(false);
+        game.pocketButton3.setVisible(false);
+        game.pocketButton4.setVisible(false);
+        game.pocketButton5.setVisible(false);
+        game.pocketButton6.setVisible(false);
+    }
+
     public void win() {
 
         if(!game.soundOff) {
@@ -240,17 +280,8 @@ public class Board {
             game.centralboardLabel.setVisible(true);
             game.centralboardLabel.toFront();
             game.centralboardLabel.setText("VINCE  " + game.player1.getNickname());
-
         }
 
-    }
-    private void eightOff(){
-            game.pocketButton1.setVisible(false);
-            game.pocketButton2.setVisible(false);
-            game.pocketButton3.setVisible(false);
-            game.pocketButton4.setVisible(false);
-            game.pocketButton5.setVisible(false);
-            game.pocketButton6.setVisible(false);
     }
 
 }
