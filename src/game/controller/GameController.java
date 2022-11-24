@@ -351,6 +351,7 @@ public class GameController {
             potted[i] = false;
         }
 
+        centralboardLabel.getStyleClass().add("centralboard");
         centralboardLabel.setVisible(false);
 
         exitLabel.setVisible(false);
@@ -362,7 +363,7 @@ public class GameController {
         soundOff = settings.getSoundOff();
         if(!soundOff){
             Sounds.playSound("RackSound");
-         }
+        }
         soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
         soundIconOn.setFitWidth(60);
         soundIconOn.setFitHeight(60);
@@ -373,8 +374,7 @@ public class GameController {
         if(!soundOff){
           soundsButton.setGraphic(soundIconOn);
           soundsButton.setPrefSize(60, 60);  
-        }
-        else if(soundOff){
+        } else {
             soundsButton.setGraphic(soundIconOff);
             soundsButton.setPrefSize(60, 60); 
         }

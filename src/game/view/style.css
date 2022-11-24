@@ -53,6 +53,15 @@
     -fx-background-color: #11111107;
 }
 
+.centralboard {
+    -fx-background-color: #99ff00;
+    -fx-background-radius: 10;
+    -fx-font-family: "Futura";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-alignment:center;
+}
+
 
 /* PAGINATIONS */
 .pagination {
