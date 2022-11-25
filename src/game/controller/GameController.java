@@ -591,6 +591,8 @@ public class GameController {
             board.showPlayerTurn();
         } else if(!ballsMoving && turnChange) {
 
+            thisTurnPottedBalls.remove(Integer.valueOf(0));
+
             ball[0].getSphere().setCursor(Cursor.DEFAULT);
 
             board.removeEightPockets();

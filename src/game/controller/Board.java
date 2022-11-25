@@ -134,7 +134,6 @@ public class Board {
                         countdown -= 1;
                     } else {
                         game.centralboardLabel.setVisible(false);
-                        game.centralboardLabel.setText("TERMINARE LA PARTITA?");
                         popup.cancel();
                     }
                 }

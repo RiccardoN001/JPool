@@ -65,7 +65,7 @@ public class Rules {
                     }
                 }
 
-                if(!game.gameOver) {
+                if(!game.gameOver && !game.thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                     board.ballAssignment();
                 }
 
