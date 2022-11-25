@@ -272,20 +272,16 @@ public class GameController {
                         startShotClock = false;
                     }
                     if(shot || exit || gameOver) {
-                        stopShotClock();
+                        shotClock.cancel();
                     }
                 } else {
                     turnChange = true;
                     foulShotClock = true;
-                    stopShotClock();
+                    shotClock.cancel();
                 }
             }
         };
         shotClock.scheduleAtFixedRate(task, 1500, 1);
-    }
-
-    public void stopShotClock() {
-        shotClock.cancel();
     }
 
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
