@@ -56,13 +56,11 @@
 
 .centralboard {
     -fx-background-color: transparent;
-    -fx-font-family: "Impact";
     -fx-font-size: 40px;
 }
 
 .settings {
-    -fx-font-family: "Impact";
-    -fx-font-size: 15px;
+    -fx-font-size: 20px;
 }
 
 

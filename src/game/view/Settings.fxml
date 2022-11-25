@@ -20,23 +20,24 @@
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
-      <TextField fx:id="player1Nickname" layoutX="1150.0" layoutY="250.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 1" />
-      <TextField fx:id="player2Nickname" layoutX="1150.0" layoutY="300.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 2" />
-      <Label alignment="CENTER" layoutX="50.0" layoutY="125.0" prefHeight="50.0" prefWidth="600.0" styleClass="settings" text="1. SELEZIONARE UN TAVOLO" textAlignment="CENTER" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="50.0" layoutY="525.0" prefHeight="50.0" prefWidth="600.0" styleClass="settings" text="2. SELEZIONARE UNA STECCA" textAlignment="CENTER" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="750.0" layoutY="125.0" prefHeight="50.0" prefWidth="300.0" styleClass="settings" text="3. SELEZIONARE UNA MODALITA'" textAlignment="CENTER" textFill="WHITE" />
+      <TextField fx:id="player1Nickname" layoutX="1150.0" layoutY="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 1" />
+      <TextField fx:id="player2Nickname" layoutX="1150.0" layoutY="250.0" prefHeight="40.0" prefWidth="200.0" promptText="Giocatore 2" />
+      <Label alignment="CENTER" layoutX="50.0" layoutY="125.0" prefHeight="50.0" prefWidth="600.0" styleClass="settings" text="1. TAVOLO" textAlignment="CENTER" textFill="WHITE" />
+      <Label alignment="CENTER" layoutX="50.0" layoutY="525.0" prefHeight="50.0" prefWidth="600.0" styleClass="settings" text="2. STECCA" textAlignment="CENTER" textFill="WHITE" />
+      <Label alignment="CENTER" layoutX="750.0" layoutY="125.0" prefHeight="50.0" prefWidth="300.0" styleClass="settings" text="3.  MODALITA'" textAlignment="CENTER" textFill="WHITE" />
       <Label alignment="CENTER" layoutX="750.0" layoutY="525.0" prefHeight="50.0" prefWidth="300.0" styleClass="settings" text="4. EFFETTI SONORI" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
       <Button fx:id="soundButton" layoutX="750.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleSoundButton" prefHeight="50.0" prefWidth="150.0" styleClass="orange-button" text="SOUNDS">
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
       <Label fx:id="soundLabel" alignment="CENTER" layoutX="900.0" layoutY="600.0" prefHeight="50.0" prefWidth="150.0" styleClass="settings" text="ON" textFill="WHITE" />
-      <Label alignment="CENTER" layoutX="1150.0" layoutY="40.0" prefHeight="185.0" prefWidth="200.0" styleClass="settings" text="5. INSERIRE I NOMI DEI GIOCATORI E LANCIARE UNA MONETA" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+      <Label alignment="CENTER" layoutX="1150.0" layoutY="125.0" prefHeight="50.0" prefWidth="200.0" styleClass="settings" text="5. NOMI " textAlignment="CENTER" textFill="WHITE" wrapText="true" />
       <Button fx:id="coinButton" layoutX="1175.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleCoinButton" prefHeight="50.0" prefWidth="150.0" styleClass="orange-button" text="LANCIA">
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font>
       </Button>
       <Label fx:id="splitPlayerLabel" alignment="CENTER" layoutX="1125.0" layoutY="600.0" prefHeight="50.0" prefWidth="250.0" styleClass="settings" textAlignment="CENTER" textFill="WHITE" />
+      <Label alignment="CENTER" layoutX="1150.0" layoutY="310.0" prefHeight="50.0" prefWidth="200.0" styleClass="settings" text="6. TESTA O CROCE" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
    </children>
 </Pane>

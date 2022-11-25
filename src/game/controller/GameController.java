@@ -206,7 +206,6 @@ public class GameController {
         scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-        stopShotClock();
     }
 
     @FXML
@@ -221,6 +220,8 @@ public class GameController {
         powerSlider.setDisable(false);
 
         pane.getChildren().remove(blurredScene);
+
+        startShotClock();
 
     }
 
@@ -270,13 +271,13 @@ public class GameController {
                         }
                         startShotClock = false;
                     }
-                    if(shot || gameOver) {
-                        shotClock.cancel();
+                    if(shot || exit || gameOver) {
+                        stopShotClock();
                     }
                 } else {
                     turnChange = true;
                     foulShotClock = true;
-                    shotClock.cancel();
+                    stopShotClock();
                 }
             }
         };
@@ -285,7 +286,6 @@ public class GameController {
 
     public void stopShotClock() {
         shotClock.cancel();
-        shotClockBar.setProgress(0);
     }
 
     // -------------------------------------------------- GAME METHODS --------------------------------------------------
