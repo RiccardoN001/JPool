@@ -322,7 +322,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#ffffff00" height="383.0" layoutX="160.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" width="26.0" />
-      <Slider fx:id="powerSlider" layoutX="166.0" layoutY="284.0" max="15.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="15.0" rotate="180.0">
+      <Slider fx:id="powerSlider" layoutX="163.0" layoutY="284.0" max="15.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="20.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -341,10 +341,10 @@
       <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" />
       <Line fx:id="guidelineFromBall" strokeWidth="1.5" />
       <Line fx:id="guidelineFromCue" strokeWidth="1.5" />
-      <Label fx:id="turnboardLabel" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" text="TURNBOARD" textFill="WHITE" />
+      <Label fx:id="turnboardLabel" alignment="CENTER" layoutX="504.0" layoutY="26.0" prefHeight="60.0" prefWidth="400.0" styleClass="scoreboard" text="TURNBOARD" textAlignment="CENTER" textFill="WHITE" />
       <ProgressBar fx:id="shotClockBar" layoutX="503.0" layoutY="101.0" prefHeight="10.0" prefWidth="400.0" progress="0.0" />
-      <Label fx:id="player1NicknameLabel" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 1" textFill="WHITE" />
-      <Label fx:id="player2NicknameLabel" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" text="PLAYER 2" textFill="WHITE" />
+      <Label fx:id="player1NicknameLabel" alignment="CENTER" layoutX="261.0" layoutY="65.0" prefHeight="35.0" prefWidth="200.0" styleClass="scoreboard" text="PLAYER 1" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="player2NicknameLabel" alignment="CENTER" layoutX="944.0" layoutY="66.0" prefHeight="35.0" prefWidth="200.0" styleClass="scoreboard" text="PLAYER 2" textAlignment="CENTER" textFill="WHITE" />
       <Circle layoutX="704.0" layoutY="172.0" radius="25.0" stroke="BLACK" strokeType="INSIDE">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.48094107001470415" radius="0.5116279069767442">
@@ -689,7 +689,7 @@
             </RadialGradient>
          </fill>
       </Circle>
-      <Button fx:id="exitYes" layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="YES">
+      <Button fx:id="exitYes" layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleExitYesButton" prefHeight="50.0" prefWidth="100.0" styleClass="orange-button" text="SI">
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
@@ -697,12 +697,12 @@
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
-      <Label fx:id="exitLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="600.0" layoutY="350.0" prefHeight="75.0" prefWidth="225.0" text="Sei sicuro di uscire?" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="centralboardLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="475.0" layoutY="350.0" prefHeight="100.0" prefWidth="475.0" styleClass="centralboard" text="TERMINARE LA PARTITA?" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="foulboardLabel" layoutX="504.0" layoutY="725.0" prefHeight="60.0" prefWidth="400.0" text="FOULBOARD" textFill="WHITE" />
+      <Label fx:id="foulboardLabel" alignment="CENTER" layoutX="504.0" layoutY="725.0" prefHeight="60.0" prefWidth="400.0" styleClass="foulboard" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="pocketButton1" layoutX="254.0" layoutY="214.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
       <Button fx:id="pocketButton2" layoutX="675.0" layoutY="214.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
       <Button fx:id="pocketButton3" layoutX="1091.0" layoutY="214.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="pocket-button" visible="false" />
@@ -714,11 +714,6 @@
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
       <Button fx:id="soundsButton" layoutX="1300.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleSoundsButton" prefHeight="70.0" prefWidth="70.0" styleClass="sounds-button" />
-      <Label fx:id="centralboardLabel" alignment="CENTER" layoutX="505.0" layoutY="430.0" prefHeight="100.0" prefWidth="400.0" text="CENTRALBOARD" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <Polygon fill="#ffffffcc" layoutX="485.0" layoutY="213.0" points="15.0, 9.1893310546875, 18.4393310546875, 14.4393310546875, 15.0, 20.4393310546875, 11.6893310546875, 14.4393310546875" stroke="WHITE" strokeType="INSIDE" styleClass="table">
          <effect>
             <DropShadow />

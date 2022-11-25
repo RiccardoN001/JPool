@@ -164,8 +164,8 @@ public class SettingsController{
                 coin = new ImageView(new Image("file:src/game/resources/Coin/coin" + flip + ".png"));
                 coin.setFitWidth(120);
                 coin.setFitHeight(120);
-                coin.setLayoutX(1200);
-                coin.setLayoutY(425);
+                coin.setLayoutX(1190);
+                coin.setLayoutY(460);
                 coin.setPreserveRatio(true);
                 pane.getChildren().add(coin);
                 flip++;

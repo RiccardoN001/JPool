@@ -8,22 +8,22 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.MenuController">
    <children>
-      <ImageView fitHeight="879.0" fitWidth="1726.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="933.0" fitWidth="1401.0" layoutX="-1.0" layoutY="-52.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/348476.jpg" />
+            <Image url="@../../../../../Downloads/shutterstock_602600036.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="startgameButton" layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleStartGameButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="START GAME">
+      <Button fx:id="startgameButton" layoutX="1000.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleStartGameButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="START GAME">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="htpButton" layoutX="150.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleHTPButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="HOW TO PLAY">
+      <Button fx:id="htpButton" layoutX="1000.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleHTPButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="HOW TO PLAY">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" layoutX="150.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="EXIT">
+      <Button fx:id="exitButton" layoutX="1000.0" layoutY="700.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="EXIT">
          <font>
             <Font name="Futura Medium" size="30.0" />
          </font>

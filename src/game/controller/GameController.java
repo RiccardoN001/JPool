@@ -53,8 +53,6 @@ public class GameController {
 
     Rectangle blurredScene = new Rectangle(1400, 800, Color.WHITE);
     @FXML
-    private Label exitLabel;
-    @FXML
     private Button exitYes;
     @FXML
     private Button exitNo;
@@ -179,18 +177,19 @@ public class GameController {
           Sounds.playSound("PauseSound");  
         }
 
-        exitLabel.setVisible(true);
+        centralboardLabel.setVisible(true);
         exitYes.setVisible(true);
         exitNo.setVisible(true);
         exit = true;
 
         timeline.stop();
+        shotClock.cancel();
         powerSlider.setDisable(true);
 
         blurredScene.setOpacity(0.5);
         pane.getChildren().add(blurredScene);
 
-        exitLabel.toFront();
+        centralboardLabel.toFront();
         exitYes.toFront();
         exitNo.toFront();
 
@@ -213,7 +212,7 @@ public class GameController {
     @FXML
     public void handleExitNoButton(ActionEvent event) throws Exception {
 
-        exitLabel.setVisible(false);
+        centralboardLabel.setVisible(false);
         exitYes.setVisible(false);
         exitNo.setVisible(false);
         exit = false;
@@ -248,6 +247,7 @@ public class GameController {
                         update();
                     } else {
                         timeline.stop();
+                        shotClock.cancel();
                     }
                 });
         timeline.getKeyFrames().add(keyFrame);
@@ -299,12 +299,12 @@ public class GameController {
 
         // PLAYERS
         if(settings.getP1Nickname().isEmpty()) {
-            player1 = new Player("Giocatore 1");
+            player1 = new Player("GIOCATORE 1");
         } else {
             player1 = new Player(settings.getP1Nickname());
         }
         if(settings.getP2Nickname().isEmpty()) {
-            player2 = new Player("Giocatore 2");
+            player2 = new Player("GIOCATORE 2");
         } else {
             player2 = new Player(settings.getP2Nickname());
         }
@@ -351,10 +351,9 @@ public class GameController {
             potted[i] = false;
         }
 
-        centralboardLabel.getStyleClass().add("centralboard");
         centralboardLabel.setVisible(false);
 
-        exitLabel.setVisible(false);
+        centralboardLabel.setVisible(false);
         exitYes.setVisible(false);
         exitNo.setVisible(false);
         exit = false;
@@ -665,12 +664,16 @@ public class GameController {
 
     }
 
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
     public void addToPane(Node node) {
         pane.getChildren().add(node);
     }
 
-    public Timeline getTimeline() {
-        return timeline;
+    public void removeFromPane(Node node) {
+        pane.getChildren().remove(node);
     }
 
 }

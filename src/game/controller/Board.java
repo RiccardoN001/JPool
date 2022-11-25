@@ -81,6 +81,7 @@ public class Board {
 
             game.ballAssigned = true;
             game.centralboardLabel.setVisible(true);
+            game.centralboardLabel.toFront();
 
             if(game.player1.getBallType() == 1) {
                 for(int i = 0; i < 7; i++) {
@@ -98,9 +99,9 @@ public class Board {
                     game.addToPane(game.stripedScoreBall[i]);
                 }
                 if(game.player1.isMyTurn()) {
-                    game.centralboardLabel.setText(game.player1.getNickname() + " HA LE PIENE");
+                    game.centralboardLabel.setText(game.player1.getNickname() + " \nHA LE PIENE");
                 } else {
-                    game.centralboardLabel.setText(game.player2.getNickname() + " HA LE SPEZZATE");
+                    game.centralboardLabel.setText(game.player2.getNickname() + " \nHA LE SPEZZATE");
                 }
             } else {
                 for(int i = 0; i < 7; i++) {
@@ -118,9 +119,9 @@ public class Board {
                     game.addToPane(game.stripedScoreBall[i]);
                 }
                 if(game.player1.isMyTurn()) {
-                    game.centralboardLabel.setText(game.player1.getNickname() + " HA LE SPEZZATE");
+                    game.centralboardLabel.setText(game.player1.getNickname() + " \nHA LE SPEZZATE");
                 } else {
-                    game.centralboardLabel.setText(game.player2.getNickname() + " HA LE PIENE");
+                    game.centralboardLabel.setText(game.player2.getNickname() + " \nHA LE PIENE");
                 }
             }
 
@@ -133,6 +134,7 @@ public class Board {
                         countdown -= 1;
                     } else {
                         game.centralboardLabel.setVisible(false);
+                        game.centralboardLabel.setText("TERMINARE LA PARTITA?");
                         popup.cancel();
                     }
                 }
@@ -238,6 +240,8 @@ public class Board {
 
     public void win() {
 
+        removeObjects();
+
         if(!game.soundOff) {
             Sounds.playSound("WinSound");
         }
@@ -262,6 +266,8 @@ public class Board {
 
     public void eightPotted() {
 
+        removeObjects();
+
         if(!game.soundOff) {
             Sounds.playSound("WinSound");
         }
@@ -282,6 +288,21 @@ public class Board {
             game.centralboardLabel.setText("VINCE  " + game.player1.getNickname());
         }
 
+    }
+
+    public void removeObjects() {
+        for(int i = 0; i < 16; i++) {
+            if(!game.ball[i].isDropped()) {
+                game.removeFromPane(game.ball[i].drawBall());
+            }
+        }
+        game.removeFromPane(game.cue);
+        game.removeFromPane(game.guidelineToBall);
+        game.removeFromPane(game.ghostBall);
+        game.removeFromPane(game.guidelineFromBall);
+        game.removeFromPane(game.guidelineFromCue);
+        game.removeFromPane(game.shotClockBar);
+        game.removeFromPane(game.turnboardLabel);
     }
 
 }

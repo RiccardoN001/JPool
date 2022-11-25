@@ -65,7 +65,9 @@ public class Rules {
                     }
                 }
 
-                board.ballAssignment();
+                if(!game.gameOver) {
+                    board.ballAssignment();
+                }
 
             }
 

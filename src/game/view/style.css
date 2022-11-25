@@ -1,13 +1,5 @@
 /* BUTTONS */
 
-.pocket-button {
-    -fx-background-color: transparent;
-}
-
-.sounds-button {
-    -fx-background-color: transparent;
-}
-
 .orange-button {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
@@ -18,8 +10,12 @@
         #d86e3a,
         radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+}
+.orange-button:text {
+    -fx-font-family: "Futura";
     -fx-font-weight: bold;
-    -fx-font-size: 1.1em;
+    -fx-font-size: 1.3em;
+    -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
 }
 .orange-button:hover {
     -fx-background-color: 
@@ -32,34 +28,41 @@
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
-.orange-button:text {
-    -fx-fill: white;
-    -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+
+.pocket-button {
+    -fx-background-color: transparent;
+}
+
+.sounds-button {
+    -fx-background-color: transparent;
 }
 
  /*LABELS */
+
 .label {
     -fx-background-color: #172d44;
     -fx-background-radius: 10;
     -fx-font-family: "Futura";
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-alignment:center;
 }
-#label1 {
-    -fx-font-family: "Futura";
-    -fx-font-size: 14px; 
-    -fx-alignment:center-left;
-    -fx-background-color: #11111107;
+
+.scoreboard {
+    -fx-font-size: 20px;
+} 
+
+.foulboard {
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
 }
 
 .centralboard {
-    -fx-background-color: #99ff00;
-    -fx-background-radius: 10;
-    -fx-font-family: "Futura";
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-alignment:center;
+    -fx-background-color: transparent;
+    -fx-font-family: "Impact";
+    -fx-font-size: 40px;
+}
+
+.settings {
+    -fx-font-family: "Impact";
+    -fx-font-size: 15px;
 }
 
 
@@ -110,3 +113,10 @@
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
+
+/* Slider */
+
+.slider .thumb {
+    -fx-background-color: white;
+}
+

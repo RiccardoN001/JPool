@@ -388,7 +388,8 @@ public class Ball {
             game.ball[0].getSphere().setVisible(false);
         }
 
-        if(ballNum==8) {
+        if(ballNum == 8) {
+            game.rackStack += 25;
             game.ball[8].setDropped(true);
             game.ball[8].setVelocity(0, 0);
             game.ball[8].getSphere().setVisible(false);
