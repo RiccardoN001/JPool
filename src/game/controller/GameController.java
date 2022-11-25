@@ -532,10 +532,6 @@ public class GameController {
 
             shot = true;
 
-            if(!soundOff){
-                Sounds.playSound("CueSound");
-            }
-
             cueBallVelocity = powerSlider.getValue();
             
             if(cueBallVelocity != 0) {
@@ -547,6 +543,10 @@ public class GameController {
                 
                 double angle = Math.atan2(yMouseReleased - ball[0].getPosition().getY(), xMouseReleased - ball[0].getPosition().getX());
                 ballInstance.setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
+
+                if(!soundOff){
+                    Sounds.playSound("CueSound");
+                }
 
                 xMouseReleased = -1;
                 yMouseReleased = -1;

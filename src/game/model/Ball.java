@@ -360,7 +360,9 @@ public class Ball {
                     event.getSceneX() <= Constants.B_MARGIN-12.5 && 
                     event.getSceneY() >= Constants.CD_MARGIN+12.5 && 
                     event.getSceneY() <= Constants.EF_MARGIN-12.5) {
-                    game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
+                        if(game.ball[0].collides(game.ball[1])==false){
+                             game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
+                        }
                 }
             }
 
