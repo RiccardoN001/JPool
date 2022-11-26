@@ -78,6 +78,9 @@ public class Board {
     public void ballAssignment() {
 
         if(!game.foul) {
+            if(!game.soundOff){
+                Sounds.playSound("ballAssignment");
+            }
 
             game.ballAssigned = true;
             game.centralboardLabel.setVisible(true);
