@@ -15,6 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
@@ -697,7 +698,7 @@
          <font>
             <Font name="Futura Medium" size="15.0" />
          </font></Button>
-      <Label fx:id="centralboardLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="475.0" layoutY="350.0" prefHeight="100.0" prefWidth="475.0" styleClass="centralboard" text="TERMINARE LA PARTITA?" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="centralboardLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="475.0" layoutY="350.0" prefHeight="100.0" prefWidth="475.0" styleClass="centralboard" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -804,5 +805,36 @@
             <DropShadow />
          </effect>
       </Polygon>
+      <Label fx:id="winLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="475.0" layoutY="350.0" prefHeight="100.0" prefWidth="475.0" styleClass="win" text="VITTORIA" textAlignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5">
+                     <color>
+                        <Color red="0.8313725590705872" green="0.686274528503418" blue="0.21568627655506134" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
     </children>
 </Pane>

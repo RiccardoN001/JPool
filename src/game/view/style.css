@@ -63,25 +63,43 @@
     -fx-font-size: 20px;
 }
 
+.win {
+    -fx-background-color: transparent;
+    -fx-font-size: 40px;
+}
+
 
 /* PAGINATIONS */
+
+
+.pagination{
+	-fx-base:black;	
+}
+.pagination .toggle-button {
+    -fx-background-color: gray;
+    -fx-text-fill: transparent;
+	-fx-background-radius:15px;
+    -fx-scale-x: 0.3;
+    -fx-scale-y: 0.3;
+}
+
+.pagination .pagination-control .toggle-button:selected {
+    -fx-background-color: #d86e3a;
+}
+
+.pagination .button {
+    -fx-background-radius: 5;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+}
+
+
 .pagination {
-    -fx-arrows-visible: false;
     -fx-page-information-visible: false;
-}
-
-.pagination > .pagination-control > .control-box > .number-button {
-    -fx-background-color: #c54e2c;
-    -fx-background-radius: 30;
-    -fx-background-insets: 0;
-    -fx-text-fill: white;
-}
-
-.pagination.bullet > .pagination-control > .control-box > .left-arrow-button {
-    
-}
-.pagination.bullet > .pagination-control > .control-box > .right-arrow-button {
-
 }
 
 /* PROGRESS BAR */

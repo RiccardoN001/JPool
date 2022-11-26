@@ -44,7 +44,7 @@ public class GameController {
     @FXML
     private Pane pane;
     @FXML
-    private Button menuButtonFromGame;
+    public Button menuButtonFromGame;
     @FXML
     private Button soundsButton;
     private ImageView soundIconOn;
@@ -99,6 +99,8 @@ public class GameController {
     public Label foulboardLabel;
     @FXML
     public Label centralboardLabel;
+    @FXML
+    public Label winLabel;
     @FXML
     public ProgressBar shotClockBar;
     public ImageView[] solidScoreBall = new ImageView[7];
@@ -173,25 +175,39 @@ public class GameController {
     @FXML
     public void handleMenuButton(ActionEvent event) throws Exception {
 
-        if(!soundOff) {
-          Sounds.playSound("PauseSound");  
+        if(!gameOver) {
+            if(!soundOff) {
+                Sounds.playSound("PauseSound");  
+              }
+      
+              centralboardLabel.setText("TERMINARE LA PARTITA?");
+              centralboardLabel.setVisible(true);
+              exitYes.setVisible(true);
+              exitNo.setVisible(true);
+              exit = true;
+      
+              timeline.stop();
+              shotClock.cancel();
+              powerSlider.setDisable(true);
+      
+              blurredScene.setOpacity(0.5);
+              pane.getChildren().add(blurredScene);
+      
+              centralboardLabel.toFront();
+              exitYes.toFront();
+              exitNo.toFront();
+
+        } else {
+        Stage stage;
+        Scene scene;
+        Parent root;
+        stage = (Stage) menuButtonFromGame.getScene().getWindow();
+        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
+        scene = new Scene(root);
+        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
         }
-
-        centralboardLabel.setVisible(true);
-        exitYes.setVisible(true);
-        exitNo.setVisible(true);
-        exit = true;
-
-        timeline.stop();
-        shotClock.cancel();
-        powerSlider.setDisable(true);
-
-        blurredScene.setOpacity(0.5);
-        pane.getChildren().add(blurredScene);
-
-        centralboardLabel.toFront();
-        exitYes.toFront();
-        exitNo.toFront();
 
     }
 
@@ -347,8 +363,7 @@ public class GameController {
             potted[i] = false;
         }
 
-        centralboardLabel.setVisible(false);
-
+        winLabel.setVisible(false);
         centralboardLabel.setVisible(false);
         exitYes.setVisible(false);
         exitNo.setVisible(false);
@@ -626,7 +641,6 @@ public class GameController {
             foulShotClock = false;
             cueBallCollisions = 0;
             turnChange = false;
-            gameOver = false;
 
             if(thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                 ball[0].setPosition(new Vector(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y));
