@@ -1,10 +1,10 @@
 package game.controller;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 // BRIEF CLASS DESCRIPTION 
 // Visual Referee: updates the View with graphics to direct the match
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import game.utils.Constants;
 import game.utils.Sounds;
@@ -231,7 +231,7 @@ public class Board {
         });
     }
 
-    private void eightOff(){
+    public void eightOff() {
         game.pocketButton1.setVisible(false);
         game.pocketButton2.setVisible(false);
         game.pocketButton3.setVisible(false);

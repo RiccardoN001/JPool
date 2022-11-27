@@ -91,7 +91,6 @@ public class Rules {
                             board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
                             board.eightPotted();
                             return;
                         }
@@ -108,7 +107,6 @@ public class Rules {
                             board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
                             board.eightPotted();
                             return; 
                         }
@@ -129,7 +127,6 @@ public class Rules {
                             board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
                             board.eightPotted();
                             return;
                         }
@@ -146,7 +143,6 @@ public class Rules {
                             board.win();
                             return;
                         } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
-                            //System.out.println("Buca errata dichiarata");
                             board.eightPotted();
                             return;
                         }
@@ -232,7 +228,7 @@ public class Rules {
                 }
             }
 
-            if(f==0) {
+            if(f == 0) {
                 game.player1.setAllBallsPlotted(true);
             }
 
@@ -255,7 +251,7 @@ public class Rules {
                 }
             }
 
-            if(f==0) {
+            if(f ==0 ) {
                 game.player2.setAllBallsPlotted(true);
             }
 

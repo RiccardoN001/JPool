@@ -22,7 +22,7 @@ public class MenuController {
     private Button exitButton;
 
     @FXML
-    void handleStartGameButton(ActionEvent event) throws Exception {
+    public void handleStartGameButton(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
         Parent root;
@@ -35,7 +35,7 @@ public class MenuController {
     }
 
     @FXML
-    void handleHTPButton(ActionEvent event) throws Exception {
+    public void handleHTPButton(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
         Parent root;
@@ -48,7 +48,7 @@ public class MenuController {
     }
 
     @FXML
-    void handleExitButton(ActionEvent event) throws Exception {
+    public void handleExitButton(ActionEvent event) throws Exception {
         Stage stage;
         stage = (Stage) exitButton.getScene().getWindow();
         stage.close();

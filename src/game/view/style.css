@@ -124,9 +124,8 @@
     -fx-font-size: 20px;
 }
 
-/* Slider */
+/* SLIDER */
 
 .slider .thumb {
     -fx-background-color: white;
 }
-

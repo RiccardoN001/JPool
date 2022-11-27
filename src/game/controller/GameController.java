@@ -176,37 +176,38 @@ public class GameController {
     public void handleMenuButton(ActionEvent event) throws Exception {
 
         if(!gameOver) {
+            
             if(!soundOff) {
                 Sounds.playSound("PauseSound");  
-              }
+            }
       
-              centralboardLabel.setText("TERMINARE LA PARTITA?");
-              centralboardLabel.setVisible(true);
-              exitYes.setVisible(true);
-              exitNo.setVisible(true);
-              exit = true;
+            centralboardLabel.setText("TERMINARE LA PARTITA?");
+            centralboardLabel.setVisible(true);
+            exitYes.setVisible(true);
+            exitNo.setVisible(true);
+            exit = true;
       
-              timeline.stop();
-              shotClock.cancel();
-              powerSlider.setDisable(true);
+            timeline.stop();
+            shotClock.cancel();
+            powerSlider.setDisable(true);
       
-              blurredScene.setOpacity(0.5);
-              pane.getChildren().add(blurredScene);
+            blurredScene.setOpacity(0.5);
+            pane.getChildren().add(blurredScene);
       
-              centralboardLabel.toFront();
-              exitYes.toFront();
-              exitNo.toFront();
+            centralboardLabel.toFront();
+            exitYes.toFront();
+            exitNo.toFront();
 
         } else {
-        Stage stage;
-        Scene scene;
-        Parent root;
-        stage = (Stage) menuButtonFromGame.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
-        scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+            Stage stage;
+            Scene scene;
+            Parent root;
+            stage = (Stage) menuButtonFromGame.getScene().getWindow();
+            root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
+            scene = new Scene(root);
+            scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
         }
 
     }
@@ -578,7 +579,7 @@ public class GameController {
         sliderVelocityLabel.setText(0 + "%");
     }
 
-    private void update() {
+    public void update() {
 
         if(turnNum == 1 && !foulShotClock) {
             board.showPlayerBreaking();
