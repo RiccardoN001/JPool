@@ -289,11 +289,13 @@ public class GameController {
                     }
                     if(shot || exit || gameOver) {
                         shotClock.cancel();
+                        shotClockBar.setProgress(0);
                     }
                 } else {
                     turnChange = true;
                     foulShotClock = true;
                     shotClock.cancel();
+                    shotClockBar.setProgress(0);
                 }
             }
         };

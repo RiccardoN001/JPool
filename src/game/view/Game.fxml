@@ -337,7 +337,7 @@
                </light>
             </Lighting>
          </effect></Slider>
-      <Label fx:id="sliderVelocityLabel" layoutX="131.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" textFill="WHITE" />
+      <Label fx:id="sliderVelocityLabel" alignment="CENTER" layoutX="131.0" layoutY="677.0" prefHeight="30.0" prefWidth="85.0" styleClass="scoreboard" textAlignment="CENTER" textFill="WHITE" />
       <Line fx:id="guidelineToBall" strokeWidth="1.5" />
       <Circle fx:id="ghostBall" fill="WHITE" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" />
       <Line fx:id="guidelineFromBall" strokeWidth="1.5" />
