@@ -28,5 +28,10 @@
             <Font name="Futura Medium" size="30.0" />
          </font>
       </Button>
+      <ImageView fitHeight="192.0" fitWidth="266.0" layoutX="994.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

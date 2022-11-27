@@ -18,7 +18,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.getIcons().add(new Image("file:src/game/resources/Logo.png"));
-        stage.setTitle("JPOOL");
+        stage.setTitle("JPool");
         stage.show();
 
     }
