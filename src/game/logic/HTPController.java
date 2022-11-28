@@ -1,4 +1,4 @@
-package game.controller;
+package game.logic;
 
 // BRIEF CLASS DESCRIPTION
 // Controls HTP page (HTP.fxml)
@@ -24,9 +24,9 @@ public class HTPController{
         Scene scene;
         Parent root;
         stage = (Stage) menuButtonFromRules.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Menu.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+        scene.getStylesheets().addAll(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

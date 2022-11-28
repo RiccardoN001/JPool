@@ -1,4 +1,4 @@
-package game.controller;
+package game.logic;
 
 // BRIEF CLASS DESCRIPTION 
 // Logical Referee: directs the match, implementing the rules

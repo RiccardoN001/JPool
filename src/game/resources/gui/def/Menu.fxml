@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.MenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #122335;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.logic.MenuController">
    <children>
       <ImageView fitHeight="882.0" fitWidth="1414.0" layoutX="-7.0" layoutY="-47.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/Menu.png" />
+            <Image url="@../../images/Menu/Background.png" />
          </image>
       </ImageView>
       <Button fx:id="startgameButton" layoutX="925.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleStartGameButton" prefHeight="60.0" prefWidth="270.0" styleClass="orange-button" text="START GAME">
@@ -30,7 +30,7 @@
       </Button>
       <ImageView fitHeight="200.0" fitWidth="300.0" layoutX="975.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/Logo.png" />
+            <Image url="@../../images/Menu/Logo.png" />
          </image>
       </ImageView>
    </children>

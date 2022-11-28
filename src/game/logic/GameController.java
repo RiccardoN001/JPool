@@ -1,4 +1,4 @@
-package game.controller;
+package game.logic;
 
 // BRIEF CLASS DESCRIPTION
 // Controls the animations to play the game, containing all needed objects and calling all needed methods
@@ -8,9 +8,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import game.Main;
-import game.model.Ball;
-import game.model.Player;
-import game.model.Vector;
+import game.entities.Ball;
+import game.entities.Player;
+import game.entities.Vector;
 import game.utils.Constants;
 import game.utils.Sounds;
 import javafx.animation.KeyFrame;
@@ -203,9 +203,9 @@ public class GameController {
             Scene scene;
             Parent root;
             stage = (Stage) menuButtonFromGame.getScene().getWindow();
-            root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
+            root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Menu.fxml"));
             scene = new Scene(root);
-            scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+            scene.getStylesheets().addAll(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
         }
@@ -218,9 +218,9 @@ public class GameController {
         Scene scene;
         Parent root;
         stage = (Stage) exitYes.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Menu.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+        scene.getStylesheets().addAll(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -331,7 +331,7 @@ public class GameController {
         }
 
         // CUE
-        cue = new ImageView(new Image("file:src/game/resources/Cues/Cue" + String.valueOf(settings.cueMenuIndex()+1 + ".png")));
+        cue = new ImageView(new Image("file:src/game/resources/images/Cues/Cue" + String.valueOf(settings.cueMenuIndex()+1 + ".png")));
         cue.setFitWidth(400);
         cue.setFitHeight(100);
         cue.setLayoutX(105);
@@ -377,10 +377,10 @@ public class GameController {
         if(!soundOff){
             Sounds.playSound("RackSound");
         }
-        soundIconOn = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOn.png"));
+        soundIconOn = new ImageView(new Image("file:src/game/resources/images/Speakers/SpeakerOn.png"));
         soundIconOn.setFitWidth(60);
         soundIconOn.setFitHeight(60);
-        soundIconOff = new ImageView(new Image("file:src/game/resources/Sounds/SpeakerOff.png"));
+        soundIconOff = new ImageView(new Image("file:src/game/resources/images/Speakers/SpeakerOff.png"));
         soundIconOff.setFitWidth(60);
         soundIconOff.setFitHeight(60);
 

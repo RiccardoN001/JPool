@@ -1,4 +1,4 @@
-package game.model;
+package game.entities;
 
 // BRIEF CLASS DESCRIPTION
 // Represents 2D vectors starting from the origin of the xy plane (Pane)

@@ -1,4 +1,4 @@
-package game.model;
+package game.entities;
 
 // BRIEF CLASS DESCRIPTION
 // Represents a player

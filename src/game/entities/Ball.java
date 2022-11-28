@@ -1,9 +1,6 @@
-package game.model;
+package game.entities;
 
-// BRIEF CLASS DESCRIPTION 
-// Represents the physical model of a (3D) billiard ball
-
-import game.controller.GameController;
+import game.logic.GameController;
 import game.utils.Constants;
 import game.utils.Sounds;
 import javafx.scene.Cursor;
@@ -57,7 +54,7 @@ public class Ball {
         sphere.setRotate(270);
 
         PhongMaterial material = new PhongMaterial();
-        Image ballExt = new Image("file:src/game/resources/Balls/Ball" + this.ballNumber + "Ext.png");
+        Image ballExt = new Image("file:src/game/resources/images/Balls/Ball" + this.ballNumber + "Ext.png");
         material.setDiffuseMap(ballExt);
         material.setSpecularColor(Color.WHITE);
         material.setSpecularPower(30);

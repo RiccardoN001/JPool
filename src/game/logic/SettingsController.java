@@ -1,4 +1,4 @@
-package game.controller;
+package game.logic;
 
 // BRIEF CLASS DESCRIPTION
 // Controls the settings of the started game (table, cue, mode, sound)
@@ -73,12 +73,12 @@ public class SettingsController{
     }
    
     @FXML
-    public void initialize() throws Exception{
+    public void initialize() throws Exception {
         
         tableMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/Tables/Table" + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image("file:src/game/resources/images/Tables/Table" + (pageIndex+1) + ".png"));
                 imageView.setFitWidth(500);
                 imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
@@ -91,7 +91,7 @@ public class SettingsController{
         cueMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/Cues/Cue" + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image("file:src/game/resources/images/Cues/Cue" + (pageIndex+1) + ".png"));
                 imageView.setFitWidth(500);
                 imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
@@ -104,7 +104,7 @@ public class SettingsController{
         modeMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/Modes/Mode"  + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image("file:src/game/resources/images/Modes/Mode"  + (pageIndex+1) + ".png"));
                 imageView.setFitWidth(250);
                 imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
@@ -123,20 +123,20 @@ public class SettingsController{
     }
 
     @FXML
-    public void handleMenuFromSettings(ActionEvent event) throws Exception{
+    public void handleMenuFromSettings(ActionEvent event) throws Exception {
         Stage stage;
         Scene scene;
         Parent root;
         stage = (Stage) menuButtonFromSettings.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/Menu.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Menu.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().add(Main.class.getResource("view/style.css").toExternalForm());
+        scene.getStylesheets().add(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    public void handleSoundButton(ActionEvent event) throws Exception{
+    public void handleSoundButton(ActionEvent event) throws Exception {
         if(!soundOff) {
             soundOff = true;
             soundLabel.setText("OFF");
@@ -147,7 +147,7 @@ public class SettingsController{
     }
 
     @FXML
-    public void handleCoinButton(ActionEvent event) throws Exception{
+    public void handleCoinButton(ActionEvent event) throws Exception {
 
         player1Nickname.setDisable(true);
         player2Nickname.setDisable(true);
@@ -159,9 +159,9 @@ public class SettingsController{
         KeyFrame frame = new KeyFrame(
             Duration.seconds(0.03), 
             e -> {
-            if(count<10) {
+            if(count < 10) {
                 pane.getChildren().remove(coin);
-                coin = new ImageView(new Image("file:src/game/resources/Coin/coin" + flip + ".png"));
+                coin = new ImageView(new Image("file:src/game/resources/images/CoinToss/coin" + flip + ".png"));
                 coin.setFitWidth(120);
                 coin.setFitHeight(120);
                 coin.setLayoutX(1190);
@@ -169,7 +169,7 @@ public class SettingsController{
                 coin.setPreserveRatio(true);
                 pane.getChildren().add(coin);
                 flip++;
-                if(flip==10) {
+                if(flip == 10) {
                     flip = 1;
                     count++;
                 }
@@ -192,19 +192,19 @@ public class SettingsController{
         Scene scene;
 
         stage = (Stage) playButton.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/Game.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Game.fxml"));
 
         scene = new Scene(root);
-        scene.getStylesheets().add(Main.class.getResource("view/style.css").toExternalForm());
+        scene.getStylesheets().add(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
 
         if(tableMenu.getCurrentPageIndex() == 0) {
-            scene.getStylesheets().add(Main.class.getResource("view/table1.css").toExternalForm());
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table1.css").toExternalForm());
         } else if(tableMenu.getCurrentPageIndex() == 1) {
-            scene.getStylesheets().add(Main.class.getResource("view/table2.css").toExternalForm());
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table2.css").toExternalForm());
         } else if(tableMenu.getCurrentPageIndex() == 2) {
-            scene.getStylesheets().add(Main.class.getResource("view/table3.css").toExternalForm());
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table3.css").toExternalForm());
         } else {
-            scene.getStylesheets().add(Main.class.getResource("view/table4.css").toExternalForm());
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table4.css").toExternalForm());
         }
 
         stage.setScene(scene);

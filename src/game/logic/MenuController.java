@@ -1,4 +1,4 @@
-package game.controller;
+package game.logic;
 
 // BRIEF CLASS DESCRIPTION
 // Controls Menu page (Menu.fxml)
@@ -27,9 +27,9 @@ public class MenuController {
         Scene scene;
         Parent root;
         stage = (Stage) startgameButton.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/Settings.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Settings.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+        scene.getStylesheets().addAll(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -40,9 +40,9 @@ public class MenuController {
         Scene scene;
         Parent root;
         stage = (Stage) htpButton.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("view/HTP.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/HTP.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().addAll(Main.class.getResource("view/style.css").toExternalForm());
+        scene.getStylesheets().addAll(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

@@ -1,4 +1,4 @@
-package game.controller;
+package game.logic;
 
 // BRIEF CLASS DESCRIPTION 
 // Visual Referee: updates the View with graphics to direct the match
@@ -79,7 +79,7 @@ public class Board {
 
         if(!game.foul) {
             if(!game.soundOff){
-                Sounds.playSound("ballAssignment");
+                Sounds.playSound("BallAssignmentSound");
             }
 
             game.ballAssigned = true;
@@ -88,12 +88,12 @@ public class Board {
 
             if(game.player1.getBallType() == 1) {
                 for(int i = 0; i < 7; i++) {
-                    game.solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
+                    game.solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/images/Balls/Ball" + String.valueOf(i + 1) + ".png"));
                     game.solidScoreBall[i].setFitWidth(30);
                     game.solidScoreBall[i].setFitHeight(30);
                     game.solidScoreBall[i].setLayoutX(Constants.RACK_LEFT + 40*i);
                     game.solidScoreBall[i].setLayoutY(157);
-                    game.stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 9) + ".png"));
+                    game.stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/images/Balls/Ball" + String.valueOf(i + 9) + ".png"));
                     game.stripedScoreBall[i].setFitWidth(30);
                     game.stripedScoreBall[i].setFitHeight(30);
                     game.stripedScoreBall[i].setLayoutX(Constants.RACK_RIGHT + 40*i);
@@ -108,12 +108,12 @@ public class Board {
                 }
             } else {
                 for(int i = 0; i < 7; i++) {
-                    game.solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 1) + ".png"));
+                    game.solidScoreBall[i] = new ImageView(new Image("file:src/game/resources/images/Balls/Ball" + String.valueOf(i + 1) + ".png"));
                     game.solidScoreBall[i].setFitWidth(30);
                     game.solidScoreBall[i].setFitHeight(30);
                     game.solidScoreBall[i].setLayoutX(Constants.RACK_RIGHT + 40*i);
                     game.solidScoreBall[i].setLayoutY(157);
-                    game.stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball" + String.valueOf(i + 9) + ".png"));
+                    game.stripedScoreBall[i] = new ImageView(new Image("file:src/game/resources/images/Balls/Ball" + String.valueOf(i + 9) + ".png"));
                     game.stripedScoreBall[i].setFitWidth(30);
                     game.stripedScoreBall[i].setFitHeight(30);
                     game.stripedScoreBall[i].setLayoutX(Constants.RACK_LEFT + 40*i);
@@ -149,7 +149,7 @@ public class Board {
 
     public void showEightPockets() {
 
-        game.blackScoreBall = new ImageView(new Image("file:src/game/resources/ScoreBalls/Ball8.png"));
+        game.blackScoreBall = new ImageView(new Image("file:src/game/resources/images/Balls/Ball8.png"));
         game.blackScoreBall.setFitWidth(60);
         game.blackScoreBall.setFitHeight(60);
         game.blackScoreBall.setLayoutX(674);
