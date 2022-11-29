@@ -5,7 +5,3 @@
 .bank {
     -fx-image: url("file:src/game/resources/images/Tables/WoodRed.png");
 }
-
-.pocket {
-    -fx-fill: silver;
-}

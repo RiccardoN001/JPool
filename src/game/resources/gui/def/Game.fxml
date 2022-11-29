@@ -31,10 +31,10 @@
             <Image url="@../../images/Tables/Rack.png" />
          </image>
       </ImageView>
-        <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" styleClass="pocket" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="254.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+        <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="1084.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="254.0" layoutY="644.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="70.0" layoutX="1084.0" layoutY="644.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
       <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="214.0" pickOnBounds="true" styleClass="bank">
          <effect>
             <Blend />
@@ -43,7 +43,7 @@
             <Image url="@../../images/Tables/WoodBrown.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
         <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true" styleClass="bank">
             <image>
                 <Image url="@../../images/Tables/WoodBrown.png" />
@@ -52,7 +52,7 @@
                 <Blend />
             </effect>
         </ImageView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bfbfbf" height="44.0" layoutX="669.0" layoutY="670.0" stroke="#b5abab" strokeType="INSIDE" styleClass="pocket" width="70.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="44.0" layoutX="669.0" layoutY="670.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0" styleClass="bank">
             <image>
                 <Image url="@../../images/Tables/WoodBrown.png" />

@@ -169,7 +169,7 @@ Inoltre, l'utente può regolare la potenza del tiro e, graficamente, viene mostr
 \vspace{3mm}
 
 Un giocatore può indirizzare la bilia bianca tramite il puntatore del mouse.
-Il videogioco mostra la linea che congiunge la bilia bianca e la posizione desiderata; e inoltre mostra la 'ghost ball'\footnote{La 'ghost ball' è la previsione della bilia bianca fissata una determinata direzione di tiro.} nella medesima posizione.
+Il videogioco mostra la linea che congiunge la bilia bianca e la posizione desiderata; e in tale posizione genera la 'ghost ball'.
 La 'ghost ball' rappresenta graficamente la posizione della bilia bianca al momento della collisione con la palla che si intende colpire.
 
 \vspace{3mm}
@@ -225,72 +225,36 @@ L'applicazione JPool dovrà soddisfare i seguenti requisiti:
 \end{figure}
 
 \chapter{Progetto}\label{ch:Project} % CHAPTER 3
-Si descrive ora la struttura dell'applicazione realizzata, illustrandone prima l'architettura software, scendendo poi nel dettaglio dei blocchi funzionali che la compongono.
+Si descrive ora la struttura dell'applicazione realizzata, illustrandone prima l'architettura software e scendendo poi nel dettaglio dei blocchi funzionali che la compongono.
 
 \section{Architettura del Software}\label{se:Software Architecture} % SECTION 3.1
-L'applicazione JPool è stata sviluppata seguendo il pattern di programmazione MVC (Model View Controller).
-Il Model si occupa di rappresentare i dati gestiti dall'applicazione.
-Il View si occupa di presentare i dati all'utente e raccogliere gli input.
-Il Controller si occupa di rispondere adeguatamente agli input dell'utente, implementando la logica di funzionamento dell'applicazione.
 
-\vspace{5mm}
+Per semplificare lo sviluppo dell'applicazione si è scelto di seguire un'architettura monolitica: tutte le componenti e tutte le funzionalità del software appartengono ad un unico blocco (monolite).
 
-Nel caso di JPool:
-\begin{itemize}
-    \item [--] il Model comprende i giocatori, le bilie e la loro posizione e velocità nel piano di gioco;
-    \item [--] la View è costituita dalle varie schermate (scene) dell'applicazione (Menu, How to Play, Settings, Game)\footnote{I file FXML, caratteristici del framework JavaFX, non solo permettono di specificare le proprietà grafiche dell'interfaccia utente, ma permettono anche di collegare metodi ai vari elementi che la compongono.
-    Quindi, la View è in grado di raccogliere gli input dell'utente.
-    Inoltre, in linguaggio CSS sono specificate precise "Stylesheets", aggiunte alle grafiche FXML, al fine rendere la GUI più piacevole da un punto di vista estetico.};
-    \item [--] il Controller comprende le classi che codificano le regole del gioco e che gestiscono i cambiamenti di scena.
-\end{itemize}
-
-\pagebreak
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{MVC.png}
-    \caption{Funzionamento del pattern MVC (Model View Controller).}
-    \label{fig:}
-\end{figure}
-
-Il Model incapsula lo stato dell'applicazione e lo notifica alla View.
+Nonostante ciò, le classi e le risorse che compongono l'applicazione sono state suddivise in pacchetti; ognuno dei quali ha un preciso ruolo.
 
 \vspace{3mm}
 
-La View comunica bidirezionalmente con:
-\begin{itemize}
-    \item [--] il Model, richiedendo prima e ricevendo poi lo stato dell'applicazione;
-    \item [--] il Controller, inviando gli input raccolti dall'utente e ricevendo lo stile grafico desiderato dall'utente.
-\end{itemize}
+Il pacchetto \texttt{game.entities} comprende le entità direttamente coinvolte nello svolgimento del gioco: i giocatori, le bilie e la loro posizione e velocità nel piano di gioco.
 
-Il Controller, oltre ad incapsulare il comportamento dell'applicazione, in funzione degli input dell'utente:
-\begin{itemize}
-    \item [--] aggiorna le proprietà del Model;
-    \item [--] seleziona lo stile grafico (View) desiderato.
-\end{itemize}
+\vspace{3mm}
 
-Le classi e i file FXML/CSS che compongono l'applicazione si trovano nel package \texttt{game}, mostrato in Figura \ref{fig:UMLJPool}.
+Il pacchetto \texttt{game.logic} comprende le classi che codificano le regole del gioco e che gestiscono i cambiamenti di scena.
+Le classi di tipo 'FXML controller' sono collegate alle rispettive scene di gioco (FXML) e permettono di associare metodi alle componenti grafiche presenti in esse.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{UMLJPool.png}
-    \caption{Diagramma UML del package \texttt{game}.}
-    \label{fig:UMLJPool}
-\end{figure}
+\vspace{3mm}
 
-\section{Descrizione dei Moduli}\label{se:Modules Description} % SECTION 3.2
+Il pacchetto \texttt{game.resources} non solo contiene le immagini e i suoni presenti nell'applicazione, ma contiene anche i file di definizione e di personalizzazione dell'interfaccia grafica presentata all'utente.
+In particolare, il pacchetto \texttt{game.resources.gui.def} contiene i file FXML che definiscono le componenti e le loro proprietà grafiche statiche presenti nelle scene dell'applicazione; mentre il pacchetto \texttt{game.resources.gui.style} contiene i file CSS che permettono di aggiungere proprietà grafiche in modo dinamico.
 
-\subsection{Model}\label{se:Model} % SECTION 3.2.1
-Le classi appartenenti al Model di JPool si trovano nel package \texttt{game.model}, mostrato in Figura \ref{fig:UMLModel}.
+\vspace{3mm}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\textwidth]{UMLModel.png}
-    \caption{Diagramma UML del package \texttt{game.model}.}
-    \label{fig:UMLModel}
-\end{figure}
+Il pacchetto \texttt{game.utils} comprende le classi rimanenti, di varia utilità nello sviluppo del software.
 
-\pagebreak
+
+\section{Descrizione dei Pacchetti}\label{se:Packages Description} % SECTION 3.2
+
+\subsection{Entities}\label{se:Entities} % SECTION 3.2.1
 
 \subsubsection*{VECTOR}
 La classe \texttt{Vector.java} rappresenta un vettore bidimensionale uscente dall'origine del Pane.
@@ -342,45 +306,18 @@ La classe \texttt{Player.java} rappresenta un giocatore.
 Per la creazione di un giocatore è sufficiente fornire un nickname.
 I restanti attributi del giocatore sono necessari per l'implementazione delle regole del gioco; infatti ci permettono di conoscere (in ogni momento della partita) quale dei due giocatori deve colpire, la categoria di bilie assegnata a ciascun giocatore e, a fine partita, quale dei due giocatori ha vinto.
 
-\subsection{View}\label{se:View} % SECTION 3.2.2
-I file FXML e CSS appartenenti alla View si trovano nel package \texttt{game.view}.
-
-\subsubsection*{FXML}
-Ad ogni schermata di gioco corrisponde un file FXML che ne definisce la struttura grafica e che contiene i metodi da eseguire in risposta agli input dell'utente (eventi).
-
-\subsubsection*{CSS}
-Contestualmente al caricamento di ogni schermata tramite FXMLLoader, viene aggiunta la 'stylesheet' style.css.
-Quest'ultima contiene una serie di proprietà grafiche, relative ai vari componenti delle schermate, che caratterizzano lo stile dell'applicazione.
-Le proprietà grafiche sono specificate principalmente su classi di componenti, piuttosto che su un singolo componente; perché si vuole creare uno stile grafico preciso e univoco per ogni componente dell'applicazione.
-Ad esempio, la classe dei pulsanti dell'applicazione fa riferimento allo stile mostrato in Figura \ref{fig:ButtonStyle}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.25\textwidth]{ButtonStyle.png}
-    \caption{Stile grafico dei pulsanti di JPool.}
-    \label{fig:ButtonStyle}
-\end{figure}
-
-\subsection{Controller}\label{se:Controller} % SECTION 3.2.3
-Le classi appartenenti al Controller di JPool si trovano nel package \texttt{game.controller}, mostrato in Figura \ref{fig:UMLController}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.85\textwidth]{UMLController.png}
-    \caption{Diagramma UML del package \texttt{game.controller}}
-    \label{fig:UMLController}
-\end{figure}
+\subsection{Logic}\label{se:Logic} % SECTION 3.2.2
 
 \subsubsection*{MENU CONTROLLER}
 Il controller \texttt{MenuController.java} è associato alla schermata \texttt{Menu.fxml} e fornisce tre metodi da eseguire alla pressione di ciascuno dei tre pulsanti presenti nella scena.
 Il pulsante START GAME, gestito dal metodo \texttt{handleStartGameButton()}, carica la scena che permette di personalizzare una partita.
 Il pulsante HOW TO PLAY, gestito dal metodo \texttt{handleHTPButton()}, carica la scena esplicativa delle modalità di gioco.
-Il pulsante EXIT, gestito dal metodo \texttt{handleExitButton()}, chiude la finestra (stage) e termina l'applicazione.
+Il pulsante EXIT, gestito dal metodo \texttt{handleExitButton()}, chiude la finestra (Stage) e termina l'applicazione.
 
 \subsubsection*{SETTINGS CONTROLLER}
 Il controller \texttt{SettingsController.java} è associato alla schermata FXML delle impostazioni di gioco e gestisce gli input dell'utente relativamente alla personalizzazione di una partita.
-Per la scelta del tavolo, della stecca e della difficoltà di gioco, si è scelto di utilizzare la componente grafica Pagination.
-Quest'ultima permette di definire una sottoscena, contenente diverse pagine indicizzate.
+Per la scelta del tavolo, della stecca e della difficoltà di gioco si è scelto di utilizzare la componente grafica Pagination.
+Quest'ultima permette di definire una sottoscena contenente diverse pagine indicizzate.
 Ogni pagina può contenere diversi componenti ed è selezionabile dall'utente tramite appositi pulsanti grafici.
 Le tre paginazioni \texttt{tableMenu}, \texttt{cueMenu}, \texttt{modeMenu} sono definite nel metodo \texttt{initialize()} sfruttando il metodo \texttt{setPageFactory(...)}, che permette di specificare un Node da inserire in ogni pagina.
 Una proprietà fondamentale di un oggetto Pagination è quella di poter chiamare in ogni momento il metodo \texttt{getCurrentPageIndex()} per conoscere la pagina selezionata dall'utente e, di conseguenza, selezionare la grafica desiderata.
@@ -400,7 +337,7 @@ Si occupa principalmente di:
 
 \vspace{3mm}
 
-La grafica dell'esecuzione di un tiro è implementata tramite le componenti della scena FXML:
+La grafica dell'esecuzione di un tiro è implementata tramite le seguenti componenti della scena FXML:
 \begin{itemize}
 	\item [--] \texttt{Line guidelineToBall}, cioè la linea che congiunge la bilia bianca e la bilia che si vuole colpire;
 	\item [--] \texttt{Circle ghostBall}, cioè la previsione della bilia bianca al momento dell'urto;
@@ -412,27 +349,41 @@ I metodi che permettono all'utente di visualizzare la grafica di un tiro e poi d
 Il metodo \texttt{guidedTrajectory(MouseEvent event)} mostra all'utente, al variare della posizione del puntatore del mouse, la grafica necessaria per poter effettuare un tiro.
 Questo metodo svolge principalmente due compiti:
 \begin{itemize}
-	\item [--] aggiorna la View mostrando all'utente la \texttt{guidelineToBall}, la \texttt{ghostBall}, la \texttt{guidelineFromBall} e la \texttt{guidelineFromCue}
-	\item [--] aggiorna la View ruotando la stecca intorno alla bilia bianca adeguatamente rispetto alla direzione del colpo (posizione del mouse);
+	\item [--] aggiorna la grafics mostrando all'utente la \texttt{guidelineToBall}, la \texttt{ghostBall}, la \texttt{guidelineFromBall} e la \texttt{guidelineFromCue};
+	\item [--] aggiorna la grafica ruotando la stecca intorno alla bilia bianca adeguatamente rispetto alla direzione del colpo (posizione del mouse).
 \end{itemize}
 
 Il metodo \texttt{fixTrajectory(MouseEvent event)} è associato alla scena FXML tramite l'azione di rilascio del mouse e memorizza le componenti x e y di rilascio del mouse in due apposite variabili d'istanza.
 
 Il metodo \texttt{cueLoading()} permette di caricare il colpo, regolandone la potenza.
-Questo metodo si occupa di aggiornare la View mostrando all'utente la potenza del tiro che si vuole effettuare in base a quanto ha trascinato l'apposito slider verso il basso.
+Questo metodo si occupa di aggiornare la grafica mostrando all'utente la potenza del tiro che si vuole effettuare in base a quanto ha trascinato l'apposito slider verso il basso.
 Allo stesso tempo, fissata la posizione radiale della stecca intorno alla bilia bianca, la si trasla adeguatamente rispetto alla potenza scelta in direzione opposta rispetto a quella del tiro che si vuole effettuare; emulando il reale caricamento di un colpo.
 
 Il metodo \texttt{cueShot()} è associato alla scena FXML tramite l'azione di rilascio dello slider e si occupa di far partire il colpo.
 Nello specifico, imposta il vettore velocità della bilia bianca in direzione della bilia che si vuole colpire (coordinate x e y mouse released) e lo moltiplica scalarmente per la velocità della bilia bianca impostata tramite lo slider di potenza.
+
+\begin{lstlisting}[language = Java , frame = trBL, escapeinside={(*@}{@*)}]
+
+	cueBallVelocity = powerSlider.getValue();
+	
+    double angle = Math.atan2(yMouseReleased - ball[0].getPosition().getY(), xMouseReleased - ball[0].getPosition().getX());
+    
+	setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
+	
+\end{lstlisting}
+
+La funzione \texttt{Math.atan2(y, x)} permette di determinare l'angolo formato da un vettore \texttt{(x, y)} con l'asse x di un piano con polo nell'origine.
+Per determinare la direzione e il verso della bilia bianca, si vuole determinare l'angolo formato dal vettore \texttt{(xMouseReleased, yMouseReleased)} con l'asse delle ascisse di un piano cono polo nel centro della bilia bianca \texttt{(ball[0].getPosition().getX(), ball[0].getPosition().getY()}.
+
+Noto l'angolo, si scompone la velocità della bilia bianca lungo x e y sfruttando le funzioni trigonometriche \texttt{Math.cos()} e \texttt{Math.sin()} e la si moltiplica scalarmente per la velocità impostata dallo slider.
 
 \vspace{3mm}
 
 Dato che una partita si gioca nel tempo, è necessario definire un "asse temporale" a cui siano associati i metodi necessari alla creazione delle animazioni e allo svolgimento della partita.
 A tal proposito si è scelto di utilizzare la classe \texttt{Timeline}.
 Contestualmente al caricamento del file \texttt{Game.fxml} nel metodo \texttt{initialize()} viene creata la timeline e viene chiamato il metodo \texttt{startGame()}.
-Quest'ultimo imposta il periodo di aggiornamento di ogni frame a 0.015 secondi \footnote{La scelta del frame rate è stata fatta consultando altri progetti di videogiochi e facendo diversi tentativi.} e imposta la lunghezza della timeline come indefinita; in modo che la partita possa continuare fino a che non si determina un vincitore.
-Quindi, avvia la timeline (inizia l'animazione).
-Ad ogni aggiornamento di frame\footnote{Nell'ipotesi che la partita sia in corso e non terminata.} viene invocato il metodo \texttt{update()}.
+Quest'ultimo imposta il periodo di aggiornamento di ogni frame a 0.015 secondi \footnote{La scelta del frame rate è stata fatta consultando altri progetti di videogiochi e facendo diversi tentativi.} e imposta la lunghezza della timeline come indefinita; in modo che la partita possa continuare fino a che non si determini un vincitore.
+Quindi, avvia la timeline (inizia l'animazione) e ad ogni aggiornamento di frame viene invocato il metodo \texttt{update()}.
 
 \vspace{3mm}
 
@@ -456,6 +407,42 @@ Il metodo \texttt{checkPotted()} controlla se tutte le bilie di una categoria as
 
 \subsubsection*{BOARD}
 La classe \texttt{Board.java} contiene metodi (collegati alla Timeline) che mostrano all'utente informazioni utili al rispetto delle regole di gioco.
+Nello specifico, aggiorna i seguenti Label presenti nella scena di gioco: \texttt{scoreboardLabel}, \texttt{centralboardLabel} e \texttt{foulboardLabel}.
+Il primo specifica in ogni momento quale dei due giocatori è al tavolo, il secondo notifica l'assegnazione delle bilie ai giocatori, la vittoria di un giocatore ed è anche utilizzato quando si vuole terminare la partita; il terzo notifica i falli rilevati e ne specifica il tipo.
+
+\subsection{Resources}\label{se:Resources} % SECTION 3.2.3
+
+Oltre alle immagini e ai suoni, questa sezione contiene i file di definizione (FXML) e personalizzazione (CSS) della GUI.
+
+\subsubsection*{FXML}
+Ad ogni schermata di gioco corrisponde un file FXML che ne definisce la struttura grafica e che contiene i metodi da eseguire in risposta agli input dell'utente (eventi).
+Per la realizzazione della parte statica delle schermate di gioco si è utilizzato il software SceneBuilder, fornito dal framework JavaFX. \cite{JavaFX}
+
+\subsubsection*{CSS}
+Contestualmente al caricamento di ogni schermata tramite FXMLLoader, viene aggiunta la 'stylesheet' \texttt{standard.css}.
+Quest'ultima contiene una serie di proprietà grafiche, relative ai vari componenti delle schermate, che caratterizzano lo stile dell'applicazione.
+Le proprietà grafiche sono specificate principalmente su classi di componenti, piuttosto che su un singolo componente; perché si vuole creare uno stile grafico preciso e univoco per ogni componente dell'applicazione.
+Ad esempio, la classe dei pulsanti dell'applicazione fa riferimento allo stile mostrato in Figura \ref{fig:ButtonStyle}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.25\textwidth]{ButtonStyle.png}
+    \caption{Stile grafico dei pulsanti di JPool.}
+    \label{fig:ButtonStyle}
+\end{figure}
+
+Sono inoltre presenti quattro file CSS per la personalizzazione grafica del tavolo di gioco.
+In base alla scelta dell'utente nella schermata di impostazioni di gioco, viene caricata dinamicamente una precisa configurazione che modifica il legno esterno del tavolo e il colore del piano di gioco e delle sponde.
+Le componenti da modificare sono incluse in una precisa 'CSS style class' (table, bank) in modo da poter essere referenziate nella 'CSS stylesheet' caricata (\texttt{table1,2,3,4.css}).
+
+\subsection{Utils}\label{se:Utils} % SECTION 3.2.4
+La classe \texttt{Constants.java} contiene costanti utili allo sviluppo del gioco.
+
+Ad esempio, nella sezione \texttt{//SPLIT} sono tabulate tutte le coordinate x e y necessarie al raggruppamento delle bilie nel triangolo del break.
+
+\vspace{3mm}
+
+La classe \texttt{Sounds.java} permette di riprodurre effetti sonori.
 
 \section{Problemi Riscontrati}\label{se:Issues} % SECTION 3.3
 Durante lo sviluppo del videogioco sono stati riscontrati problemi di diversa natura.
@@ -470,26 +457,30 @@ Problemi di natura logica, cioè relativi al corretto funzionamento del software
 
 \subsubsection*{TRAIETTORIA BILIA BIANCA}
 Il calcolo della traiettoria della bilia bianca dopo un'ipotetica collisione con un'altra bilia ha richiesto particolare attenzione.
-Infatti, utilizzando il metodo di calcolo implementato per la collisione tra due bilie, si otteneva un vettore in uscita fedele alla reale collisione per la bilia colpita (\texttt{ballFinalVelocity}) e meno fedele per la bilia bianca (\texttt{cueFinalVelocity}).
+Infatti, l'utente sposta la ghost ball intorno a una bilia che vuole colpire per visualizzare le traiettorie post collisone e, solo dopo aver trovato la direzione desiderata, carica e rilascia il colpo; assegnando una certa velocità alla bilia bianca.
+Il problema è che, quando l'utente sta decidendo la direzione del colpo, non esiste un vettore velocità della bilia bianca (da applicare al centro della ghost ball) che ci permetta di calcolare le velocità finali come nel metodo \texttt{ballCollision(int ballNum)}.
 
-Per questo si è deciso di calcolare il vettore \texttt{cueFinalVelocity} come uno dei due vettori perpendicolari al vettore \texttt{ballFinalVelocity}. In effetti, in una collisione bidimensionale tra due bilie è sempre vero che le bilie seguono direzioni tra di loro ortogonali. Resta solo da stabilire adeguatamente il verso del vettore ortogonale, infatti può essere tanto in una direzione quanto nell'altra.
+Il vettore traiettoria delle bilia che si intende colpire (\texttt{ballFinalVelocity}) è stato calcolato assumendo una velocità scalare della bilia bianca (\texttt{cueBallVeloctiy}) pari a 50.
+
+Per il vettore traiettoria della bilia bianca (\texttt{cueFinalVelocity}), si è deciso di calcolarlo come uno dei due vettori perpendicolari al vettore \texttt{ballFinalVelocity}. In effetti, in una collisione bidimensionale tra due bilie è sempre vero che le bilie seguono direzioni tra di loro ortogonali. Resta solo da stabilire adeguatamente il verso del vettore ortogonale, infatti può essere tanto in una direzione quanto nell'altra.
 
 \vspace{3mm}
 
-La soluzione a quest'ultimo problema è stata trovata notando che: ruotando la ghost ball attorno alla bilia da colpire, questa dovrà andare in un verso se il suo centro si trova alla sinistra della linea \texttt{guidelineToBall}, nel verso opposto altrimenti.
+La soluzione a quest'ultimo problema è stata trovata notando che: ruotando la ghost ball attorno alla bilia da colpire, questa dovrà andare in un verso se il suo centro si trova alla sinistra della linea \texttt{guidelineToBall} (che unisce la bilia bianca e la bilia da colpire), nel verso opposto altrimenti.
 La condizione che, dati tre punti, permette di determinare se un punto si trova a sinistra o a destra di una retta (individuata dagli altri due) è fornita dal segno del determinante della matrice:
 
 \[
 \begin{pmatrix}
 \texttt{x - x1} & \texttt{x2 - x1}\\
-\texttt{y - y1} & \texttt{y2 - y2}
+\texttt{y - y1} & \texttt{y2 - y1}
 \end{pmatrix}
 \]
 
 dove $P = (x, y)$ è il punto da verificare e $P_1 = (x_1, y_1), P_2 = (x_2, y_2)$ sono i punti che individuano la retta.\cite{PointSideLineMath}\cite{PointSideLineCode}
 
 \vspace{3mm}
-Il metodo \texttt{determinant(Vector a, Vector b)}, trattato nella sezione \ref{se:Model}, è stato realizzato a tale scopo.
+
+Il metodo \texttt{determinant(Vector a, Vector b)}, trattato nella sezione \ref{se:Entities}, è stato realizzato a tale scopo.
 Il punto (vettore) che invoca il metodo è il punto che si vuole verificare (centro ghostball), mentre i due punti in input individuano la retta (centro bilia bianca, centro bilia da colpire).
 
 \vspace{3mm}
@@ -569,19 +560,19 @@ La componente normale, invece, cambia seguendo la legge unidimensionale trattata
 
 \vspace{3mm}
 
-Il metodo, sfruttando le operazioni definite nella classe \texttt{Vector.java}, calcola le velocità normali $v_{1n}, v_{2n}$ e le velocità tangenziali $v_{1t}, v_{2t}$\footnote{Le velocità normali $v_{1n}, v_{2n}$ sono di fatto i vettori $n_1, n_2$, visto che i metodi utilizzati non restituiscono un vettore; ma modificano l'invocante.}; per poi determinare le medesime dopo la collisione e, quindi, calcolare le velocità finali.
+Il metodo, sfruttando le operazioni definite nella classe \texttt{Vector.java}, calcola le velocità normali $v_1^n, v_2^n$ e le velocità tangenziali $v_1^t, v_2^t$\footnote{Le velocità normali $v_1^n, v_2^n$ sono di fatto i vettori $n_1, n_2$, visto che i metodi utilizzati non restituiscono un vettore; ma modificano l'invocante.}; per poi determinare le medesime dopo la collisione e, quindi, calcolare le velocità finali.
 
 In particolare, per ogni bilia:
 \begin{enumerate}
 	\item si determina la direzione normale sottraendo i vettori 
 	\item si normalizza il vettore, ottenendo l'unità normale
 	\item si proietta (prodotto scalare) la velocità della bilia lungo l'unità normale, ottenendo il valore scalare della velocità della bilia lungo la componente normale
-	\item si moltiplica (scalarmente) l'unità normale per il risultato ottenuto al punto 3, ottenendo $v_{1,2n}$
-	\item si determina la velocità tangenziale ($v_{1,2t}$) sottraendo alla velocità la velocità normale
+	\item si moltiplica (scalarmente) l'unità normale per il risultato ottenuto al punto 3, ottenendo $v_{1,2}^n$
+	\item si determina la velocità tangenziale ($v_{1,2}^t$) sottraendo alla velocità la velocità normale
 \end{enumerate}
 
 Infine, il metodo determina i vettori finali \texttt{velocity} (velocità bilia invocante) e \texttt{b.velocity} (velocità bilia in input) sommando la velocità normale e la velocità tangenziale della bilia dopo la collisione.
-I vettori $v_{1n}, v_{2n}$ (nel metodo $n_1, n_2$) sono scambiati in accordo con la legge della dinamica monodimensionale; mentre i vettori $v_{1t}, v_{2t}$ si conservano nella collisione.
+I vettori $v_1^n, v_2^n$ (nel metodo $n_1, n_2$) sono scambiati in accordo con la legge della dinamica monodimensionale; mentre i vettori $v_1^t, v_2^t$ si conservano nella collisione.
 
 \pagebreak
 \subsubsection*{URTO BILIA-SPONDA} 

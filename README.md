@@ -1,5 +1,7 @@
 # JPool
 
+// DEPENDENCIES (TO BE REMOVED)
+
 RICCARDO (SDK libraries, Name and VM arguments)
 
 "java.project.referencedLibraries": [

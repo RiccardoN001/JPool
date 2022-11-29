@@ -1,11 +1,7 @@
 .table {
-    -fx-fill: grey;
+    -fx-fill: gray;
 }
 
 .bank {
     -fx-image: url("file:src/game/resources/images/Tables/WoodBlack.png");
-}
-
-.pocket {
-    -fx-fill: silver;
 }

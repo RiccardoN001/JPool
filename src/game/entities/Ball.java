@@ -1,5 +1,8 @@
 package game.entities;
 
+// BRIEF CLASS DESCRIPTION (FINISHED)
+// Represents the physical model of a (3D) billiard ball
+
 import game.logic.GameController;
 import game.utils.Constants;
 import game.utils.Sounds;
