@@ -100,7 +100,7 @@ La bilia 8 (nera), nonostante sia rappresentata come piena, non è considerata (
 L'obiettivo del gioco è imbucare le bilie colorate, potendo solo colpire la bilia bianca tramite la stecca.
 Un giocatore deve imbucare le bilie piene, l'altro le bilie spezzate.
 Il giocatore che per primo imbuca tutte le bilie della propria categoria, può imbucare la bilia nera.
-Il giocatore che imbuca la bilia nera vince.
+Colui che imbuca la bilia nera vince.
 
 \begin{figure}
 	\center
@@ -109,7 +109,7 @@ Il giocatore che imbuca la bilia nera vince.
 
 \noindent \emph{I. INIZIO ('BREAK')}
 
-La bilia bianca è posizionata nella posizione di 'head spot'.
+La bilia bianca è locata nella posizione di 'head spot'.
 
 Le bilie colorate sono raggruppate in un triangolo equilatero (pieno) di lato pari a 5 bilie.
 
@@ -117,7 +117,7 @@ La bilia 1 è posizionata nella posizione di 'foot spot' e costituisce il vertic
 
 Nelle posizioni corrispondenti ai due vertici rimanenti sono posizionate una bilia piena e una bilia spezzata\footnote{Le bilie che si trovano in corrispondenza dei due vertici inferiori del triangolo sono quelle con maggiore probabilità di essere imbucate al momento della spaccata. Per rendere uguale la probabilità che una bilia piena o una bilia spezzata sia imbucata durante la spaccata, si inseriscono in tali posizioni una bilia piena e una bilia spezzata.}.
 
-Le posizioni rimanenti del triangolo, eccetto quella centrale dove è inserita la bilia nera\footnote{La bilia al centro del triangolo è quella con minore probabilità di essere imbucata al momento della spaccata. Per questo, ci si posiziona la bilia nera.}, sono riempite con le bilie rimanenti in modo casuale.
+Le posizioni rimanenti del triangolo, eccetto quella centrale dove è inserita la bilia nera\footnote{La bilia al centro del triangolo è quella con minore probabilità di essere imbucata al momento della spaccata. Per questo, ci si posiziona la bilia nera.}, sono riempite con le bilie restanti in modo casuale.
 
 \vspace{9mm}
 \noindent \emph{II. ASSEGNAZIONE}
@@ -142,7 +142,7 @@ Si verificano situazioni di fallo nei seguenti casi:
 \end{itemize}
 
 \pagebreak
-In quattro casi l'avversario vince direttamente la partita:
+In questi quattro casi, l'avversario vince direttamente la partita:
 \begin{itemize}[noitemsep]
     \item[--] quando viene imbucata la bilia nera ma ancora non sono state imbucate tutte le proprie bilie;
     \item[--] quando viene imbucata la bilia nera in una buca diversa da quella dichiarata;
@@ -169,18 +169,18 @@ Inoltre, l'utente può regolare la potenza del tiro e, graficamente, viene mostr
 \vspace{3mm}
 
 Un giocatore può indirizzare la bilia bianca tramite il puntatore del mouse.
-Il videogioco mostra la linea che congiunge la bilia bianca e la posizione desiderata; e in tale posizione genera la 'ghost ball'.
+Il videogioco mostra la linea che congiunge la bilia bianca e la posizione desiderata; in tale posizione genera la 'ghost ball'.
 La 'ghost ball' rappresenta graficamente la posizione della bilia bianca al momento della collisione con la palla che si intende colpire.
 
 \vspace{3mm}
 
-Inoltre, nella modalità \emph{Facile} sono mostrate le traiettorie in uscita della bilia che si intende colpire e della bilia bianca a seguito di collisione.
+Inoltre, nella modalità \emph{Facile}, sono mostrate le traiettorie in uscita della bilia che si intende colpire e della bilia bianca a seguito di collisione.
 Al variare della posizione del puntatore del mouse in corrispondenza dei punti circostanti la bilia che si intende colpire, variano le traiettorie in uscita. 
 
 \vspace{3mm}
 
 Al fine di rendere l'esperienza di gioco più dinamica, l'applicazione limita il tempo a disposizione per effettuare un colpo a 30 secondi.
-La scadenza del tempo a disposizione prima di aver effettuato il tiro comporta il fallo.
+La scadenza del tempo a disposizione, prima di aver effettuato il tiro, comporta il fallo.
 
 \chapter{Specifica dei Requisiti}\label{ch:Specifications} % CHAPTER 2
 L'applicazione JPool dovrà soddisfare i seguenti requisiti:
@@ -191,12 +191,12 @@ L'applicazione JPool dovrà soddisfare i seguenti requisiti:
     \item Effetto tridimensionale: la GUI deve fornire una parvenza reale del gioco mediante giochi di ombre e altre eventuali tecniche;
     \item Menu di avvio
     \begin{itemize}
-        \item[$\rightarrow$] \emph{Play}: consente di avviare una partita
+        \item[$\rightarrow$] \emph{Play}: consente di avviare una partita;
         \begin{itemize}
-        	\item[$\rightarrow$] \emph{Settings}: permette di modificare la grafica, le impostazioni audio e il livello di difficoltà relativamente alla partita avviata
+        	\item[$\rightarrow$] \emph{Settings}: permette di modificare la grafica, le impostazioni audio e il livello di difficoltà relativamente alla partita avviata;
         \end{itemize}
-        \item[$\rightarrow$] \emph{How to Play}: fornisce una descrizione dettagliata dei comandi necessari per giocare
-        \item[$\rightarrow$] \emph{Exit}: termina ed esce dal gioco
+        \item[$\rightarrow$] \emph{How to Play}: fornisce una descrizione dettagliata dei comandi necessari per giocare;
+        \item[$\rightarrow$] \emph{Exit}: termina ed esce dal gioco.
     \end{itemize}
     \item Personalizzazione grafica: possibilità di personalizzare il tavolo e la stecca di gioco;
     \item Presenza di audio: urto tra bilie, bilia imbucata, cambio turno, fallo commesso, ticchettio tempo a disposizione, vittoria;
@@ -231,7 +231,7 @@ Si descrive ora la struttura dell'applicazione realizzata, illustrandone prima l
 
 Per semplificare lo sviluppo dell'applicazione si è scelto di seguire un'architettura monolitica: tutte le componenti e tutte le funzionalità del software appartengono ad un unico blocco (monolite).
 
-Nonostante ciò, le classi e le risorse che compongono l'applicazione sono state suddivise in pacchetti; ognuno dei quali ha un preciso ruolo.
+Nonostante ciò, le classi e le risorse che compongono l'applicazione sono state suddivise in pacchetti, ognuno dei quali ha un preciso ruolo.
 
 \vspace{3mm}
 
@@ -286,7 +286,7 @@ Dato che tutte le bilie in gioco hanno stessa dimensione, i dati da specificare 
 Il metodo \texttt{drawBall()} restituisce un nodo di tipo Sphere caratterizzato da un determinato raggio e da effetti grafici quali:
 \begin{itemize}
 	\item [--] \texttt{PhongMaterial}\cite{PhongMaterial}, che, data una componente diffusa (grafica della superficie esterna della bilia) e una componente speculare (colore bianco), realizza la riflessione della luce.
-	\item [--] \texttt{DropShadow}\cite{DropShadow}, che realizza l'ombra specificandone la profondità radiale e lo spostamento lungo gli assi x e y.
+	\item [--] \texttt{DropShadow}\cite{DropShadow}, che realizza l'ombra specificandone la profondità radiale e lo spostamento lungo gli assi coordinati.
 \end{itemize}
 
 Il metodo \texttt{triangle()} crea e dispone le 16 bilie in gioco per la spaccata iniziale come da regolamento.
@@ -346,7 +346,7 @@ La grafica dell'esecuzione di un tiro è implementata tramite le seguenti compon
 \end{itemize}
 I metodi che permettono all'utente di visualizzare la grafica di un tiro e poi di effettuare un tiro sono i seguenti.
 
-Il metodo \texttt{guidedTrajectory(MouseEvent event)} mostra all'utente, al variare della posizione del puntatore del mouse, la grafica necessaria per poter effettuare un tiro.
+Il metodo \texttt{guidedTrajectory(MouseEvent event)} mostra all'utente, al variare della posizione del puntatore del mouse, la grafica necessaria per poterlo effettuare.
 Questo metodo svolge principalmente due compiti:
 \begin{itemize}
 	\item [--] aggiorna la grafics mostrando all'utente la \texttt{guidelineToBall}, la \texttt{ghostBall}, la \texttt{guidelineFromBall} e la \texttt{guidelineFromCue};
@@ -380,9 +380,9 @@ Noto l'angolo, si scompone la velocità della bilia bianca lungo x e y sfruttand
 \vspace{3mm}
 
 Dato che una partita si gioca nel tempo, è necessario definire un "asse temporale" a cui siano associati i metodi necessari alla creazione delle animazioni e allo svolgimento della partita.
-A tal proposito si è scelto di utilizzare la classe \texttt{Timeline}.
+A tal proposito, si è scelto di utilizzare la classe \texttt{Timeline}.
 Contestualmente al caricamento del file \texttt{Game.fxml} nel metodo \texttt{initialize()} viene creata la timeline e viene chiamato il metodo \texttt{startGame()}.
-Quest'ultimo imposta il periodo di aggiornamento di ogni frame a 0.015 secondi \footnote{La scelta del frame rate è stata fatta consultando altri progetti di videogiochi e facendo diversi tentativi.} e imposta la lunghezza della timeline come indefinita; in modo che la partita possa continuare fino a che non si determini un vincitore.
+Quest'ultimo imposta il periodo di aggiornamento di ogni frame a 0.015 secondi \footnote{La scelta del frame rate è stata fatta consultando altri progetti di videogiochi e facendo diversi tentativi.} e imposta la lunghezza della timeline come indefinita, in modo che la partita possa continuare fino a che non si determini un vincitore.
 Quindi, avvia la timeline (inizia l'animazione) e ad ogni aggiornamento di frame viene invocato il metodo \texttt{update()}.
 
 \vspace{3mm}
@@ -420,8 +420,8 @@ Per la realizzazione della parte statica delle schermate di gioco si è utilizza
 
 \subsubsection*{CSS}
 Contestualmente al caricamento di ogni schermata tramite FXMLLoader, viene aggiunta la 'stylesheet' \texttt{standard.css}.
-Quest'ultima contiene una serie di proprietà grafiche, relative ai vari componenti delle schermate, che caratterizzano lo stile dell'applicazione.
-Le proprietà grafiche sono specificate principalmente su classi di componenti, piuttosto che su un singolo componente; perché si vuole creare uno stile grafico preciso e univoco per ogni componente dell'applicazione.
+Quest'ultima contiene una serie di proprietà grafiche, relative alle varie componenti delle schermate, che caratterizzano lo stile dell'applicazione.
+Le proprietà grafiche sono specificate principalmente su classi di componenti, piuttosto che su di una singola componente; perché si vuole creare uno stile grafico, preciso ed univoco per ogni componente dell'applicazione.
 Ad esempio, la classe dei pulsanti dell'applicazione fa riferimento allo stile mostrato in Figura \ref{fig:ButtonStyle}.
 
 \begin{figure}
@@ -432,8 +432,8 @@ Ad esempio, la classe dei pulsanti dell'applicazione fa riferimento allo stile m
 \end{figure}
 
 Sono inoltre presenti quattro file CSS per la personalizzazione grafica del tavolo di gioco.
-In base alla scelta dell'utente nella schermata di impostazioni di gioco, viene caricata dinamicamente una precisa configurazione che modifica il legno esterno del tavolo e il colore del piano di gioco e delle sponde.
-Le componenti da modificare sono incluse in una precisa 'CSS style class' (table, bank) in modo da poter essere referenziate nella 'CSS stylesheet' caricata (\texttt{table1,2,3,4.css}).
+In base alla scelta dell'utente nella schermata di impostazioni di gioco, viene caricata, dinamicamente, una precisa configurazione che modifica il legno esterno del tavolo e il colore del piano di gioco e delle sponde.
+Le componenti da modificare sono incluse in una precisa 'CSS style class' (table, bank), in modo da poter essere referenziate nella 'CSS stylesheet' caricata (\texttt{table1,2,3,4.css}).
 
 \subsection{Utils}\label{se:Utils} % SECTION 3.2.4
 La classe \texttt{Constants.java} contiene costanti utili allo sviluppo del gioco.
@@ -456,13 +456,13 @@ Problemi di natura tecnica, cioè riguardanti la sintassi e la semantica della t
 Problemi di natura logica, cioè relativi al corretto funzionamento del software e all'assoluzione delle specifiche, sono stati trattati caso per caso con diversi metodi.
 
 \subsubsection*{TRAIETTORIA BILIA BIANCA}
-Il calcolo della traiettoria della bilia bianca dopo un'ipotetica collisione con un'altra bilia ha richiesto particolare attenzione.
-Infatti, l'utente sposta la ghost ball intorno a una bilia che vuole colpire per visualizzare le traiettorie post collisone e, solo dopo aver trovato la direzione desiderata, carica e rilascia il colpo; assegnando una certa velocità alla bilia bianca.
+Il calcolo della traiettoria della bilia bianca, dopo un'ipotetica collisione con un'altra bilia, ha richiesto particolare attenzione.
+Infatti, l'utente sposta la ghost ball intorno a una bilia che vuole colpire per visualizzare le traiettorie post collisone e, solo dopo aver trovato la direzione desiderata, carica e rilascia il colpo, assegnando una certa velocità alla bilia bianca.
 Il problema è che, quando l'utente sta decidendo la direzione del colpo, non esiste un vettore velocità della bilia bianca (da applicare al centro della ghost ball) che ci permetta di calcolare le velocità finali come nel metodo \texttt{ballCollision(int ballNum)}.
 
 Il vettore traiettoria delle bilia che si intende colpire (\texttt{ballFinalVelocity}) è stato calcolato assumendo una velocità scalare della bilia bianca (\texttt{cueBallVeloctiy}) pari a 50.
 
-Per il vettore traiettoria della bilia bianca (\texttt{cueFinalVelocity}), si è deciso di calcolarlo come uno dei due vettori perpendicolari al vettore \texttt{ballFinalVelocity}. In effetti, in una collisione bidimensionale tra due bilie è sempre vero che le bilie seguono direzioni tra di loro ortogonali. Resta solo da stabilire adeguatamente il verso del vettore ortogonale, infatti può essere tanto in una direzione quanto nell'altra.
+Per il vettore traiettoria della bilia bianca (\texttt{cueFinalVelocity}), si è deciso di calcolarlo come uno dei due vettori perpendicolari al vettore \texttt{ballFinalVelocity}. In effetti, in una collisione bidimensionale tra due bilie, è sempre vero che le bilie seguono direzioni tra di loro ortogonali. Resta solo da stabilire adeguatamente il verso del vettore ortogonale, infatti può essere tanto in una direzione quanto nell'altra.
 
 \vspace{3mm}
 
@@ -487,7 +487,7 @@ Il punto (vettore) che invoca il metodo è il punto che si vuole verificare (cen
 
 Se il determinante è positivo, allora il punto si trova a sinistra della retta e quindi il vettore \texttt{cueFinalVelocity} è il perpendicolare sinistro di \texttt{ballFinalVelocity}.
 Se il determinante è negativo, allora il punto si trova a destra della retta e quindi il vettore \texttt{cueFinalVelocity} è il perpendicolare destro di \texttt{ballFinalVelocity}.
-Se il determinante è nullo, allora il punto giace sulla retta e quindi il vettore \texttt{cueFinalVelocity} ha stessa direzione e verso di \texttt{ballFinalVelocity}; per questo si imposta come nullo.
+Se il determinante è nullo, allora il punto giace sulla retta e quindi il vettore \texttt{cueFinalVelocity} ha stessa direzione e verso di \texttt{ballFinalVelocity}, per questo si imposta come nullo.
 
 \subsubsection*{SOVRAPPOSIZIONE SUONI}
 L'applicazione prevede l'esecuzione di effetti sonori in diverse circostanze. Una di queste è l'urto tra due bilie.
@@ -501,11 +501,11 @@ Testando l'applicazione, si è notato che, talvolta, questa fitta riproduzione e
 
 \vspace{3mm}
 
-Si è risolto il problema disattivando l'effetto sonoro di collisone per il primo tiro avviando un suono di spaccata iniziale.
+Si è risolto il problema disattivando l'effetto sonoro di collisone per il primo tiro, avviando un suono di spaccata iniziale.
 
 
 \chapter{Appendice}\label{ch:Appendix} % CHAPTER 4
-In questo capitolo si entra nel dettaglio di alcuni metodi di particolare interesse nello sviluppo dell'applicazione, scendendo nel dettaglio dei concetti matematici, fisici e logici che li rendono operativi.
+In questo capitolo si entra nel dettaglio di alcuni metodi di particolare interesse nello sviluppo dell'applicazione, analizzando concetti matematici, fisici e logici che li rendono operativi.
 
 \subsubsection*{URTO BILIA-BILIA}
 
@@ -560,7 +560,7 @@ La componente normale, invece, cambia seguendo la legge unidimensionale trattata
 
 \vspace{3mm}
 
-Il metodo, sfruttando le operazioni definite nella classe \texttt{Vector.java}, calcola le velocità normali $v_1^n, v_2^n$ e le velocità tangenziali $v_1^t, v_2^t$\footnote{Le velocità normali $v_1^n, v_2^n$ sono di fatto i vettori $n_1, n_2$, visto che i metodi utilizzati non restituiscono un vettore; ma modificano l'invocante.}; per poi determinare le medesime dopo la collisione e, quindi, calcolare le velocità finali.
+Il metodo, sfruttando le operazioni definite nella classe \texttt{Vector.java}, calcola le velocità normali $v_1^n, v_2^n$ e le velocità tangenziali $v_1^t, v_2^t$\footnote{Le velocità normali $v_1^n, v_2^n$ sono di fatto i vettori $n_1, n_2$, visto che i metodi utilizzati non restituiscono un vettore, ma modificano l'invocante.}, per poi determinare le medesime dopo la collisione e, quindi, calcolare le velocità finali.
 
 In particolare, per ogni bilia:
 \begin{enumerate}
@@ -624,7 +624,7 @@ Per ogni sponda, le relative regioni sono sempre considerate in ordine crescente
 
 \vspace{3mm}
 
-Per semplicità si è riportato solo il codice che controlla l'urto con la sponda A, ma i ragionamenti sono del tutto analoghi per le sponde rimanenti.
+Per semplicità, si è riportato solo il codice che controlla l'urto con la sponda A, ma i ragionamenti sono del tutto analoghi per le sponde rimanenti.
 
 Se una bilia urta la regione A2, allora per la Legge di Riflessione \footnote{L'urto di una bilia contro una sponda è assimilabile alla riflessione della luce su uno specchio piano.} si conserva il modulo della velocità.
 Inoltre, la componente y conserva il verso della velocità (ad esempio una bilia che urta provenendo dall'altro, cioè con velocità verso il basso, continuerà ad andare verso il basso dopo l'urto).
@@ -634,7 +634,7 @@ Se una bilia urta la regione A1 o A3, la velocità lungo x sarà sicuramente nul
 La velocità lungo y, invece, sarà negativa (verso) e pari al modulo della velocità per la regione A1 (visto che la bilia deve andare verso l'alto) e sarà positiva (verso) e pari al modulo della velocità per la regione A3 (visto che la bilia deve andare verso il basso).
 
 \pagebreak
-% BIBLIOGRAPHY
+% BIBLIOGRAPHY AND S
 \bibliographystyle{unsrturl}
 \bibliography{refs}
 
