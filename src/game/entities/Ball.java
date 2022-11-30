@@ -18,6 +18,7 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
+import java.awt.MouseInfo;
 
 public class Ball {
 
@@ -345,31 +346,34 @@ public class Ball {
                 game.guidelineFromBall.setVisible(false);
                 game.guidelineFromCue.setVisible(false);
                 game.ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                if(event.getSceneX() >= Constants.A_MARGIN+12.5 && 
+                if(event.getSceneX() >= Constants.A_MARGIN+Constants.BALL_RADIUS && 
                     event.getSceneX() <= Constants.HEAD_SPOT_X && 
-                    event.getSceneY() >= Constants.CD_MARGIN+12.5 && 
-                    event.getSceneY() <= Constants.EF_MARGIN-12.5) {
+                    event.getSceneY() >= Constants.CD_MARGIN+Constants.BALL_RADIUS && 
+                    event.getSceneY() <= Constants.EF_MARGIN-Constants.BALL_RADIUS) {
                     game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
             } else if(game.turn && game.foul) {
+                
                 game.cue.setVisible(false);
                 game.guidelineToBall.setVisible(false);
                 game.ghostBall.setVisible(false);
                 game.guidelineFromBall.setVisible(false);
                 game.guidelineFromCue.setVisible(false);
                 game.ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                if(event.getSceneX() >= Constants.A_MARGIN+12.5 && 
-                    event.getSceneX() <= Constants.B_MARGIN-12.5 && 
-                    event.getSceneY() >= Constants.CD_MARGIN+12.5 && 
-                    event.getSceneY() <= Constants.EF_MARGIN-12.5) {
-                        if(game.ball[0].collides(game.ball[1])==false){
-                             game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
-                        }
+                for(int i=1;i<16;i++){//teoricamente il for dovrebbe scandirle tutte boh
+                if(event.getSceneX() >= Constants.A_MARGIN+Constants.BALL_RADIUS && 
+                    event.getSceneX() <= Constants.B_MARGIN-Constants.BALL_RADIUS && 
+                    event.getSceneY() >= Constants.CD_MARGIN+Constants.BALL_RADIUS && 
+                    event.getSceneY() <= Constants.EF_MARGIN-Constants.BALL_RADIUS &&
+                    Math.sqrt(Math.pow(event.getSceneX()-game.ball[2].getPosition().getX(),2)+Math.pow(event.getSceneY()-game.ball[2].getPosition().getY(),2))>=Constants.BALL_DIAMETER){
+                        game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
-            }
+                }
 
+            }
         });
 
+        
     }
 
     public void pocketed(int ballNum) {
