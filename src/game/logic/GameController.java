@@ -405,7 +405,17 @@ public class GameController {
         double xm = event.getSceneX();
         double ym = event.getSceneY();
 
-        if(turn && !gameOver && !exit && xm >= Constants.A_MARGIN+10 && xm <= Constants.B_MARGIN-10 && ym >= Constants.CD_MARGIN+10 && ym <= Constants.EF_MARGIN-10) {
+        boolean positionGhostBall = true;
+        for(int i = 1; i < 16; i++) {
+            if(ballInstance.distance(xm, ym, ball[i].getPosition().getX(), ball[i].getPosition().getY()) < Constants.BALL_RADIUS+Constants.GHOSTBALL_RADIUS) {
+                positionGhostBall = false;
+            }
+        }
+
+        if(turn && !gameOver && !exit
+            && xm >= Constants.A_MARGIN+Constants.GHOSTBALL_RADIUS && xm <= Constants.B_MARGIN-Constants.GHOSTBALL_RADIUS
+            && ym >= Constants.CD_MARGIN+Constants.GHOSTBALL_RADIUS && ym <= Constants.EF_MARGIN-Constants.GHOSTBALL_RADIUS
+            && positionGhostBall) {
 
             guided = true;
 
@@ -421,7 +431,7 @@ public class GameController {
 
             ghostBall.setCenterX(xm);
             ghostBall.setCenterY(ym);
-            ghostBall.setRadius(10);
+            ghostBall.setRadius(Constants.GHOSTBALL_RADIUS);
             ghostBall.setStroke(Color.WHITE);
             ghostBall.setFill(Color.TRANSPARENT);
             ghostBall.setVisible(true);

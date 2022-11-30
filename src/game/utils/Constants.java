@@ -8,6 +8,7 @@ public class Constants {
     // BALL SIZE
     public static final double BALL_RADIUS = 12.5;
     public static final double BALL_DIAMETER = 2 * BALL_RADIUS;
+    public static final double GHOSTBALL_RADIUS = 10;
 
     // TABLE FRICTION
     public static final double TABLE_FRICTION = .99;
