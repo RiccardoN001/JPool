@@ -18,7 +18,6 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
-import java.awt.MouseInfo;
 
 public class Ball {
 
@@ -360,14 +359,19 @@ public class Ball {
                 game.guidelineFromBall.setVisible(false);
                 game.guidelineFromCue.setVisible(false);
                 game.ball[0].getSphere().setCursor(Cursor.CLOSED_HAND);
-                for(int i=1;i<16;i++){//teoricamente il for dovrebbe scandirle tutte boh
                 if(event.getSceneX() >= Constants.A_MARGIN+Constants.BALL_RADIUS && 
                     event.getSceneX() <= Constants.B_MARGIN-Constants.BALL_RADIUS && 
                     event.getSceneY() >= Constants.CD_MARGIN+Constants.BALL_RADIUS && 
-                    event.getSceneY() <= Constants.EF_MARGIN-Constants.BALL_RADIUS &&
-                    Math.sqrt(Math.pow(event.getSceneX()-game.ball[2].getPosition().getX(),2)+Math.pow(event.getSceneY()-game.ball[2].getPosition().getY(),2))>=Constants.BALL_DIAMETER){
+                    event.getSceneY() <= Constants.EF_MARGIN-Constants.BALL_RADIUS) {
+                    boolean positionCueBall = true;
+                    for(int i = 1; i < 16; i++) {
+                        if(distance(event.getSceneX(), event.getSceneY(), game.ball[i].getPosition().getX(), game.ball[i].getPosition().getY()) < Constants.BALL_DIAMETER) {
+                            positionCueBall = false;
+                        }
+                    }
+                    if(positionCueBall) {
                         game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
-                }
+                    }
                 }
 
             }
