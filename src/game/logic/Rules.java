@@ -153,13 +153,7 @@ public class Rules {
 
             } else {
 
-                int firstPuttedBallNum = game.thisTurnPottedBalls.get(0).intValue();
-
                 if(game.player1.isMyTurn()) {
-
-                    if(game.player1.getBallType() != game.ball[firstPuttedBallNum].getBallType()) {
-                        change = true;
-                    }
 
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                         if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
@@ -172,10 +166,6 @@ public class Rules {
                     }
 
                 } else {
-
-                    if(game.player2.getBallType() != game.ball[firstPuttedBallNum].getBallType()) {
-                        change = true;
-                    }
 
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                         if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
