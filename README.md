@@ -1,8 +1,6 @@
-# JPool
+## Guida per l'esecuzione
 
-## Guida per l'esecuzione del software
-
-### Prerequisiti 
+### Prerequisiti
 
 * JDK 11 o superiore (https://www.oracle.com/java/technologies/downloads/)
 * SDK (https://gluonhq.com/products/javafx/)
