@@ -17,9 +17,9 @@ public class Sounds {
     public static void playSound(String soundName) {
 
         try {
-            URL url = Main.class.getResource("resources/Sounds/" + soundName + ".wav");
+            URL url = Main.class.getResource("resources/sounds/" + soundName + ".wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
-            clip = AudioSystem.getClip ();
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();

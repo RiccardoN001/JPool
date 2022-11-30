@@ -3,5 +3,5 @@
 }
 
 .bank {
-    -fx-image: url("file:src/game/resources/images/Tables/WoodBrown.png");
+    -fx-image: url("WoodBrown.png");
 }

@@ -17,7 +17,7 @@ public class Main extends Application {
         scene.getStylesheets().addAll(getClass().getResource("resources/gui/style/standard.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.getIcons().add(new Image("file:src/game/resources/images/Menu/Logo.png"));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("resources/images/Menu/Logo.png")));
         stage.setTitle("JPool");
         stage.show();
 

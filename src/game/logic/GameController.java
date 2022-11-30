@@ -331,7 +331,7 @@ public class GameController {
         }
 
         // CUE
-        cue = new ImageView(new Image("file:src/game/resources/images/Cues/Cue" + String.valueOf(settings.cueMenuIndex()+1 + ".png")));
+        cue = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Cues/Cue" + String.valueOf(settings.cueMenuIndex()+1 + ".png"))));
         cue.setFitWidth(400);
         cue.setFitHeight(100);
         cue.setLayoutX(105);
@@ -377,10 +377,10 @@ public class GameController {
         if(!soundOff){
             Sounds.playSound("RackSound");
         }
-        soundIconOn = new ImageView(new Image("file:src/game/resources/images/Speakers/SpeakerOn.png"));
+        soundIconOn = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Speakers/SpeakerOn.png")));
         soundIconOn.setFitWidth(60);
         soundIconOn.setFitHeight(60);
-        soundIconOff = new ImageView(new Image("file:src/game/resources/images/Speakers/SpeakerOff.png"));
+        soundIconOff = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Speakers/SpeakerOff.png")));
         soundIconOff.setFitWidth(60);
         soundIconOff.setFitHeight(60);
 

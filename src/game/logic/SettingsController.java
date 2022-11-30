@@ -78,7 +78,7 @@ public class SettingsController{
         tableMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/images/Tables/Table" + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Tables/Table" + (pageIndex+1) + ".png")));
                 imageView.setFitWidth(500);
                 imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
@@ -91,7 +91,7 @@ public class SettingsController{
         cueMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/images/Cues/Cue" + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Cues/Cue" + (pageIndex+1) + ".png")));
                 imageView.setFitWidth(500);
                 imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
@@ -104,7 +104,7 @@ public class SettingsController{
         modeMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
-                ImageView imageView = new ImageView(new Image("file:src/game/resources/images/Modes/Mode"  + (pageIndex+1) + ".png"));
+                ImageView imageView = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Modes/Mode" + (pageIndex+1) + ".png")));
                 imageView.setFitWidth(250);
                 imageView.setFitHeight(250);
                 imageView.setPreserveRatio(true);
@@ -117,8 +117,8 @@ public class SettingsController{
 
         playButton.setDisable(true);
         soundOff = false;
-        count = 1;
-        flip = 0;
+        count = 0;
+        flip = 1;
 
     }
 
@@ -161,7 +161,7 @@ public class SettingsController{
             e -> {
             if(count < 10) {
                 pane.getChildren().remove(coin);
-                coin = new ImageView(new Image("file:src/game/resources/images/CoinToss/coin" + flip + ".png"));
+                coin = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/CoinToss/coin" + flip + ".png")));
                 coin.setFitWidth(120);
                 coin.setFitHeight(120);
                 coin.setLayoutX(1190);

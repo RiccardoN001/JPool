@@ -1,5 +1,7 @@
 package game.entities;
 
+import game.Main;
+
 // BRIEF CLASS DESCRIPTION (FINISHED)
 // Represents the physical model of a (3D) billiard ball
 
@@ -57,7 +59,7 @@ public class Ball {
         sphere.setRotate(270);
 
         PhongMaterial material = new PhongMaterial();
-        Image ballExt = new Image("file:src/game/resources/images/Balls/Ball" + this.ballNumber + "Ext.png");
+        Image ballExt = new Image(Main.class.getResourceAsStream("resources/images/Balls/Ball" + this.ballNumber + "Ext.png"));
         material.setDiffuseMap(ballExt);
         material.setSpecularColor(Color.WHITE);
         material.setSpecularPower(30);
