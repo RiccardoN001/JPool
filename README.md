@@ -1,33 +1,16 @@
 # JPool
 
-// DEPENDENCIES (TO BE REMOVED)
+## Guida per l'esecuzione del software
 
-RICCARDO (SDK libraries, Name and VM arguments)
+### Prerequisiti 
 
-"java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx.base.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx.controls.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx.fxml.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx.graphics.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx.media.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx.swing.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx.web.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-19\\lib\\javafx-swt.jar"
-    ],
+* JDK 11 o superiore (https://www.oracle.com/java/technologies/downloads/)
+* SDK (https://gluonhq.com/products/javafx/)
 
-"projectName": "JPool_ba81ef56",
-"vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml",
+### Istruzioni
 
-
-GIOVANNI (SDK libraries, Name and VM arguments)
-
-"java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/Library/Java/JavaVirtualMachines/javafx-sdk-19/lib/**/*.jar"
-    ]
-
-"projectName": "JPool_b490f64b",
-"vmArgs": "--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-19/lib --add-modules javafx.controls,java
-
-// DOCUMENTAZIONE JPOOL
+1. Impostare il valore della variabile d'ambiente JAVA_HOME al percorso di installazione del JDK (https://www.baeldung.com/java-home-on-windows-7-8-10-mac-os-x-linux)
+2. Eseguire il segente comando:
+```
+java --module-path "/path/to/sdk/lib" --add-modules javafx.controls,javafx.fxml --enable-preview -jar "/path/to/jar"
+```
