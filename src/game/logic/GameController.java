@@ -414,8 +414,7 @@ public class GameController {
 
         if(turn && !gameOver && !exit
             && xm >= Constants.A_MARGIN+Constants.GHOSTBALL_RADIUS && xm <= Constants.B_MARGIN-Constants.GHOSTBALL_RADIUS
-            && ym >= Constants.CD_MARGIN+Constants.GHOSTBALL_RADIUS && ym <= Constants.EF_MARGIN-Constants.GHOSTBALL_RADIUS
-            && positionGhostBall) {
+            && ym >= Constants.CD_MARGIN+Constants.GHOSTBALL_RADIUS && ym <= Constants.EF_MARGIN-Constants.GHOSTBALL_RADIUS) {
 
             guided = true;
 
@@ -461,8 +460,8 @@ public class GameController {
                         n2.normalize(); // un2
                         double v2n = ball[i].getVelocity().scalar(n2);
                         n2.multiply(v2n); // v2n (vector)
-                        Vector v2f = ball[i].getVelocity().sub(n2);
-                        Vector ballFinalVelocity = v2f.add(n1);
+                        Vector v2t = ball[i].getVelocity().sub(n2);
+                        Vector ballFinalVelocity = v2t.add(n1);
 
                         Vector cueFinalVelocity = new Vector(0, 0);
                         double d = ghostBallPosition.determinant(cueBallPosition, ballPosition);
@@ -558,11 +557,15 @@ public class GameController {
         double cueBallVelocity = 0;
         if(turn && !gameOver && !exit && xMouseReleased != -1 && yMouseReleased != -1) {
 
-            shot = true;
-
             cueBallVelocity = powerSlider.getValue();
             
             if(cueBallVelocity != 0) {
+
+                shot = true;
+
+                if(!soundOff) {
+                    Sounds.playSound("CueSound");
+                }
                 
                 guidelineToBall.setVisible(false);
                 ghostBall.setVisible(false);
@@ -571,10 +574,6 @@ public class GameController {
                 
                 double angle = Math.atan2(yMouseReleased - ball[0].getPosition().getY(), xMouseReleased - ball[0].getPosition().getX());
                 ballInstance.setCueVelocity(cueBallVelocity * Math.cos(angle), cueBallVelocity * Math.sin(angle));
-
-                if(!soundOff){
-                    Sounds.playSound("CueSound");
-                }
 
                 xMouseReleased = -1;
                 yMouseReleased = -1;
@@ -614,8 +613,6 @@ public class GameController {
             turn = true;
             board.showPlayerTurn();
         } else if(!ballsMoving && turnChange) {
-
-            thisTurnPottedBalls.remove(Integer.valueOf(0));
 
             ball[0].getSphere().setCursor(Cursor.DEFAULT);
 
