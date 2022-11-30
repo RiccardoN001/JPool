@@ -109,7 +109,7 @@ Colui che imbuca la bilia nera vince.
 
 \noindent \emph{I. INIZIO ('BREAK')}
 
-La bilia bianca è locata nella posizione di 'head spot'.
+La bilia bianca è collocata nella posizione di 'head spot'.
 
 Le bilie colorate sono raggruppate in un triangolo equilatero (pieno) di lato pari a 5 bilie.
 
@@ -142,7 +142,7 @@ Si verificano situazioni di fallo nei seguenti casi:
 \end{itemize}
 
 \pagebreak
-In questi quattro casi, l'avversario vince direttamente la partita:
+In quattro casi l'avversario vince direttamente la partita:
 \begin{itemize}[noitemsep]
     \item[--] quando viene imbucata la bilia nera ma ancora non sono state imbucate tutte le proprie bilie;
     \item[--] quando viene imbucata la bilia nera in una buca diversa da quella dichiarata;
@@ -169,7 +169,7 @@ Inoltre, l'utente può regolare la potenza del tiro e, graficamente, viene mostr
 \vspace{3mm}
 
 Un giocatore può indirizzare la bilia bianca tramite il puntatore del mouse.
-Il videogioco mostra la linea che congiunge la bilia bianca e la posizione desiderata; in tale posizione genera la 'ghost ball'.
+Il videogioco mostra la linea che congiunge la bilia bianca e la posizione desiderata; e in tale posizione genera la 'ghost ball'.
 La 'ghost ball' rappresenta graficamente la posizione della bilia bianca al momento della collisione con la palla che si intende colpire.
 
 \vspace{3mm}
@@ -231,7 +231,7 @@ Si descrive ora la struttura dell'applicazione realizzata, illustrandone prima l
 
 Per semplificare lo sviluppo dell'applicazione si è scelto di seguire un'architettura monolitica: tutte le componenti e tutte le funzionalità del software appartengono ad un unico blocco (monolite).
 
-Nonostante ciò, le classi e le risorse che compongono l'applicazione sono state suddivise in pacchetti, ognuno dei quali ha un preciso ruolo.
+Nonostante ciò, le classi e le risorse che compongono l'applicazione sono state suddivise in pacchetti; ognuno dei quali ha un preciso ruolo.
 
 \vspace{3mm}
 
@@ -344,9 +344,9 @@ La grafica dell'esecuzione di un tiro è implementata tramite le seguenti compon
 	\item [--] \texttt{Line guidelineFromBall}, cioè la linea che mostra la traiettoria della bilia colpita dopo la collisione;
 	\item [--] \texttt{Line guidelineFromCue}, cioè la linea che mostra la traiettoria della bilia bianca dopo la collisone.
 \end{itemize}
-I metodi che permettono all'utente di visualizzare la grafica di un tiro e poi di effettuare un tiro sono i seguenti.
+I metodi che permettono all'utente di visualizzare la grafica di un tiro e poi di poterlo effettuare sono i seguenti.
 
-Il metodo \texttt{guidedTrajectory(MouseEvent event)} mostra all'utente, al variare della posizione del puntatore del mouse, la grafica necessaria per poterlo effettuare.
+Il metodo \texttt{guidedTrajectory(MouseEvent event)} mostra all'utente, al variare della posizione del puntatore del mouse, la grafica del tiro.
 Questo metodo svolge principalmente due compiti:
 \begin{itemize}
 	\item [--] aggiorna la grafics mostrando all'utente la \texttt{guidelineToBall}, la \texttt{ghostBall}, la \texttt{guidelineFromBall} e la \texttt{guidelineFromCue};
@@ -505,7 +505,7 @@ Si è risolto il problema disattivando l'effetto sonoro di collisone per il prim
 
 
 \chapter{Appendice}\label{ch:Appendix} % CHAPTER 4
-In questo capitolo si entra nel dettaglio di alcuni metodi di particolare interesse nello sviluppo dell'applicazione, analizzando concetti matematici, fisici e logici che li rendono operativi.
+In questo capitolo si entra nel dettaglio di alcuni metodi di particolare interesse nello sviluppo dell'applicazione, analizzandone i concetti matematici, fisici e logici che li rendono operativi.
 
 \subsubsection*{URTO BILIA-BILIA}
 
@@ -634,7 +634,7 @@ Se una bilia urta la regione A1 o A3, la velocità lungo x sarà sicuramente nul
 La velocità lungo y, invece, sarà negativa (verso) e pari al modulo della velocità per la regione A1 (visto che la bilia deve andare verso l'alto) e sarà positiva (verso) e pari al modulo della velocità per la regione A3 (visto che la bilia deve andare verso il basso).
 
 \pagebreak
-% BIBLIOGRAPHY AND S
+% BIBLIOGRAPHY
 \bibliographystyle{unsrturl}
 \bibliography{refs}
 

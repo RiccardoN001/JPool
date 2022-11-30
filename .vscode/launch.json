@@ -6,8 +6,7 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "game.Main",
-            // Name and VM arguments
-
+            //VM arguments
             "vmArgs": "--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml",
         }
     ]

@@ -414,7 +414,8 @@ public class GameController {
 
         if(turn && !gameOver && !exit
             && xm >= Constants.A_MARGIN+Constants.GHOSTBALL_RADIUS && xm <= Constants.B_MARGIN-Constants.GHOSTBALL_RADIUS
-            && ym >= Constants.CD_MARGIN+Constants.GHOSTBALL_RADIUS && ym <= Constants.EF_MARGIN-Constants.GHOSTBALL_RADIUS) {
+            && ym >= Constants.CD_MARGIN+Constants.GHOSTBALL_RADIUS && ym <= Constants.EF_MARGIN-Constants.GHOSTBALL_RADIUS
+            && positionGhostBall) {
 
             guided = true;
 

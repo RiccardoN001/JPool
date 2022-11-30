@@ -2,6 +2,7 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
 
+    // SDK libraries
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "/Library/Java/JavaVirtualMachines/javafx-sdk-19/lib/**/*.jar"
