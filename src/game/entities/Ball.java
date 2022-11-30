@@ -187,7 +187,7 @@ public class Ball {
             velocity.setY(-Math.abs(velocity.getY()));
         }
         // REGION E3
-        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_RIGHT_CORNER_START && x <= Constants.E_RIGHT_CORNER_START)) {
+        else if (y + r >= Constants.EF_MARGIN && (x >= Constants.E_RIGHT_CORNER_START && x <= Constants.E_RIGHT_CORNER_END)) {
             velocity.setX(Math.abs(velocity.getX()));
         }
 
@@ -428,7 +428,7 @@ public class Ball {
         double x = game.ball[ballNum].getPosition().getX();
         double y = game.ball[ballNum].getPosition().getY();
 
-        double check = 10;
+        double check = 5;
 
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check
             || ((y <= 244+15 || x <= 290+15) && !game.ball[ballNum].isDropped ())) {
