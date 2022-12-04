@@ -109,9 +109,9 @@ public class Ball {
                         if(game.player1.isMyTurn()) {
                             if(game.player1.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions == 1) {
                                 game.foulWrongBallType = true;
-                                if(game.ball[i].getBallNumber() == 8 && !game.player1.isAllBallsPlotted()) {
+                                if(game.ball[i].getBallNumber() == 8 && !game.player1.isAllBallsPotted()) {
                                     game.foulEight = true;
-                                } else if(game.ball[i].getBallNumber() == 8 && game.player1.isAllBallsPlotted()) {
+                                } else if(game.ball[i].getBallNumber() == 8 && game.player1.isAllBallsPotted()) {
                                     game.foulEight = false;
                                     game.foulWrongBallType = false;
                                 }
@@ -121,9 +121,9 @@ public class Ball {
                         } else {
                             if(game.player2.getBallType() != game.ball[i].getBallType() && game.cueBallCollisions == 1) {
                                 game.foulWrongBallType = true;
-                                if(game.ball[i].getBallNumber() == 8 && !game.player2.isAllBallsPlotted()) {
+                                if(game.ball[i].getBallNumber() == 8 && !game.player2.isAllBallsPotted()) {
                                     game.foulEight = true;
-                                } else if(game.ball[i].getBallNumber() == 8 && game.player2.isAllBallsPlotted()) {
+                                } else if(game.ball[i].getBallNumber() == 8 && game.player2.isAllBallsPotted()) {
                                     game.foulEight = false;
                                     game.foulWrongBallType = false;
                                 }

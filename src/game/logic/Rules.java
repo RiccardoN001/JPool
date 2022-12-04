@@ -219,7 +219,7 @@ public class Rules {
             }
 
             if(f == 0) {
-                game.player1.setAllBallsPlotted(true);
+                game.player1.setAllBallsPotted(true);
             }
 
         } else {
@@ -242,7 +242,7 @@ public class Rules {
             }
 
             if(f ==0 ) {
-                game.player2.setAllBallsPlotted(true);
+                game.player2.setAllBallsPotted(true);
             }
 
         }

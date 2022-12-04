@@ -671,12 +671,12 @@ public class GameController {
                 }
             }
 
-            if(player1.isAllBallsPlotted() && player1.isMyTurn() && !gameOver) {
+            if(player1.isAllBallsPotted() && player1.isMyTurn() && !gameOver) {
                 board.showEightPockets();
                 board.eightPocketDeclaration();
             }
     
-            if(player2.isAllBallsPlotted() && player2.isMyTurn() && !gameOver) {
+            if(player2.isAllBallsPotted() && player2.isMyTurn() && !gameOver) {
                 board.showEightPockets();
                 board.eightPocketDeclaration();
             }
