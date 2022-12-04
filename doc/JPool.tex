@@ -306,6 +306,12 @@ La classe \texttt{Player.java} rappresenta un giocatore.
 Per la creazione di un giocatore è sufficiente fornire un nickname.
 I restanti attributi del giocatore sono necessari per l'implementazione delle regole del gioco; infatti ci permettono di conoscere (in ogni momento della partita) quale dei due giocatori deve colpire, la categoria di bilie assegnata a ciascun giocatore e, a fine partita, quale dei due giocatori ha vinto.
 
+\begin{figure}
+	\center
+	\includegraphics[width=0.9\textwidth]{entities.png}
+	\caption{Diagramma UML (semplificato) del package \texttt{game.entities}.}
+\end{figure}
+
 \subsection{Logic}\label{se:Logic} % SECTION 3.2.2
 
 \subsubsection*{MENU CONTROLLER}
@@ -410,6 +416,14 @@ La classe \texttt{Board.java} contiene metodi (collegati alla Timeline) che most
 Nello specifico, aggiorna i seguenti Label presenti nella scena di gioco: \texttt{scoreboardLabel}, \texttt{centralboardLabel} e \texttt{foulboardLabel}.
 Il primo specifica in ogni momento quale dei due giocatori è al tavolo, il secondo notifica l'assegnazione delle bilie ai giocatori, la vittoria di un giocatore ed è anche utilizzato quando si vuole terminare la partita; il terzo notifica i falli rilevati e ne specifica il tipo.
 
+\begin{figure}
+	\center
+	\includegraphics[width=0.5\textwidth]{logic.png}
+	\caption{Diagramma UML (semplificato) del package \texttt{game.logic}.}
+\end{figure}
+
+\pagebreak
+
 \subsection{Resources}\label{se:Resources} % SECTION 3.2.3
 
 Oltre alle immagini e ai suoni, questa sezione contiene i file di definizione (FXML) e personalizzazione (CSS) della GUI.
@@ -424,7 +438,7 @@ Quest'ultima contiene una serie di proprietà grafiche, relative alle varie comp
 Le proprietà grafiche sono specificate principalmente su classi di componenti, piuttosto che su di una singola componente; perché si vuole creare uno stile grafico, preciso ed univoco per ogni componente dell'applicazione.
 Ad esempio, la classe dei pulsanti dell'applicazione fa riferimento allo stile mostrato in Figura \ref{fig:ButtonStyle}.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.25\textwidth]{ButtonStyle.png}
     \caption{Stile grafico dei pulsanti di JPool.}
