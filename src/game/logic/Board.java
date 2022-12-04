@@ -38,24 +38,6 @@ public class Board {
         }
     }
 
-    public void showFoul() {
-        if(game.foulWhite) {
-            game.foulboardLabel.setText("BIANCA IMBUCATA");
-        }
-        if(game.foulWrongBallType) {
-            game.foulboardLabel.setText("CATEGORIA ERRATA");
-        }
-        if(game.foulEight) {
-            game.foulboardLabel.setText("CATEGORIA ERRATA (NERA)");
-        }
-        if(game.foulNoBallHit) {
-            game.foulboardLabel.setText("NESSUNA BILIA COLPITA");
-        }
-        if(game.foulShotClock) {
-            game.foulboardLabel.setText("TEMPO SCADUTO");
-        }
-    }
-
     public void changeTurn() {
 
         if(!game.soundOff && !game.gameOver) {
@@ -74,6 +56,24 @@ public class Board {
             game.player2.setMyTurn(false);
         }
 
+    }
+
+    public void showFoul() {
+        if(game.foulWhite) {
+            game.foulboardLabel.setText("FALLO: BIANCA IMBUCATA");
+        }
+        if(game.foulWrongBallType) {
+            game.foulboardLabel.setText("FALLO: CATEGORIA ERRATA");
+        }
+        if(game.foulEight) {
+            game.foulboardLabel.setText("FALLO: CATEGORIA ERRATA (NERA)");
+        }
+        if(game.foulNoBallHit) {
+            game.foulboardLabel.setText("FALLO: NESSUNA BILIA COLPITA");
+        }
+        if(game.foulShotClock) {
+            game.foulboardLabel.setText("FALLO: TEMPO SCADUTO");
+        }
     }
 
     public void ballAssignment() {
@@ -180,25 +180,6 @@ public class Board {
 
     }
 
-    public void removeEightPockets() {
-
-        game.blackScoreBall.setVisible(false);
-
-        game.pocket1.setStroke(Color.BLACK);
-        game.pocket1.setStrokeWidth(1);
-        game.pocket2.setStroke(Color.BLACK);
-        game.pocket2.setStrokeWidth(1);
-        game.pocket3.setStroke(Color.BLACK);
-        game.pocket3.setStrokeWidth(1);
-        game.pocket4.setStroke(Color.BLACK);
-        game.pocket4.setStrokeWidth(1);
-        game.pocket5.setStroke(Color.BLACK);
-        game.pocket5.setStrokeWidth(1);
-        game.pocket6.setStroke(Color.BLACK);
-        game.pocket6.setStrokeWidth(1);
-
-    }
-
     public void eightPocketDeclaration() {
         game.pocketButton1.setOnAction(event -> {
             game.pocket1.setStroke(Color.GREEN);
@@ -239,6 +220,25 @@ public class Board {
         game.pocketButton4.setVisible(false);
         game.pocketButton5.setVisible(false);
         game.pocketButton6.setVisible(false);
+    }
+
+    public void removeEightPockets() {
+
+        game.blackScoreBall.setVisible(false);
+
+        game.pocket1.setStroke(Color.BLACK);
+        game.pocket1.setStrokeWidth(1);
+        game.pocket2.setStroke(Color.BLACK);
+        game.pocket2.setStrokeWidth(1);
+        game.pocket3.setStroke(Color.BLACK);
+        game.pocket3.setStrokeWidth(1);
+        game.pocket4.setStroke(Color.BLACK);
+        game.pocket4.setStrokeWidth(1);
+        game.pocket5.setStroke(Color.BLACK);
+        game.pocket5.setStrokeWidth(1);
+        game.pocket6.setStroke(Color.BLACK);
+        game.pocket6.setStrokeWidth(1);
+
     }
 
     public void win() {

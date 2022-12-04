@@ -9,7 +9,7 @@ public class Player {
     private boolean myTurn;
     private boolean allBallsPlotted;
     private boolean win;
-    private int ballType;
+    private int ballType; // CATEGORY ASSIGNED: 0 -> not assigned, 1 -> solid, 2 -> striped
 
     // CONSTRUCTOR METHOD
     public Player(String nickname) {

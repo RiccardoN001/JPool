@@ -97,7 +97,7 @@ public class Constants {
     //BOTTOM-RIGHT POCKET
     public static final double BOTTOM_RIGHT_POCKET_X = 1149;
     public static final double BOTTOM_RIGHT_POCKET_Y = 710;
-    // RACK
+    // RACK (first ball in)
     public static final double RACKSTACK_X = 1192; 
 
 }

@@ -75,6 +75,7 @@ public class SettingsController{
     @FXML
     public void initialize() throws Exception {
         
+        // fill pages of paginations with images
         tableMenu.setPageFactory(new Callback<Integer,Node>() {
             @Override
             public Node call(Integer pageIndex){
@@ -146,6 +147,7 @@ public class SettingsController{
         }
     }
 
+    // coin toss -> breaking player
     @FXML
     public void handleCoinButton(ActionEvent event) throws Exception {
 
@@ -184,33 +186,6 @@ public class SettingsController{
         coinButton.setDisable(true);
 
     }
-    
-    @FXML
-    public void handlePlayButton(ActionEvent event) throws Exception {
-        Stage stage;
-        Parent root;
-        Scene scene;
-
-        stage = (Stage) playButton.getScene().getWindow();
-        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Game.fxml"));
-
-        scene = new Scene(root);
-        scene.getStylesheets().add(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
-
-        if(tableMenu.getCurrentPageIndex() == 0) {
-            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table1.css").toExternalForm());
-        } else if(tableMenu.getCurrentPageIndex() == 1) {
-            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table2.css").toExternalForm());
-        } else if(tableMenu.getCurrentPageIndex() == 2) {
-            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table3.css").toExternalForm());
-        } else {
-            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table4.css").toExternalForm());
-        }
-
-        stage.setScene(scene);
-        stage.show();
-        stage.setOnCloseRequest(e -> System.exit(0));
-    }
 
     public void splitPlayer() {
         int coinToss = (int)(Math.random()*2);
@@ -231,6 +206,36 @@ public class SettingsController{
         }
         playButton.setDisable(false);
     }
+    
+    @FXML
+    public void handlePlayButton(ActionEvent event) throws Exception {
+        Stage stage;
+        Parent root;
+        Scene scene;
+
+        stage = (Stage) playButton.getScene().getWindow();
+        root = FXMLLoader.load(Main.class.getResource("resources/gui/def/Game.fxml"));
+
+        scene = new Scene(root);
+        scene.getStylesheets().add(Main.class.getResource("resources/gui/style/standard.css").toExternalForm());
+
+        // table CSS customization
+        if(tableMenu.getCurrentPageIndex() == 0) {
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table1.css").toExternalForm());
+        } else if(tableMenu.getCurrentPageIndex() == 1) {
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table2.css").toExternalForm());
+        } else if(tableMenu.getCurrentPageIndex() == 2) {
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table3.css").toExternalForm());
+        } else {
+            scene.getStylesheets().add(Main.class.getResource("resources/gui/style/table4.css").toExternalForm());
+        }
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setOnCloseRequest(e -> System.exit(0));
+    }
+
+    // GET/SET METHODS
 
     public int cueMenuIndex () {
         return this.cueMenu.getCurrentPageIndex();
