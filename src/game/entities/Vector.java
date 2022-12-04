@@ -38,14 +38,17 @@ public class Vector {
         y /= size;
     }
 
+    // returns orthogonal vector (towards left side of calling vector)
     public Vector perpendicularLeft() {
         return new Vector(y, -x);
     }
-
+    
+    // returns orthogonal vector (towards right side of calling vector)
     public Vector perpendicularRight() {
         return new Vector(-y, x);
     }
 
+    // checks if the point calling is left or right of the line through points a and b
     public double determinant(Vector a, Vector b) {
         return ((x - a.getX()) * (b.getY() - a.getY()) - (y - a.getY()) * (b.getX() - a.getX()));
     }

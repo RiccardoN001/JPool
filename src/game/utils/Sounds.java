@@ -1,7 +1,7 @@
 package game.utils;
 
 // BRIEF CLASS DESCRIPTION
-// Used to implement sound effects in the game
+// Used to implement sound effects
 
 import game.Main;
 
@@ -29,7 +29,7 @@ public class Sounds {
             e.printStackTrace();
         }
 
-        clip.setFramePosition (0);
+        clip.setFramePosition(0);
         clip.start();
         
     }

@@ -1,12 +1,11 @@
 package game.entities;
 
-// BRIEF CLASS DESCRIPTION (FINISHED)
+// BRIEF CLASS DESCRIPTION
 // Represents the physical model of a (3D) billiard ball
 
 import game.Main;
 import game.logic.GameController;
-import game.utils.Constants;
-import game.utils.Sounds;
+import game.utils.*;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
@@ -429,36 +428,42 @@ public class Ball {
 
         double check = 5;
 
+        // TOP LEFT POCKET (#1)
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check
-            || ((y <= 244+15 || x <= 290+15) && !game.ball[ballNum].isDropped ())) {
+            || ((y <= 259 || x <= 305) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 1;
             }
+        // BOTTOM LEFT POCKET (#4)
         } else if (distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check
-            || ((y >= 700-15 || x <= 290+15) && !game.ball[ballNum].isDropped ())) {
+            || ((y >= 685 || x <= 305) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 4;
             }
+        // TOP MIDDLE POCKET (#2)
         } else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check-5) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 2;
             }
+        // BOTTOM MIDDLE POCKET (#5)
         } else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check-5) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 5;
             }
+        // TOP RIGHT POCKET (#3)
         } else if (distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check
-            || ((y <= 244+15 || x >= 1174-15) && !game.ball[ballNum].isDropped ())) {
+            || ((y <= 259 || x >= 1159) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 3;
             }
+        // BOTTOM RIGHT POCKET (#6)
         } else if (distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check
-            || ((y >= 700-15 || x >= 1174-15) && !game.ball[ballNum].isDropped ())) {
+            || ((y >= 685 || x >= 1159) && !game.ball[ballNum].isDropped ())) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 6;
@@ -473,13 +478,16 @@ public class Ball {
 
     public void ballAnimation(int ballNum) {
         if(game.ball[ballNum].getVelocity().getSize() <= 8e-2) {
+            // stop ball if velocity << (<= 0.08)
             game.ball[ballNum].setVelocity(0, 0);  
         } else {
 
+            // update ball position (add velocity along x and y directions)
             game.ball[ballNum].getPosition().setX(game.ball[ballNum].getPosition().getX() + game.ball[ballNum].getVelocity().getX());
             game.ball[ballNum].getPosition().setY(game.ball[ballNum].getPosition().getY() + game.ball[ballNum].getVelocity().getY());
 
             for(int i = 0; i < 16; i++) {
+                // check if ball is colliding with another ball
                 if(game.ball[ballNum].collides(game.ball[i]) && ballNum != game.ball[i].getBallNumber()) {
 
                     if(ballNum == 0) {
