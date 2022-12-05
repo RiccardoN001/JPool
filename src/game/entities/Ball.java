@@ -54,6 +54,7 @@ public class Ball {
         sphere.setLayoutX(position.getX());
         sphere.setLayoutY(position.getY());
 
+        // place balls numbers facing up
         sphere.setRotationAxis(Rotate.Y_AXIS);
         sphere.setRotate(270);
 
@@ -98,6 +99,8 @@ public class Ball {
                     } else if(game.turnNum != 1 && !game.soundOff) {
                         Sounds.playSound("BallSound");
                     }
+
+                    // check foulwrongballtype or fouleight (first cue ball collision)
 
                     if(ballNum == 0 && game.player1.getBallType() == 0 && game.cueBallCollisions==1) {
                         if(game.ball[i].getBallNumber() == 8) {
@@ -297,7 +300,7 @@ public class Ball {
         double x = game.ball[ballNum].getPosition().getX();
         double y = game.ball[ballNum].getPosition().getY();
 
-        double check = 5;
+        double check = 5; // tolerance
 
         // TOP LEFT POCKET (#1)
         if (distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check
@@ -349,22 +352,24 @@ public class Ball {
             Sounds.playSound("PocketSound");
         }
 
+        // set ball as potted and place it in the rack
         game.thisTurnPottedBalls.add(Integer.valueOf(ballNum));
         game.ball[ballNum].setDropped(true);
         game.ball[ballNum].setVelocity(0, 0);
         game.ball[ballNum].setPosition(new Vector(Constants.RACKSTACK_X, game.rackStack));
 
-        game.rackStack -= 25;
+        // the next ball will be placed
+        game.rackStack -= Constants.BALL_DIAMETER;
 
         if(ballNum == 0) {
-            game.rackStack += 25;
+            game.rackStack += Constants.BALL_DIAMETER;
             game.ball[0].setDropped(false);
             game.ball[0].setPosition(new Vector(0, 0));
             game.ball[0].getSphere().setVisible(false);
         }
 
         if(ballNum == 8) {
-            game.rackStack += 25;
+            game.rackStack += Constants.BALL_DIAMETER;
             game.ball[8].setDropped(true);
             game.ball[8].setVelocity(0, 0);
             game.ball[8].getSphere().setVisible(false);
@@ -376,10 +381,12 @@ public class Ball {
         return Math.sqrt((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2));
     }
 
+    // check ball collision with other balls
     public boolean collides(Ball b) {
         return position.sub(b.position).getSize() <= 2 * Constants.BALL_RADIUS;
     }
 
+    // check ghost ball collision with other balls
     public boolean ghostCollides(Circle circle, Ball ball) {
 
         double x = circle.getCenterX() - ball.getPosition().getX();
@@ -394,11 +401,12 @@ public class Ball {
 
     }
 
-    // 
+    // user -> place cue ball in the desired position
     public void moveCueBall() {
 
         game.ball[0].getSphere().addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
 
+            // split (rectangle left of head string)
             if(game.turn && game.turnNum == 1) {
                 game.cue.setVisible(false);
                 game.guidelineToBall.setVisible(false);
@@ -412,6 +420,7 @@ public class Ball {
                     event.getSceneY() <= Constants.EF_MARGIN-Constants.BALL_RADIUS) {
                     game.ball[0].setPosition(new Vector(event.getSceneX(), event.getSceneY()));
                 }
+            // after foul (everywhere on the table)
             } else if(game.turn && game.foul) {
                 
                 game.cue.setVisible(false);
@@ -441,11 +450,10 @@ public class Ball {
         
     }
 
-    // 
+    // arrange randomly balls for split (according to rules)
     public static void triangle(Ball ball[]) {
 
         // FIXED POSITIONS
-
         ball[0] = new Ball(Constants.HEAD_SPOT_X, Constants.HEAD_SPOT_Y, 0);
         ball[1] = new Ball(Constants.FOOT_SPOT_X, Constants.FOOT_SPOT_Y, 1);
         ball[8] = new Ball(Constants.TRIANGLE_ROW3_X, Constants.TRIANGLE_COL5_Y, 8);

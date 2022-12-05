@@ -1,7 +1,7 @@
 package game.logic;
 
 // BRIEF CLASS DESCRIPTION 
-// Visual Referee: updates the View with graphics to direct the match
+// Visual Referee: notifies the players with graphics to direct the match
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,6 +38,7 @@ public class Board {
         }
     }
 
+    // player 1 <-> player 2
     public void changeTurn() {
 
         if(!game.soundOff && !game.gameOver) {
@@ -87,6 +88,7 @@ public class Board {
             game.centralboardLabel.setVisible(true);
             game.centralboardLabel.toFront();
 
+            // assign balls to players (after balls assigned)
             if(game.player1.getBallType() == 1) {
                 for(int i = 0; i < 7; i++) {
                     game.solidScoreBall[i] = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Balls/Ball" + String.valueOf(i + 1) + ".png")));
@@ -129,6 +131,7 @@ public class Board {
                 }
             }
 
+            // pop-up message timer (centralboard)
             Timer popup = new Timer();
             TimerTask task = new TimerTask() {
                 double countdown = 2;
@@ -148,6 +151,7 @@ public class Board {
         
     }
 
+    // activate buttons and graphics for eight pocket declaration
     public void showEightPockets() {
 
         game.blackScoreBall = new ImageView(new Image(Main.class.getResourceAsStream("resources/images/Balls/Ball8.png")));
@@ -180,6 +184,7 @@ public class Board {
 
     }
 
+    // declare eight ball pocket
     public void eightPocketDeclaration() {
         game.pocketButton1.setOnAction(event -> {
             game.pocket1.setStroke(Color.GREEN);
@@ -241,6 +246,7 @@ public class Board {
 
     }
 
+    // regular win
     public void win() {
 
         removeObjects();
@@ -268,6 +274,7 @@ public class Board {
 
     }
 
+    // eight ball has been potted incorrectly -> direct win case
     public void eightPotted() {
 
         removeObjects();

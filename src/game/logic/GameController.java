@@ -51,6 +51,7 @@ public class GameController {
     private ImageView soundIconOff;
     public boolean soundOff;
 
+    // pause graphics
     Rectangle blurredScene = new Rectangle(1400, 800, Color.WHITE);
     @FXML
     private Button exitYes;
@@ -589,6 +590,7 @@ public class GameController {
         sliderVelocityLabel.setText(0 + "%");
     }
 
+    // game animation timeline management
     public void update() {
 
         if(turnNum == 1 && !foulShotClock) {

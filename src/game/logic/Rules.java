@@ -15,29 +15,41 @@ public class Rules {
 
         boolean change = false;
 
+        // TURN 1
         if(game.turnNum == 1) {
 
+            // 0 balls potted
             if(game.thisTurnPottedBalls.size() == 0) {
                 change = true;
+            // at least 1 ball potted
             } else {
+
+                // check if eight, cue or other ball
                 for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                     if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
                         board.eightPotted();
                     } else if (game.thisTurnPottedBalls.get(i).intValue() == 0) {
                         game.foulWhite = true;
                     } else {
+                        // update thisturnpottedballs arraylist
                         game.potted[game.thisTurnPottedBalls.get(i).intValue()] = true;
                     }
                 }
+
             }
 
+        // TURN >= 2 AND BALLS (CATEGORY) NOT ASSIGNED
         } else if(game.turnNum >= 2 && game.player1.getBallType() == 0) {
 
+            // 0 balls potted
             if(game.thisTurnPottedBalls.size()== 0) {
                 change = true;
+            // at least 1 ball potted
             } else {
-                int firstPuttedBallNum = game.thisTurnPottedBalls.get(0).intValue();
-                if(firstPuttedBallNum >= 1 && firstPuttedBallNum <= 8) {
+
+                // first potted ball -> players categories
+                int firstPottedBallNum = game.thisTurnPottedBalls.get(0).intValue();
+                if(firstPottedBallNum >= 1 && firstPottedBallNum <= 8) {
                     if(game.player1.isMyTurn()) {
                         game.player1.setBallType(1);
                         game.player2.setBallType(2);
@@ -45,7 +57,7 @@ public class Rules {
                         game.player1.setBallType(2);
                         game.player2.setBallType(1);
                     }
-                } else if(firstPuttedBallNum >= 9 && firstPuttedBallNum <= 15) {
+                } else if(firstPottedBallNum >= 9 && firstPottedBallNum <= 15) {
                     if(game.player1.isMyTurn()) {
                         game.player1.setBallType(2);
                         game.player2.setBallType(1);
@@ -55,26 +67,32 @@ public class Rules {
                     }
                 }
 
+                // check if eight, cue or other ball
                 for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                     if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
                         board.eightPotted();
                     } else if (game.thisTurnPottedBalls.get(i).intValue() == 0) {
                         game.foulWhite = true;
                     } else {
+                        // update thisturnpottedballs arraylist
                         game.potted[game.thisTurnPottedBalls.get(i).intValue()] = true;
                     }
                 }
 
+                // assign balls
                 if(!game.gameOver && !game.thisTurnPottedBalls.contains(Integer.valueOf(0))) {
                     board.ballAssignment();
                 }
 
             }
 
+        // TURN >= 2 AND BALLS (CATEGORY) ASSIGNED
         } else {
 
+            // 0 balls potted
             if(game.thisTurnPottedBalls.size() == 0) {
                 change = true;
+            // just eight ball potted
             } else if(game.thisTurnPottedBalls.size() == 1 && game.thisTurnPottedBalls.get(0).intValue() == 8) {
 
                 if(game.player1.isMyTurn()) {
@@ -151,6 +169,7 @@ public class Rules {
 
                 }
 
+            // balls potted > 1
             } else {
 
                 if(game.player1.isMyTurn()) {
