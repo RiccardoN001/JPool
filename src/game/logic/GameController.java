@@ -661,7 +661,7 @@ public class GameController {
             }
             
             if(ballAssigned) {
-                for(int i = 1; i <=7 ; i++) {
+                for(int i = 1; i <= 7 ; i++) {
                     if(potted[i]) {
                         solidScoreBall[i - 1].setVisible(false);
                     }
