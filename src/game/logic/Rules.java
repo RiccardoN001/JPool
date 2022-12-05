@@ -97,34 +97,42 @@ public class Rules {
 
                 if(game.player1.isMyTurn()) {
 
+                    // player 1 turn and has solid -> check all solid
                     if(game.player1.getBallType() == 1) {
-                        int f = 0;
-                        for(int i = 1; i<= 7; i++) {
+
+                        boolean allBallsPotted = true;
+                        for(int i = 1; i <= 7; i++) {
                             if(!game.potted[i]) {
-                                f = 1;
+                                allBallsPotted = false;
                                 board.eightPotted();
                             }
                         }
-                        if(f == 0 && game.eightPocket == eightDeclaredPocket) {
+                        // pocket in delcared pocket -> win
+                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
                             board.win();
                             return;
-                        } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
+                        // !pocket in declared pocket -> opponent win
+                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
                             board.eightPotted();
                             return;
                         }
+
+                    // player 1 turn and has striped -> check all striped
                     } else {
 
-                        int f = 0;
-                        for(int i = 9; i<= 15; i++) {
+                        boolean allBallsPotted = true;
+                        for(int i = 9; i <= 15; i++) {
                             if(!game.potted[i]) {
-                                f = 1;
+                                allBallsPotted = false;
                                 board.eightPotted();
                             }
                         }
-                        if(f == 0 && game.eightPocket == eightDeclaredPocket) {
+                        // pocket in delcared pocket -> win
+                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
                             board.win();
                             return;
-                        } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
+                        // !pocket in declared pocket -> opponent win
+                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
                             board.eightPotted();
                             return; 
                         }
@@ -133,34 +141,42 @@ public class Rules {
 
                 } else {
 
+                    // player 2 turn and has solid -> check all solid
                     if(game.player2.getBallType() == 1) {
-                        int f = 0;
-                        for(int i = 1; i<= 7; i++) {
+
+                        boolean allBallsPotted = true;
+                        for(int i = 1; i <= 7; i++) {
                             if(!game.potted[i]) {
-                                f = 1;
+                                allBallsPotted = false;
                                 board.eightPotted();
                             }
                         }
-                        if(f == 0 && game.eightPocket == eightDeclaredPocket) {
+                        // pocket in delcared pocket -> win
+                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
                             board.win();
                             return;
-                        } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
+                        // !pocket in declared pocket -> opponent win
+                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
                             board.eightPotted();
                             return;
                         }
+
+                    // player 2 turn and has striped -> check all striped
                     } else {
 
-                        int f = 0;
-                        for(int i = 9; i<= 15; i++) {
+                        boolean allBallsPotted = true;
+                        for(int i = 9; i <= 15; i++) {
                             if(!game.potted[i]) {
-                                f = 1;
+                                allBallsPotted = false;
                                 board.eightPotted();
                             }
                         }
-                        if(f == 0 && game.eightPocket == eightDeclaredPocket) {
+                        // pocket in delcared pocket -> win
+                        if(allBallsPotted&& game.eightPocket == eightDeclaredPocket) {
                             board.win();
                             return;
-                        } else if(f == 0 && game.eightPocket != eightDeclaredPocket) {
+                        // !pocket in declared pocket -> opponent win
+                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
                             board.eightPotted();
                             return;
                         }
@@ -169,29 +185,33 @@ public class Rules {
 
                 }
 
-            // balls potted > 1
+            // balls potted > 1 or eight ball potted
             } else {
 
                 if(game.player1.isMyTurn()) {
 
+                    // check if eight, cue or other ball
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                         if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
                             board.eightPotted();
                         } else if(game.thisTurnPottedBalls.get(i).intValue() == 0) {
                             game.foulWhite = true;
                         } else {
+                            // update thisturnpottedballs arraylist
                             game.potted[game.thisTurnPottedBalls.get(i).intValue()] = true;
                         }
                     }
 
                 } else {
 
+                    // check if eight, cue or other ball
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
                         if(game.thisTurnPottedBalls.get(i).intValue() == 8) {
                             board.eightPotted();
                         } else if(game.thisTurnPottedBalls.get(i).intValue() == 0) {
                             game.foulWhite = true;
                         } else {
+                            // update thisturnpottedballs arraylist
                             game.potted[game.thisTurnPottedBalls.get(i).intValue()] = true;
                         }
                     }
@@ -206,7 +226,7 @@ public class Rules {
             game.foul = true;
         }
 
-        if(change || game.foulWhite || game.foulWrongBallType|| game.foul || game.foulNoBallHit || game.foulShotClock) {
+        if(change || game.foulWhite || game.foulWrongBallType || game.foul || game.foulNoBallHit || game.foulShotClock) {
             board.changeTurn();
         }
 
@@ -214,53 +234,62 @@ public class Rules {
 
     public void checkPotted() {
 
+        // balls not assigned
         if(game.player1.getBallType() == 0) {
             return;
         } 
 
+        // player 1 turn
         if(game.player1.isMyTurn()) {
            
-            int f = 0;
+            boolean allBallsPotted = true;
+
             if(game.player1.getBallType() == 1) {
-                for(int i = 1; i<= 7; i++) {
+                // player 1 -> solid -> check all solid
+                for(int i = 1; i <= 7; i++) {
                     if(!game.potted[i]) {
-                        f = 1;
+                        allBallsPotted = false;
                         break;
                     }
                 }
             } else {
-                for(int i = 9; i<= 15; i++) {
+                // player 1 -> striped -> check all striped
+                for(int i = 9; i <= 15; i++) {
                     if(!game.potted[i]) {
-                        f = 1;
+                        allBallsPotted = false;
                         break;
                     }
                 }
             }
 
-            if(f == 0) {
+            if(allBallsPotted) {
                 game.player1.setAllBallsPotted(true);
             }
 
+        // player 2 turn
         } else {
 
-            int f = 0;
+            boolean allBallsPotted = true;
+
             if(game.player2.getBallType() == 1) {
-                for(int i = 1; i<= 7; i++) {
+                // player 2 -> solid -> check all solid
+                for(int i = 1; i <= 7; i++) {
                     if(!game.potted[i]) {
-                        f = 1;
+                        allBallsPotted = false;
                         break;
                     }
                 }
             } else {
-                for(int i = 9; i<= 15; i++) {
+                // player 2 -> striped -> check all striped
+                for(int i = 9; i <= 15; i++) {
                     if(!game.potted[i]) {
-                        f = 1;
+                        allBallsPotted = false;
                         break;
                     }
                 }
             }
 
-            if(f ==0 ) {
+            if(allBallsPotted) {
                 game.player2.setAllBallsPotted(true);
             }
 
