@@ -15,3 +15,5 @@ java --module-path /path/to/sdk/lib --add-modules javafx.controls,javafx.fxml
 ```
 * /path/to/sdk/lib è il percorso alla cartella lib (contenuta nel SDK) nel proprio PC
 * /path/to/jar è il percorso al file jar nel proprio PC
+
+**N.B.** Su Windows il /path/to/sdk/lib deve essere tra virgolette
