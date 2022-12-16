@@ -1,0 +1,50 @@
+@startuml entities
+
+package game.entities {
+
+  class Vector {
+    double x
+    double y
+    add()
+    sub()
+    multiply()
+    scalar()
+    normalize()
+    perpendicularLeft()
+    perpendicularRight()
+    determinant()
+  }
+
+  class Ball {
+    Sphere sphere
+    Vector position
+    Vector velocity
+    int ballNumber
+    int ballType
+    boolean dropped
+    drawBall()
+    triangle()
+    ballAnimation()
+    ballCollision()
+    spin()
+    bankCollision()
+    tableFriction()
+    checkPocket()
+    moveCueBall()
+  }
+
+  class Player {
+    String nickname
+    int ballType
+    boolean myTurn
+    boolean allBallsPotted
+    boolean win
+  }
+
+  Ball -> Vector: <<create>>
+  Ball "1" *-> "1" Vector: position
+  Ball "1" *-> "1" Vector: velocity
+
+}
+
+@enduml

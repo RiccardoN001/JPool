@@ -172,7 +172,7 @@ public class Rules {
                             }
                         }
                         // pocket in delcared pocket -> win
-                        if(allBallsPotted&& game.eightPocket == eightDeclaredPocket) {
+                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
                             board.win();
                             return;
                         // !pocket in declared pocket -> opponent win
@@ -188,7 +188,14 @@ public class Rules {
             // balls potted > 1 or eight ball potted
             } else {
 
+                int firstPottedBallNum = game.thisTurnPottedBalls.get(0).intValue();
+
                 if(game.player1.isMyTurn()) {
+
+                    // first ball in different from own type -> change turn player
+                    if(game.player1.getBallType() != game.ball[firstPottedBallNum].getBallType()) {
+                        change = true;
+                    }
 
                     // check if eight, cue or other ball
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
@@ -203,6 +210,11 @@ public class Rules {
                     }
 
                 } else {
+
+                    // first ball in different from own type -> change turn player
+                    if(game.player2.getBallType() != game.ball[firstPottedBallNum].getBallType()) {
+                        change = true;
+                    }
 
                     // check if eight, cue or other ball
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
