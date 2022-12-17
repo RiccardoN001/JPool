@@ -332,7 +332,7 @@ public class Ball {
             }
         // TOP RIGHT POCKET (#3)
         } else if ((distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check
-            || (y <= 259 && x >= 1109 && x <= 1159) || (x >= 1159 && y >= 259 && y <= 309))
+            || (y <= 259 && x >= 1000 && x <= 1159) || (x >= 1159 && y >= 259 && y <= 309))
             && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
             if(ballNum == 8) {
