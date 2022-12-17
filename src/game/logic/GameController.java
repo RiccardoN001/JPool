@@ -635,9 +635,6 @@ public class GameController {
                 foulNoBallHit = false;
             }
 
-            System.out.println(eightPocket);
-            System.out.println(eightDeclaredPocket);
-
             rules.checkFoul();
             rules.checkPotted();
 
