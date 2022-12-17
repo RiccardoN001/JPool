@@ -188,32 +188,32 @@ public class Board {
     public void eightPocketDeclaration() {
         game.pocketButton1.setOnAction(event -> {
             game.pocket1.setStroke(Color.GREEN);
-            Rules.eightDeclaredPocket = 1;
+            game.eightDeclaredPocket = 1;
             eightOff();
         });
         game.pocketButton2.setOnAction(event -> {
             game.pocket2.setStroke(Color.GREEN);
-            Rules.eightDeclaredPocket = 2;
+            game.eightDeclaredPocket = 2;
             eightOff();
         });
         game.pocketButton3.setOnAction(event -> {
             game.pocket3.setStroke(Color.GREEN);
-            Rules.eightDeclaredPocket = 3;
+            game.eightDeclaredPocket = 3;
             eightOff();
         });
         game.pocketButton4.setOnAction(event -> {
             game.pocket4.setStroke(Color.GREEN);
-            Rules.eightDeclaredPocket = 4;
+            game.eightDeclaredPocket = 4;
             eightOff();
         });
         game.pocketButton5.setOnAction(event -> {
             game.pocket5.setStroke(Color.GREEN);
-            Rules.eightDeclaredPocket = 5;
+            game.eightDeclaredPocket = 5;
             eightOff();
         });
         game.pocketButton6.setOnAction(event -> {
             game.pocket6.setStroke(Color.GREEN);
-            Rules.eightDeclaredPocket = 6;
+            game.eightDeclaredPocket = 6;
             eightOff();
         });
     }

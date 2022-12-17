@@ -40,13 +40,13 @@
             <Blend />
          </effect>
          <image>
-            <Image url="@../../images/Tables/WoodBrown.png" />
+            <Image url="@../style/WoodBrown.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="50.0" layoutX="669.0" layoutY="214.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
         <ImageView fitHeight="30.0" fitWidth="780.0" layoutX="314.0" layoutY="684.0" pickOnBounds="true" styleClass="bank">
             <image>
-                <Image url="@../../images/Tables/WoodBrown.png" />
+                <Image url="@../style/WoodBrown.png" />
             </image>
             <effect>
                 <Blend />
@@ -55,7 +55,7 @@
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="SILVER" height="44.0" layoutX="669.0" layoutY="670.0" stroke="SILVER" strokeType="INSIDE" width="70.0" />
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="79.0" layoutY="449.0" pickOnBounds="true" rotate="90.0" styleClass="bank">
             <image>
-                <Image url="@../../images/Tables/WoodBrown.png" />
+                <Image url="@../style/WoodBrown.png" />
             </image>
             <effect>
                 <Blend />
@@ -63,7 +63,7 @@
         </ImageView>
         <ImageView fitHeight="30.0" fitWidth="380.0" layoutX="949.0" layoutY="449.0" pickOnBounds="true" rotate="90.0" styleClass="bank">
             <image>
-                <Image url="@../../images/Tables/WoodBrown.png" />
+                <Image url="@../style/WoodBrown.png" />
             </image>
             <effect>
                 <Blend />
@@ -323,7 +323,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#ffffff00" height="383.0" layoutX="160.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" width="26.0" />
-      <Slider fx:id="powerSlider" layoutX="163.0" layoutY="284.0" max="15.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="20.0" rotate="180.0">
+      <Slider fx:id="powerSlider" layoutX="163.0" layoutY="284.0" max="13.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="20.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

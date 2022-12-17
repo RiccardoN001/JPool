@@ -154,6 +154,7 @@ public class GameController {
     public Button pocketButton5;
     @FXML
     public Button pocketButton6;
+    public int eightDeclaredPocket;
     public int eightPocket;
 
     // -------------------------------------------------- COMMUNICATION --------------------------------------------------
@@ -359,6 +360,8 @@ public class GameController {
         foulNoBallHit = true;
         foulShotClock = false;
         cueBallCollisions = 0;
+        eightDeclaredPocket = 0;
+        eightPocket = 0;
         turnChange = false;
         gameOver = false;
 
@@ -529,9 +532,9 @@ public class GameController {
 
             Vector cueBallPosition = new Vector(ball[0].getPosition().getX(), ball[0].getPosition().getY());
 
-            double velocity = Math.floor(powerSlider.getValue() / 15*100);
+            double velocity = Math.floor(powerSlider.getValue() / 13*100);
             sliderVelocityLabel.setText(String.valueOf((int)velocity) + "%");
-            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 15 * 0.7);
+            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 13 * 0.7);
             
             cue.setLayoutX(cueBallPosition.getX() - 385 - velocity);
             cue.setLayoutY(cueBallPosition.getY() - 20);
@@ -631,6 +634,9 @@ public class GameController {
             if(foulShotClock) {
                 foulNoBallHit = false;
             }
+
+            System.out.println(eightPocket);
+            System.out.println(eightDeclaredPocket);
 
             rules.checkFoul();
             rules.checkPotted();

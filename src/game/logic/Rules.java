@@ -7,8 +7,6 @@ public class Rules {
 
     private GameController game = GameController.getController();
 
-    public static int eightDeclaredPocket = 0;
-
     private Board board = new Board();
 
     public void checkFoul() {
@@ -108,11 +106,11 @@ public class Rules {
                             }
                         }
                         // pocket in delcared pocket -> win
-                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
+                        if(allBallsPotted && game.eightPocket == game.eightDeclaredPocket) {
                             board.win();
                             return;
                         // !pocket in declared pocket -> opponent win
-                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
+                        } else if(allBallsPotted && game.eightPocket != game.eightDeclaredPocket) {
                             board.eightPotted();
                             return;
                         }
@@ -128,11 +126,11 @@ public class Rules {
                             }
                         }
                         // pocket in delcared pocket -> win
-                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
+                        if(allBallsPotted && game.eightPocket == game.eightDeclaredPocket) {
                             board.win();
                             return;
                         // !pocket in declared pocket -> opponent win
-                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
+                        } else if(allBallsPotted && game.eightPocket != game.eightDeclaredPocket) {
                             board.eightPotted();
                             return; 
                         }
@@ -152,11 +150,11 @@ public class Rules {
                             }
                         }
                         // pocket in delcared pocket -> win
-                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
+                        if(allBallsPotted && game.eightPocket == game.eightDeclaredPocket) {
                             board.win();
                             return;
                         // !pocket in declared pocket -> opponent win
-                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
+                        } else if(allBallsPotted && game.eightPocket != game.eightDeclaredPocket) {
                             board.eightPotted();
                             return;
                         }
@@ -172,11 +170,11 @@ public class Rules {
                             }
                         }
                         // pocket in delcared pocket -> win
-                        if(allBallsPotted && game.eightPocket == eightDeclaredPocket) {
+                        if(allBallsPotted && game.eightPocket == game.eightDeclaredPocket) {
                             board.win();
                             return;
                         // !pocket in declared pocket -> opponent win
-                        } else if(allBallsPotted && game.eightPocket != eightDeclaredPocket) {
+                        } else if(allBallsPotted && game.eightPocket != game.eightDeclaredPocket) {
                             board.eightPotted();
                             return;
                         }
