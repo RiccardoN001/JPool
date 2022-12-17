@@ -532,9 +532,9 @@ public class GameController {
 
             Vector cueBallPosition = new Vector(ball[0].getPosition().getX(), ball[0].getPosition().getY());
 
-            double velocity = Math.floor(powerSlider.getValue() / 13*100);
+            double velocity = Math.floor(powerSlider.getValue() / 10*100);
             sliderVelocityLabel.setText(String.valueOf((int)velocity) + "%");
-            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 13 * 0.7);
+            powerBar.setOpacity(0.3 + Math.floor(powerSlider.getValue()) / 10 * 0.7);
             
             cue.setLayoutX(cueBallPosition.getX() - 385 - velocity);
             cue.setLayoutY(cueBallPosition.getY() - 20);

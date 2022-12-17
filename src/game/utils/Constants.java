@@ -60,18 +60,18 @@ public class Constants {
     // LEFT UP BANK (C)
     public static final double C_LEFT_CORNER_START = 307;
     public static final double C_LEFT_CORNER_END = 328;
-    public static final double C_RIGHT_CORNER_START = 669;
-    public static final double C_RIGHT_CORNER_END = 680;
+    public static final double C_RIGHT_CORNER_START = 675;
+    public static final double C_RIGHT_CORNER_END = 690;
     // RIGHT UP BANK (D)
     public static final double D_LEFT_CORNER_START = 722;
     public static final double D_LEFT_CORNER_END = 738;
     public static final double D_RIGHT_CORNER_START = 1082;
     public static final double D_RIGHT_CORNER_END = 1098;
     // LEFT DOWN BANK (E)
-    public static final double E_LEFT_CORNER_START = 307+10;
-    public static final double E_LEFT_CORNER_END = 324+10;
-    public static final double E_RIGHT_CORNER_START = 669;
-    public static final double E_RIGHT_CORNER_END = 683;
+    public static final double E_LEFT_CORNER_START = 317;
+    public static final double E_LEFT_CORNER_END = 334;
+    public static final double E_RIGHT_CORNER_START = 678;
+    public static final double E_RIGHT_CORNER_END = 690;
     // RIGHT DOWN BANK (F)
     public static final double F_LEFT_CORNER_START = 722;
     public static final double F_LEFT_CORNER_END = 734;
@@ -86,11 +86,11 @@ public class Constants {
     public static final double BOTTOM_LEFT_POCKET_X = 309;
     public static final double BOTTOM_LEFT_POCKET_Y = 710;
     //TOP-MIDDLE POCKET
-    public static final double TOP_MIDDLE_POCKET_X = 714;
-    public static final double TOP_MIDDLE_POCKET_Y = 261;
+    public static final double TOP_MIDDLE_POCKET_X = 724;
+    public static final double TOP_MIDDLE_POCKET_Y = 241;
     //BOTTOM-MIDDLE POCKET
-    public static final double BOTTOM_MIDDLE_POCKET_X = 714;
-    public static final double BOTTOM_MIDDLE_POCKET_Y = 690;
+    public static final double BOTTOM_MIDDLE_POCKET_X = 724;
+    public static final double BOTTOM_MIDDLE_POCKET_Y = 710;
     //TOP-RIGHT POCKET
     public static final double TOP_RIGHT_POCKET_X = 1149;
     public static final double TOP_RIGHT_POCKET_Y = 269;

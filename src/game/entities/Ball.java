@@ -319,13 +319,17 @@ public class Ball {
                 game.eightPocket = 4;
             }
         // TOP MIDDLE POCKET (#2)
-        } else if (distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check) {
+        } else if ((distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check
+            || (y <= 259 && x >= 650 && x <= 750))
+            && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 2;
             }
         // BOTTOM MIDDLE POCKET (#5)
-        } else if (distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check) {
+        } else if ((distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check
+            || (y >= 685 && x >= 650 && x <= 750))
+            && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
             if(ballNum == 8) {
                 game.eightPocket = 5;

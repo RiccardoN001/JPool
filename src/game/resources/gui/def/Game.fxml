@@ -323,7 +323,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#ffffff00" height="383.0" layoutX="160.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" width="26.0" />
-      <Slider fx:id="powerSlider" layoutX="163.0" layoutY="284.0" max="13.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="20.0" rotate="180.0">
+      <Slider fx:id="powerSlider" layoutX="163.0" layoutY="284.0" max="10.0" onMouseClicked="#cueLoading" onMouseDragEntered="#cueLoading" onMouseDragged="#cueLoading" onMouseReleased="#cueShot" orientation="VERTICAL" prefHeight="365.0" prefWidth="20.0" rotate="180.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
