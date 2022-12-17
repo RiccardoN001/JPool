@@ -186,7 +186,14 @@ public class Rules {
             // balls potted > 1
             } else {
 
+                int firstPottedBallNum = game.thisTurnPottedBalls.get(0).intValue();
+
                 if(game.player1.isMyTurn()) {
+
+                    // first ball is different from own type -> change turn player
+                    if(game.player1.getBallType() != game.ball[firstPottedBallNum].getBallType()) {
+                        change = true;
+                    }
 
                     // check if eight, cue or other ball
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {
@@ -201,6 +208,11 @@ public class Rules {
                     }
 
                 } else {
+
+                    // first ball is different from own type -> change turn player
+                    if(game.player2.getBallType() != game.ball[firstPottedBallNum].getBallType()) {
+                        change = true;
+                    }
 
                     // check if eight, cue or other ball
                     for(int i = 0; i < game.thisTurnPottedBalls.size(); i++) {

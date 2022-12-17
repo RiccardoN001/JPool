@@ -1,5 +1,8 @@
 ## Guida per l'esecuzione
 
+Per utenti Windows è possibile eseguire JPool tramite il file JPool.bat presente nella repository dist.
+Per utenti Linux e MacOS (oppure in caso di problemi con l'esecuzione del file batch in ambiente Windows) è necessario seguire la guida di esecuzione seguente.
+
 ### Prerequisiti
 
 * JDK 11 o superiore (https://www.oracle.com/java/technologies/downloads/)
