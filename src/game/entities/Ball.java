@@ -304,55 +304,49 @@ public class Ball {
 
         // TOP LEFT POCKET (#1)
         if ((distance(x, y, Constants.TOP_LEFT_POCKET_X, Constants.TOP_LEFT_POCKET_Y) <= check
-            || (y <= 250 && x >= 290 && x <= 355) || (x <= 305 && y >= 259 && y <= 309)) //second check 
+            || (y <= 250 && x >= 290 && x <= 355) || (x <= 305 && y >= 259 && y <= 309)) // second check 
             && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
-            System.out.println("Buca 1");
             if(ballNum == 8) {
                 game.eightPocket = 1;
             }
         // BOTTOM LEFT POCKET (#4)
         } else if ((distance(x, y, Constants.BOTTOM_LEFT_POCKET_X, Constants.BOTTOM_LEFT_POCKET_Y) <= check
-            || (y >= 685 && x >= 290 && x <= 355) || (x <= 305 && y >= 635 && y <= 685))
+            || (y >= 685 && x >= 290 && x <= 355) || (x <= 305 && y >= 635 && y <= 685)) // second check 
             && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
-            System.out.println("Buca 2");
             if(ballNum == 8) {
                 game.eightPocket = 4;
             }
         // TOP MIDDLE POCKET (#2)
         } else if ((distance(x, y, Constants.TOP_MIDDLE_POCKET_X, Constants.TOP_MIDDLE_POCKET_Y) <= check
-            || (y <= 259 && x >= 650 && x <= 750))
+            || (y <= 259 && x >= 650 && x <= 750)) // second check 
             && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
-            System.out.println("Buca 2");
             if(ballNum == 8) {
                 game.eightPocket = 2;
             }
         // BOTTOM MIDDLE POCKET (#5)
         } else if ((distance(x, y, Constants.BOTTOM_MIDDLE_POCKET_X, Constants.BOTTOM_MIDDLE_POCKET_Y) <= check
-            || (y >= 685 && x >= 650 && x <= 750))
+            || (y >= 685 && x >= 650 && x <= 750)) // second check 
             && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
-            System.out.println("Buca 5");
             if(ballNum == 8) {
                 game.eightPocket = 5;
             }
         // TOP RIGHT POCKET (#3)
         } else if ((distance(x, y, Constants.TOP_RIGHT_POCKET_X, Constants.TOP_RIGHT_POCKET_Y) <= check
-            || (y <= 250 && x >= 1000 && x <= 1130) || (x >= 1159 && y >= 259 && y <= 309))
+            || (y <= 250 && x >= 1000 && x <= 1130) || (x >= 1159 && y >= 259 && y <= 309)) // second check 
             && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
-            System.out.println("Buca 3");
             if(ballNum == 8) {
                 game.eightPocket = 3;
             }
         // BOTTOM RIGHT POCKET (#6)
         } else if ((distance(x, y, Constants.BOTTOM_RIGHT_POCKET_X, Constants.BOTTOM_RIGHT_POCKET_Y) <= check
-            || (y >= 685 && x >= 1000 && x <= 1130) || (x >= 1159 && y >= 635 && y <= 685))
+            || (y >= 685 && x >= 1000 && x <= 1130) || (x >= 1159 && y >= 635 && y <= 685)) // second check 
             && !game.ball[ballNum].isDropped()) {
             pocketed(ballNum);
-            System.out.println("Buca 6");
             if(ballNum == 8) {
                 game.eightPocket = 6;
             }
