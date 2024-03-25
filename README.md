@@ -1,6 +1,6 @@
 ## Execution Guide
 
-For Windows users it is possible to run JPool launching batch file `JPool.bat` in `dist/Windows` repository.\
+For Windows users it is possible to run JPool launching batch file `JPool.bat` in `dist/Windows` repository.
 
 For Linux and MacOS users (or if you have problems running the batch file in a Windows environment) you need to follow the execution guide below.
 
